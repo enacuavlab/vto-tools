@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Icon=/usr/share/icons/matlab.png
+Name=MATLAB R2018a
+Comment=Start MATLAB - The Language of Technical Computing
+#Uncomment the following line and comment the line after to
+#force matlab to use the 32 bits architecture
+#Exec=matlab -arch=glnx86 -desktop
+Exec=/home/pprz/Projects/matlab/R2018b/bin/matlab -desktop
+Categories=Development;
+#Uncomment the following line if you've got several matlab icons in the launcher
+#StartupWMClass=com-mathworks-util-PostVMInit

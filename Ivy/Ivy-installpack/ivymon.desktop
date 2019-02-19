@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Icon=/usr/share/icons/ivybus.png
+Name=Ivymon
+Comment=Sart ivymon
+#Uncomment the following line and comment the line after to
+#force matlab to use the 32 bits architecture
+#Exec=matlab -arch=glnx86 -desktop
+Exec=python3 /home/pprz/Projects/ivymonPy/ivymon.py
+Categories=Development;
+#Uncomment the following line if you've got several matlab icons in the launcher
+#StartupWMClass=com-mathworks-util-PostVMInit

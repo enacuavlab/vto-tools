@@ -1,0 +1,19 @@
+[Desktop Entry]
+Comment[fr_FR]=
+Comment=
+Exec=/home/pprz/DEV/DMX_Bridge/GUI/dmxGui.pl -nb 3 -b 192.168.1.255:2010
+GenericName[fr_FR]=controle les periphériques DMX
+GenericName=controle les periphériques DMX
+Icon=darktable
+MimeType=
+Name[fr_FR]=dmx control
+Name=dmx control
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=
