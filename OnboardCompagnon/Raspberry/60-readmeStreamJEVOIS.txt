@@ -19,7 +19,17 @@ sudo apt-get install gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstream
 v4l2-ctl --list-formats-ext
 v4l2-ctl --set-fmt-video=width=800,height=600
 v4l2-ctl --get-fmt-video
+
+MULTICAST (224.1.1.1)
 - stream:
-gst-launch-1.0 -v v4l2src device=/dev/video0 ! video/x-raw,width=640,height=500,framerate=20/1 ! omxh264enc ! rtph264pay ! udpsink host=224.0.0.1 port=5000 &
+gst-launch-1.0 -v v4l2src device=/dev/video0 ! video/x-raw,width=640,height=500,framerate=20/1 ! omxh264enc ! rtph264pay ! udpsink host=224.1.1.1 port=5000
 - play:
-ffplay udp://@:5000
+gst-launch-1.0  udpsrc multicast-group=224.1.1.1 port=5000 ! application/x-rtp, payload=96 ! rtph264depay ! queue ! avdec_h264 ! videoconvert ! autovideosink sync=false
+
+
+Option:
+BROADCAST (192.168.1.255)
+- stream:
+gst-launch-1.0 -v v4l2src device=/dev/video0 ! video/x-raw,width=640,height=500,framerate=20/1 ! omxh264enc ! rtph264pay ! udpsink host=192.168.1.255 port=5000
+- play:
+gst-launch-1.0  udpsrc port=5000 ! application/x-rtp, payload=96 ! rtph264depay ! queue ! avdec_h264 ! videoconvert ! autovideosink sync=false
