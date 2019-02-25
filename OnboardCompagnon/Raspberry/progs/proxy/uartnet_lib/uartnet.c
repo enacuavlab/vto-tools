@@ -1,3 +1,6 @@
+/*
+  This program is a library that provides services to get/retreive data from/to serial and network interfaces
+*/
 #include "uartnet.h"
  
 uint8_t bufin[uartnet_maxbufsize];
@@ -212,14 +215,16 @@ void pthread_join_net2uart()
 }
 
 /*****************************************************************************/
-void *uartnet_run(uartnet_t *arg)
+void *uartnet_run(void *arg)
 {
-  sockfd = net_init(arg->netipdest,
-                    arg->netportout,
-		    arg->netportin);
+  uartnet_t *myarg = (uartnet_t *)arg;
+
+  sockfd = net_init(myarg->netipdest,
+                    myarg->netportout,
+		    myarg->netportin);
   if(sockfd > 0) {
-    serfd = uart_init(arg->serdev, 
-                      arg->serspeed);
+    serfd = uart_init(myarg->serdev, 
+                      myarg->serspeed);
     if(serfd > 0) {
       pthread_start_uart2net();
       pthread_start_net2uart();

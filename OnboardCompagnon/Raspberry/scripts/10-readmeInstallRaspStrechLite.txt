@@ -19,10 +19,7 @@ unzip -p 2018-10-09-raspbian-stretch-lite.zip | sudo dd of=/dev/sdxx bs=4M statu
 (4 minutes later)
 sync
 
-expand rootfs partition
-sudo gparted
-umount /dev/sdxx
-resize extfs
+Plug/unplug SD
 
 
 Create file
@@ -36,16 +33,12 @@ update_config=1
 country=FR
 
 network={
-	ssid="Androidxp"
-	key_mgmt=NONE
+  ssid="Androidxp"
+  key_mgmt=NONE
 }
 network={
-	ssid="Livebox-7EA4"
-	psk="6vNVEJNeLCYLubnbuk"
-}
-network={
-	ssid="Livebox-1aa4"
-	psk="E89831065C74F706AFC0E95F63"
+  ssid="Livebox-7EA4"
+  psk="6vNVEJNeLCYLubnbuk"
 }
 "
 
@@ -55,6 +48,13 @@ log
 nmap -sn 192.168.1.0/24
 
 ssh pi@192.168.1.x
-password "raspberry" or "pprz"
+password "raspberry"
 
-change user/password
+sudo raspi-config
+1) change user password
+7) advanced options
+  A1) expand filesystem
+
+  
+sudo vi /etc/dphys-swapfile 
+CONF_SWAPSIZE=1024

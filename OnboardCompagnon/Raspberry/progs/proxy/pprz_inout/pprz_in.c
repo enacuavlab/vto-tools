@@ -1,7 +1,11 @@
 /*
-This program get DL_SETTING uplink message to start or stop camera stremaing
-*/
+  This program bridge serial and network interfaces.
+  Furthermore incomming messages are parse for DL_SETTING uplink message 
+  to get setting information for de the Jevois camera module
 
+  When the telemétry setting is "Start" the the video streaming is started.
+  When the telemétry setting is "Stop" the the video streaming is killed.
+*/
 
 
 #include <stdlib.h> 
@@ -81,7 +85,14 @@ void main(int c, char **argv)
   pthread_t uartnet_id;
   pthread_t pprzcam_id;
   
-  pthread_create(&uartnet_id, NULL, uartnet_run, NULL);
+  uartnet_t arg;
+  strcpy(arg.serdev,"/dev/ttyAMA0");
+  arg.serspeed=B115200;
+  strcpy(arg.netipdest,"192.168.1.255");
+  arg.netportout = 4242;
+  arg.netportin = 4243;
+ 
+  pthread_create(&uartnet_id, NULL, uartnet_run, (void *)&arg);
   pthread_create(&pprzcam_id, NULL, pprzcam_run, NULL);
   sleep(1);
   pthread_join(uartnet_id,NULL); 

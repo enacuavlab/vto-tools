@@ -1,3 +1,10 @@
+/*
+  This program bridge serial and network interfaces.
+  Furthermore outcomming messages are parse for DL_IMU_ACCEL_SCALED downlink message 
+  to get sensor information
+*/
+
+
 #include "uartnet.h"
 #include "pprzlink/pprz_transport.h"
  
@@ -56,7 +63,14 @@ void main(int c, char **argv)
   pthread_t uartnet_id;
   pthread_t pprzout_id;
   
-  pthread_create(&uartnet_id, NULL, uartnet_run, NULL);
+  uartnet_t arg;
+  strcpy(arg.serdev,"/dev/ttyAMA0");
+  arg.serspeed=B115200;
+  strcpy(arg.netipdest,"192.168.1.255");
+  arg.netportout = 4242;
+  arg.netportin = 4243;
+ 
+  pthread_create(&uartnet_id, NULL, uartnet_run, (void *)&arg);
   pthread_create(&pprzout_id, NULL, pprzout_run, NULL);
   sleep(1);
   pthread_join(uartnet_id,NULL); 

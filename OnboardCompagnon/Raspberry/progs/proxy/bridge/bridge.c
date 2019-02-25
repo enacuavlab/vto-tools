@@ -1,3 +1,9 @@
+/*
+   This program is a bridge beetween a serial interface and ethernet network
+   The serial interface is fullduplex. 
+   The network interface is halfduplex with dedicated ports for incoming and outcoming
+   Outcoming data are broadcasted to all receivers connected to the subnetwork
+*/
 #include "uartnet.h"
 
 
@@ -10,5 +16,5 @@ void main(int c, char **argv)
   arg.netportout = 4242;
   arg.netportin = 4243;
  
-  uartnet_run(&arg);
+  uartnet_run((void *)&arg);
 }

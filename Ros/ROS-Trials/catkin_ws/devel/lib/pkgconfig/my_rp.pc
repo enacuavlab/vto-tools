@@ -1,0 +1,8 @@
+prefix=/home/pprz/Projects/vto-tools/Ros/ROS-Trials/catkin_ws/devel
+
+Name: my_rp
+Description: Description of my_rp
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/pprz/Projects/vto-tools/Ros/ROS-Trials/catkin_ws/devel/lib 
+Requires: 

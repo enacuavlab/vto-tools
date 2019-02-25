@@ -20,6 +20,6 @@ typedef struct {
   int  netportin;
 } uartnet_t;
 
-void *uartnet_run(uartnet_t *arg);
+void *uartnet_run(void *arg);
 uint8_t uartnet_getin(uint8_t *ptr);
 uint8_t uartnet_getout(uint8_t *ptr);
