@@ -1,7 +1,4 @@
 -------------------------------------------------------------------------------
-simple-optitracklist-python-cpp is a minimal application (C++ and python) to print subcribed ros position from natnet2ros (paparazzi)
-
--------------------------------------------------------------------------------
 catkin_ws is a catkin workspace to show how to use catkin tool
 
 build wokspace
@@ -36,7 +33,10 @@ catkin_make
 
 run node
 --------
+on GCS (192.168.1.237)
 roscore
+ROS_MASTER_URI=http://shama:11311/
+
 
 source devel/setup.bash
 rosrun my_rp mydrone_node1
