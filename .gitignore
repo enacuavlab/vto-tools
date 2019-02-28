@@ -1,0 +1,56 @@
+# Compiled and temp files
+*.so
+*.[oa]
+*.out
+
+*~
+*.swp
+*.swo
+
+*.pyc
+
+*.cmo
+*.cma
+*.cmi
+*.cmx
+*.cmxa
+
+*.depend
+
+*.aux
+
+*.gdb_history
+
+.cache.xml
+.directory
+
+# Eclipse IDE project files
+*.cproject
+*.project
+*.externalToolBuilders
+.settings
+.pydevproject
+.metadata
+/build.properties
+/META-INF
+
+# JetBrains (PyCharm, etc) IDE project files
+.idea
+
+# QtCreator IDE
+*.creator
+*.creator.user*
+*.config
+*.files
+*.includes
+
+# ROS build
+/Ros/ROS-Trials/catkin_ws/build
+
+# Mac OS X
+.DS_Store
+
+*.dSYM
+
+# K-develop
+*.kate-swp
