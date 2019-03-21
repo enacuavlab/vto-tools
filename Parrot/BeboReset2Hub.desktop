@@ -1,0 +1,11 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=3
+Type=Application
+Terminal=true
+StartupNotify=true
+#Icon=/home/pprz/Projects/paparazzi/conf/system/launcher/logo.png
+Name=Paparazzi
+Comment=The Free Autopilot
+Exec=/home/pprz/Projects/vto-tools/Parrot/BeboReset2Hub.sh
+Categories=Application;
