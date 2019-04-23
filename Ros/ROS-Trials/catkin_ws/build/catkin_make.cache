@@ -1,2 +1,0 @@
-my_rp
--DCATKIN_DEVEL_PREFIX=/home/pprz/Projects/vto-tools/Ros/ROS-Trials/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/pprz/Projects/vto-tools/Ros/ROS-Trials/catkin_ws/install -G Unix Makefiles
