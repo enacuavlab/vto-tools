@@ -25,3 +25,4 @@ sudo /opt/ros/kinetic/initialize.sh
 (70 minutes)
 
 
+1

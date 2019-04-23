@@ -10,7 +10,7 @@ check device
 lsblk 
 
 copy to suitable device !
-unzip -p 2018-10-09-raspbian-stretch-lite.zip | sudo dd of=/dev/sdxx bs=4M status=progress conv=fsync
+unzip -p raspbian_lite_latest | sudo dd of=/dev/sdxx bs=4M status=progress conv=fsync
 
 0+22922 enregistrements lus
 0+22922 enregistrements écrits

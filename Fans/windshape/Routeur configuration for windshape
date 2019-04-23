@@ -1,0 +1,18 @@
+Routeur configuration for windshape
+
+- plug the Internet windshape to the voliere routeur WAN
+
+- connect to voliere routeur
+  - web 192.168.1.1
+    admin / 1voliere
+  - add to the DMZ
+   192.168.1.236
+  - enable NAT
+
+- windows
+Use server proxy : 3128
+Do not use proxy for adress starting with
+192.168.88.*;192.168.1.*
+
+- on PC (192.168.1.236)
+  http://192.168. ?

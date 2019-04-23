@@ -1,0 +1,10 @@
+C:\Users\pprz\Projects\castscreen_prj\bin\Debug\castscreen_prj.exe.config
+C:\Users\pprz\Projects\castscreen_prj\bin\Debug\castscreen_prj.exe
+C:\Users\pprz\Projects\castscreen_prj\bin\Debug\castscreen_prj.pdb
+C:\Users\pprz\Projects\castscreen_prj\obj\Debug\castscreen_prj.csprojAssemblyReference.cache
+C:\Users\pprz\Projects\castscreen_prj\obj\Debug\castscreen_prj.castscreen_srv.resources
+C:\Users\pprz\Projects\castscreen_prj\obj\Debug\castscreen_prj.ProjectInstaller.resources
+C:\Users\pprz\Projects\castscreen_prj\obj\Debug\castscreen_prj.csproj.GenerateResource.cache
+C:\Users\pprz\Projects\castscreen_prj\obj\Debug\castscreen_prj.csproj.CoreCompileInputs.cache
+C:\Users\pprz\Projects\castscreen_prj\obj\Debug\castscreen_prj.exe
+C:\Users\pprz\Projects\castscreen_prj\obj\Debug\castscreen_prj.pdb
