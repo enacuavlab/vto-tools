@@ -1,8 +1,9 @@
 #!/bin/bash
 
-
-# https://gist.github.com/Brainiarc7/7b6049aac3145927ae1cfeafc8f682c1
-
+# RUN WITHOUT OPTITRACK RTP INPUT !?
+# ELSE
+# max delay reached. need to consume packet from camera 
+#
 #------------------------------------------------------------------------------
 net rpc service start castscreen_srv -I optitrack -U pprz%pprz
 
@@ -10,15 +11,16 @@ net rpc service start castscreen_srv -I optitrack -U pprz%pprz
 FPS="25"
 
 
-X11GRAB="-f x11grab -s 1920x1080 -r $FPS"
+X11GRAB="-f x11grab -s 1920x1080 -framerate $FPS"
 
-H264ENCODE="-c:v h264_nvenc -pix_fmt yuv420p -r "$FPS" -g "$(($FPS * 2))
+H264ENCODE="-r 25 -g 50 -c:v h264_nvenc -pix_fmt yuv420p -preset fast -profile:v main \
+-b:v 16000K -maxrate 24000k -bufsize 6000k"
 
 #------------------------------------------------------------------------------
 REMOTE="pprz@192.168.1.236"
 HOST_URL="-f rtp rtp://192.168.1.237:35010"
+
 X11GRAB_REMOTE=$X11GRAB" -i :0.0+0,0" 
-H264ENCODE_REMOTE=$H264ENCODE" -tune zerolatency"
 
 remote_pid=$(ssh $REMOTE \
 "ffmpeg \
@@ -32,7 +34,7 @@ echo "Successfully started service: "$HOST_URL
 YOUTUBE_URL="rtmp://a.rtmp.youtube.com/live2"
 KEY="rghc-mqk1-ubx3-5501"
 
-THREAD_QUEUE="-thread_queue_size 1024"
+THREAD_QUEUE="-thread_queue_size 512"
 PROTOCOL_WHITELIST="-protocol_whitelist file,udp,rtp"
 
 AXIS_CAMERA="-i rtsp://pprz:vtoenac@192.168.1.232/axis-media/media.amp"
@@ -43,29 +45,25 @@ X11GRAB_LOCAL=$X11GRAB" -i :0.0+3840,0"
 
 ffmpeg \
   -f lavfi -i anullsrc=r=44100 \
-  $THREAD_QUEUE $X11GRAB_LOCAL \
+  -f lavfi -i testsrc=size=1920x1080:rate=25 \
   $THREAD_QUEUE $PROTOCOL_WHITELIST -i huppe.sdp \
-  $THREAD_QUEUE $PROTOCOL_WHITELIST -i windows/optitrack.sdp \
+  $THREAD_QUEUE $X11GRAB_LOCAL \
   $THREAD_QUEUE $AXIS_CAMERA?$AXIS_CAMERA_PARAM \
-  -filter_complex "[1:v] fps=fps=$FPS,setpts=PTS-STARTPTS [A];\
-                   [2:v] fps=fps=$FPS,setpts=PTS-STARTPTS [B];\
-                   [3:v] fps=fps=$FPS,setpts=PTS-STARTPTS [C];\
-                   [4:v] fps=fps=$FPS,setpts=PTS-STARTPTS [D];\
+  -filter_complex "[1:v] fifo,fps=fps=$FPS,setpts=PTS-STARTPTS [A];\
+                   [2:v] fifo,fps=fps=$FPS,setpts=PTS-STARTPTS [B];\
+                   [3:v] fifo,fps=fps=$FPS,setpts=PTS-STARTPTS [C];\
+                   [4:v] fifo,fps=fps=$FPS,setpts=PTS-STARTPTS [D];\
                    [A][B]hstack[top];\
                    [C][D]hstack[bottom];\
                    [top][bottom]vstack" \
-  -bsf:a aac_adtstoasc -c:a aac -ac 2 -ar 48000 -b:a 128k \
-  -b:v 2400k -minrate:v 2400k -maxrate:v 2400k -bufsize:v 160k \
-  -c:v h264_nvenc -pix_fmt nv12 -qp:v 19  \
-  -profile:v high -rc:v cbr_ld_hq -level:v 4.1 -r 60 -g 120 -bf:v 3 \
+  $H264ENCODE \
   -f flv "$YOUTUBE_URL/$KEY"  & 
 
-#   $H264ENCODE -threads 4 \
+#   
+#    $THREAD_QUEUE $PROTOCOL_WHITELIST -i windows/optitrack.sdp \
 
-#  -f flv - | ffplay - -fflags nobuffer
 
 mosaic_pid=$!
-
     
 echo "Webcast started"    
 read -p "Press to stop"

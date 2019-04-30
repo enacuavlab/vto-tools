@@ -78,6 +78,12 @@ Download ProcessExtensions
 castscreen_srv.cs
 OnStart()
 add
+//ProcessExtensions.StartProcessAsCurrentUser(null, @"C:\Users\pprz\Projects\ffmpeg\bin\ffmpeg.exe -f gdigrab -s 1920x1080 -r 25 -offset_x 3840 -i desktop -r 25 -g 50 -c:v h264_nvenc -pix_fmt yuv420p -preset fast -profile:v main -b:v 16000k -maxrate 2400k -bufsize 6000k -f mpegts udp://192.168.1.237:35000");
+
+            ProcessExtensions.StartProcessAsCurrentUser(null, @"C:\Users\pprz\Projects\ffmpeg\bin\ffmpeg.exe -f gdigrab -s 1920x1080 -r 25 -offset_x 3840 -i desktop -r 25 -g 50 -c:v h264_nvenc -pix_fmt yuv420p -preset fast -profile:v main -b:v 16000k -maxrate 2400k -bufsize 6000k -f rtp rtp://192.168.1.237:35000");
+            //ProcessExtensions.StartProcessAsCurrentUser(null, @"C:\Users\pprz\Projects\ffmpeg\bin\ffmpeg.exe -f gdigrab -r 25 -s 1920x1080 -offset_x 3840 -i desktop -c:v h264_nvenc -g 1 -f rtp rtp://192.168.1.237:35000");
+            //ProcessExtensions.StartProcessAsCurrentUser(null, @"C:\Users\pprz\Projects\ffmpeg\bin\ffmpeg.exe -f gdigrab -r 15 -s 1920x1080 -offset_x 3840 -i desktop -c:v h264_nvenc -tune zerolatency -maxrate:v 200k -f rtp rtp://192.168.1.237:35000");
+
 ProcessExtensions.StartProcessAsCurrentUser(null, @"C:\Users\pprz\Projects\ffmpeg\bin\ffmpeg.exe -f gdigrab -r 15 -s 1920x1080 -offset_x 3840 -i desktop -c:v h264_nvenc -maxrate:v 200k -f mpegts udp://192.168.1.237:2202");
 
 
