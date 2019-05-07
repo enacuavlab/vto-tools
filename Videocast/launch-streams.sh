@@ -1,12 +1,14 @@
 #!/bin/bash
 
-# RUN WITHOUT OPTITRACK RTP INPUT !?
-# ELSE
-# max delay reached. need to consume packet from camera 
-#
 #------------------------------------------------------------------------------
 net rpc service start castscreen_srv -I optitrack -U pprz%pprz
 
+# This is the service running in windows
+#
+#  gst-launch-1.0.exe -v dx9screencapsrc monitor=1 ! video/x-raw,framerate=25/1 ! queue 
+#  ! videoconvert ! x264enc ! ""video/x-h264,profile=baseline"" ! h264parse config-interval=-1 
+#  ! rtph264pay pt=96 config-interval=-1 ! udpsink host=192.168.1.237 port=35000 sync=true
+#
 #------------------------------------------------------------------------------
 FPS="25"
 
@@ -45,23 +47,29 @@ X11GRAB_LOCAL=$X11GRAB" -i :0.0+3840,0"
 
 ffmpeg \
   -f lavfi -i anullsrc=r=44100 \
-  -f lavfi -i testsrc=size=1920x1080:rate=25 \
+  $THREAD_QUEUE $PROTOCOL_WHITELIST -i windows/optitrack.sdp \
   $THREAD_QUEUE $PROTOCOL_WHITELIST -i huppe.sdp \
   $THREAD_QUEUE $X11GRAB_LOCAL \
   $THREAD_QUEUE $AXIS_CAMERA?$AXIS_CAMERA_PARAM \
   -filter_complex "[1:v] fifo,fps=fps=$FPS,setpts=PTS-STARTPTS [A];\
-                   [2:v] fifo,fps=fps=$FPS,setpts=PTS-STARTPTS [B];\
+                   [2:v] fifo,fps=fps=$FPS,setpts=PTS-STARTPTS+4/TB [B];\
                    [3:v] fifo,fps=fps=$FPS,setpts=PTS-STARTPTS [C];\
-                   [4:v] fifo,fps=fps=$FPS,setpts=PTS-STARTPTS [D];\
+                   [4:v] fifo,fps=fps=$FPS,setpts=PTS-STARTPTS+6/TB [D];\
                    [A][B]hstack[top];\
                    [C][D]hstack[bottom];\
-                   [top][bottom]vstack" \
+                   [top][bottom]vstack[output]" \
+  -c:a aac -strict experimental -ab 128k -ac 2 -ar 44100 -bt 500k \
   $H264ENCODE \
-  -f flv "$YOUTUBE_URL/$KEY"  & 
+  -f tee -flags +global_header -map [output] -map 0:a "/home/pprz/Vidéos/videocast/output.flv|[f=flv]$YOUTUBE_URL/$KEY" &
 
-#   
-#    $THREAD_QUEUE $PROTOCOL_WHITELIST -i windows/optitrack.sdp \
-
+# File cannot by play step by step 
+  
+#
+# Encoder options to be checked on GCS and Broadcaster
+#
+#  -c:a aac -strict experimental -ab 128k -ac 2 -ar 44100 -bt 500k \
+#  -c:v libx264 -preset ultrafast -tune zerolatency -b:v 1500K -bufsize 750K -minrate 1000K -maxrate 2000K -framerate 30 -threads 0 \
+#  -f tee "[f=flv:onfail=ignore]$YOUTUBE_URL/$KEY|/home/pprz/Vidéos/videocast/[f=segment:strftime=1:segment_time=60]local_%F_%H-%M-%S.mkv" &
 
 mosaic_pid=$!
     
@@ -81,3 +89,5 @@ echo "Webcast stopped"
 #------------------------------------------------------------------------------
 #ffplay -fflags nobuffer rtsp://pprz:vtoenac@192.168.1.232/axis-media/media.amp?resolution=1920x1080
 #ffplay -fflags nobuffer -protocol_whitelist file,udp,rtp -i windows/optitrack.sdp
+
+#   -f lavfi -i testsrc=size=1920x1080:rate=25 \
