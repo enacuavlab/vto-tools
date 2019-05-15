@@ -23,4 +23,12 @@ cv2.__version__
 '3.4.4'
 quit()
 
+---------------------------------------------------------------
+https://www.framboise314.fr/i-a-realisez-un-systeme-de-reconnaissance-dobjets-avec-raspberry-pi/
+
+pip3 install imutils
+
+
+---------------------------------------------------------------
+pip3 install picamera ?
 
