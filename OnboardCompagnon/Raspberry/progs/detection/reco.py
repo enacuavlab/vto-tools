@@ -52,7 +52,6 @@ print("...demarrage du FPS...")
 fps = FPS().start()
 
 print("...demarage boucle de detection...")
-cpt=0
 while True:
 
   print("...lecture de la camera...")
@@ -99,9 +98,9 @@ while True:
       cv2.putText(frame, label, (startX, y),cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[idx], 2)
 
       # enregistrement de l'image détectée 
-      cpt=cpt+1
-      cv2.imwrite("detection"cpt".png", frame)
+      cv2.imwrite("detection.png", frame)
 
+      key = cv2.waitKey(1) & 0xFF
       if key == ord("q"):
         break
  

@@ -23,6 +23,11 @@ cv2.__version__
 '3.4.4'
 quit()
 
+---------------------------------------------------------------
+ffmpeg -encoders | grep h264_omx
+=>
+V..... h264_omx             OpenMAX IL H.264 video encoder (codec h264)
+
 
 ---------------------------------------------------------------
 pip3 install picamera

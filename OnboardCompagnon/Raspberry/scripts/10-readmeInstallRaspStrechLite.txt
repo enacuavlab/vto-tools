@@ -16,7 +16,7 @@ unzip -p raspbian_lite_latest | sudo dd of=/dev/sdxx bs=4M status=progress conv=
 0+22922 enregistrements écrits
 1866465280 bytes (1,9 GB, 1,7 GiB) copied, 170,993 s, 10,9 MB/s
 
-(4 minutes later)
+=> 1 min
 sync
 
 Plug/unplug SD
@@ -34,6 +34,10 @@ country=FR
 
 network={
   ssid="Androidxp"
+  psk="pprzpprz"
+}
+network={
+  ssid="router_pprz"
   key_mgmt=NONE
 }
 network={
