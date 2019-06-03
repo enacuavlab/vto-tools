@@ -9,7 +9,7 @@ connect sd card (/dev/sdxx or /dev/mmcxxx)
 check device
 lsblk 
 
-copy to suitable device !
+copy to suitable device (/dev/sda or /dev/mmcblk0)
 unzip -p raspbian_lite_latest | sudo dd of=/dev/sdxx bs=4M status=progress conv=fsync
 
 0+22922 enregistrements lus
