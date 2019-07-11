@@ -27,7 +27,10 @@ gst-launch-1.0 udpsrc port=5000 ! application/x-rtp, encoding-name=H264,payload=
 int main(int, char**)
 {
   unsigned int cpt = 0;
-  Mat frame,img0,img1,img2;
+
+  Mat img(480,640,CV_8UC3);
+  Mat frameIn(480*3/2,640,CV_8UC1);
+  Mat frameOut(480*3/2,640,CV_8UC1);
 
   VideoCapture in(
     "shmsrc socket-path=/tmp/camera2 ! "
@@ -43,17 +46,27 @@ int main(int, char**)
 
   if (in.isOpened() && out.isOpened()) {
     while(true) {
-      in.read(frame);
-      if (!frame.empty()) { 
-        frame.copyTo(img0);
+      in.read(frameIn);
+      if (!frameIn.empty()) { 
 
         // Cam -> CSI-2 -> H264 Raw (YUV 4-4-4 (12bits) I420)
         // convert YUV nibbles (4-4-4) to OpenCV standard BGR bytes (8-8-8)
-        cvtColor(img0,img1,COLOR_YUV2BGR_I420);  
-	imwrite("img.jpg",img2);
-//        cvtColor(img0,img2,COLOR_YUV2BGR);  
+	
+	//     video/x-raw, format=BGR   -> 8bit, 3 channels
+        //     video/x-raw, format=I420  -> 8bit, 1 channel (height is 1.5x larger than true height)
+	
+        cvtColor(frameIn,img,COLOR_YUV2BGR_I420);
+	imwrite("img1.jpg",img);
 
-        out.write(img1);
+        img(Rect(15,15,20,40))=cpt;	
+	imwrite("img2.jpg",img);
+
+//      cvtColor(img,frameOut,COLOR_BGR2YUV_I420); KO
+        cvtColor(img,frameOut,COLOR_BGR2YUV); // OK 
+	imwrite("img3.jpg",frameOut);
+	
+        out.write(frameOut);
+
         cpt += 1;
         cout << "processing " << cpt << endl;
       }
