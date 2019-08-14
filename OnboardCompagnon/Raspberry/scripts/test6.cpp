@@ -6,45 +6,12 @@
 
 #include <chrono>
 
+/*
+g++ -g test6.cpp -o test6 `pkg-config --cflags --libs opencv` -D_GLIBCXX_USE_CXX11_ABI=0 -lpthread 
+*/
+
 using namespace cv;
 using namespace std;
-
-/*
--------------------------------------------------------------------------------
-
-                       | --> camera1 (x-h264) 
-rpicamsrc (x-h264) --> |   
-                       | omxh264dec --> camera2 (x-raw,I420) 
-	                                  |
-	                                  | --> VideoCapture (yuv) VideoWriter --> camera3 (x-raw,I420) 
-
-
-rm /tmp/cam*;GST_DEBUG=3 gst-launch-1.0 rpicamsrc bitrate=1000000 vflip=true ! video/x-h264,width=640,height=480,framerate=15/1 ! h264parse config-interval=1 ! tee name=streams ! queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! omxh264dec ! shmsink socket-path=/tmp/camera2 wait-for-connection=false sync=false streams. ! queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! shmsink socket-path=/tmp/camera1 wait-for-connection=false sync=false
-
-./test6
-
--------------------------------------------------------------------------------
-GST_DEBUG=3 gst-launch-1.0 -vvvv shmsrc socket-path=/tmp/camera1 ! video/x-h264,width=640,height=480,framerate=15/1,stream-format=byte-stream,alignment=au ! rtph264pay config-interval=1  pt=96 ! udpsink host=192.168.43.181 port=5000 sync=false
-and/or
-GST_DEBUG=3 gst-launch-1.0 -vvvv shmsrc socket-path=/tmp/camera2 ! video/x-raw,format=I420,width=640,height=480,framerate=15/1 ! omxh264enc ! rtph264pay config-interval=1 pt=96 ! udpsink host=192.168.43.181 port=5000 sync=false
-and/or
-Idem with camera3
-
-gst-launch-1.0 udpsrc port=5000 ! application/x-rtp, encoding-name=H264,payload=96 ! rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! autovideosink sync=false
-
--------------------------------------------------------------------------------
-gst-gateworks-apps/bin/gst-variable-rtsp-server -p 8554 -m /test -u "( shmsrc socket-path=/tmp/camera1 do-timestamp=true ! video/x-h264,stream-format=byte-stream,alignment=au ! rtph264pay config-interval=1 name=pay0 pt=96 )"
-and or
-
-KO !
-gst-gateworks-apps/bin/gst-variable-rtsp-server -p 8554 -m /test -u "( shmsrc socket-path=/tmp/camera2 do-timestamp=true ! video/x-raw,width=640,height=480,framerate=15/1 ! queue ! omxh264enc ! rtph264pay config-interval=1 name=pay0 pt=96 )"
-Idem with camera3
-
-
-gst-launch-1.0 rtspsrc location=rtsp://192.168.43.73:8554/test ! rtph264depay ! avdec_h264 ! xvimagesink sync=false
-
-
-*/
 
 /*****************************************************************************/
 std::mutex mtx;
