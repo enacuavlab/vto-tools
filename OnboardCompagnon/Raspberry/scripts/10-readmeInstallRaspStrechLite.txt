@@ -9,14 +9,14 @@ connect sd card (/dev/sdxx or /dev/mmcxxx)
 check device
 lsblk 
 
-copy to suitable device !
+copy to suitable device (/dev/sda or /dev/mmcblk0)
 unzip -p raspbian_lite_latest | sudo dd of=/dev/sdxx bs=4M status=progress conv=fsync
 
 0+22922 enregistrements lus
 0+22922 enregistrements écrits
 1866465280 bytes (1,9 GB, 1,7 GiB) copied, 170,993 s, 10,9 MB/s
 
-(4 minutes later)
+=> 1 min
 sync
 
 Plug/unplug SD
@@ -34,6 +34,10 @@ country=FR
 
 network={
   ssid="Androidxp"
+  psk="pprzpprz"
+}
+network={
+  ssid="pprz_router"
   key_mgmt=NONE
 }
 network={

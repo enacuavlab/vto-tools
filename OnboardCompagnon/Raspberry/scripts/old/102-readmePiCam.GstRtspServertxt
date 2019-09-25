@@ -1,0 +1,87 @@
+
+< 1 sec lag
+with server
+-------------------------------------------------------------------------------------
+ULTRALOW LATENCY
+-------------------------------------------------------------------------------------
+apt-get install autoconf automake libtool pkg-config libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libraspberrypi-dev
+git clone https://github.com/thaytan/gst-rpicamsrc.git
+cd gst-rpicamsrc/
+./autogen.sh --prefix=/usr --libdir=/usr/lib/arm-linux-gnueabihf/
+make
+sudo make install
+sudo reboot
+
+
+gst-launch-1.0 rpicamsrc bitrate=10000000 ! 'video/x-h264,width=640,height=480,framerate=25/1,profile=(string)high' ! h264parse ! rtph264pay config-interval=1 pt=96 ! udpsink host=192.168.43.181 port=5000
+
+gst-launch-1.0 rpicamsrc bitrate=10000000 ! 'video/x-raw,width=640,height=480,framerate=25/1' ! omxh264enc target-bitrate=1000000 control-rate=variable ! 'video/x-h264,profile=(string)high' ! h264parse ! rtph264pay config-interval=1 pt=96 ! udpsink host=192.168.43.181 port=5000
+
+
+On laptop
+gst-launch-1.0 udpsrc port=5000 ! application/x-rtp, encoding-name=H264,payload=96 ! rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! autovideosink sync=false
+
+-------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------
+gst-launch-1.0 --version
+=> gst-launch-1.0 version 1.10.4
+
+wget http://gstreamer.freedesktop.org/src/gst-rtsp-server/gst-rtsp-server-1.10.4.tar.xz
+tar -xf gst-rtsp-server-1.10.4.tar.xz 
+rm gst-rtsp-server-1.10.4.tar.xz
+cd gst-rtsp-server-1.10.4/
+
+./configure
+make
+=> 7min
+sudo make install
+
+----------------------------------------------------------------------------------
+gst-launch-1.0 -vvv rpicamsrc preview=0 fullscreen=0  ! video/x-raw,format=BGR,width=640,height=480,framerate=30/1 ! shmsink socket-path=/tmp/camera0 wait-for-connection=false shm-size=10000000
+
+~/gst-rtsp-server-1.10.4/examples/test-launch "( shmsrc socket-path=/tmp/camera0 ! video/x-raw,format=BGR,width=640,height=480,framerate=30/1 ! queue ! videoconvert ! queue ! video/x-raw,format=I420 ! omxh264enc target-bitrate=1000000 control-rate=variable ! video/x-h264,profile=high ! h264parse ! rtph264pay config-interval=1 name=pay0 pt=96 )"
+
+gst-launch-1.0 rtspsrc location=rtsp://192.168.43.73:8554/test ! rtph264depay ! avdec_h264 !  xvimagesink sync=false
+
+----------------------------------------------------------------------------------
+#!/usr/bin/python3
+
+import cv2
+import time
+from picamera.array import PiRGBArray
+from picamera import PiCamera
+
+def makesnd():
+  return cv2.VideoWriter('appsrc ! queue ! '
+    'shmsink socket-path=/tmp/camera0 '
+    'shm-size=10000000 wait-for-connection=false sync=false ',
+    0, 30.0, (640,480))
+
+
+if __name__ == '__main__':
+
+  camera = PiCamera()
+  camera.resolution = (640,480)
+  camera.framerate = 30
+  rawCapture = PiRGBArray(camera, size=(640,480))
+  time.sleep(0.1)
+
+  snd = makesnd()
+
+  if not snd.isOpened():
+    print("not opened")
+    quit()
+
+  frameCount = 0
+  for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
+    frameCount = frameCount + 1
+    print("frame ",frameCount)
+    image = frame.array
+    snd.write(cv2.flip(image,0))
+    rawCapture.truncate(0)
+
+  snd.release()
+
+----------------------------------------------------------------------------------
+~                 
