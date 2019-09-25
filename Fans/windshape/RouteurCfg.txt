@@ -16,3 +16,7 @@ Do not use proxy for adress starting with
 
 - on PC (192.168.1.236)
   http://192.168. ?
+
+- linux
+add route 
+192.168.88.40 255.255.255.255 192.168.1.1
