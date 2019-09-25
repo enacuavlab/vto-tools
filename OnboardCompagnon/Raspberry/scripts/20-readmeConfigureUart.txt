@@ -29,7 +29,7 @@ enable_uart=1
 
 Swap serial
 -----------
-/boot/config.txt
+sudo vi /boot/config.txt
 add
 dtoverlay=pi3-disable-bt
 

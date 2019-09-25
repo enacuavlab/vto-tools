@@ -37,7 +37,7 @@ network={
   psk="pprzpprz"
 }
 network={
-  ssid="router_pprz"
+  ssid="pprz_router"
   key_mgmt=NONE
 }
 network={

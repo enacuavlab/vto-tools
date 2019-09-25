@@ -46,12 +46,15 @@ sleep 2
 #  gst_rtsp_media_factory_set_launch (factory2, argv[2]);
 #  gst_rtsp_mount_points_add_factory (mounts, "/test2", factory2);
 
+export MYIP=`ifconfig wlan0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'`
+
 gst-rtsp-server-1.10.4/examples/test-launch \
   "( shmsrc socket-path=/tmp/camera1 do-timestamp=true ! video/x-h264,stream-format=byte-stream,alignment=au ! rtph264pay config-interval=1 name=pay0 pt=96 )" \
   "( shmsrc socket-path=/tmp/camera3 do-timestamp=true is-live=true ! video/x-raw,format=I420,width=640,height=480,framerate=15/1 ! omxh264enc ! video/x-h264,profile=high ! rtph264pay name=pay0 pt=96 config-interval=1 )" &
-echo "gst-launch-1.0 rtspsrc location=rtsp://192.168.43.73:8554/test ! rtph264depay ! avdec_h264 ! xvimagesink sync=false"
-echo "gst-launch-1.0 rtspsrc location=rtsp://192.168.43.73:8554/test2 ! rtph264depay ! avdec_h264 ! xvimagesink sync=false"
+echo "gst-launch-1.0 rtspsrc location=rtsp://$MYIP:8554/test ! rtph264depay ! avdec_h264 ! xvimagesink sync=false"
+echo "gst-launch-1.0 rtspsrc location=rtsp://$MYIP:8554/test2 ! rtph264depay ! avdec_h264 ! xvimagesink sync=false"
 PID_NET=$!
+
 
 #------------------------------------------------------------------------------------------------
 read dummy

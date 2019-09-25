@@ -2,6 +2,8 @@ https://github.com/opencv/opencv/wiki/Intel%27s-Deep-Learning-Inference-Engine-b
 https://solarianprogrammer.com/2018/12/18/cross-compile-opencv-raspberry-pi-raspbian/
 
 -------------------------------------------------------------------------------------
+CAUTION !!
+
 Raspbian "armhf": ARMv6 + VFPv2 (PI I, PI ZERO)
 deb http://archive.raspbian.org/raspbian stretch main contrib non-free
 deb-src http://archive.raspbian.org/raspbian stretch main contrib non-free
@@ -191,7 +193,7 @@ includedir = /opt/opencv-4.1.0/include/opencv4
 Name: OpenCV
 Description: OpenCV (Open Source Computer Vision Library) is an open source computer vision and machine learning software library.
 Version: 4.1.0
-Libs: -L${libdir} -lopencv_aruco -lopencv_bgsegm -lopencv_bioinspired -lopencv_calib3d -lopencv_ccalib -lopencv_core -lopencv_datasets -lopencv_dnn_objdetect -lopencv_dnn -lopencv_dpm -lopencv_face -lopencv_features2d -lopencv_flann -lopencv_freetype -lopencv_fuzzy -lopencv_gapi -lopencv_hfs -lopencv_highgui -lopencv_imgcodecs -lopencv_img_hash -lopencv_imgproc -lopencv_line_descriptor -lopencv_ml -lopencv_objdetect -lopencv_optflow -lopencv_phase_unwrapping -lopencv_photo -lopencv_plot -lopencv_reg -lopencv_rgbd -lopencv_saliency -lopencv_shape -lopencv_stereo -lopencv_stitching -lopencv_structured_light -lopencv_superres -lopencv_surface_matching -lopencv_text -lopencv_tracking -lopencv_videoio -lopencv_video -lopencv_videostab -lopencv_xfeatures2d -lopencv_ximgproc -lopencv_xobjdetect -lopencv_xphoto
+Libs: -L${libdir} -lopencv_calib3d -lopencv_core -lopencv_dnn -lopencv_features2d -lopencv_flann -lopencv_gapi -lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc -lopencv_ml -lopencv_objdetect -lopencv_photo -lopencv_stitching -lopencv_videoio -lopencv_video
 Cflags: -I${includedir}
 
 -------------------------------------------------------------------------------------
