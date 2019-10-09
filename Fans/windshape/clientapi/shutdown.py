@@ -1,4 +1,4 @@
-
+#!/usr/bin/python
 
 import src.windControlAPI
 import time
