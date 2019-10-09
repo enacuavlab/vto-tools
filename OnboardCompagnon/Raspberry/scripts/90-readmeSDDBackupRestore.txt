@@ -18,7 +18,7 @@ dd bs=512 count=1 of=/dev/sde if=raspogee/mbr.img
 sync
 sudo partprobe
 
-umount /media/pprz/xxx
+umount /media/pprz/*
 sudo bunzip2 -c raspogee/boot.img | sudo partclone.vfat --restore --source - --output /dev/sde1
 sudo bunzip2 -c raspogee/system.img | sudo partclone.extfs --restore --source - --output /dev/sde2
 
