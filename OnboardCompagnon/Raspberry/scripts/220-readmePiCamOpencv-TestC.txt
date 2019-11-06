@@ -16,6 +16,8 @@
 
 /*
 g++ -g test6.cpp -o test6 `pkg-config --cflags --libs opencv` -D_GLIBCXX_USE_CXX11_ABI=0 -lpthread 
+or
+g++ -g test.cpp -o test -I/usr/local/include/opencv4 -lopencv_core -lopencv_objdetect -lopencv_videoio -lopencv_imgproc -lpthread
 */
 
 using namespace cv;

@@ -1,5 +1,6 @@
 https://github.com/opencv/opencv/wiki/Intel%27s-Deep-Learning-Inference-Engine-backend
 https://solarianprogrammer.com/2018/12/18/cross-compile-opencv-raspberry-pi-raspbian/
+https://solarianprogrammer.com/2019/08/07/cross-compile-opencv-raspberry-pi-zero-raspbian/
 
 -------------------------------------------------------------------------------------
 CAUTION !!
@@ -13,8 +14,24 @@ deb http://deb.debian.org/debian stretch main
 deb-src http://deb.debian.org/debian stretch main
 
 -------------------------------------------------------------------------------------
-RPI
+RPI 3
+-----
+https://pymotion.com/installer-opencv-4-sur-raspberry/
+
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+    -D CMAKE_INSTALL_PREFIX=/usr/local \
+    -D INSTALL_C_EXAMPLES=OFF \
+    -D INSTALL_PYTHON_EXAMPLES=ON \
+    -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
+    -D BUILD_TESTS=OFF \
+    -D BUILD_PERF_TESTS=OFF \
+    -D BUILD_EXAMPLES=OFF ..
+
+Compilation duration 2 hours ?!
+
 -------------------------------------------------------------------------------------
+RPI ZERO
+--------
 From fresh installed raspbian strech lite (10 minutes)
  
 python 
