@@ -55,3 +55,42 @@ sudo pip3 install lxml
 
 sudo -E /home/pi/paparazzi/sw/ground_segment/joystick/input2ivy  -ac Karpet frsky_lite.xml
 
+---------------------------------------------------------
+
+devadm info -q all -n /dev/input/js0
+P: /devices/platform/soc/3f980000.usb/usb1/1-1/1-1.2/1-1.2:1.0/0003:0483:5710.0001/input/input0/js0
+N: input/js0
+S: input/by-id/usb-FrSky_FrSky_Taranis_Joystick_00000000001B-joystick
+S: input/by-path/platform-3f980000.usb-usb-0:1.2:1.0-joystick
+E: DEVLINKS=/dev/input/by-path/platform-3f980000.usb-usb-0:1.2:1.0-joystick /dev/input/by-id/usb-FrSky_FrSky_Taranis_Joystick_00000000001B-joystick
+E: DEVNAME=/dev/input/js0
+E: DEVPATH=/devices/platform/soc/3f980000.usb/usb1/1-1/1-1.2/1-1.2:1.0/0003:0483:5710.0001/input/input0/js0
+E: ID_BUS=usb
+E: ID_FOR_SEAT=input-platform-3f980000_usb-usb-0_1_2_1_0
+E: ID_INPUT=1
+E: ID_INPUT_JOYSTICK=1
+E: ID_MODEL=FrSky_Taranis_Joystick
+E: ID_MODEL_ENC=FrSky\x20Taranis\x20Joystick
+E: ID_MODEL_ID=5710
+E: ID_PATH=platform-3f980000.usb-usb-0:1.2:1.0
+E: ID_PATH_TAG=platform-3f980000_usb-usb-0_1_2_1_0
+E: ID_REVISION=0200
+E: ID_SERIAL=FrSky_FrSky_Taranis_Joystick_00000000001B
+E: ID_SERIAL_SHORT=00000000001B
+E: ID_TYPE=hid
+E: ID_USB_DRIVER=usbhid
+E: ID_USB_INTERFACES=:030000:
+E: ID_USB_INTERFACE_NUM=00
+E: ID_VENDOR=FrSky
+E: ID_VENDOR_ENC=FrSky
+E: ID_VENDOR_ID=0483
+E: MAJOR=13
+E: MINOR=0
+E: SUBSYSTEM=input
+E: TAGS=:uaccess:seat:
+E: USEC_INITIALIZED=51622900
+
+
+SUBSYSTEM=="input", ATTRS{name}=="*Controller Touchpad", RUN+="/bin/rm %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
+
+sudo -E /home/pi/paparazzi/sw/ground_segment/joystick/input2ivy  -ac Karpet frsky_lite.xml -b 192.168.1.255:2010
