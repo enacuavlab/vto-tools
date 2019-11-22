@@ -53,7 +53,31 @@ sudo pip3 install lxml
 /home/pi/paparazzi/sw/ground_segment/tmtc/link  -udp 
 /home/pi/paparazzi/sw/ground_segment/python/natnet3.x/natnet2ivy.py  -ac 115 115  -s 192.168.1.230 -f 5
 
-sudo -E /home/pi/paparazzi/sw/ground_segment/joystick/input2ivy  -ac Karpet frsky_lite.xml
+---------------------------------------------------------
+/etc/udev/rules.d/91-joystick.rules
+SUBSYSTEM=="hidraw", ACTION=="add", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5710", RUN+="/home/pi/groundpi-joystick.sh"
+KERNEL=="input[0-9]*", ACTION=="remove", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5710", RUN+="/home/pi/groundpi-joystick.sh"
+
+
+sudo service udev restart
+tail -f /var/log/syslog
+
+#!/bin/bash
+
+export PAPARAZZI_SRC=/home/pi/paparazzi
+export PAPARAZZI_HOME=/home/pi/paparazzi
+
+if [ "$ACTION" = "add" ]
+then
+  $PAPARAZZI_HOME/sw/ground_segment/joystick/input2ivy -ac Karpet frsky_lite.xml -b 192.168.1.255:2010 &
+elif [ "$ACTION" = "remove" ]
+  then killall input2ivy 
+fi
+
+#sudo -E /home/pi/paparazzi/sw/ground_segment/joystick/input2ivy -ac Karpet frsky_lite.xml -b 192.168.1.255:2010 &
+
+
+---------------------------------------------------------
 
 ---------------------------------------------------------
 
