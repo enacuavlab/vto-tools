@@ -37,6 +37,7 @@ ionice -c 1 -n 3 raspivid -w $WIDTH -h $HEIGHT -fps $FPS -b $BITRATE -g $KEYFRAM
 sleep 1
 rm /tmp/camera3
 /home/pi/opencv_trials/cpp/airpicv &
+#/home/pi/opencv_trials/cpp/airpiqrcode &
 
 #sleep 1
 #ionice -c 1 -n 4 nice -n -10 gst-launch-1.0 shmsrc socket-path=/tmp/camera3 do-timestamp=true ! \

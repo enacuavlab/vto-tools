@@ -38,9 +38,10 @@ ionice -c 1 -n 4 nice -n -10 gst-launch-1.0 shmsrc socket-path=/tmp/camera1 do-t
 	fdsink | \
 	/home/pi/wifibroadcast_osd/fpv_video/fpv_video &
 
-#sleep 1
-#rm /tmp/camera3
-#/home/pi/opencv_trials/cpp/groundpicv &
+sleep 1
+rm /tmp/camera3
+/home/pi/opencv_trials/cpp/groundpicv &
+#/home/pi/opencv_trials/cpp/groundpiqrcode &
 
 #-------------------------------------------------------------------------------
 WIDTH=1280

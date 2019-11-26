@@ -41,9 +41,9 @@ make
 
 copy drone.key and gs.key
 
-git clone https://github.com/racic/ftee.git
-cd ftee
-gcc ftee.c -o ftee
+#git clone https://github.com/racic/ftee.git
+#cd ftee
+#gcc ftee.c -o ftee
 
 
 Check which had the camera 
