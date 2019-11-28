@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/garciafa/Documents/PROG/CLionProjects/QrEncoding/src/main.cpp
+cstdlib
+-
+string
+-
+qrencode.h
+-
+iostream
+-
+opencv2/opencv.hpp
+-
+

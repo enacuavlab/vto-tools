@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../../QUIRC/lib/quirc.h
+stdint.h
+-
+
+/home/pprz/Desktop/QrCodes/JPOQrCodeDemo/src/main.cpp
+iostream
+-
+opencv2/opencv.hpp
+-
+chrono
+-
+quirc.h
+-
+

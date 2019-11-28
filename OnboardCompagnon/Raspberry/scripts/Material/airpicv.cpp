@@ -14,11 +14,28 @@
 #include <condition_variable>
 #include <chrono>
 
+//#include <sys/types.h> 
+#include <sys/socket.h> 
+//#include <arpa/inet.h> 
+#include <netinet/in.h> 
+
 /*
 g++ -g test6.cpp -o test6 `pkg-config --cflags --libs opencv` -D_GLIBCXX_USE_CXX11_ABI=0 -lpthread 
 or
-g++ -g test.cpp -o test -I/usr/local/include/opencv4 -lopencv_core -lopencv_objdetect -lopencv_videoio -lopencv_imgproc -lpthread
+g++ -g airpicv.cpp -o airpicv -I/usr/local/include/opencv4 -lopencv_core -lopencv_objdetect -lopencv_videoio -lopencv_imgproc -lpthread
 */
+
+#define WIDTH 1280
+#define HEIGHT 720
+#define FPS 30
+#define SCALE 3/2
+
+#define WIDTHSTR "1280"
+#define HEIGHTSTR "720"
+#define FPSSTR "30"
+
+#define CAMINSTR "/tmp/camera2"
+#define CAMOUTSTR "/tmp/camera3"
 
 using namespace cv;
 using namespace std;
@@ -27,45 +44,54 @@ using namespace std;
 /*****************************************************************************/
 std::mutex mtx;
 std::condition_variable cond;
-Mat frameIn = Mat(720,640,CV_8UC1); 
+Mat dataIn = Mat(HEIGHT*SCALE,WIDTH,CV_8UC1); 
 bool ready = false;
 bool readyDetect = false;
 
+struct sockaddr_in UdpOut;
+int UdpOutSocket;
+
 Rect detect;
-unsigned int fps = 0;
+unsigned int fpsIn = 0;
+unsigned int fpsProc = 0;
 
 /*****************************************************************************/
 void image_processing(void)
 {
   double scale=1;
-  CascadeClassifier cascade("/opt/opencv-4.1.0/share/opencv4/haarcascades/haarcascade_frontalface_default.xml");
+  CascadeClassifier cascade("/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml");
   vector<Rect> faces;
   Mat gray;
-  Mat img1(480,640,CV_8UC3,Scalar(0,0,0));
+  Mat img1(HEIGHT,WIDTH,CV_8UC3,Scalar(0,0,0));
+
+  char buff[50];
 
   while (true) {
     std::unique_lock<std::mutex> lck(mtx);
     cond.wait(lck, []{return ready;});
 
-    cvtColor(frameIn,img1,COLOR_YUV2BGR_I420);
+    cvtColor(dataIn,img1,COLOR_YUV2BGR_I420);
     cvtColor(img1,gray,COLOR_BGR2GRAY);
-    cascade.detectMultiScale(gray, faces, 2.0, 1, 0|CASCADE_SCALE_IMAGE, Size(80, 80) );
 
+    cascade.detectMultiScale(gray, faces, 2.0, 1, 0|CASCADE_SCALE_IMAGE, Size(80, 80) );
     if(faces.size()>0) {
       detect = faces[0];
       readyDetect = true;
+
+      sprintf(buff, "%d,%d,%d,%d\n",detect.x,detect.y,detect.height,detect.width);
+      sendto(UdpOutSocket, buff, strlen(buff), 0, (const struct sockaddr *) &UdpOut, sizeof(UdpOut));
+
     } else {
       readyDetect = false;
     }
 
-    fps++;
+    fpsProc++;
     ready = false;
-    lck.unlock();
   }
 }
 
 /*****************************************************************************/
-unsigned int width=640,height=480;
+unsigned int width=WIDTH,height=HEIGHT;
 void y_overlay(Mat *param)
 {
   unsigned int ax=detect.x,bx=ax+detect.width;
@@ -78,7 +104,7 @@ void y_overlay(Mat *param)
     param->data[i+byl] = 0;
   }
   for(int i=ay;i<by;i++) {
-    offset=i*640;
+    offset=i*WIDTH;
     param->data[offset+ax] = 0;
     param->data[offset+bx] = 0;
   }
@@ -89,45 +115,54 @@ void fps_processing(void)
 {
   while(true) {
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-//    cout << fps << endl;
-    fps=0;
+    cout << fpsIn << " " << fpsProc << endl;
+    fpsIn=0;
+    fpsProc=0;
   }
 }
 
 /*****************************************************************************/
 void stream_processing(void) 
 {
-  unsigned int dataInSize = sizeof(unsigned char)*640*480*3/2;
-  Mat dataIn(480*3/2,640,CV_8UC1);
-  Mat dataOut(480,640,CV_8UC3,Scalar(0,0,0));
+  unsigned int dataSize = sizeof(unsigned char)*WIDTH*HEIGHT*SCALE;
+  Mat dataOut(WIDTH,HEIGHT,CV_8UC3,Scalar(0,0,0));
 
   VideoCapture in(
-    "shmsrc socket-path=/tmp/camera2 ! "
-    "video/x-raw,width=640,height=480,framerate=15/1,format=I420 ! "
+    "shmsrc socket-path=" CAMINSTR
+    " ! video/x-raw,width=" WIDTHSTR
+    ",height=" HEIGHTSTR
+    ",framerate=" FPSSTR
+    "/1,format=I420 ! "
     "appsink sync=true",
     CAP_GSTREAMER);
 
   VideoWriter out(
     "appsrc ! "
-    "shmsink socket-path=/tmp/camera3 "
-    "wait-for-connection=false async=false sync=false",
-    0,15.0,Size(640,480),true);
+    "shmsink socket-path=" CAMOUTSTR
+    " wait-for-connection=false async=false sync=false",
+    0,FPS/1,Size(WIDTH,HEIGHT),true);
+
+  memset(&UdpOut, 0, sizeof(UdpOut));
+//  to.sin_addr.s_addr = inet_addr("127.0.0.1");
+  UdpOut.sin_addr.s_addr = INADDR_ANY;
+  UdpOut.sin_family = AF_INET;
+  UdpOut.sin_port = htons(4244);
+  UdpOutSocket = socket(AF_INET, SOCK_DGRAM, 0);
 
   if (in.isOpened() && out.isOpened()) {
     while(true) {
       in.read(dataIn);
-      if (!dataIn.empty()) { 
+      if (!dataIn.empty()) {
+        memcpy(dataOut.data, dataIn.data, dataSize);
+
         if(!ready) {
-          std::unique_lock<std::mutex> lck(mtx);
-          memcpy(frameIn.data, dataIn.data, dataInSize);
-          ready=true;
-          lck.unlock();
-          cond.notify_one();
+           ready=true;
+           cond.notify_one();
 	}
 
-        memcpy(dataOut.data, dataIn.data, dataInSize);
         if(readyDetect) y_overlay(&dataOut);
         out.write(dataOut);
+        fpsIn++;
       }
     }
   }
@@ -142,16 +177,10 @@ int main(int, char**)
   thread t0(fps_processing);
   thread t1(stream_processing);
   thread t2(image_processing);
+
   t0.join();
   t1.join();
   t2.join();
 
   return 0;
 }
-
-
-
-
-
-
-
