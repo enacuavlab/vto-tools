@@ -1,0 +1,4 @@
+/home/garciafa/Documents/PROG/CLionProjects/QrEncoding/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/garciafa/Documents/PROG/CLionProjects/QrEncoding/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/garciafa/Documents/PROG/CLionProjects/QrEncoding/cmake-build-debug/CMakeFiles/Encode.dir
+/home/garciafa/Documents/PROG/CLionProjects/QrEncoding/cmake-build-debug/CMakeFiles/Decode.dir

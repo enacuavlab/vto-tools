@@ -1,0 +1,3 @@
+/home/pprz/Desktop/QrCodes/JPOQrCodeDemo/BUILD/CMakeFiles/rebuild_cache.dir
+/home/pprz/Desktop/QrCodes/JPOQrCodeDemo/BUILD/CMakeFiles/JPOQrCodeDemo.dir
+/home/pprz/Desktop/QrCodes/JPOQrCodeDemo/BUILD/CMakeFiles/edit_cache.dir
