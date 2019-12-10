@@ -1,8 +1,14 @@
 Raspberry Zero or PI3
-(opencv compilation on PI3 = 2hours, not even try on PI3)
+(opencv compilation on PI3 = 2hours, not even try on PI0)
+
+Wifibroadcast work tested with 
+Ralink RT5572
+Realtek RTL8812AU (RTL8812BU not working driver)
 
 ----------------------------------------------------------------------------------------------------
 unzip -p raspbian_lite_latest | sudo dd of=/dev/sdxx bs=4M status=progress conv=fsync
+(2019-09-26-raspbian-buster-lite.zip)
+sync
 
 Create file
 boot/ssh
@@ -81,11 +87,12 @@ sudo apt-get install libgstreamer-plugins-bad1.0-dev
 
 gst-launch-1.0 --version
 => gst-launch-1.0 version 1.10.4
+=> gst-launch-1.0 version 1.14.4
 
-wget http://gstreamer.freedesktop.org/src/gst-rtsp-server/gst-rtsp-server-1.10.4.tar.xz
-tar -xf gst-rtsp-server-1.10.4.tar.xz 
-rm gst-rtsp-server-1.10.4.tar.xz
-cd gst-rtsp-server-1.10.4/
+wget http://gstreamer.freedesktop.org/src/gst-rtsp-server/gst-rtsp-server-1.14.4.tar.xz
+tar xf gst-rtsp-server-1.14.4.tar.xz 
+rm gst-rtsp-server-1.14.4.tar.xz
+cd gst-rtsp-server-1.14.4/
 ./configure
 
 
@@ -138,6 +145,7 @@ copy drone.key and gs.key
 
 cd /opt/vc/src/hello_pi/libs/ilclient
 make
+cd
 git clone https://github.com/svpcom/wifibroadcast_osd.git
 cd wifibroadcast_osd/fpv_video
 make
@@ -167,4 +175,33 @@ bridge.c
 
 make
 
+----------------------------------------------------------------------------------------------------
+use gparted to add user rw FAT32 partition 
+/etc/fstab
+...
+PARTUUID=...-03  /data           vfat    nofail,umask=0000 0       0
+
+git clone https://github.com/marklister/overlayRoot.git
+cd overlayRoot
+sudo bash install
+
+/etc/overlayRoot.conf
+/etc/fstab
+
+sudo dphys-swapfile swapoff
+sudo dphys-swapfile uninstall
+sudo update-rc.d dphys-swapfile remove
+
+
+sudo mount -o remount,rw /ro
+sudo chroot /ro
+...
+exit
+
+
+/boot/cmdline.txt
+... init=/sbin/overlayRoot.sh
+
+init=...
+init=/sbin/overlayRoot.sh
 

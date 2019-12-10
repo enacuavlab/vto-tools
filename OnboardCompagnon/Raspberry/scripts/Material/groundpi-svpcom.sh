@@ -38,21 +38,21 @@ ionice -c 1 -n 4 nice -n -10 gst-launch-1.0 shmsrc socket-path=/tmp/camera1 do-t
 	fdsink | \
 	/home/pi/wifibroadcast_osd/fpv_video/fpv_video &
 
-sleep 1
-rm /tmp/camera3
-/home/pi/opencv_trials/cpp/groundpicv &
+#sleep 1
+#rm /tmp/camera3
 #/home/pi/opencv_trials/cpp/groundpiqrcode &
+#/home/pi/opencv_trials/cpp/groundpicv &
 
 #-------------------------------------------------------------------------------
-WIDTH=1280
-HEIGHT=720
-FPS=30
+#WIDTH=1280
+#HEIGHT=720
+#FPS=30
+#
+#sleep 1
+#/home/pi/gst-rtsp-server-1.10.4/examples/test-launch "( shmsrc socket-path=/tmp/camera3 do-timestamp=true is-live=true ! video/x-raw,format=I420,width=$WIDTH,height=$HEIGHT,framerate=$FPS/1 ! omxh264enc ! video/x-h264,profile=high ! rtph264pay name=pay0 pt=96 config-interval=1 )" &
 
 sleep 1
-/home/pi/gst-rtsp-server-1.10.4/examples/test-launch "( shmsrc socket-path=/tmp/camera3 do-timestamp=true is-live=true ! video/x-raw,format=I420,width=$WIDTH,height=$HEIGHT,framerate=$FPS/1 ! omxh264enc ! video/x-h264,profile=high ! rtph264pay name=pay0 pt=96 config-interval=1 )" &
-
-#sleep 1
-#/home/pi/gst-rtsp-server-1.10.4/examples/test-launch "( shmsrc socket-path=/tmp/camera1 do-timestamp=true ! video/x-h264,stream-format=byte-stream,alignment=au ! rtph264pay name=pay0 pt=96 config-interval=1 )" &
+/home/pi/gst-rtsp-server-1.10.4/examples/test-launch "( shmsrc socket-path=/tmp/camera1 do-timestamp=true ! video/x-h264,stream-format=byte-stream,alignment=au ! rtph264pay name=pay0 pt=96 config-interval=1 )" &
 
 # client gst-launch-1.0 rtspsrc location=rtsp://192.168.1.30:8554/test ! rtph264depay ! avdec_h264 !  xvimagesink sync=false
 
