@@ -10,10 +10,9 @@ iw dev wlan1 set monitor otherbss
 iw reg set DE
 ifconfig wlan1 up
 iw dev wlan1 set channel 36
-iw wlan1 info
+#iw wlan1 info
 
 sleep 1
-
 /home/pi/wifibroadcast-svpcom/wfb_rx -p 1 -c 127.0.0.1 -u 5000 -K /home/pi/wifibroadcast-svpcom/gs.key wlan1 &
 
 #-------------------------------------------------------------------------------
@@ -60,16 +59,14 @@ sleep 1
 #-------------------------------------------------------------------------------
 sleep 1
 /home/pi/wifibroadcast-svpcom/wfb_rx -p 2 -c 192.168.1.236 -u 4242 -K /home/pi/wifibroadcast-svpcom/gs.key wlan1 &
-#/home/pi/wifibroadcast-svpcom/wfb_rx -p 2 -c 127.0.0.1 -u 4242 -K /home/pi/wifibroadcast-svpcom/gs.key wlan1 &
-#sleep 1
-#/usr/bin/socat -u udp-recv:4242  UDP-DATAGRAM:192.168.1.255:4242,broadcast &
-sleep 1
 /home/pi/wifibroadcast-svpcom/wfb_tx -p 3 -u 4243 -K /home/pi/wifibroadcast-svpcom/drone.key wlan1 &
 
+#------------------------------------------------------------------------------
 sleep 1
-/home/pi/wifibroadcast-svpcom/wfb_rx -p 4 -c 127.0.0.1 -u 4244 -K /home/pi/wifibroadcast-svpcom/gs.key wlan1 &
-
-#nc -lu 4244
+/home/pi/wifibroadcast-svpcom/wfb_tx -p 4 -u 14800 -K /home/pi/wifibroadcast-svpcom/drone.key wlan1 -k 1 -n 2 &
+/home/pi/wifibroadcast-svpcom/wfb_rx -p 5 -c 127.0.0.1 -u 14801 -K /home/pi/wifibroadcast-svpcom/gs.key wlan1 -k 1 -n 2 &
+socat udp-listen:14801 TUN:10.0.1.1/24,tun-name=groundpi1,iff-no-pi,tun-type=tun,su=pi,iff-up &
+socat TUN:10.0.1.1/24,tun-name=groundpi2,iff-no-pi,tun-type=tun,su=pi,iff-up udp-sendto:127.0.0.1:14800 &
 
 #-------------------------------------------------------------------------------
 #/home/pi/paparazzi/sw/ground_segment/tmtc/server

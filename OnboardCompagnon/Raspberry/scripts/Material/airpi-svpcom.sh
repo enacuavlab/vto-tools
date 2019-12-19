@@ -41,9 +41,9 @@ ionice -c 1 -n 3 raspivid -w $WIDTH -h $HEIGHT -fps $FPS -b $BITRATE -g $KEYFRAM
 	queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! \
 	shmsink socket-path=/tmp/camera1 wait-for-connection=false sync=false &
 
-sleep 1
-rm /tmp/camera3
-/home/pi/opencv_trials/cpp/airpiqrcode &
+#sleep 1
+#rm /tmp/camera3
+#/home/pi/opencv_trials/cpp/airpiqrcode &
 #/home/pi/opencv_trials/cpp/airpicv &
 
 #sleep 1
@@ -70,6 +70,12 @@ sleep 1
 
 #------------------------------------------------------------------------------
 sleep 1
-/home/pi/wifibroadcast-svpcom/wfb_tx -p 4 -u 4244 -K /home/pi/wifibroadcast-svpcom/drone.key wlan1 &
+/home/pi/wifibroadcast-svpcom/wfb_tx -p 5 -u 14900 -K /home/pi/wifibroadcast-svpcom/drone.key wlan1 -k 1 -n 2 &
+/home/pi/wifibroadcast-svpcom/wfb_rx -p 4 -c 127.0.0.1 -u 14901 -K /home/pi/wifibroadcast-svpcom/gs.key wlan1 -k 1 -n 2 &
+socat TUN:10.0.1.2/24,tun-name=airpi1,iff-no-pi,tun-type=tun,su=pi,iff-up udp-sendto:127.0.0.1:14900 &
+socat udp-listen:14901 TUN:10.0.1.2/24,tun-name=airpi2,iff-no-pi,tun-type=tun,su=pi,iff-up &
 
+#---------------------------------------------------------------------------
+#sleep 1
+#/home/pi/wifibroadcast-svpcom/wfb_tx -p 4 -u 4244 -K /home/pi/wifibroadcast-svpcom/drone.key wlan1 &
 #echo -n "hello" | nc -4u -w0 127.0.0.1 4244

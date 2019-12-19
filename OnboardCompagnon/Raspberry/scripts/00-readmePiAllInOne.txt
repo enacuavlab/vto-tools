@@ -165,6 +165,22 @@ or
 groundpi-svpcom.sh groundpi-joystick.sh
 
 ----------------------------------------------------------------------------------------------------
+sudo apt-get install python-pip
+sudo apt-get install python3-pip
+
+sudo pip install future twisted pyroute2
+sudo pip3 install future twisted pyroute2
+
+sudo apt-get install socat
+
+sudo apt-get install udptunnel
+sudo apt install dnsutils
+
+/etc/ssh/sshd_config
+PermitTunnel yes
+sudo reboot
+
+----------------------------------------------------------------------------------------------------
 for airborne get proxy.zip 
 unzip proxy
 rm proxy.zip
