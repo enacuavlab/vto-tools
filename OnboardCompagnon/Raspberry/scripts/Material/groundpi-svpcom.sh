@@ -65,8 +65,10 @@ sleep 1
 sleep 1
 /home/pi/wifibroadcast-svpcom/wfb_tx -p 4 -u 14800 -K /home/pi/wifibroadcast-svpcom/drone.key wlan1 -k 1 -n 2 &
 /home/pi/wifibroadcast-svpcom/wfb_rx -p 5 -c 127.0.0.1 -u 14801 -K /home/pi/wifibroadcast-svpcom/gs.key wlan1 -k 1 -n 2 &
-socat udp-listen:14801 TUN:10.0.1.1/24,tun-name=groundpi1,iff-no-pi,tun-type=tun,su=pi,iff-up &
-socat TUN:10.0.1.1/24,tun-name=groundpi2,iff-no-pi,tun-type=tun,su=pi,iff-up udp-sendto:127.0.0.1:14800 &
+socat TUN:10.0.1.1/24,tun-name=groundpituntx,iff-no-pi,tun-type=tun,su=pi,iff-up udp-sendto:127.0.0.1:14800 &
+sleep 1
+ip link set groundpituntx mtu 1400 &
+socat udp-listen:14801 TUN:10.0.1.1/24,tun-name=groundpitunrx,iff-no-pi,tun-type=tun,su=pi,iff-up &
 
 #-------------------------------------------------------------------------------
 #/home/pi/paparazzi/sw/ground_segment/tmtc/server

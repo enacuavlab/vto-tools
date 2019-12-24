@@ -72,8 +72,10 @@ sleep 1
 sleep 1
 /home/pi/wifibroadcast-svpcom/wfb_tx -p 5 -u 14900 -K /home/pi/wifibroadcast-svpcom/drone.key wlan1 -k 1 -n 2 &
 /home/pi/wifibroadcast-svpcom/wfb_rx -p 4 -c 127.0.0.1 -u 14901 -K /home/pi/wifibroadcast-svpcom/gs.key wlan1 -k 1 -n 2 &
-socat TUN:10.0.1.2/24,tun-name=airpi1,iff-no-pi,tun-type=tun,su=pi,iff-up udp-sendto:127.0.0.1:14900 &
-socat udp-listen:14901 TUN:10.0.1.2/24,tun-name=airpi2,iff-no-pi,tun-type=tun,su=pi,iff-up &
+socat TUN:10.0.1.2/24,tun-name=airpituntx,iff-no-pi,tun-type=tun,su=pi,iff-up udp-sendto:127.0.0.1:14900 &
+sleep 1
+ip link set airpituntx mtu 1400 &
+socat udp-listen:14901 TUN:10.0.1.2/24,tun-name=airpitunrx,iff-no-pi,tun-type=tun,su=pi,iff-up &
 
 #---------------------------------------------------------------------------
 #sleep 1
