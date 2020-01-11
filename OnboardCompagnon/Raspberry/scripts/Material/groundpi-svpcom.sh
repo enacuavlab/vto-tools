@@ -5,7 +5,7 @@
 #sleep 1
 
 #-------------------------------------------------------------------------------
-ifconfig wlan1 down
+#ifconfig wlan1 down
 iw dev wlan1 set monitor otherbss
 iw reg set DE
 ifconfig wlan1 up
@@ -13,7 +13,8 @@ iw dev wlan1 set channel 36
 #iw wlan1 info
 
 sleep 1
-/home/pi/wifibroadcast-svpcom/wfb_rx -p 1 -c 127.0.0.1 -u 5000 -K /home/pi/wifibroadcast-svpcom/gs.key wlan1 &
+/home/pi/wifibroadcast-svpcom/wfb_rx -p 1 -c 127.0.0.1 -u 5000 -K /home/pi/wifibroadcast-svpcom/gs.key wlan1 | socat - udp-datagram:localhost:3333 &
+#socat udp-recv:3333 -
 
 #-------------------------------------------------------------------------------
 sleep 1

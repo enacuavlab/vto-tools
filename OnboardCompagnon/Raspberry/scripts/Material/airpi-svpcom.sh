@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ifconfig wlan1 down
+#ifconfig wlan1 down
 iw dev wlan1 set monitor otherbss
 iw reg set DE
 ifconfig wlan1 up
