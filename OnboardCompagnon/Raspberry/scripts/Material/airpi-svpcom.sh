@@ -21,7 +21,13 @@ BITRATE=3000000
 
 #------------------------------------------------------------------------------
 sleep 1
-/home/pi/proxy/exe/bridge &
+#/home/pi/proxy/exe/bridge &
+#DEVICE=ttyAMA0
+DEVICE=ttyUSB0
+IPCLIENT=192.168.43.181
+socat udp-listen:4243 /dev/$DEVICE,raw,b115200 &
+socat /dev/$DEVICE,raw,b115200 udp-sendto:$IPCLIENT:4242 &
+
 sleep 1
 /home/pi/wifibroadcast-svpcom/wfb_tx -p 2 -u 4242 -K /home/pi/wifibroadcast-svpcom/drone.key wlan1 &
 /home/pi/wifibroadcast-svpcom/wfb_rx -p 3 -c 127.0.0.1 -u 4243 -K /home/pi/wifibroadcast-svpcom/gs.key wlan1 &

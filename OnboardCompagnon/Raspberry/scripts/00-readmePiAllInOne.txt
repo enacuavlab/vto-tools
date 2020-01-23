@@ -139,6 +139,11 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D BUILD_PERF_TESTS=OFF \
     -D BUILD_EXAMPLES=OFF ..
 
+sudo vi /etc/dphys-swapfile
+CONF_SWAPSIZE=2048
+sudo /etc/init.d/dphys-swapfile stop
+sudo /etc/init.d/dphys-swapfile start
+
 make -j4
 and for link 
 make
