@@ -59,7 +59,7 @@ raspberrypi to airpi or groundpi
 
 ----------------------------------------------------------------------------------------------------
 sudo vi /etc/udev/rules.d/76-netnames.rules
-SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="b8:27:eb:73:b7:0b", NAME="wlan0"
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="b8:27:eb:be:ba:55", NAME="wlan0"
 SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="00:13:ef:f2:18:98", NAME="wlan1"
 (update with suitable mac address)
 
@@ -95,27 +95,36 @@ sudo systemctl disable hciuart
 
 ----------------------------------------------------------------------------------------------------
 sudo apt-get update
-sudo apt-get install gstreamer1.0-tools
-sudo apt-get install gstreamer1.0-plugins-bad
-sudo apt-get install gstreamer1.0-plugins-good
+sudo apt-get upgrade
 
-sudo apt-get install gstreamer1.0-omx
+sudo apt-get install gstreamer1.0-plugins-base -y
+sudo apt-get install gstreamer1.0-plugins-good -y
+sudo apt-get install gstreamer1.0-plugins-bad -y
+sudo apt-get install gstreamer1.0-plugins-ugly -y
+sudo apt-get install gstreamer1.0-libav -y
+sudo apt-get install gstreamer1.0-omx -y
+sudo apt-get install gstreamer1.0-tools -y
 
-sudo apt-get install libgstreamer-plugins-bad1.0-dev
+(check installation with Material/cam.sh)
+
+------------------
+sudo apt-get install libglib2.0 -y
+sudo apt-get install libgstreamer1.0-dev -y
+sudo apt-get install libgstreamer-plugins-base1.0-dev -y
 
 gst-launch-1.0 --version
-(=> gst-launch-1.0 version 1.10.4)
 => gst-launch-1.0 version 1.14.4
 
+(ne pas faire d'installation via git !)
 wget http://gstreamer.freedesktop.org/src/gst-rtsp-server/gst-rtsp-server-1.14.4.tar.xz
-tar xf gst-rtsp-server-1.14.4.tar.xz 
+tar -xf gst-rtsp-server-1.14.4.tar.xz
 rm gst-rtsp-server-1.14.4.tar.xz
 cd gst-rtsp-server-1.14.4/
 ./configure
-
-
-make
+make 
 sudo make install
+
+(check installation with Material/cam.sh)
 
 ----------------------------------------------------------------------------------------------------
 sudo apt-get install cmake
@@ -135,6 +144,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
     -D INSTALL_PYTHON_EXAMPLES=OFF \
     -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
+    -D WITH_GSTREAMER=ON \
     -D BUILD_TESTS=OFF \
     -D BUILD_PERF_TESTS=OFF \
     -D BUILD_EXAMPLES=OFF ..
@@ -145,15 +155,14 @@ sudo /etc/init.d/dphys-swapfile stop
 sudo /etc/init.d/dphys-swapfile start
 
 make -j4
-and for link 
-make
-(1 hour)
+(2 hours)
 sudo make install
 sudo ldconfig -v
 
 Get source and compile in /home/pi/opencv_trials/cpp
 ~/Projects/vto-tools/OnboardCompagnon/Raspberry/scripts/Material/
 airpicv.cpp 
+    std::cout << cv::getBuildInformation() << std::endl;
 or 
 groundpicv.cpp
 

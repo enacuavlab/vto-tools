@@ -19,6 +19,7 @@ LDLIBFLAGS = -ldl -Wl,-
 
 cp ./userland/host_applications/linux/apps/raspicam/RaspiVid.c ~/RaspiCV/src/RaspiCV.c
 
+-----------------
 PATCH
 -----------------
 #include "RaspiCLI.h"
@@ -53,5 +54,9 @@ PATCH
       cv_close();
 
 
+-----------------
+-----------------
+
+raspicv -v -w 640 -h 480 -fps 30 -t 0 -o /dev/null -x /dev/null -r /dev/null -rf gray
 
 raspicv -v -w 640 -h 480 -fps 30 -t 0 -o /dev/null -x /dev/null -r /dev/null -rf gray
