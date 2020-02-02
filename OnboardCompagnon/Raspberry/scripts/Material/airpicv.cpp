@@ -20,7 +20,8 @@
 #include <netinet/in.h> 
 
 /*
-g++ -g test6.cpp -o test6 `pkg-config --cflags --libs opencv` -D_GLIBCXX_USE_CXX11_ABI=0 -lpthread 
+g++ -g airpicv.cpp -o airpicv `pkg-config --cflags --libs opencv4` -lpthread 
+
 or
 g++ -g airpicv.cpp -o airpicv -I/usr/local/include/opencv4 -lopencv_core -lopencv_objdetect -lopencv_videoio -lopencv_imgproc -lpthread
 */

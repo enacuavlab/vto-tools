@@ -24,7 +24,7 @@ VIDEOFMT="video/x-raw, format=I420, width=$width, height=$height, framerate=$fra
 
 VIDEOSRCTEST="gst-launch-1.0 videotestsrc ! "$VIDEOFMT" ! omxh264enc"
 
-VIDEOSRCCAM="raspivid -t 0 -w "$width" -h "$height" -fps "$framerate" -b "$bitrate" -g "$keyframerate" "$extraparams" -a "$annotation" -ae 22 -o - "
+VIDEOSRCCAM="/usr/bin/raspivid -t 0 -w "$width" -h "$height" -fps "$framerate" -b "$bitrate" -g "$keyframerate" "$extraparams" -a "$annotation" -ae 22 -o - "
 
 STREAMPARSE="h264parse"
 STREAMFMT="video/x-h264,stream-format=byte-stream"
@@ -48,25 +48,26 @@ TEENAME=" streams. "
 TEECMD="$STREAMCMD $TEEARG $QUEUE $SHMSINK2 $TEENAME $QUEUE $SHMSINK1"
 
 #------------------------------------------------------------------------------
-#rm $SHMPATH1
-#rm $SHMPATH2
-#rm $SHMPATH3
+rm $SHMPATH1
+rm $SHMPATH2
+rm $SHMPATH3
 
 #$VIDEOSRCTEST $SHMSINK1 &
 #$VIDEOSRCTEST $CLIENTUDPSINK
 
-#$VIDEOSRCCAM | $TEECMD &
+$VIDEOSRCCAM | $TEECMD &
 
 #$VIDEOSRCCAM | $STREAMCMD $SHMSINK1 &
 #$VIDEOSRCCAM | $STREAMCMD $CLIENTUDPSINK
 
-#sleep 1
-#/home/pi/testcv/airpicv &
+sleep 1
+/home/pi/testcv/airpicv &
+#/home/pi/RaspiCV/build/raspicv -v -w 640 -h 480 -fps 30 -t 0 -o /dev/null -x /dev/null -r /dev/null -rf gray &
 
-#sleep 1
+sleep 1
 #gst-launch-1.0 $SERVERPARAM1 $CLIENTUDPSINK &
 #gst-launch-1.0 $SERVERPARAM2 $CLIENTUDPSINK &
-#gst-launch-1.0 $SERVERPARAM3 $CLIENTUDPSINK &
+gst-launch-1.0 $SERVERPARAM3 $CLIENTUDPSINK &
 
 #sleep 1
 #$SERVEREXE "\"$SERVERPARAM1 $CLIENTUDPPAY\"" &
