@@ -9,7 +9,6 @@ using namespace cv;
 using namespace std;
 
 
-
 /*****************************************************************************/
 struct pthreadarg_t {
   int width;
@@ -27,6 +26,7 @@ struct motion_elt_t {
 motion_elt_t *motionTabIn;
 
 static pthread_mutex_t imv_mutex;
+static pthread_cond_t imv_condv;
 bool imv_ready=false;
 
 static pthread_t img_thread;
@@ -39,15 +39,96 @@ bool init_ready=false;
 Mat imageIn;
 VideoWriter streamOut;
 
-static int8_t mline[8][8] = { \
-  {1, 1, 1, 1, 1, 1, 1, 1 }, 
-  {1, 1, 1, 1, 2, 2, 2, 2 }, 
-  {1, 1, 2, 2, 2, 2, 3, 3 }, 
-  {1, 1, 2, 2, 3, 3, 3, 4 }, 
-  {1, 2, 2, 3, 3, 4, 4, 5 }, 
-  {1, 2, 2, 3, 4, 5, 5, 6 }, 
-  {1, 2, 3, 4, 5, 5, 6, 7 }, 
-  {1, 2, 3, 4, 5, 6, 7, 8 } };
+/*****************************************************************************/
+void putpixel(int x,int y, Mat *img) 
+{
+  unsigned int k,m;
+
+//      x=((i-1)*16)+24;
+//      y=((j-1)*16)+24;
+
+//      k=(y*mbx*16)+x;
+//      param->data[k] = 0;
+
+//      x=((i-1)*8)+12;
+//      y=((j-1)*8)+12;
+
+  // Y
+//  k=(2*((y*mbx*16)+x));
+  img->data[k] = 0;
+
+  // U & V
+//  k=(y*mbx*8)+x;
+  m = (k & 1) ? 0xFF : 0x00;
+//  img->data[uoffset+k] = img->data[uoffset+k] & m;
+//  img->data[voffset+k] = img->data[voffset+k] & m;
+}
+
+/*****************************************************************************/
+void bsline(int x,int y,int x2,int y2, Mat *img)
+{
+  int dx,dy,p;
+
+  dx=x2-x;
+  dy=y2-y;
+  p = 2 * (dy) - (dx);
+  while(x <= x2) {
+    if(p < 0) {
+      x=x+1;
+      y=y;
+      p = p + 2 * (dy);
+    } else {
+      x=x+1;
+      y=y+1;
+      p = p + 2 * (dy - dx);
+    }
+    putpixel(x,y,img);
+  }
+}
+
+/*****************************************************************************/
+void overlay(int mbx, int mby, unsigned int uoffset, unsigned int voffset, Mat *param, motion_elt_t *imv) 
+{
+  unsigned int i,j,k,l,m;
+  int x,y;
+
+  for (j = 0; j < mby; j++) {
+    for (i = 0; i < mbx; i++) {
+
+      // YUV420P
+//      x=((i-1)*16)+24;
+//      y=((j-1)*16)+24;
+
+//      k=(y*mbx*16)+x;
+//      param->data[k] = 0;
+
+      x=((i-1)*8)+12;
+      y=((j-1)*8)+12;
+
+      // Y
+      k=(2*((y*mbx*16)+x));
+      param->data[k] = 0;
+
+      // U & V
+      k=(y*mbx*8)+x;
+      m = (k & 1) ? 0xFF : 0x00;
+      param->data[uoffset+k] = param->data[uoffset+k] & m;
+      param->data[voffset+k] = param->data[voffset+k] & m;
+
+      // ((width/16)+1, (height/16))
+      motion_elt_t *p_vec = imv + (i+(mbx+1)*j);
+
+      if (p_vec->x == 0 && p_vec->y == 0)
+        continue;
+//      if (p_vec->sad > sad_limit)
+//	continue;
+
+//      bsline(x,y,p_vec->x,p_vec->y,param);
+
+    }
+  }
+}
+//  cout << endl;
 
 /*****************************************************************************/
 static void *process_thread(void *ptr)
@@ -64,10 +145,6 @@ static void *process_thread(void *ptr)
   unsigned int uoffset=(args.width * args.height);
   unsigned int voffset=uoffset*5/4;
 
-  unsigned int i,j,k,l,m,n,s;
-  int8_t r;
-  int x,y,p,q;
-
   while (true) {
 
     pthread_mutex_lock(&img_mutex);
@@ -76,49 +153,13 @@ static void *process_thread(void *ptr)
     img_ready=false;
     pthread_mutex_unlock(&img_mutex);
 
-    if(imv_ready) { 
-      pthread_mutex_lock(&imv_mutex);
-      memcpy(motionTabOut ,motionTabIn, motionSize);
-      imv_ready=false;
-      pthread_mutex_unlock(&imv_mutex);
-    }
+    pthread_mutex_lock(&imv_mutex);
+    while (!imv_ready) pthread_cond_wait(&imv_condv, &imv_mutex);
+    memcpy(motionTabOut ,motionTabIn, motionSize);
+    imv_ready=false;
+    pthread_mutex_unlock(&imv_mutex);
 
-    for (j = 0; j < args.mby; j++) {
-      for (i = 0; i < (args.mbx); i++) {
-
-	x=((i-1)*8)+12;
-        y=((j-1)*8)+12;
-        k=(2*((y*(args.mbx)*16)+x));
-        imageOut.data[k] = 0;
-
-        l=(y*(args.mbx)*8)+x;
-        m = (l & 1) ? 0xFF : 0x00;
-        imageOut.data[uoffset+l] = imageOut.data[uoffset+l] & m;
-        imageOut.data[voffset+l] = imageOut.data[voffset+l] & m;
-
-
-        motion_elt_t *vec = motionTabOut + (i+(args.mbx+1)*j);
-        if (vec->x == 0 && vec->y == 0) continue;
-//      if (vec->sad > sad_limit) continue;
-
-        p = ((vec->x)>>3);if(p>8)p=8;
-        q = ((vec->y)>>3);if(q>8)q=8;
- 
-        p=8;q=8;
-
- 	if((q!=0)||(p!=0)) {
-	  if((q<9)&&(p<9)) {
-            for (n = 0; n < p; n++) {
-              r=mline[n][q]; 
-              s=r;
-cout << +(s) << endl;
-              imageOut.data[k+(r*(n+1))+(r-1)*(args.width)]=0;
-	    }
-	  }
-	}
-      }
-    }
-
+    overlay(args.mbx,args.mby,uoffset,voffset,&imageOut,motionTabOut);
     streamOut.write(imageOut);
   }
   return((void *)0);
@@ -142,6 +183,7 @@ void cv_init(int width, int height, int fps, int fmt)
   motionTabIn = new motion_elt_t[motionTabSize];
 
   pthread_mutex_init(&imv_mutex, NULL);
+  pthread_cond_init(&imv_condv, NULL);
 
   pthread_mutex_init(&img_mutex, NULL);
   pthread_cond_init(&img_condv, NULL);
@@ -173,6 +215,7 @@ void cv_process_imv(uint8_t *p_buffer, int length, int64_t timestamp)
     pthread_mutex_lock(&imv_mutex);
     memcpy(motionTabIn ,p_buffer, length);
     imv_ready=true;
+    pthread_cond_signal(&imv_condv);
     pthread_mutex_unlock(&imv_mutex);
   }
 }
