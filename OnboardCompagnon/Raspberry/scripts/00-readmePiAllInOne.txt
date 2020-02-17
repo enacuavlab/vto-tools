@@ -7,6 +7,31 @@ OK: Bus 001 Device 004: ID 0bda:8812 Realtek Semiconductor Corp. RTL8812AU 802.1
 KO: RTL8812BU Not working
 
 ----------------------------------------------------------------------------------------------------
+Backup
+
+dd bs=512 count=1 if=/dev/sde of=raspogee/mbr.img
+sync
+
+umount /media/pprz/boot
+sudo partclone.fat --clone --source /dev/sde1 --output - | bzip2 -9 > raspogee/boot.img
+umount /media/pprz/rootfs
+sudo partclone.extfs --clone --source /dev/sde2 --output - | bzip2 -9 > raspogee/system.img
+
+
+Restore
+
+dd bs=512 count=1 of=/dev/sde if=raspogee/mbr.img
+sync
+sudo partprobe
+
+umount /media/pprz/*
+sudo bunzip2 -c raspogee/boot.img | sudo partclone.vfat --restore --source - --output /dev/sde1
+sudo bunzip2 -c raspogee/system.img | sudo partclone.extfs --restore --source - --output /dev/sde2
+
+Syncing... 
+several minutes
+
+----------------------------------------------------------------------------------------------------
 unzip -p raspbian_lite_latest | sudo dd of=/dev/sdxx bs=4M status=progress conv=fsync
 (2019-09-26-raspbian-buster-lite.zip)
 sync
@@ -105,7 +130,19 @@ sudo apt-get install gstreamer1.0-libav -y
 sudo apt-get install gstreamer1.0-omx -y
 sudo apt-get install gstreamer1.0-tools -y
 
+------------------
+TBC !
 (check installation with Material/cam.sh)
+Do not install rpicamsrc but use raspivid !
+
+Organize pipelines
+
+                       | --> camera1 (x-h264) 
+ raspivid (x-h264) --> |   
+                       | omxh264dec --> camera2 (x-raw,I420) 
+
+
+raspivid -t 0 -w 640 -h 480 -fps 30/1 -hf -b 3000000 -o - | gst-launch-1.0 fdsrc ! h264parse ! video/x-h264,stream-format=byte-stream ! tee name=streams ! omxh264dec ! queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! shmsink socket-path=/tmp/camera2 wait-for-connection=false sync=false streams. ! queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! shmsink socket-path=/tmp/camera1 wait-for-connection=false sync=false
 
 ------------------
 sudo apt-get install libglib2.0 -y
@@ -121,10 +158,41 @@ tar -xf gst-rtsp-server-1.14.4.tar.xz
 rm gst-rtsp-server-1.14.4.tar.xz
 cd gst-rtsp-server-1.14.4/
 ./configure
-make 
+---------------- 
+~/gst-rtsp-server-1.14.4/examples/test-launch.c 
+patched with second stream 
+  GstRTSPMediaFactory *factory2;
+  factory2 = gst_rtsp_media_factory_new ();
+  gst_rtsp_media_factory_set_launch (factory2, argv[2]);
+  gst_rtsp_mount_points_add_factory (mounts, "/test2", factory2);
+----------------
+make
 sudo make install
 
+-------------
+
+
+/home/pi/gst-rtsp-server-1.14.4/examples/test-launch "shmsrc socket-path=/tmp/camera1 do-timestamp=true ! video/x-h264,stream-format=byte-stream,alignment=au ! rtph264pay name=pay0 pt=96 config-interval=1" "shmsrc socket-path=/tmp/camera2 do-timestamp=true ! video/x-raw, format=I420, width=640, height=480, framerate=30/1 ! omxh264enc ! video/x-h264,profile=high  ! rtph264pay name=pay0 pt=96 config-interval=1"
+
+
+
+gst-launch-1.0 rpicamsrc bitrate=1000000 vflip=true ! \
+	video/x-h264,width=640,height=480,framerate=15/1 ! \
+	h264parse config-interval=1 ! \
+	tee name=streams ! \
+	queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! \
+	omxh264dec ! \
+	shmsink socket-path=/tmp/camera2 wait-for-connection=false sync=false streams. ! \
+	queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! \
+	shmsink socket-path=/tmp/camera1 wait-for-connection=false sync=false
+
 (check installation with Material/cam.sh)
+gst-rtsp-server-1.10.4/examples/test-launch \
+  "( shmsrc socket-path=/tmp/camera1 do-timestamp=true ! video/x-h264,stream-format=byte-stream,alignment=au ! rtph264pay config-interval=1 name=pay0 pt=96 )" \
+  "( shmsrc socket-path=/tmp/camera2 do-timestamp=true is-live=true ! video/x-raw,format=I420,width=640,height=480,framerate=15/1 ! omxh264enc ! video/x-h264,profile=high ! rtph264pay name=pay0 pt=96 config-interval=1 )" 
+
+gst-launch-1.0 rtspsrc location=rtsp://192.168.1.102:8554/test ! rtph264depay ! avdec_h264 !  xvimagesink sync=false
+gst-launch-1.0 rtspsrc location=rtsp://192.168.43.116:8554/test2 ! rtph264depay ! avdec_h264 !  xvimagesink sync=false
 
 ----------------------------------------------------------------------------------------------------
 sudo apt-get install cmake
@@ -226,6 +294,16 @@ sudo dkms remove rtl8812au/5.6.4.2 --all
 sudo apt-get install socat
 
 ----------------------------------------------------------------------------------------------------
+git clone https://github.com/paparazzi/pprzlink.git
+
+mkdir ~/pprzlink_test;cd pprzlink_test
+
+/home/pi/pprzlink/tools/generator/gen_messages.py --protocol 2.0 --lang C_standalone --no-validate -o pprzlink/my_pprz_messages.h /home/pi/pprzlink/message_definitions/v1.0/messages.xml telemetry --opt ALIVE,INS
+
+get pprz_uart_out.c from Material, compile and run
+
+
+----------------------------------------------------------------------------------------------------
 for airborne get proxy.zip 
 unzip proxy
 rm proxy.zip
@@ -235,6 +313,13 @@ bridge.c
   strcpy(arg.netipdest,"127.0.0.1");
 
 make
+
+----------------------------------------------------------------------------------------------------
+Shutdown Pin5(GPIO3) to Ground
+PowerOff / PowerOn
+
+/boot/config.txt
+dtoverlay=gpio-shutdown
 
 ----------------------------------------------------------------------------------------------------
 use gparted to add user rw FAT32 partition 
@@ -247,6 +332,7 @@ git clone https://github.com/marklister/overlayRoot.git
 cd overlayRoot
 sudo bash install
 
+check
 /etc/overlayRoot.conf
 /etc/fstab
 
@@ -254,11 +340,14 @@ sudo dphys-swapfile swapoff
 sudo dphys-swapfile uninstall
 sudo update-rc.d dphys-swapfile remove
 
-
+reboot
 sudo mount -o remount,rw /ro
 sudo chroot /ro
 ...
 exit
+ 
+or remove init=/sbin/overlayRoot.sh 
+from /boot/cmdline.txt
 
 
 /boot/cmdline.txt
@@ -266,4 +355,23 @@ exit
 
 init=...
 init=/sbin/overlayRoot.sh
+
+----------------------------------------------------------------------------------------------------
+Give access to storage via USB
+(with previously created fat32 partition /dev/mmcblk0p3 before)
+
+/boot/config.txt
+dtoverlay=dwc2
+
+/etc/modules
+dwc2
+reboot
+
+/etc/rc.local
+modprobe g_mass_storage file=/dev/mmcblk0p3 &
+
+test
+tail -F /var/log/syslog | grep --line-buffered 'g_mass_storage gadget: high-speed config' | while read;do kill `ps -ef | grep gst-launch-1.0 | grep filesink | awk '{print $2}'`;done
+
+
 
