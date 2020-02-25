@@ -171,7 +171,7 @@ sudo make install
 
 -------------
 
-
+/*
 /home/pi/gst-rtsp-server-1.14.4/examples/test-launch "shmsrc socket-path=/tmp/camera1 do-timestamp=true ! video/x-h264,stream-format=byte-stream,alignment=au ! rtph264pay name=pay0 pt=96 config-interval=1" "shmsrc socket-path=/tmp/camera2 do-timestamp=true ! video/x-raw, format=I420, width=640, height=480, framerate=30/1 ! omxh264enc ! video/x-h264,profile=high  ! rtph264pay name=pay0 pt=96 config-interval=1"
 
 
@@ -193,6 +193,7 @@ gst-rtsp-server-1.10.4/examples/test-launch \
 
 gst-launch-1.0 rtspsrc location=rtsp://192.168.1.102:8554/test ! rtph264depay ! avdec_h264 !  xvimagesink sync=false
 gst-launch-1.0 rtspsrc location=rtsp://192.168.43.116:8554/test2 ! rtph264depay ! avdec_h264 !  xvimagesink sync=false
+*/
 
 ----------------------------------------------------------------------------------------------------
 sudo apt-get install cmake
@@ -357,8 +358,10 @@ init=...
 init=/sbin/overlayRoot.sh
 
 ----------------------------------------------------------------------------------------------------
-Give access to storage via USB
+Give access to storage via USB 
 (with previously created fat32 partition /dev/mmcblk0p3 before)
+
+PI zero can be access with single USB (power + data)
 
 /boot/config.txt
 dtoverlay=dwc2
