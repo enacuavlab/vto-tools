@@ -32,9 +32,12 @@ Syncing...
 several minutes
 
 ----------------------------------------------------------------------------------------------------
-unzip -p raspbian_lite_latest | sudo dd of=/dev/sdxx bs=4M status=progress conv=fsync
+
 (2019-09-26-raspbian-buster-lite.zip)
 sync
+
+plugout/plugin 
+cd /media/pprz/
 
 Create file
 boot/ssh
@@ -67,6 +70,7 @@ password "raspberry"
 
 sudo raspi-config
 1) change user password
+5)P8) enable camera
 7) advanced options
   A1) expand filesystem
 Enable Camera
@@ -80,23 +84,6 @@ to 127.0.1.1       airpi or groundpi
 
 /etc/hostname
 raspberrypi to airpi or groundpi
-
-
-----------------------------------------------------------------------------------------------------
-sudo vi /etc/udev/rules.d/76-netnames.rules
-SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="b8:27:eb:be:ba:55", NAME="wlan0"
-SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="00:13:ef:f2:18:98", NAME="wlan1"
-(update with suitable mac address)
-
-
-cd /etc/wpa_supplicant
-sudo mv wpa_supplicant.conf wpa_supplicant-wlan0.conf
-
-
-??????????????
-/etc/dhcpcd.conf
-denyinterfaces wlan1
-???????????????
 
 ----------------------------------------------------------------------------------------------------
 sudo systemctl stop serial-getty@ttyAMA0.service
@@ -121,6 +108,7 @@ sudo systemctl disable hciuart
 ----------------------------------------------------------------------------------------------------
 sudo apt-get update
 sudo apt-get upgrade
+(20 minutes)
 
 sudo apt-get install gstreamer1.0-plugins-base -y
 sudo apt-get install gstreamer1.0-plugins-good -y
@@ -131,7 +119,6 @@ sudo apt-get install gstreamer1.0-omx -y
 sudo apt-get install gstreamer1.0-tools -y
 
 ------------------
-TBC !
 (check installation with Material/cam.sh)
 Do not install rpicamsrc but use raspivid !
 
@@ -142,9 +129,21 @@ Organize pipelines
                        | omxh264dec --> camera2 (x-raw,I420) 
 
 
-raspivid -t 0 -w 640 -h 480 -fps 30/1 -hf -b 3000000 -o - | gst-launch-1.0 fdsrc ! h264parse ! video/x-h264,stream-format=byte-stream ! tee name=streams ! omxh264dec ! queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! shmsink socket-path=/tmp/camera2 wait-for-connection=false sync=false streams. ! queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! shmsink socket-path=/tmp/camera1 wait-for-connection=false sync=false
+raspivid -t 0 -w 640 -h 480 -fps 30/1 -b 3000000 -g 5 -vf -hf -cd H264 -n -fl -ih -o - | gst-launch-1.0 fdsrc ! h264parse ! video/x-h264,stream-format=byte-stream ! tee name=streams ! omxh264dec ! queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! shmsink socket-path=/tmp/camera2 wait-for-connection=false sync=false streams. ! queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! shmsink socket-path=/tmp/camera1 wait-for-connection=false sync=false
+
+gst-launch-1.0 shmsrc socket-path=/tmp/camera1 do-timestamp=true ! video/x-h264,stream-format=byte-stream,alignment=au ! rtph264pay name=pay0 pt=96 config-interval=1 ! udpsink host=192.168.1.46 port=5000
+and
+gst-launch-1.0 shmsrc socket-path=/tmp/camera2 do-timestamp=true is-live=true ! video/x-raw,format=I420,width=640,height=480,framerate=15/1 ! omxh264enc ! video/x-h264,profile=high ! rtph264pay name=pay0 pt=96 config-interval=1 ! udpsink host=192.168.1.46 port=5000
+
+client:
+gst-launch-1.0 udpsrc port=5000 ! application/x-rtp, encoding-name=H264,payload=96 ! rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! autovideosink sync=false
+
 
 ------------------
+sudo vi /etc/dphys-swapfile
+CONF_SWAPSIZE=2048
+sudo /etc/init.d/dphys-swapfile stop
+sudo /etc/init.d/dphys-swapfile start
 sudo apt-get install libglib2.0 -y
 sudo apt-get install libgstreamer1.0-dev -y
 sudo apt-get install libgstreamer-plugins-base1.0-dev -y
@@ -166,49 +165,36 @@ patched with second stream
   gst_rtsp_media_factory_set_launch (factory2, argv[2]);
   gst_rtsp_mount_points_add_factory (mounts, "/test2", factory2);
 ----------------
+cd ~/gst-rtsp-server-1.14.4
 make
 sudo make install
 
 -------------
-
-/*
-/home/pi/gst-rtsp-server-1.14.4/examples/test-launch "shmsrc socket-path=/tmp/camera1 do-timestamp=true ! video/x-h264,stream-format=byte-stream,alignment=au ! rtph264pay name=pay0 pt=96 config-interval=1" "shmsrc socket-path=/tmp/camera2 do-timestamp=true ! video/x-raw, format=I420, width=640, height=480, framerate=30/1 ! omxh264enc ! video/x-h264,profile=high  ! rtph264pay name=pay0 pt=96 config-interval=1"
-
-
-
-gst-launch-1.0 rpicamsrc bitrate=1000000 vflip=true ! \
-	video/x-h264,width=640,height=480,framerate=15/1 ! \
-	h264parse config-interval=1 ! \
-	tee name=streams ! \
-	queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! \
-	omxh264dec ! \
-	shmsink socket-path=/tmp/camera2 wait-for-connection=false sync=false streams. ! \
-	queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! \
-	shmsink socket-path=/tmp/camera1 wait-for-connection=false sync=false
-
 (check installation with Material/cam.sh)
-gst-rtsp-server-1.10.4/examples/test-launch \
-  "( shmsrc socket-path=/tmp/camera1 do-timestamp=true ! video/x-h264,stream-format=byte-stream,alignment=au ! rtph264pay config-interval=1 name=pay0 pt=96 )" \
-  "( shmsrc socket-path=/tmp/camera2 do-timestamp=true is-live=true ! video/x-raw,format=I420,width=640,height=480,framerate=15/1 ! omxh264enc ! video/x-h264,profile=high ! rtph264pay name=pay0 pt=96 config-interval=1 )" 
 
-gst-launch-1.0 rtspsrc location=rtsp://192.168.1.102:8554/test ! rtph264depay ! avdec_h264 !  xvimagesink sync=false
-gst-launch-1.0 rtspsrc location=rtsp://192.168.43.116:8554/test2 ! rtph264depay ! avdec_h264 !  xvimagesink sync=false
-*/
+raspivid -t 0 -w 640 -h 480 -fps 30/1 -b 3000000 -g 5 -vf -hf -cd H264 -n -fl -ih -o - | gst-launch-1.0 fdsrc ! h264parse ! video/x-h264,stream-format=byte-stream ! tee name=streams ! omxh264dec ! queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! shmsink socket-path=/tmp/camera2 wait-for-connection=false sync=false streams. ! queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! shmsink socket-path=/tmp/camera1 wait-for-connection=false sync=false
+
+gst-rtsp-server-1.14.4/examples/test-launch "shmsrc socket-path=/tmp/camera1 do-timestamp=true ! video/x-h264,stream-format=byte-stream,alignment=au ! rtph264pay name=pay0 pt=96 config-interval=1" "shmsrc socket-path=/tmp/camera2 do-timestamp=true ! video/x-raw, format=I420, width=640, height=480, framerate=30/1 ! omxh264enc ! video/x-h264,profile=high  ! rtph264pay name=pay0 pt=96 config-interval=1"
+
+client:
+gst-launch-1.0 rtspsrc location=rtsp://192.168.1.96:8554/test ! rtph264depay ! avdec_h264 !  xvimagesink sync=false
+and
+gst-launch-1.0 rtspsrc location=rtsp://192.168.1.96:8554/test2 ! rtph264depay ! avdec_h264 !  xvimagesink sync=false
 
 ----------------------------------------------------------------------------------------------------
-sudo apt-get install cmake
+sudo apt-get install -y cmake
 sudo apt-get install -y python-numpy python3-numpy libpython-dev libpython3-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libtiff-dev zlib1g-dev libjpeg-dev libpng-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev
 
-sudo apt-get install git
+sudo apt-get install -y git
 git clone https://github.com/opencv/opencv.git
 git clone https://github.com/opencv/opencv_contrib.git
-cd opencv 
+cd ~/opencv 
 git checkout 4.1.0
-cd opencv_contrib
+cd ~/opencv_contrib
 git checkout 4.1.0
 
-mkdir opencv/build
-cd build
+mkdir ~/opencv/build
+cd ~/opencv/build
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
     -D INSTALL_PYTHON_EXAMPLES=OFF \
@@ -218,12 +204,14 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D BUILD_PERF_TESTS=OFF \
     -D BUILD_EXAMPLES=OFF ..
 
+=>  GStreamer:                   YES (1.14.4)
+
 sudo vi /etc/dphys-swapfile
 CONF_SWAPSIZE=2048
 sudo /etc/init.d/dphys-swapfile stop
 sudo /etc/init.d/dphys-swapfile start
 
-make -j4
+make -j4 &
 (2 hours)
 sudo make install
 sudo ldconfig -v
@@ -235,6 +223,21 @@ airpicv.cpp
 or 
 groundpicv.cpp
 
+----------------------------------------------------------------------------------------------------
+sudo vi /etc/udev/rules.d/76-netnames.rules
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="b8:27:eb:be:ba:55", NAME="wlan0"
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="00:13:ef:f2:18:98", NAME="wlan1"
+(update with suitable mac address)
+
+
+cd /etc/wpa_supplicant
+sudo mv wpa_supplicant.conf wpa_supplicant-wlan0.conf
+
+
+??????????????
+/etc/dhcpcd.conf
+denyinterfaces wlan1
+???????????????
 ----------------------------------------------------------------------------------------------------
 sudo apt-get install libpcap-dev libsodium-dev
 git clone https://github.com/svpcom/wifibroadcast
