@@ -122,7 +122,6 @@ sudo apt-get install gstreamer1.0-tools -y
 (check installation with Material/cam.sh)
 Do not install rpicamsrc but use raspivid !
 
-Organize pipelines
 
                        | --> camera1 (x-h264) 
  raspivid (x-h264) --> |   
@@ -185,6 +184,8 @@ gst-launch-1.0 rtspsrc location=rtsp://192.168.1.96:8554/test2 ! rtph264depay ! 
 sudo apt-get install -y cmake
 sudo apt-get install -y python-numpy python3-numpy libpython-dev libpython3-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libtiff-dev zlib1g-dev libjpeg-dev libpng-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev
 
+(sudo apt-get install libgtk2.0-dev)
+
 sudo apt-get install -y git
 git clone https://github.com/opencv/opencv.git
 git clone https://github.com/opencv/opencv_contrib.git
@@ -211,34 +212,115 @@ CONF_SWAPSIZE=2048
 sudo /etc/init.d/dphys-swapfile stop
 sudo /etc/init.d/dphys-swapfile start
 
-make -j4 &
-(2 hours)
+make -j4
+(more than 4 hours on PI3)
+(make &)
 sudo make install
 sudo ldconfig -v
 
-Get source and compile in /home/pi/opencv_trials/cpp
-~/Projects/vto-tools/OnboardCompagnon/Raspberry/scripts/Material/
-airpicv.cpp 
-    std::cout << cv::getBuildInformation() << std::endl;
+----------
+Check installation
+
+python3
+import cv2
+cv2.__version__
+=> '4.1.0'
+
+-------
+                       | --> camera1 (x-h264) 
+ raspivid (x-h264) --> |   
+                       | omxh264dec --> camera2 (x-raw,I420) 
+	                                  |
+	                                  | --> VideoCapture (yuv) VideoWriter --> camera3 (x-raw,I420)
+
+g++ -g test.cpp -o test `pkg-config --cflags --libs opencv4` 
+rm /tmp/camera3;./test
+
+#include <opencv2/opencv.hpp>
+#define WIDTH 640
+#define HEIGHT 480
+#define FPS 30
+#define SCALE 3/2
+using namespace cv;
+using namespace std;
+
+int main(int, char**)
+{
+  unsigned int dataSize = sizeof(unsigned char)*WIDTH*HEIGHT*SCALE;
+  Mat imageIn(WIDTH*SCALE, HEIGHT, CV_8UC1);
+  Mat imageOut(WIDTH,HEIGHT,CV_8UC3,Scalar(0,0,0));
+
+  cout << getBuildInformation() << endl;
+
+  string streamInGstStr="shmsrc socket-path=/tmp/camera2 ! video/x-raw,width="+to_string(WIDTH)+
+   ",height="+to_string(HEIGHT)+",framerate="+to_string(FPS)+"/1,format=I420 ! appsink sync=true";
+  string streamOutGstStr="appsrc ! shmsink socket-path=/tmp/camera3 wait-for-connection=false async=false sync=false";
+
+  VideoCapture streamIn(streamInGstStr,CAP_GSTREAMER);
+  VideoWriter  streamOut(streamOutGstStr,0,FPS/1,Size(WIDTH,HEIGHT),true);
+
+  if (streamIn.isOpened() && streamOut.isOpened()) {
+    while (true) {
+      streamIn.read(imageIn);
+      if (!imageIn.empty()) {
+        memcpy(imageOut.data,imageIn.data,dataSize);
+        streamOut.write(imageOut);
+      }
+    }
+  }
+  return 0;
+}
+
+----------------------------------------------------------------------------------------------------
+Put /home/pi/cam.sh from Material
+
+/etc/rc.local
+su root -c /home/pi/cam.sh &
+
+----------------------------------------------------------------------------------------------------
+    <module name="telemetry" type="transparent">
+      <configure name="MODEM_PORT" value="UART3"/>
+      <configure name="MODEM_BAUD" value="B115200"/>
+    </module>
 or 
-groundpicv.cpp
+    <module name="extra_dl">
+      <configure name="EXTRA_DL_PORT" value="UART3"/>
+      <configure name="EXTRA_DL_BAUD" value="B115200"/>
+    </module>
+
+    <process name="Extra">
+      <mode name="default">
+        <message name="AUTOPILOT_VERSION"        period="11.1"/>
+        <message name="DL_VALUE"                 period="1.1"/>
+        ....     
+      </mode>
+    </process>
+
+
+git clone https://github.com/paparazzi/pprzlink.git
+
+mkdir ~/pprzlink_test;cd pprzlink_test
+
+/home/pi/pprzlink/tools/generator/gen_messages.py --protocol 2.0 --lang C_standalone --no-validate -o pprzlink/my_pprz_messages.h /home/pi/pprzlink/message_definitions/v1.0/messages.xml telemetry --opt ALIVE,GPS,IMU_ACCEL_SCALED,IMU_GYRO_SCALED,AIR_DATA,ACTUATORS
+
+get pprz_uart_out.c from Material, compile and run
+
+cam_rec.sh  gst-rtsp-server-1.14.4  opencv  opencv_contrib  pprzlink  pprzlink_test  proxy.tar  test
+
+--------------------------------------
+for airborne get proxy.zip 
+unzip proxy
+rm proxy.zip
+
+bridge.c
+//  strcpy(arg.netipdest,"192.168.1.255");
+  strcpy(arg.netipdest,"127.0.0.1");
+
+make
 
 ----------------------------------------------------------------------------------------------------
-sudo vi /etc/udev/rules.d/76-netnames.rules
-SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="b8:27:eb:be:ba:55", NAME="wlan0"
-SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="00:13:ef:f2:18:98", NAME="wlan1"
-(update with suitable mac address)
+sudo apt-get install socat
 
-
-cd /etc/wpa_supplicant
-sudo mv wpa_supplicant.conf wpa_supplicant-wlan0.conf
-
-
-??????????????
-/etc/dhcpcd.conf
-denyinterfaces wlan1
-???????????????
-----------------------------------------------------------------------------------------------------
 sudo apt-get install libpcap-dev libsodium-dev
 git clone https://github.com/svpcom/wifibroadcast
 mv wifibroadcast wifibroadcast-svpcom 
@@ -271,7 +353,7 @@ or
 groundpi-svpcom.sh groundpi-joystick.sh
 
 
-----------------------------------------------------------------------------------------------------
+------------------------------
 cat /etc/os-release 
 PRETTY_NAME="Raspbian GNU/Linux 10 (buster)"
 
@@ -279,12 +361,15 @@ PRETTY_NAME="Raspbian GNU/Linux 10 (buster)"
 git clone https://github.com/svpcom/rtl8812au.git
 
 sudo apt install dkms
-cd rtl*
+(10 minutes)
+
+cd rtl8812au
 sed -i 's/CONFIG_PLATFORM_I386_PC = y/CONFIG_PLATFORM_I386_PC = n/g' Makefile
 sed -i 's/CONFIG_PLATFORM_ARM64_RPI = n/CONFIG_PLATFORM_ARM64_RPI = y/g' Makefile
 sed -i 's/^dkms build/ARCH=arm dkms build/' dkms-install.sh
 sed -i 's/^MAKE="/MAKE="ARCH=arm\ /' dkms.conf
 sudo ./dkms-install.sh
+(10 minutes)
 
 ?
 vi include/rtl_autoconf.h
@@ -292,31 +377,22 @@ vi include/rtl_autoconf.h
 ?
 sudo dkms status
 => rtl8812au, 5.6.4.2, 4.19.75-v7+, armv7l: installed
-sudo dkms remove rtl8812au/5.6.4.2 --all
+(sudo dkms remove rtl8812au/5.6.4.2 --all)
 
-----------------------------------------------------------------------------------------------------
-sudo apt-get install socat
+------------------------------
+sudo mv /etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant-wlan0.conf
 
-----------------------------------------------------------------------------------------------------
-git clone https://github.com/paparazzi/pprzlink.git
+sudo vi /etc/dhcpcd.conf
+denyinterfaces wlan1
 
-mkdir ~/pprzlink_test;cd pprzlink_test
+??????????????
+sudo vi /etc/udev/rules.d/76-netnames.rules
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="b8:27:eb:be:ba:55", NAME="wlan0"
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="00:13:ef:f2:18:98", NAME="wlan1"
+(update with suitable mac address)
 
-/home/pi/pprzlink/tools/generator/gen_messages.py --protocol 2.0 --lang C_standalone --no-validate -o pprzlink/my_pprz_messages.h /home/pi/pprzlink/message_definitions/v1.0/messages.xml telemetry --opt ALIVE,INS
 
-get pprz_uart_out.c from Material, compile and run
-
-
-----------------------------------------------------------------------------------------------------
-for airborne get proxy.zip 
-unzip proxy
-rm proxy.zip
-
-bridge.c
-//  strcpy(arg.netipdest,"192.168.1.255");
-  strcpy(arg.netipdest,"127.0.0.1");
-
-make
+???????????????
 
 ----------------------------------------------------------------------------------------------------
 Shutdown Pin5(GPIO3) to Ground
@@ -353,13 +429,6 @@ exit
 or remove init=/sbin/overlayRoot.sh 
 from /boot/cmdline.txt
 
-
-/boot/cmdline.txt
-... init=/sbin/overlayRoot.sh
-
-init=...
-init=/sbin/overlayRoot.sh
-
 ----------------------------------------------------------------------------------------------------
 Give access to storage via USB 
 (with previously created fat32 partition /dev/mmcblk0p3 before)
@@ -376,8 +445,14 @@ reboot
 /etc/rc.local
 modprobe g_mass_storage file=/dev/mmcblk0p3 &
 
-test
-tail -F /var/log/syslog | grep --line-buffered 'g_mass_storage gadget: high-speed config' | while read;do kill `ps -ef | grep gst-launch-1.0 | grep filesink | awk '{print $2}'`;done
+
+# Monitor and kill if usb connection is detected
+tail -F /var/log/syslog | grep --line-buffered 'g_mass_storage gadget: high-speed config' | while read;do kill `ps -ef | grep gst-launch-1.0 | grep filesink | awk '{print $2}'`;done &
+
+# Do not launch if USB is connected  
+dmesg | grep -q 'g_mass_storage gadget: high-speed config' | gst-launch-1.0 -e shmsrc socket-path=/tmp/camera1 do-timestamp=true ! h264parse ! matroskamux ! filesink location=/data/file0.mkv &
+
+
 
 
 
