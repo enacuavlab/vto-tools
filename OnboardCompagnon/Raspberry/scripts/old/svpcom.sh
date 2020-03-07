@@ -9,8 +9,6 @@ WFB_RX="/home/pi/wifibroadcast-svpcom/wfb_rx "$WFB_KEY
 WFB_DEV="wlan1"
 WFB_CHAN=36
 
-GCS_IP=192.168.43.194
-
 #------------------------------------------------------------------------------
 # EXECUTION COMMON
 #------------------------------------------------------------------------------
@@ -35,7 +33,7 @@ $WFB_RX -p 1 -c 127.0.0.1 -u 5000 $WFB_DEV | socat - udp-datagram:localhost:3333
 
 #---------
 sleep 1
-$WFB_RX -p 2 -u 4242 -c $GCS_IP $WFB_DEV &
+$WFB_RX -p 2 -u 4242 -c 192.168.1.236 $WFB_DEV &
 $WFB_TX -p 3 -u 4243 $WFB_DEV &
 
 #---------
@@ -61,10 +59,9 @@ sleep 1
 #/home/pi/proxy/exe/bridge &
 #DEVICE=ttyAMA0
 DEVICE=ttyUSB0
-DEVICECMD=/dev/$DEVICE,raw,nonblock,waitlock=/tmp/s0.locak,raw,b115200
-socat udp-listen:4243 $DEVICECMD &
-socat $DEVICECMD udp-sendto:127.0.0.1:4242 &
-
+IPCLIENT=192.168.43.181
+socat udp-listen:4243 /dev/$DEVICE,raw,b115200 &
+socat /dev/$DEVICE,raw,b115200 udp-sendto:$IPCLIENT:4242 &
 
 #---------
 sleep 1

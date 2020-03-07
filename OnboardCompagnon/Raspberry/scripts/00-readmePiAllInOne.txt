@@ -1,10 +1,12 @@
 Raspberry Zero or PI3
-(opencv compilation on PI3 = 2hours, not even try on PI0)
+(opencv compilation on PI3 > 3hours, not even try on PI0)
 
 Wifibroadcast work tested with 
 OK: Bus 001 Device 004: ID 148f:5572 Ralink Technology, Corp. RT5572 Wireless Adapter
 OK: Bus 001 Device 004: ID 0bda:8812 Realtek Semiconductor Corp. RTL8812AU 802.11a/b/g/n/ac 2T2R DB WLAN Adapter
 KO: RTL8812BU Not working
+
+Wifiadapters can be mixed
 
 ----------------------------------------------------------------------------------------------------
 Backup
@@ -26,6 +28,7 @@ sudo partprobe
 
 umount /media/pprz/*
 sudo bunzip2 -c raspogee/boot.img | sudo partclone.vfat --restore --source - --output /dev/sde1
+
 sudo bunzip2 -c raspogee/system.img | sudo partclone.extfs --restore --source - --output /dev/sde2
 
 Syncing... 
@@ -301,11 +304,20 @@ git clone https://github.com/paparazzi/pprzlink.git
 
 mkdir ~/pprzlink_test;cd pprzlink_test
 
-/home/pi/pprzlink/tools/generator/gen_messages.py --protocol 2.0 --lang C_standalone --no-validate -o pprzlink/my_pprz_messages.h /home/pi/pprzlink/message_definitions/v1.0/messages.xml telemetry --opt ALIVE,GPS,IMU_ACCEL_SCALED,IMU_GYRO_SCALED,AIR_DATA,ACTUATORS
+/home/pi/pprzlink/tools/generator/gen_messages.py --protocol 2.0 --lang C_standalone --no-validate -o pprzlink/my_pprz_messages.h /home/pi/pprzlink/message_definitions/v1.0/messages.xml telemetry --opt AUTOPILOT_VERSION,ALIVE,ENERGY,SVINFO,DL_VALUE,DATALINK_REPORT,WP_MOVED_ENU,ROTORCRAFT_FP,INS_REF,GPS_INT,ROTORCRAFT_NAV_STATUS,INS,UART_ERRORS,AIR_DATA,ROTORCRAFT_STATUS
+=> (15 message)
 
-get pprz_uart_out.c from Material, compile and run
+get pprz_uart_out.c from Material
+gcc pprz_uart_out.c -I. -o pprz_uart_out
 
 cam_rec.sh  gst-rtsp-server-1.14.4  opencv  opencv_contrib  pprzlink  pprzlink_test  proxy.tar  test
+
+--------------------------------------
+#DEVICE=ttyAMA0
+#DEVICE=ttyUSB0
+#DEVICECMD=/dev/$DEVICE,raw,nonblock,waitlock=/tmp/s0.locak,raw,b115200
+#socat udp-listen:4243 $DEVICECMD &
+#socat $DEVICECMD udp-sendto:127.0.0.1:4242 &
 
 --------------------------------------
 for airborne get proxy.zip 
@@ -340,18 +352,7 @@ cd wifibroadcast_osd/fpv_video
 make
 
 /etc/rc.local
-su root -c /home/pi/groundpi-svpcom.sh &
-or
-su root -c /home/pi/airpi-svpcom.sh &
-
-
-
-Put shell in /home/pi
-~/Projects/vto-tools/OnboardCompagnon/Raspberry/scripts/Material/
-airpi-svpcom.sh
-or 
-groundpi-svpcom.sh groundpi-joystick.sh
-
+su root -c /home/pi/cam.sh &
 
 ------------------------------
 cat /etc/os-release 
@@ -382,16 +383,14 @@ sudo dkms status
 ------------------------------
 sudo mv /etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant-wlan0.conf
 
+??????????????
 sudo vi /etc/dhcpcd.conf
 denyinterfaces wlan1
 
-??????????????
 sudo vi /etc/udev/rules.d/76-netnames.rules
 SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="b8:27:eb:be:ba:55", NAME="wlan0"
 SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="00:13:ef:f2:18:98", NAME="wlan1"
 (update with suitable mac address)
-
-
 ???????????????
 
 ----------------------------------------------------------------------------------------------------

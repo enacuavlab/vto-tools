@@ -24,7 +24,7 @@ uint8_t uartbufcpt=0;
 uint8_t uartbuflg=0;
 
 /*
-/home/pi/pprzlink/tools/generator/gen_messages.py --protocol 2.0 --lang C_standalone --no-validate -o pprzlink/my_pprz_messages.h /home/pi/pprzlink/message_definitions/v1.0/messages.xml telemetry --opt AUTOPILOT_VERSION,ALIVE,ENERGY,SVINFO,DL_VALUE,DATALINK_REPORT,WP_MOVED_ENU,ROTORCRAFT_FP,INS_REF,GPS_INT,ROTORCRAFT_NAV_STATUS,INS,UART_ERRORS,AIR_DATA,ROTORCRAFT_STATUS,PONG
+/home/pi/pprzlink/tools/generator/gen_messages.py --protocol 2.0 --lang C_standalone --no-validate -o pprzlink/my_pprz_messages.h /home/pi/pprzlink/message_definitions/v1.0/messages.xml telemetry --opt AUTOPILOT_VERSION,ALIVE,ENERGY,SVINFO,DL_VALUE,DATALINK_REPORT,WP_MOVED_ENU,ROTORCRAFT_FP,INS_REF,GPS_INT,ROTORCRAFT_NAV_STATUS,INS,UART_ERRORS,AIR_DATA,ROTORCRAFT_STATUS
 
 gcc pprz_uart_out.c -I. -o pprz_uart_out
 */
@@ -94,9 +94,6 @@ void new_message(uint8_t sender_id, uint8_t receiver_id, uint8_t class_id, uint8
   }
   else if (message_id == PPRZ_MSG_ID_ROTORCRAFT_STATUS) {
     printf("ROTORCRAFT_STATUS\n");
-  }
-  else if (message_id == PPRZ_MSG_ID_PONG) {
-    printf("PONG\n");
   }
 }
 

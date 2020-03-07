@@ -33,8 +33,8 @@ VIDEOSRCTEST="gst-launch-1.0 videotestsrc ! "$VIDEOFMT" ! omxh264enc"
 
 VIDEOSRCCAM="/usr/bin/raspivid -t 0 -w "$width" -h "$height" -fps "$framerate" -b "$bitrate" -g "$keyframerate" "$extraparams" -a "$annotation" -ae 22 -o - "
 
-# VIDEOSRCMV also broadcast to /tmp/camera3
-VIDEOSRCMV="/home/pi/RaspiCV/build/raspicv -t 0 -w "$width" -h "$height" -fps "$framerate" -x /dev/null -r /dev/null -rf yuv -o - "
+# VIDEOSRCMV also cast to /tmp/camera3
+VIDEOSRCMV="/home/pi/RaspiCV/build/raspicv -t 0 -w "$width" -h "$height" -fps "$framerate" -b "$bitrate" -g "$keyframerate" "$extraparams" -a "$annotation" -ae 22 -x /dev/null -r /dev/null -rf yuv -o - "
 
 STREAMPARSE="h264parse"
 #STREAMPARSE="h264parse config-interval=1 " 
@@ -73,7 +73,7 @@ TEECMD="$STREAMCMD $TEEARG $QUEUE $SHMSINK2 $TEENAME $QUEUE $SHMSINK1"
 #------------------------------------------------------------------------------
 VIDEOPARAM1="$SHMSRC1 $SERVERFMT1 ! fdsink "
 VIDEOCMD="/home/pi/wifibroadcast_osd/fpv_video/fpv_video"
-UDPSRCCMD="gst-launch-1.0 udpsrc port=5000 ! application/x-rtp, encoding-name=H264,payload=96 ! rtph264depay ! video/x-h264,stream-format=byte-stream ! "
+UDPSRCCMD="gst-launch-1.0 udpsrc port=5000 ! application/x-rtp, encoding-name=H264,payload=96 ! rtph264depay ! video/x-h264,stream-format=byte-stream "
 
 #------------------------------------------------------------------------------
 # EXECUTION 
@@ -91,7 +91,12 @@ $UDPSRCCMD $SHMSINK1 &
  
 #---------
 sleep 1
-gst-launch $VIDEOPARAM1 | $VIDEOCMD &
+gst-launch-1.0 $VIDEOPARAM1 | $VIDEOCMD &
+
+#---------
+sleep 1
+#gst-launch-1.0 $SERVERPARAM1 $CLIENTUDPPORT0 &
+$SERVEREXE "\"$SERVERPARAM1 $UDPPAY\"" &
 
 #------------------------------------------------------------------------------
 else
@@ -105,7 +110,7 @@ echo "FLYING"
 $VIDEOSRCCAM | $STREAMCMD $SHMSINK1 &
 #$VIDEOSRCCAM | $STREAMCMD $CLIENTUDPPORT0 &
 
-#$VIDEOSRCMV &
+#$VIDEOSRCMV | $TEECMD &
 
 #------------------------------------------------------------------------------
 #sleep 1
@@ -125,8 +130,8 @@ $VIDEOSRCCAM | $STREAMCMD $SHMSINK1 &
 #------------------------------------------------------------------------------
 # NETWORK CAST
 #
-#sleep 1
-#gst-launch-1.0 $SERVERPARAM1 $HOSTUDPPORT &
+sleep 1
+gst-launch-1.0 $SERVERPARAM1 $HOSTUDPPORT &
 #sleep 1
 #gst-launch-1.0 $SERVERPARAM1 $CLIENTUDPPORT0 &
 #sleep 1
