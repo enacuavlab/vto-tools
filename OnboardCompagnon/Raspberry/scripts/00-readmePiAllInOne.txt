@@ -88,6 +88,12 @@ to 127.0.1.1       airpi or groundpi
 /etc/hostname
 raspberrypi to airpi or groundpi
 
+
+/etc/dhcpcd.conf
+interface eth0
+static ip_address=192.168.2.2/20
+static routers=192.168.2.1
+
 ----------------------------------------------------------------------------------------------------
 sudo systemctl stop serial-getty@ttyAMA0.service
 sudo systemctl disable serial-getty@ttyAMA0.service
@@ -315,10 +321,11 @@ cam_rec.sh  gst-rtsp-server-1.14.4  opencv  opencv_contrib  pprzlink  pprzlink_t
 --------------------------------------
 #DEVICE=ttyAMA0
 #DEVICE=ttyUSB0
-#DEVICECMD=/dev/$DEVICE,raw,nonblock,waitlock=/tmp/s0.locak,raw,b115200
-#socat udp-listen:4243 $DEVICECMD &
-#socat $DEVICECMD udp-sendto:127.0.0.1:4242 &
+DEVICECMD=/dev/$DEVICE,raw,echo=0,b115200
+socat -u udp-listen:4243,reuseaddr,fork $DEVICECMD &
+socat -u $DEVICECMD udp-sendto:127.0.0.1:4242 &
 
+(nonblock ?)
 --------------------------------------
 for airborne get proxy.zip 
 unzip proxy
