@@ -1,9 +1,33 @@
 -------------------------------------------------------------------------------
+Install Paparazzi on PI0 debian buster lite (Debian_10.0)
+-------------------------------------------------------------------------------
+wget -q "http://download.opensuse.org/repositories/home:/flixr:/paparazzi-uav/Debian_10/Release.key" -O- | sudo apt-key add -
+
+echo "deb http://download.opensuse.org/repositories/home:/flixr:/paparazzi-uav/Debian_10/ ./" | tee -a /etc/apt/sources.list
+
+sudo apt-get update 
+sudo apt-get install paparazzi-dev
+
+sudo apt-get update
+sudo apt-get install gcc-arm-none-eabi gdb-arm-none-eabi
+
+git clone https://github.com/enacuavlab/paparazzi.git
+cd paparazzi
+make
+
+make[1]: Entering directory '/home/pi/pprzlink/lib/v2.0/ocaml'
+Build bytecode lib
+/bin/sh: 1: ocamlbuild: not found
+make[1]: *** [../../common/ocaml/Makefile:81: byte] Error 127
+make[1]: Leaving directory '/home/pi/pprzlink/lib/v2.0/ocaml'
+make: *** [Makefile:56: libpprzlink] Error 2
+
+-------------------------------------------------------------------------------
 Install Paparazzi on PI3 debian strech (Debian_9.0)
 -------------------------------------------------------------------------------
 wget -q "http://download.opensuse.org/repositories/home:/flixr:/paparazzi-uav/Debian_9.0/Release.key" -O- | sudo apt-key add -
 
-echo "deb http://download.opensuse.org/repositories/home:/flixr:/paparazzi-uav/Debian_9.0/ ./" | tee -a /etc/apt/sources.list
+sudo echo "deb http://download.opensuse.org/repositories/home:/flixr:/paparazzi-uav/Debian_9.0/ ./" | tee -a /etc/apt/sources.list
 
 sudo apt-get update 
 sudo apt-get install paparazzi-dev

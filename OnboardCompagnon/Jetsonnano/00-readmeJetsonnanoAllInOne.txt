@@ -6,60 +6,66 @@ OK: Bus 001 Device 004: ID 0bda:8812 Realtek Semiconductor Corp. RTL8812AU 802.1
 
 Wifiadapters can be mixed
 
---------------------------
+----------------------------------------
+FLASH 
+----------------------------------------
+Get Jetson Nano Developer Kit 
+https://developer.nvidia.com/jetson-nano-sd-card-image
+
+
+Ubuntu 18.04.4 LTS (GNU/Linux 4.9.140-tegra aarch64)
+GStreamer 1.14.5
+ 
+
+
+flash SD
+plug the SD and boot
+configure with desktop
 First setup needs : Monitor, keyboard, mouse
 Then use ssh
 
-https://developer.nvidia.com/jetson-nano-sd-card-image
-flash 
-boot
-configure with desktop
+----------------------------------------
+CONFIGURE 
+----------------------------------------
+sudo vi /etc/wpa_supplicant/wpa_supplicant.conf
+network={
+  ssid="Androidxp"
+  psk="pprzpprz"
+}
+network={
+  ssid="pprz_router"
+  key_mgmt=NONE
+}
+network={
+  ssid="Livebox-7EA4"
+  psk="6vNVEJNeLCYLubnbuk"
+}
+network={
+  ssid="Livebox-1aa4"
+  psk="E89831065C74F706AFC0E95F63"
+}
 
---------------------------
-sudo vi /etc/network/interfaces.d/eth0
+---------
+sudo vi /etc/network/interfaces
 auto eth0
 iface eth0 inet static
-address 192.168.2.2
+address 192.168.3.2
 netmask 255.255.255.0
 
-
-sudo vi /etc/network/interfaces.d/wlan0
-auto personal_hotspot
+auto wlan0
 iface wlan0 inet dhcp
-  wpa-ssid Androidxp
-  wpa-psk pprzpprz
+    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 
-auto home_hotspot
-iface wlan0 inet dhcp
-  wpa-ssid Livebox-7EA4
-  wpa-psk 6vNVEJNeLCYLubnbuk
-
-<pre>auto wlan0
-iface wlan0 inet dhcp
-wpa-ssid Androidxp
-wpa-psk pprzpprz
-</pre>
-
-auto wifi_option1
-iface wlan0 inet dhcp
-  wpa-ssid "Androidxp"
-  wpa-psk "pprzpprz"
-
-auto wifi_option2
-iface wlan0 inet dhcp
-  wpa-ssid "Livebox-7EA4"
-  wpa-psk "6vNVEJNeLCYLubnbuk"
-
-auto wifi_option3
-iface wlan0 inet dhcp
-  wpa-ssid "Livebox-1aa4"
-  wpa-psk "E89831065C74F706AFC0E95F63"
+auto wlan1
+iface wlan1 inet manual
+  pre-up iw phy phy1 interface add mon1 type monitor
+  pre-up iw dev wlan1 del
+  pre-up ifconfig mon1 up
+  pre-up iw dev mon1 set channel 36
 
 
-
-sudo vi /etc/NetworkManager/Networkmager.conf
-managed=true
-reboot
+---------
+nmap -sn 192.168.1.1/24
 
 --------------------------
 ssh
@@ -70,60 +76,147 @@ sudo vi /etc/hostname
 sudo apt-get update
 sudo apt-get upgrade
 
---------------------------
-Test 1 OK
+----------------------------------------
+GSTREAMER already installed test
+----------------------------------------
+Test 1
 ------
-gst-launch-1.0 nvarguscamerasrc ! ... ! udpsink host=192.168.2.1 port=5000 sync=false async=false
-option 1)
- 'video/x-raw(memory:NVMM), width=(int)1280, height=(int)720, framerate=(fraction)30/1' ! omxh264enc ! video/x-h264, stream-format=byte-stream ! rtph264pay mtu=1400
-option 2)
- 'video/x-raw(memory:NVMM), width=(int)1280, height=(int)720, framerate=(fraction)30/1' ! nvv4l2h264enc maxperf-enable=1 bitrate=8000000 ! h264parse ! rtph264pay mtu=1400
+gst-launch-1.0 nvarguscamerasrc ! 'video/x-raw(memory:NVMM), width=1280, height=720, framerate=30/1' ! omxh264enc ! video/x-h264, stream-format=byte-stream ! rtph264pay ! udpsink host=192.168.3.1 port=5000
 
 gst-launch-1.0 udpsrc port=5000 ! application/x-rtp, encoding-name=H264,payload=96 ! rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! autovideosink sync=false
 
-Test 2 OK
+Test 2
 ------
-gst-launch-1.0 nvarguscamerasrc ! 'video/x-raw(memory:NVMM), width=(int)1280, height=(int)720, framerate=(fraction)30/1' ! omxh264enc ! h264parse ! video/x-h264,stream-format=byte-stream ! shmsink socket-path=/tmp/camera1 wait-for-connection=false sync=false
-gst-launch-1.0 shmsrc socket-path=/tmp/camera1 do-timestamp=true ! video/x-h264,stream-format=byte-stream,alignment=au ! rtph264pay name=pay0 pt=96 config-interval=1 ! udpsink host=192.168.2.1 port=5000
+gst-launch-1.0 nvarguscamerasrc ! 'video/x-raw(memory:NVMM), width=1280, height=720, framerate=30/1' ! omxh264enc ! video/x-h264,stream-format=byte-stream ! shmsink socket-path=/tmp/camera1 wait-for-connection=false sync=false
+
+gst-launch-1.0 shmsrc socket-path=/tmp/camera1 do-timestamp=true ! video/x-h264,stream-format=byte-stream,alignment=au ! rtph264pay ! udpsink host=192.168.3.1 port=5000
 
 gst-launch-1.0 udpsrc port=5000 ! application/x-rtp, encoding-name=H264,payload=96 ! rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! autovideosink sync=false
 
-Test 3 KO
+Test 3 
 ------
-OK
-gst-launch-1.0 nvarguscamerasrc ! 'video/x-raw(memory:NVMM), width=(int)1280, height=(int)720, framerate=(fraction)30/1, format=(string)NV12' ! nvvidconv flip-method=2 ! 'video/x-raw(memory:NVMM), format=(string)I420' ! omxh264enc ! h264parse ! video/x-h264,stream-format=byte-stream  ! tee name=streams ! queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! shmsink socket-path=/tmp/camera1 wait-for-connection=false sync=false streams. ! queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! shmsink socket-path=/tmp/camera2 wait-for-connection=false sync=false
+gst-launch-1.0 nvarguscamerasrc ! video/x-raw(memory:NVMM),width=1280,height=720,framerate=30/1 ! tee name=streams ! queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! video/x-raw(memory:NVMM) ! nvvidconv flip_method=2 ! video/x-raw(memory:NVMM),format=I420 ! omxh264enc ! video/x-h264,stream-format=byte-stream,alignment=au ! shmsink socket-path=/tmp/camera1 wait-for-connection=false sync=false async=false streams. ! queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! nvvidconv flip_method=2 ! video/x-raw,format=I420 ! shmsink socket-path=/tmp/camera2 wait-for-connection=false sync=false async=false
 
-OK
-gst-launch-1.0 -e nvarguscamerasrc ! 'video/x-raw(memory:NVMM), width=(int)1920, height=(int)1080, format=(string)NV12, framerate=(fraction)30/1' \
-! nvvidconv ! 'video/x-raw(memory:NVMM), format=(string)I420' ! tee name=streams \
-streams. ! omxh264enc bitrate=8000000 ! 'video/x-h264, stream-format=(string)byte-stream' ! h264parse ! qtmux ! filesink location=toto \
-streams. ! omxh264enc bitrate=8000000 ! 'video/x-h264, stream-format=(string)byte-stream' ! h264parse ! qtmux ! filesink location=titi
+gst-launch-1.0 shmsrc socket-path=/tmp/camera2 do-timestamp=true ! 'video/x-raw, width=(int)1280, height=(int)720, framerate=(fraction)30/1, format=(string)I420' ! omxh264enc ! 'video/x-h264, stream-format=(string)byte-stream' ! rtph264pay name=pay0 pt=96 config-interval=1 ! udpsink host=192.168.3.1 port=5000
+
+gst-launch-1.0 shmsrc socket-path=/tmp/camera1 do-timestamp=true ! video/x-h264,stream-format=byte-stream,alignment=au ! rtph264pay ! udpsink host=192.168.3.1 port=5000
+
+gst-launch-1.0 udpsrc port=5010 ! application/x-rtp, encoding-name=H264,payload=96 ! rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! autovideosink sync=false
+
+----------------------------------------
+GSTREAMER RTSP SERVER install anad test
+----------------------------------------
+
+sudo apt-get install libglib2.0 -y
+
+gst-launch-1.0 --version
+=> gst-launch-1.0 version 1.14.5
+
+(ne pas faire d'installation via git !)
+wget http://gstreamer.freedesktop.org/src/gst-rtsp-server/gst-rtsp-server-1.14.5.tar.xz
+tar -xf gst-rtsp-server-1.14.5.tar.xz
+rm gst-rtsp-server-1.14.5.tar.xz
+cd gst-rtsp-server-1.14.5/
+./configure
+---------------- 
+~/gst-rtsp-server-1.14.5/examples/test-launch.c 
+patched with second stream 
+  GstRTSPMediaFactory *factory2;
+  factory2 = gst_rtsp_media_factory_new ();
+  gst_rtsp_media_factory_set_launch (factory2, argv[2]);
+  gst_rtsp_mount_points_add_factory (mounts, "/test2", factory2);
+----------------
+cd ~/gst-rtsp-server-1.14.5
+make
+sudo make install
+
+-------------
+Test
+----
+gst-launch-1.0 nvarguscamerasrc ! video/x-raw(memory:NVMM),width=1280,height=720,framerate=30/1 ! tee name=streams ! video/x-raw(memory:NVMM) ! nvvidconv flip_method=2 ! video/x-raw(memory:NVMM),format=I420 ! omxh264enc ! video/x-h264,stream-format=byte-stream,alignment=au ! shmsink socket-path=/tmp/camera1 wait-for-connection=false sync=false async=false streams. ! nvvidconv flip_method=2 ! video/x-raw,format=I420 ! shmsink socket-path=/tmp/camera2 wait-for-connection=false sync=false async=false
+
+gst-rtsp-server-1.14.5/examples/test-launch "shmsrc socket-path=/tmp/camera1 do-timestamp=true ! video/x-h264,stream-format=byte-stream,alignment=au ! rtph264pay name=pay0 pt=96 config-interval=1" "shmsrc socket-path=/tmp/camera2 do-timestamp=true ! video/x-raw, width=1280, height=720, framerate=30/1, format=I420 ! omxh264enc ! video/x-h264, stream-format=byte-stream ! rtph264pay name=pay0 pt=96 config-interval=1"
+
+client:
+gst-launch-1.0 rtspsrc location=rtsp://192.168.3.2:8554/test ! rtph264depay ! avdec_h264 !  xvimagesink sync=false
+and
+gst-launch-1.0 rtspsrc location=rtsp://192.168.3.2:8554/test2 ! rtph264depay ! avdec_h264 !  xvimagesink sync=false
 
 
+----------------------------------------
+OPENCV already installed test
+----------------------------------------
 
+                       | --> camera1 (x-h264) 
+ raspivid (x-h264) --> |   
+                       | omxh264dec --> camera2 (x-raw,I420) 
+	                                  |
+	                                  | --> VideoCapture (yuv) VideoWriter --> camera3 (x-raw,I420)
 
+g++ -g test.cpp -o test `pkg-config --cflags --libs opencv4` 
+rm /tmp/camera3;./test
 
+#include <opencv2/opencv.hpp>
+#define WIDTH 640
+#define HEIGHT 480
+#define FPS 30
+#define SCALE 3/2
+using namespace cv;
+using namespace std;
 
+int main(int, char**)
+{
+  unsigned int dataSize = sizeof(unsigned char)*WIDTH*HEIGHT*SCALE;
+  Mat imageIn(WIDTH*SCALE, HEIGHT, CV_8UC1);
+  Mat imageOut(WIDTH,HEIGHT,CV_8UC3,Scalar(0,0,0));
 
-gst-launch-1.0 shmsrc socket-path=/tmp/camera1 do-timestamp=true ! video/x-h264,stream-format=byte-stream,alignment=au ! rtph264pay name=pay0 pt=96 config-interval=1 ! udpsink host=192.168.2.1 port=5000
-or
-gst-launch-1.0 shmsrc socket-path=/tmp/camera1 do-timestamp=true ! video/x-h264,stream-format=byte-stream,alignment=au ! rtph264pay name=pay0 pt=96 config-interval=1 ! udpsink host=192.168.2.1 port=5000
+  cout << getBuildInformation() << endl;
 
-gst-launch-1.0 udpsrc port=5000 ! application/x-rtp, encoding-name=H264,payload=96 ! rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! autovideosink sync=false
+  string streamInGstStr="shmsrc socket-path=/tmp/camera2 ! video/x-raw,width="+to_string(WIDTH)+
+   ",height="+to_string(HEIGHT)+",framerate="+to_string(FPS)+"/1,format=I420 ! appsink sync=true";
+  string streamOutGstStr="appsrc ! shmsink socket-path=/tmp/camera3 wait-for-connection=false async=false sync=false";
+
+  VideoCapture streamIn(streamInGstStr,CAP_GSTREAMER);
+  VideoWriter  streamOut(streamOutGstStr,0,FPS/1,Size(WIDTH,HEIGHT),true);
+
+  if (streamIn.isOpened() && streamOut.isOpened()) {
+    while (true) {
+      streamIn.read(imageIn);
+      if (!imageIn.empty()) {
+        memcpy(imageOut.data,imageIn.data,dataSize);
+        streamOut.write(imageOut);
+      }
+    }
+  }
+  return 0;
+}
+
+----------------------------------------
+python2
+import cv2
+cv2.__version__
+=>'4.1.1'
+
 
 --------------------------
-gst-launch-1.0 nvarguscamerasrc ! 'video/x-raw(memory:NVMM), width=1920, height=1080,format=NV12, framerate=30/1' ! omxh264enc ! shmsink socket-path=/tmp/camera1 wait-for-connection=false sync=false
+TODO: nvvidconv ! 'video/x-raw(memory:NVMM),format=RGBA'
 
-raspivid -t 0 -w 640 -h 480 -fps 30/1 -b 3000000 -g 5 -vf -hf -cd H264 -n -fl -ih -o - | gst-launch-1.0 fdsrc ! h264parse ! video/x-h264,stream-format=byte-stream ! tee name=streams ! omxh264dec ! queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! shmsink socket-path=/tmp/camera2 wait-for-connection=false sync=false streams. ! queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! shmsink socket-path=/tmp/camera1 wait-for-connection=false sync=false
+----------------------------------------
+WIFIBROADCAST install anad test
+----------------------------------------
+sudo apt-get install socat
 
-gst-launch-1.0 -e nvarguscamerasrc ! 'video/x-raw(memory:NVMM), width=(int)1920, height=(int)1080, format=(string)NV12, framerate=(fraction)30/1' ! nvvidconv ! 'video/x-raw(memory:NVMM), format=(string)I420' ! tee name=streams ! omxh264enc bitrate=8000000 ! 'video/x-h264, stream-format=(string)byte-stream' ! h264parse ! shmsink socket-path=/tmp/camera1 wait-for-connection=false sync=false streams. ! omxh264enc bitrate=8000000 ! 'video/x-h264, stream-format=(string)byte-stream' ! h264parse ! qtmux ! filesink location=titi
+sudo apt-get install libpcap-dev libsodium-dev
+git clone https://github.com/svpcom/wifibroadcast
+mv wifibroadcast wifibroadcast-svpcom 
+cd wifibroadcast-svpcom
+make
+(/bin/sh: 1: trial: not found
+make: *** [Makefile:43: test] Error 127
+)
 
+copy drone.key and gs.key
 
-
-gst-launch-1.0 nvarguscamerasrc ! 'video/x-raw(memory:NVMM), width=(int)1280, height=(int)720, framerate=(fraction)30/1, format=(string)NV12' ! nvvidconv flip-method=2 ! 'video/x-raw(memory:NVMM), format=(string)I420'  ! omxh264enc ! tee name=streams ! h264parse ! video/x-h264,stream-format=byte-stream   ! queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! shmsink socket-path=/tmp/camera1 wait-for-connection=false sync=false streams. ! queue max-size-buffers=0 max-size-time=0 max-size-bytes=0 ! shmsink socket-path=/tmp/camera2 wait-for-connection=false sync=false
-
---------------------------
-(gst-launch-1.0 -v nvarguscamerasrc ! 'video/x-raw(memory:NVMM),width=3280, height=2464, framerate=21/1, format=NV12' ! nvvidconv flip-method=0 ! 'video/x-raw, width=820, height=616, format=BGRx' ! videoconvert ! video/x-raw, format=BGR ! appsink)
 
 --------------------------
 (git clone https://github.com/aircrack-ng/rtl8812au)
@@ -143,6 +236,33 @@ sudo dkms status
 => rtl8812au, 5.2.20.2, 4.9.140-tegra, aarch64: installed
 (sudo dkms remove rtl8812au/5.2.20.2 --all)
 
+
+
+----------------------------------------
+Configure autostart
+----------------------------------------
+sudo vi /etc/systemd/system/myjetson.service
+[Unit]
+Description=JetsonCam systemd service.
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /home/pprz/jetson_cam.sh
+
+[Install]
+WantedBy=multi-user.target
+
+--------------------------
+sudo systemctl daemon-reload
+
+sudo systemctl start myjetson
+sudo systemctl stop myjetson
+sudo systemctl status myjetson
+sudo systemctl enable myservice
+sudo systemctl disable myservice
+
+
+--------------------------
 --------------------------
 sudo iw list
 
