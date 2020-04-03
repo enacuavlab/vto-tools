@@ -11,13 +11,17 @@ export GROUNDED=false;
 #------------------------------------------------------------------------------
 # CAMERA AND STREAM CONFIGURATION
 #------------------------------------------------------------------------------
-WIDTH=1280
-HEIGHT=720
+WIDTH=640
+HEIGHT=480
+#WIDTH=1280
+#HEIGHT=720
 FPS=30
 
-IP=192.168.3.1
-PORT1=5000
+IP=192.168.1.46
+PORT1=5030
 PORT2=5010
+
+CAMPORT=6000
 
 #------------------------------------------------------------------------------
 SHMPATH1=/tmp/camera1
@@ -62,6 +66,8 @@ H264FMT="video/x-h264,stream-format=byte-stream,alignment=au !"
 H264PAY="rtph264pay  name=pay0 pt=96 config-interval=1"
 H264ENC="omxh264enc ! $H264FMT"
 
+UDPSINK0="$H264PAY ! udpsink host=127.0.0.1 port=$CAMPORT"
+
 UDPSINK1="$H264PAY ! udpsink host=$IP port=$PORT1"
 UDPSINK2="$H264PAY ! udpsink host=$IP port=$PORT2"
 
@@ -75,6 +81,9 @@ SERVERCMD="/home/pprz/gst-rtsp-server-1.14.5/examples/test-launch"
 #------------------------------------------------------------------------------
 # EXECUTION 
 #------------------------------------------------------------------------------
+rm /tmp/camera*
+killall gst-launch-1.0 test-launch test
+
 if ($GROUNDED); then
 echo "GROUNDED"
 #---------
@@ -98,35 +107,36 @@ echo "FLYING"
 #gst-launch-1.0 rtspsrc location=rtsp://192.168.3.2:8554/test2 ! rtph264depay ! avdec_h264 !  xvimagesink sync=false
 
 #---------
-rm /tmp/camera*
-killall gst-launch-1.0 test-launch test
-
-#---------
 #$TSTCMD $H264ENC $UDPSINK1 &
 
 #$CAMCMD $H264ENC $UDPSINK1 &
 
+#$CAMCMD $H264ENC $UDPSINK0 &
+
 #---------
-#$CAMCMD $H264ENC $SHMSINK1 &
+$CAMCMD $H264ENC $SHMSINK1 &
 
 #$CAMCMD $CONVFMT $SHMSINK2 &
 
-$CAMCMD $TEECMD &
+#$CAMCMD $TEECMD &
 
 #---------
-#while [[ ! -e $SHMPATH1 ]]; do sleep 1; done
-#$SHMCMD $SHMSRC1 $H264FMT $UDPSINK1 &
+while [[ ! -e $SHMPATH1 ]]; do sleep 1; done
+$SHMCMD $SHMSRC1 $H264FMT $UDPSINK0 &
+
+while [[ ! -e $SHMPATH1 ]]; do sleep 1; done
+$SHMCMD $SHMSRC1 $H264FMT $UDPSINK1 &
 
 #while [[ ! -e $SHMPATH2 ]]; do sleep 1; done
 #$SHMCMD $SHMSRC2 $RAWFMTSIZE $H264ENC $UDPSINK2 &
 
-while [[ ! -e $SHMPATH2 ]]; do sleep 1; done
-/home/pprz/opencv_test/test &
+#while [[ ! -e $SHMPATH2 ]]; do sleep 1; done
+#/home/pprz/opencv_test/test &
 
 #---------
-while [[ ! -e $SHMPATH1 ]]; do sleep 1; done
-while [[ ! -e $SHMPATH3 ]]; do sleep 1; done
-$SERVERCMD "\"$SHMSRC1 $H264FMT $H264PAY\"" "\"$SHMSRC3 $RAWFMTSIZE $H264ENC $H264PAY\"" &
+#while [[ ! -e $SHMPATH1 ]]; do sleep 1; done
+#while [[ ! -e $SHMPATH3 ]]; do sleep 1; done
+#$SERVERCMD "\"$SHMSRC1 $H264FMT $H264PAY\"" "\"$SHMSRC3 $RAWFMTSIZE $H264ENC $H264PAY\"" &
 
 #------------------------------------------------------------------------------
 fi

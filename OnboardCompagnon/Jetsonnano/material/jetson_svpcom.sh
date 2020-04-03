@@ -19,6 +19,8 @@ CLIENT_IP=127.0.0.1
 #------------------------------------------------------------------------------
 # EXECUTION 
 #------------------------------------------------------------------------------
+killall wfb_tx wfb_rx socat
+
 if ($GROUNDED); then
 echo "GROUNDED"
 
@@ -37,10 +39,10 @@ sleep 1
 $WFB_TX -p 4 -u 14800 -k 1 -n 2 $WFB_DEV &
 $WFB_RX -p 5 -u 14801 -c 127.0.0.1 -k 1 -n 2 $WFB_DEV &
 
-socat TUN:10.0.1.1/24,tun-name=groundpituntx,iff-no-pi,tun-type=tun,su=pi,iff-up udp-sendto:127.0.0.1:14800 &
+socat TUN:10.0.1.1/24,tun-name=groundjetsontuntx,iff-no-pi,tun-type=tun,su=pprz,iff-up udp-sendto:127.0.0.1:14800 &
 sleep 1
-ip link set groundpituntx mtu 1400 &
-socat udp-listen:14801 TUN:10.0.1.1/24,tun-name=groundpitunrx,iff-no-pi,tun-type=tun,su=pi,iff-up &
+ip link set groundjetsontuntx mtu 1400 &
+socat udp-listen:14801 TUN:10.0.1.1/24,tun-name=groundjetsontunrx,iff-no-pi,tun-type=tun,su=pprz,iff-up &
 
 #------------------------------------------------------------------------------
 else
@@ -53,10 +55,10 @@ $WFB_TX -p 1 -u 5600 $WFB_DEV &
 #---------
 sleep 1
 #DEVICE=ttyAMA0
-DEVICE=ttyUSB0
-DEVICECMD=/dev/$DEVICE,raw,echo=0,b115200
-socat -u udp-listen:4243,reuseaddr,fork $DEVICECMD &
-socat -u $DEVICECMD udp-sendto:127.0.0.1:4242 &
+#DEVICE=ttyUSB0
+#DEVICECMD=/dev/$DEVICE,raw,echo=0,b115200
+#socat -u udp-listen:4243,reuseaddr,fork $DEVICECMD &
+#socat -u $DEVICECMD udp-sendto:127.0.0.1:4242 &
 
 #---------
 sleep 1
@@ -68,10 +70,15 @@ sleep 1
 $WFB_TX -p 5 -u 14900 -k 1 -n 2 $WFB_DEV &
 $WFB_RX -p 4 -u 14901 -c 127.0.0.1 -k 1 -n 2 $WFB_DEV &
 
-socat TUN:10.0.1.2/24,tun-name=airpituntx,iff-no-pi,tun-type=tun,su=pi,iff-up udp-sendto:127.0.0.1:14900 &
+#socat TUN:10.0.1.2/24,tun-name=airjetsontuntx,iff-no-pi,tun-type=tun,su=pprz,iff-up udp-sendto:127.0.0.1:14900 &
+#sleep 1
+#ip link set airjetsontuntx mtu 1400 &
+#socat udp-listen:14901 TUN:10.0.1.2/24,tun-name=airjetsontunrx,iff-no-pi,tun-type=tun,su=pprz,iff-up &
+socat -u TUN:10.0.1.2/24,tun-name=airjetsontuntx,iff-no-pi,tun-type=tun,iff-up udp-sendto:127.0.0.1:14900 &
 sleep 1
-ip link set airpituntx mtu 1400 &
-socat udp-listen:14901 TUN:10.0.1.2/24,tun-name=airpitunrx,iff-no-pi,tun-type=tun,su=pi,iff-up &
+ip link set airjetsontuntx mtu 1400 &
+socat -u udp-listen:14901 TUN:10.0.1.2/24,tun-name=airjetsontunrx,iff-no-pi,tun-type=tun,iff-up &
+
 
 #------------------------------------------------------------------------------
 fi

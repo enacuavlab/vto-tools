@@ -7,22 +7,40 @@ OK: Bus 001 Device 004: ID 0bda:8812 Realtek Semiconductor Corp. RTL8812AU 802.1
 Wifiadapters can be mixed
 
 ----------------------------------------
-FLASH 
+Documentation 
+https://docs.nvidia.com/jetson/
+
 ----------------------------------------
-Get Jetson Nano Developer Kit 
+Get Jetson Nano Developer Kit - JETPACK 4.3
 https://developer.nvidia.com/jetson-nano-sd-card-image
 
-
-Ubuntu 18.04.4 LTS (GNU/Linux 4.9.140-tegra aarch64)
-GStreamer 1.14.5
+nv-jetson-nano-sd-card-image-r32.3.1.zip
+Included:
+- Ubuntu 18.04.4 LTS (GNU/Linux 4.9.140-tegra aarch64)
+- GStreamer 1.14.5
+- Opencv 4.1.1
  
-
-
-flash SD
-plug the SD and boot
-configure with desktop
+Etcher: flash SD (30 min)
+Plug not modified SD
+Do not plug Ethernet nor Wifi adapter
 First setup needs : Monitor, keyboard, mouse
+Boot and set minimal configuration with desktop
+shutdown -h now
+(it turns the nano off off, power led turned off) 
+
+Remove SD, an update network configuration on it.
+Plug SD and boot
+
 Then use ssh
+shutdown -h now
+(shutdown -r now)
+
+!!!!
+DO NOT USE COMMAND
+"HALT"
+USE 
+"SHUTDOWN -H NOW"
+!!!
 
 ----------------------------------------
 CONFIGURE 
@@ -46,6 +64,7 @@ network={
 }
 
 ---------
+or for two wifi adapers
 sudo vi /etc/network/interfaces
 auto eth0
 iface eth0 inet static
@@ -56,13 +75,25 @@ auto wlan0
 iface wlan0 inet dhcp
     wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 
-auto wlan1
+allow-hotplug wlan1
 iface wlan1 inet manual
   pre-up iw phy phy1 interface add mon1 type monitor
   pre-up iw dev wlan1 del
   pre-up ifconfig mon1 up
   pre-up iw dev mon1 set channel 36
 
+---------
+or for one single wifi adapter
+allow-hotplug wlan0
+  iface wlan0 inet manual
+  pre-up iw phy phy0 interface add mon1 type monitor
+  pre-up iw dev wlan0 del
+  pre-up ifconfig mon1 up
+  pre-up iw dev mon1 set channel 36
+
+---------
+sudo vi /etc/udev/rules.d/10-network-device.rules 
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="00:0f:13:38:21:90", NAME="wlan0"
 
 ---------
 nmap -sn 192.168.1.1/24
@@ -75,6 +106,62 @@ sudo vi /etc/hostname
 
 sudo apt-get update
 sudo apt-get upgrade
+(30 min)
+
+----------------------------------------
+Install OVERLAYROOT
+----------------------------------------
+use gparted to add user rw FAT32 partition at the end
+
+sudo apt-get install -y overlayroot 
+sudo vi /etc/overlayroot.conf
+overlayroot="tmpfs"
+
+sudo update-initramfs -u
+sudo reboot
+
+
+-----------------------------------------
+-----------------------------------------
+BOOT ON SD AND RUN FROM USB KEY
+-----------------------------------------
+
+sudo vi /etc/initramfs-tools/hooks/usb-firmware
+"
+if [ "$1" = "prereqs" ]; then exit 0; fi
+. /usr/share/initramfs-tools/hook-functions
+copy_file firmware /lib/firmware/tegra21x_xusb_firmware
+"
+sudo chmod a+x /etc/initramfs-tools/hooks/usb-firmware
+
+sudo mkinitramfs -o /boot/initrd-xusb.img
+lsinitramfs /boot/initrd-xusb.img | grep xusb
+=> lib/firmware/tegra21x_xusb_firmware
+
+
+sudo rsync -axHAWX --numeric-ids --info=progress2 --exclude=/proc / /dev/sda1
+(9,9G 13 min)
+
+sudo vi /boot/extlinux/extlinux.conf 
+"
+      INITRD /boot/initrd-xusb.img
+      APPEND ${cbootargs} root=/dev/sda1 rootwait rootfstype=ext4
+"
+
+sudo reboot
+df
+=> 
+pprz@jetson:~$ df
+Filesystem     1K-blocks     Used Available Use% Mounted on
+...
+/dev/sda1       30638016 10403892  18654760  36% /
+...
+/dev/mmcblk0p1  30688172 10400704  18896184  36% /media/pprz/cf9d96ca-f7c4-45f5-9064-652345026106
+
+
+-----------------------------------------
+-----------------------------------------
+
 
 ----------------------------------------
 GSTREAMER already installed test
@@ -238,16 +325,38 @@ sudo dkms status
 
 
 
+
+
 ----------------------------------------
 Configure autostart
 ----------------------------------------
-sudo vi /etc/systemd/system/myjetson.service
+sudo vi /etc/systemd/system/jetson_cam.service
 [Unit]
-Description=JetsonCam systemd service.
+Description=JetsonCam
+After=nvargus-daemon.service
+
 
 [Service]
-Type=simple
-ExecStart=/bin/bash /home/pprz/jetson_cam.sh
+Type=forking
+ExecStart=/usr/bin/env /home/pprz/jetson_cam.sh
+User=pprz
+
+
+[Install]
+WantedBy=multi-user.target
+
+----------------------------------------
+sudo vi /etc/systemd/system/jetson_svpcom.service
+[Unit]
+Description=JetsonSvpcom
+After=NetworkManager.service
+
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/env /home/pprz/jetson_svpcom.sh
+User=root
+
 
 [Install]
 WantedBy=multi-user.target
@@ -255,11 +364,16 @@ WantedBy=multi-user.target
 --------------------------
 sudo systemctl daemon-reload
 
-sudo systemctl start myjetson
-sudo systemctl stop myjetson
-sudo systemctl status myjetson
-sudo systemctl enable myservice
-sudo systemctl disable myservice
+sudo systemctl start jetson_svpcom
+sudo systemctl start jetson_cam
+sudo systemctl stop jetson_cam
+sudo systemctl status jetson_cam
+
+sudo systemctl enable jetson_cam
+sudo systemctl enable jetson_svpcom
+
+sudo systemctl disable jetson_cam
+systemctl list-units --type=service
 
 
 --------------------------
@@ -307,6 +421,7 @@ sudo iw reg get
 --------------------------
 sudo ifconfig wlan0 down
 sudo iwconfig wlan0 mode monitor
+sudo ifconfig wlan0 up
 sudo iwconfig wlan0 channel 36
 
 ------
