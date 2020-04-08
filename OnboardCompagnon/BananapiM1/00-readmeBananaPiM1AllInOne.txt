@@ -68,8 +68,7 @@ CONFIGURE throught ssh
 ----------------------------------------
 Login: root
 passwd: 1234
-sudo adduser pprz
-usermod -aG sudo pprz
+create linux user: xp
 
 ----------------------------------------
 Router configuration for Openmediavault access from outside
@@ -79,13 +78,22 @@ Router configuration for Openmediavault access from outside
 
 ----------------------------------------
 INSTALL Openmediavault 
+(50 min)
 ----------------------------------------
+apt-get update
+apt-get upgrade
+
 armbian-config
 Software / Softy / OMV
+=> Now installing OpenMediaVault. Be patient, it will take several minutes...
+(40 min)
 
-reboot
+(wget -O - https://github.com/OpenMediaVault-Plugin-Developers/installScript/raw/master/install | sudo bash)
+(sudo apt --fix-broken install)
 
-http://192.168.3.2
+reboot / wait 3 minutes
+
+http://192.168.1.109
 (http://xp31.hopto.org)
 Username: admin
 Password: openmediavault
@@ -94,14 +102,187 @@ omv-firstaid
 Change Control Panel administrator password
 reboot
 
-System Setting
-- Certificates / SSL add
-- General settings
-  Enable SSL/TLS + Certifacicate file
-  Force SSL/TLS
-Save & Apply configuration changes
+df -h
+=> 1.5 G
 
-https://192.168.3.2
-https://xp31.hopto.org/
+System Setting
+  Update Management: Update check + install
+  Plugins: check
+  OMV-Extras: check
+Reboot
+
+System Setting
+(Save & Apply configuration changes - 5 minutes each !)
+- System / Certificates / SSL / add
+- General settings
+  - web admin: 
+      auto logout = disable
+      Enable SSL/TLS (certifcate file), Force SSL/TLS
+  - web admin passwd
+  - date: use ntp server
+  - Network
+    Interface add: 
+      Eth0: IPV4 DHCP, IPV6 DISABLED, DNS:80.10.246.132
+  - Update management: Check
+- Storage 
+!!  Disk: wipe
+  File system: Create, Ext4, UnMount / Mount
+  (5 minutes)
+- Users:
+  add SAMBA users smb_xp, smb_vero, smb_kids
+- Shared Folders: add
+  - restricted: admin:r/w, users:r/w, others:ro
+  - public: everyone:r/w
+- Services:
+  - FTP: disable
+  - SMB: 
+    - Settings: enable (workgroup "WORKGROUP")
+    - Shared: restricted, public:no, ronly:no, browseable:yes
+
+End settup: 
+- Users: privileges
+   smb_xp: restricted = rw
+   smb_vero: restricted = rw
+   smb_kids: restricted = ro
+
+  
+(router NAT/PAT => samba 139 & 445 TCP)
+
+-------------
+Ubuntu Network Share test
+
+nautilus smb://smb_xp@192.168.1.109/restricted => rw
+nautilus smb://smb_vero@192.168.1.109/restricted => rw
+nautilus smb://smb_kids@192.168.1.109/restricted => ro
+
+
+----------------------------------------
+mkdir -p /srv/dev-disk-by-label-Disk/appdata/dockerfolder
+
+OMV-extras: 
+  (Settings: enable Backports)
+  Docker:
+    Docker Storage: /srv/dev-disk-by-label-Disk/appdata/dockerfolder 
+Save
+    Docker Install
+  Portainer install
+OpenWeb
+(http://192.168.1.109:9000)
+
+Connect to local
+
+----------------------------------------
+INSTALL throught portainer web
+ mariadb + piwigo
+----------------------------------------
+
+mkdir -p /srv/dev-disk-by-label-Disk/appdata/mariadb-photo
+mkdir -p /srv/dev-disk-by-label-Disk/appdata/piwigo
+
+Portainer web:
+Stacks: add stack mymariadb
+"
+version: "2"
+services:
+  mariadb:
+    image: linuxserver/mariadb
+    container_name: mariadb
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - MYSQL_ROOT_PASSWORD=StrongDatabasePassword
+      - TZ=Europe/Paris
+      - MYSQL_DATABASE=piwigodb
+      - MYSQL_USER=piwigouser
+      - MYSQL_PASSWORD=StrongDatabasePassword
+    volumes:
+      - /srv/dev-disk-by-label-Disk/appdata/mariadb-photo:/config
+    ports:
+      - 3306:3306
+    restart: unless-stopped
+"
+Stacks: Deploy 
+
+
+mysql  -u root -p -h localhost -P 3306 --protocol=tcp
+StrongDatabasePassword
+select host, user, password from mysql.user;
+show databases;
+
+
+Portainer web:
+Stacks: add stack mypiwigo
+"
+version: "2"
+services:
+  piwigo:
+    image: linuxserver/piwigo
+    container_name: piwigo
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+    volumes:
+      - /srv/dev-disk-by-label-Disk/appdata/piwigo/config:/config
+    ports:
+      - 8080:80
+    restart: unless-stopped
+"
+Stacks: Deploy
+
+http://192.168.1.109:8080
+DB conf:
+ Host: 192.168.1.109:3306
+ User: piwigouser
+ Password: StrongDatabasePassword
+ Database name: piwigodb
+DB admin:
+ User: xpa
+ Password: ...
+
+
+----------------------------------------
+INSTALL Cloud Commander 
+----------------------------------------
+(installation througth omv and docker/portainer fail:
+Deployment error No matching manifest for linux/armv7 in the manifest list entry)
+
+sudo apt install nodejs
+node -v
+=> v10.15.2
+curl -sL https://deb.nodesource.com/setup_13.x | bash -
+apt-get install -y nodejs
+node -v 
+=> v13.12.0
+
+npm i cloudcmd -g
+
+cloudcmd --username root --password XXXX --auth --save --no-server
+
+vi /root/.cloudcmd.json
+    "port": 8050,
+
+vi /etc/systemd/system/cloudcmd.service
+"
+[Unit]
+Description=Cloud Commander
+After=network.target
+
+
+[Service]
+WorkingDirectory=/usr/lib/node_modules/cloudcmd/bin/
+ExecStart=/usr/bin/node cloudcmd.js
+Restart=on-failure
+
+
+[Install]
+WantedBy=multi-user.target
+"
+
+systemctl start cloudcmd
+systemctl status cloudcmd
+systemctl enable cloudcmd
+
+(router NAT/PAT => cloudcommander 8000 TCP)
 
 
