@@ -240,6 +240,56 @@ DB admin:
  User: xpa
  Password: ...
 
+----------------------------------------
+Nas
+ssh as user xp
+cp -R /srv/dev-disk-by-label-Disk/ref_restricted/mycamera /srv/dev-disk-by-label-Disk/restricted/
+rename 's/\.JPG$/\.jpgaux/' *.JPG
+rename 's/\.jpgaux$/\.jpg/' *.jpgaux
+mkdir /srv/dev-disk-by-label-Disk/restricted/_mycamera
+
+
+Ubunntu
+sudo mkdir /mnt/nas
+sudo mount -t cifs -o user=smb_xp,password=xxx,uid=1000,gid=1000 //192.168.1.109/restricted /mnt/nas
+cd /mnt/nas
+Makefile
+=> generate files resized
+
+Nas
+ssh as user xp
+cp mycamera/* /srv/dev-disk-by-label-Disk/appdata/piwigo/config/www/gallery/galleries/mycamera/
+cp _mycamera/* /srv/dev-disk-by-label-Disk/appdata/piwigo/config/www/gallery/_data/i/galleries
+/srv/dev-disk-by-label-Disk/appdata/piwigo/config/www/gallery/_data/i/galleries/mycamera/
+
+
+----------------------------------------
+Option 1)
+1) FTP repositories mycamera to 
+/srv/dev-disk-by-label-Disk/appdata/piwigo/config/www/galleries
+chown -R xp mycamera
+chgrp -R xp mycamera
+
+2) Dashboard "Quick Local Synchronization"
+=> update database
+
+3) Browsing (ex: slide show) generate sized file on live  
+/srv/dev-disk-by-label-Disk/appdata/piwigo/config/www/gallery/_data/i/galleries
+
+Digikam export option not recommended: 
+- use slow http interface to upload, 
+- generate partial resizing files on the server (?)
+- rename files and dispatch them according to date
+(srv/dev-disk-by-label-Disk/appdata/piwigo/config/www/gallery/upload/$year/$month/$day/
+rename filename to $year$month$day$)
+
+
+(https://odd-one-out.serek.eu/code/piwigo-thumbnail-generation-script/)
+(https://www.mynotes.kr/wdcloud-piwigo-thumbnail-shell-script/)
+(https://www.debian-fr.org/t/python-redimensionnement-dimages/57331)
+convert image.jpg -modulate 100,120  -geometry 1000 -sharpen 0x1.0 -quality 85 image-reduite.jpg
+https://github.com/ivoshopov/ptig/blob/master/ptig
+https://github.com/markpayneatwork/piwigo_thumbnails/blob/master/Makefile
 
 ----------------------------------------
 INSTALL Cloud Commander 
