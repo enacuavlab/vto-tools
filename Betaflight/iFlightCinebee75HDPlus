@@ -1,0 +1,47 @@
+iFlight Cinebee 75HD Plus F4 
+(<> CineBee 75HD)
+
+caméra hybride HD/FPV Caddx Turtle v2
+
+
+10,3 cm de diagonale (moteur à moteur)
+brushless 1103 à 10000KV axe de 1,5 mm
+
+tripales HQProp de 4cm de diamètre
+Gemfan tripales 1635 de 4 cm 
+
+SucceX Micro 12A 4in1 ESC (DShot600)
+SucceX Micro F4 Micro 16×16 Tower (Supports 2S – 4S LiPo)
+  avec un OSD actif 
+  flashé en Betaflight
+SucceX Micro VTX 5,8 GHz avec 40 canaux
+  0 mW (pitmode), 25 mW (le maximum autorisé en France), 100 mW et 200 mW.
+  antenne est branchée avec un connecteur u.FL
+  configurable via Smart Audio
+
+carte mémoire microSD
+1080p à 60 images
+
+récepteur ?
+DSMX / DSM2, 
+Flysky A8S V2, 
+FrSky R-XSR  (D16 Non-EU) 
+FrSky XM+ 
+
+FrSky XM+ (non-EU)
+
+2S ou 3S de 400 ou 500 mAh, avec un connecteur XT30. 
+
+« props out », c’est-à-dire dans un sens de rotation inverse de celui par défaut de Betaflight.
+Betaflight, en version v3.5.0
+vérifier l’ordre des voies, la méthode d’armement, le choix des modes de vol, le déclencheur de l’Airmode
+
+La télémétrie renvoie le RSSI vers la radiocommande, mais la valeur n’apparaît pas à l’écran via l’OSD.
+
+Le retour vidéo permet de profite de l’OSD actif:
+- Il donne accès aux réglages des PID et à une partie de Betaflight, 
+- aux éléments de l’OSD 
+et, via le protocole IRC Tramp, aux réglages de l’émetteur vidéo : plage de fréquences, fréquence et puissance d’émission.
+
+Straight out of the box it flies amazing and had zero problem. It actually flew better with the old version of Betaflight, than BF4.0. If you don’t know how to tune it, do not update it.
+

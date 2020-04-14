@@ -1,0 +1,112 @@
+-------------------------------------------------------------------------------
+FRSKY-XLite (V2.2V0018)
+Create new Model
+2/12 
+Internal RF:
+- Mode: D16
+- Ch Range CH1-8
+- RxNum [Bind] - Ch1-8 Telem ON
+- Failsafe: No pulses
+- Antenna: Internal
+
+Input (5/12)
+- Throttle, Aileron/Roll , Elevator/Pitch , Rudder/Yaw
+- 2 pos: (Back left: SC) Arm : arm(front), desarm(back)
+- 2 pos: (Back right: SD) Mode : acro(front), stab(back)
+#- 3 pos: (Front right: SB) Buzer,Turtle : nothing(front), buzzer(middle), buzzer+turtle(back)
+
+Mixer (5/12)
+- Chan1-4: input 1-4: AETR
+- Chan5-7: input 5-7
+
+Transmitter adjust ranges [1000, 1500, 2000]
+Output (7/12)
+Chan1-4 set joystick to 
+ - Min, and adjust Min value to target 1000us
+ - Max, and adjust Max value to target 2000us
+ - Middle, and adjust Subtrim to target 1500us
+
+
+Bind radio with quad:
+Hold the button (near ufl connector), swith on Receiver
+=> Yellow (steady) Red (steady)
+Switch on Transmitter, got to Bind  (Beep ...)
+=> Green (steady), Red (blink)
+Exit Bind, from the transmitter
+Receiver off/on
+=> Green (steady), Red (off)
+
+
+BETAFLIGHT Configurator 
+Ubuntu 18.04
+
+https://github.com/betaflight/betaflight-configurator/releases
+suso apt-get install betaflight-configurator_10.6.0_amd64.deb
+cp /opt/betaflight/betaflight-configurator/betaflight-configurator.desktop Bureau
+chmod ugo+xwr Bureau/betaflight-configurator.desktop
+
+Launch 
+
+Usb plug Flight Controller to PC
+=> ttyACM1: USB ACM device
+
+GUI: 
+- Open port /dev/ttyACM1
+- Connect
+- Save configuration
+  => BTFL_backup_CINEBEE_20200413_155815.json
+
+Transmitter: switch on
+Quad: plug Battery
+
+GUI/Receiver:
+ Ordre des voies: AETR1234 / Enregistrer / Rafraichir
+ Check Order, Direction
+ Check Ranges (fine tune transmitter procedure above)
+
+Transmitter: Desarm 
+GUI/Modes: ARM Ajouter un plage
+Transmitter: Arm
+GUI/Modes => [Aux1 1300,1700]
+Move to [1900,2100] 
+
+Transmitter: Stab 
+GUI/Modes: 
+Ajouter un plage
+Transmitter: Accro
+GUI/Modes => [Aux2 1300,1700]
+Move to [900,1300] 
+
+Ajouter un plage: 
+GUI/Modes => [Aux2 1300,1700]
+
+
+GUI 
+SAVE to eeprom
+
+Failsafe (default)
+Remove propellers
+Switch On transmitter and Quad
+Switch Off transmitter
+=> Quad kills motor, and beep ...
+
+
+-------------------------------------------------------------------------------
+#Transmitter: Nothing 
+#GUI/Modes: 
+#Ajouter un lien: BEEPER
+#Ajouter un plage
+#Transmitter: Buzzer
+#GUI/Modes => [Aux3 1300,1700]
+#Move to [1300,1700] 
+#Move to [1400,1600] 
+
+#GUI/Modes: 
+#Ajouter un lien: FLIP OVER CRASH
+#Ajouter un plage [Aux3 900,1100]
+
+#GUI/Modes:
+#Horizon
+#Move [1400,1600] to [900,1600] 
+#To beep in turtle mode
+

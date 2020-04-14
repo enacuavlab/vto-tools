@@ -1,0 +1,30 @@
+-------------------------------------------------------------------------------
+Access OSD menu with radio transmitter sticks (mode 2)
+Mid Throttle
+Yaw left + Pitch foward
+
+Betaflight 4.0.1
+STM32F411
+
+OSD / 
+  - PROFILE / Beta flight menu (PID ...)
+  - FEATURES / VTX SA smart-audio (?)
+               VTX TR Tramp Control (Video channel, power ...)
+  - OSD / timers, alarms ...
+  - MISC / rc commands 
+
+
+Cadixx menu ?
+
+uart1: VTX TR Tramp
+uart2: SBUS
+
+GUI
+Ports:
+UART1 115200 ... VTX (IRC Tramp)
+UART2 115200, Serial Rx, ....
+
+
+VTX IRC (Tramp
+VTX TBS (Smart audio)
+Camera protocol Runcam
