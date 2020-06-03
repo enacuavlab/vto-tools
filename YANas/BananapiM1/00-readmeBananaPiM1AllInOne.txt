@@ -106,14 +106,18 @@ df -h
 => 1.5 G
 
 System Setting
-  Update Management: Update check + install
-  Plugins: check
-  OMV-Extras: check
-Reboot
+(Save & Apply configuration changes - 5 minutes each !)
+(do modifications and apply one for all)
+  - Certificats
+    - SSL / add (25 years, france)
 
 System Setting
-(Save & Apply configuration changes - 5 minutes each !)
-- System / Certificates / SSL / add
+  Update Management: check update
+  Plugins: check update
+  OMV-Extras: check (update, omv-update, upgrade)
+ 
+
+System Setting
 - General settings
   - web admin: 
       auto logout = disable
@@ -123,11 +127,10 @@ System Setting
   - Network
     Interface add: 
       Eth0: IPV4 DHCP, IPV6 DISABLED, DNS:80.10.246.132
-  - Update management: Check
 - Storage 
-!!  Disk: wipe
-  File system: Create, Ext4, UnMount / Mount
-  (5 minutes)
+  - Disk: wipe (quick)
+  - File system: Create, Ext4, UnMount / Mount
+  (5 minutes for 1To)
 - Users:
   add SAMBA users smb_xp, smb_vero, smb_kids
 - Shared Folders: add
@@ -157,7 +160,12 @@ nautilus smb://smb_kids@192.168.1.109/restricted => ro
 
 
 ----------------------------------------
+check:
+- dev-disk-by-label-data
+- dev-disk-by-label-Disk
+
 mkdir -p /srv/dev-disk-by-label-Disk/appdata/dockerfolder
+
 
 OMV-extras: 
   (Settings: enable Backports)
@@ -293,7 +301,9 @@ INSTALL Cloud Commander
 (installation througth omv and docker/portainer fail:
 Deployment error No matching manifest for linux/armv7 in the manifest list entry)
 
-sudo apt install nodejs
+Install with root account
+
+apt install nodejs
 node -v
 => v10.15.2
 curl -sL https://deb.nodesource.com/setup_13.x | bash -
@@ -329,6 +339,77 @@ systemctl start cloudcmd
 systemctl status cloudcmd
 systemctl enable cloudcmd
 
-(router NAT/PAT => cloudcommander 8000 TCP)
+(router NAT/PAT => cloudcommander 8050 TCP)
+
+----------------------------------------
+Disable blue yellow green leds
+----------------------------------------
+https://raw.githubusercontent.com/n1tehawk/bpi_ledset/master/bpi_ledset.c
+gcc -o bpi_ledset bpi_ledset.c
+cp bpi_ledset /usr/local/sbin
+chmod ugo+xwr /usr/local/sbin/bpi_ledset
+
+vi /etc/rc.local
+/usr/local/sbin/bpi_ledset eth0 b y g
 
 
+----------------------------------------
+Install syncthing through portainer
+----------------------------------------
+Check 
+- dev-disk-by-label-data
+- dev-disk-by-label-Disk
+
+- 
+mkdir -p /srv/dev-disk-by-label-data/appdata/syncthing
+
+Portainer web:
+Stacks: add stack mysyncthing
+"
+version: "2.1"
+services:
+  syncthing:
+    image: linuxserver/syncthing
+    container_name: syncthing
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+      - UMASK_SET=022
+    volumes:
+      - /srv/dev-disk-by-label-data/appdata/syncthing/config:/config
+    ports:
+      - 8384:8384
+      - 22000:22000
+      - 21027:21027/udp
+    restart: unless-stopped
+"
+Stacks: Deploy 
+
+mkdir /srv/dev-disk-by-label-data/backup_sync
+chmod -R ugo+xwr backup_sync
+
+http://192.168.1.112:8384
+
+Configuration / Interface graphique / set user (admin) and password
+
+Configuration / General 
+- Nom convivial local de l'appareil
+  Bananapi_A
+- Chemin parent par défaut pour les nouveaux partages
+  /srv/dev-disk-by-label-Disk/backup_sync
+
+Autres appareils
+- Ajouter un appareil: ID + Nom convivial
+
+mkdir /srv/dev-disk-by-label-Disk/backup_sync/video
+
+Partages
+- Default Folder: Gérer / Supprimer
+- Ajouter un Partage
+  General: Nom du partage: video
+  Partages: Appareil non membres de ce partage
+
+  - Chemin du partage: 
+/srv/dev-disk-by-label-data/backup_sync
+ 

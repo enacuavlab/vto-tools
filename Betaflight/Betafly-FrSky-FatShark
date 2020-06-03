@@ -28,3 +28,30 @@ UART2 115200, Serial Rx, ....
 VTX IRC (Tramp
 VTX TBS (Smart audio)
 Camera protocol Runcam
+
+-----------------------------------------------------------------------------
+
+FATSHARK DOMINATOR HD3
+
+Display Control: 
+
+- Brightness (left/right)
+- Contrast (foward / back)
+- Analog 2D/3D, HDMI 2D/3D (press)
+
+=> Set mode AV-2D
+
+Analog Record
+- DVR start / stop / payback
+
+Turn on DVR : Long press (1 second) => RED LED solid
+Start recording : short press => RED LED blink
+Stop recording : short press => RED LED solid
+
+Turn off RX
+
+While DVR is on, long press
+=> DVR menu (up/down, right/left)
+
+"Memory full" 
+=> remove files or re-format FAT32 camera SD with computer

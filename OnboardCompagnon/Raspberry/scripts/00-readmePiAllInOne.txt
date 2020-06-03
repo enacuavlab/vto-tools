@@ -392,7 +392,7 @@ sudo mv /etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplica
 
 ??????????????
 sudo vi /etc/dhcpcd.conf
-denyinterfaces wlan1
+deny wlan1
 
 sudo vi /etc/udev/rules.d/76-netnames.rules
 SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="b8:27:eb:be:ba:55", NAME="wlan0"
