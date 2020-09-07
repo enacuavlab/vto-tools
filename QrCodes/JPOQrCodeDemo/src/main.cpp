@@ -5,6 +5,8 @@
 
 #define COMPUTE_FPS 0
 
+cv::Mat last_img;
+
 typedef struct
 {
     int type;
@@ -142,11 +144,26 @@ void clearList(int state, void* userdata)
     std::cout << "Button callback "  << state << std::endl;
 }
 
+void clickCallback(int event, int x, int y, int flags, void* userdata)
+{
+  static int nbImgs = 0;
+  if  (event == cv::EVENT_LBUTTONDOWN) {
+    std::cout << "Left button of the mouse is clicked - position (" << x << ", " << y << ")" << std::endl;
+    std::ostringstream stringStream;
+    stringStream << "/home/pprz/Projects/vto-tools/QrCodes/JPOQrCodeDemo/imgs_saved/img" << nbImgs << ".jpg";
+    imwrite(stringStream.str(), last_img);
+    nbImgs++;
+  }
+}
+
+
 int main (int argc, char** argv)
 {
     cv::namedWindow("Video", CV_WINDOW_NORMAL);
     cv::resizeWindow("Video",1280,720);
     cv::moveWindow("Video", 0, 0);
+
+    cv::setMouseCallback("Video", clickCallback, NULL);
 
     cv::Mat frame;
     cv::VideoCapture cap;
@@ -186,6 +203,7 @@ int main (int argc, char** argv)
     while(!end)
     {
         cap >> frame;
+        last_img = frame;
 
         // Variable for decoded objects
         std::vector<decodedObject> decodedObjects;
