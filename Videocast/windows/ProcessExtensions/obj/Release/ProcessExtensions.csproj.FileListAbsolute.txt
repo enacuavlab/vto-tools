@@ -1,6 +1,0 @@
-C:\Users\pprz\Projects\ProcessExtensions\bin\ProcessExtensions.dll
-C:\Users\pprz\Projects\ProcessExtensions\bin\ProcessExtensions.pdb
-C:\Users\pprz\Projects\ProcessExtensions\obj\Release\ProcessExtensions.csprojAssemblyReference.cache
-C:\Users\pprz\Projects\ProcessExtensions\obj\Release\ProcessExtensions.csproj.CoreCompileInputs.cache
-C:\Users\pprz\Projects\ProcessExtensions\obj\Release\ProcessExtensions.dll
-C:\Users\pprz\Projects\ProcessExtensions\obj\Release\ProcessExtensions.pdb
