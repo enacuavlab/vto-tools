@@ -82,12 +82,17 @@ castscreen_srv.cs
 using System.ServiceProcess;
 using System.Diagnostics;
 using murrayju.ProcessExtensions;
+using System.IO;
 
 namespace castscreen_prj
 {
     public partial class castscreen_srv : ServiceBase
     {
         System.Diagnostics.EventLog eventLog1;
+
+        static StreamReader file = new StreamReader(@"C:\Users\pprz\Projects\castscreen_data.txt");
+        string start_cmd = file.ReadLine();
+        string stop_cmd = file.ReadLine();
 
         public castscreen_srv()
         {
@@ -106,14 +111,14 @@ namespace castscreen_prj
         {
             eventLog1.WriteEntry("In OnStart.");
 
-            ProcessExtensions.StartProcessAsCurrentUser(null, @"C:\gstreamer\1.0\mingw_x86\bin\gst-launch-1.0.exe -v dx9screencapsrc monitor=1 ! video/x-raw,framerate=25/1 ! queue ! videoconvert ! x264enc ! ""video/x-h264,profile=baseline"" ! h264parse config-interval=-1 ! rtph264pay pt=96 config-interval=-1 ! udpsink host=192.168.1.237 port=35000 sync=true");
+            ProcessExtensions.StartProcessAsCurrentUser(null, start_cmd);
         }
 
         protected override void OnStop()
         {
             eventLog1.WriteEntry("In OnStop.");
 
-            foreach (var proc in Process.GetProcessesByName("gst-launch-1.0"))
+            foreach (var proc in Process.GetProcessesByName(stop_cmd))
             {
                 eventLog1.WriteEntry("KILL:"+proc.ProcessName);
                 proc.Kill();
@@ -132,6 +137,12 @@ namespace castscreen_prj
         }
     }
 }
+
+-----------------------------------------------
+castscreen_data.txt
+
+C:\gstreamer\1.0\mingw_x86\bin\gst-launch-1.0.exe -v dx9screencapsrc monitor=1 ! video/x-raw,framerate=25/1 ! queue ! videoconvert ! x264enc ! ""video/x-h264,profile=baseline"" ! h264parse config-interval=-1 ! rtph264pay pt=96 config-interval=-1 ! udpsink host=192.168.1.237 port=35000 sync=true
+gst-launch-1.0
 
 -----------------------------------------------
 Re-Open visual Studio
