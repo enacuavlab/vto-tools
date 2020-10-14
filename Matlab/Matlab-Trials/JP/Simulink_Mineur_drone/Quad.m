@@ -30,7 +30,7 @@ cc_throttle=throttle.signals.values;
 
 %Plots
 
-plot(throttle.time,(-throttle.signals.values+9600)/2)
+%plot(throttle.time,(-throttle.signals.values+9600)/2)
 %plot(rad2deg(th_roll/9600))
 
 
