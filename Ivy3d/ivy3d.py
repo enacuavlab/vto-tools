@@ -66,10 +66,9 @@ class Ivy3d:
     self.model_update(acid,
         [1.,0.,0.,0.],
         ((np.array([100*pos[0],100*pos[2]+14,-100*pos[1]],dtype=float)),
-         (((Quaternion(axis=[1, 0, 0], degrees=att[0]))*
+         (((Quaternion(axis=[1, 0, 0], degrees=att[1]))*
                  (Quaternion(axis=[0, 1, 0],degrees=-att[2]))*
-                 (Quaternion(axis=[0, 0, 1], degrees=-att[1]))).elements)))
-#         (R.from_euler('xyz', [att[0],att[2],att[1]], degrees=True).as_quat()))) # psi phi theta
+                 (Quaternion(axis=[0, 0, 1], degrees=-att[0]))).elements)))
 
   def on_msg_ground_ref_ltp_enu(self, *larg):
     mystr=larg[1].split()
