@@ -19,7 +19,8 @@ from pyquaternion import Quaternion
 from ivy.std_api import *
 
 IVYAPPNAME = 'ivy3d'
-IVYBUS = '127:2010'
+#IVYBUS = '127:2010'
+IVYBUS = '192.168.1.255:2010'
 
 # from paparazzi messages.xml
 UNIT_COEF_ATT = 0.0139882
@@ -44,11 +45,12 @@ class Ivy3d:
     self.updated=False
     self.stop_flag=1
 
-    logging.getLogger('Ivy').setLevel(logging.NOTSET)
+    logging.getLogger('Ivy').setLevel(logging.ERROR)
+#    logging.getLogger('Ivy').setLevel(logging.NOTSET)
     readymsg = '%s READY' % IVYAPPNAME
     IvyInit(IVYAPPNAME,readymsg,0,self.on_cnx,0)
     IvyStart(IVYBUS)
-    IvyBindMsg(self.on_msg_rotorcraft_fp, '(.*ROTORCRAFT_FP.*)')
+#    IvyBindMsg(self.on_msg_rotorcraft_fp, '(.*ROTORCRAFT_FP.*)')
     IvyBindMsg(self.on_msg_ground_ref_ltp_enu, '(.*LTP_ENU.*)')
 
   def on_cnx(self, dum1, dum2):
@@ -57,6 +59,7 @@ class Ivy3d:
 
   def on_msg_rotorcraft_fp(self, *larg):
     mystr=larg[1].split()
+#    print(mystr)
     acid=int(mystr[0][6:]) if(mystr[0].startswith("replay")) else int(mystr[0])
     pos=[elt * UNIT_COEF_POS for elt in list(map(float,mystr[2:5]))]
     att=[elt * UNIT_COEF_ATT for elt in list(map(float,mystr[8:11]))]
@@ -69,6 +72,7 @@ class Ivy3d:
 
   def on_msg_ground_ref_ltp_enu(self, *larg):
     mystr=larg[1].split()
+#    print(mystr)
     acid=int(mystr[2])
     pos=[elt for elt in list(map(float,mystr[4].split(",")))]
     quat=[elt for elt in list(map(float,mystr[6].split(",")))]
@@ -109,7 +113,7 @@ if __name__ == '__main__':
             elt.model.transf[0][:]=curr[0][:]
             updateFlag=True
           if any(abs(abs(curr[1][i])-abs(elt.model.transf[1][i]))>0.008 for i in range(4)):
-            print("updateRot")
+            #print("updateRot")
             rot3=(Quaternion(curr[1])*((Quaternion(elt.model.transf[2])).inverse))
             elt.mesh.rotate(
               R=elt.mesh.get_rotation_matrix_from_quaternion(rot3.elements),center=elt.mesh.get_center())
@@ -120,7 +124,7 @@ if __name__ == '__main__':
           break
   
       if notregistered:
-        print("register")
+        #print("register")
         mesh_model=o3d.io.read_triangle_mesh(str(acid)+".stl")
         mesh_model.compute_vertex_normals()
         mesh_model.paint_uniform_color(STL_COLOR[stlcolor])
