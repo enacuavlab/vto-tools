@@ -1,25 +1,28 @@
 #!/usr/bin/env python3
 
 import socket
+import time
 
-SERVER="127.0.0.1"
+SERVER="192.168.1.231"
 CMD_PORT=1510
-NAT_REQUEST=2
 
-cmdsocket = socket.socket( socket.AF_INET, socket.SOCK_DGRAM )
-cmdsocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-cmdsocket.bind( ('', 0) )
-cmdsocket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+def init_request():
+  cmdsocket = socket.socket( socket.AF_INET, socket.SOCK_DGRAM )
+  cmdsocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+  cmdsocket.bind( ('', 0) )
+  cmdsocket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+  return(cmdsocket)
 
-command = NAT_REQUEST
-commandStr = "StartRecording"
-packetSize = len( commandStr ) + 1
+def send_request(sock,commandStr):
+  packetSize = len( commandStr ) + 1
+  command = 2 # NAT_REQUEST
+  data = command.to_bytes( 2, byteorder='little' )
+  data += packetSize.to_bytes( 2, byteorder='little' )
+  data += commandStr.encode( 'utf-8' )
+  data += b'\0'
+  sock.sendto( data, (SERVER,CMD_PORT))
 
-data = command.to_bytes( 2, byteorder='little' )
-data += packetSize.to_bytes( 2, byteorder='little' )
-data += commandStr.encode( 'utf-8' )
-data += b'\0'
-
-ret=cmdsocket.sendto( data, (SERVER,CMD_PORT))
-print(ret," bytes sent\n")
-print("[",data,"]\n")
+sock=init_request()
+send_request(sock,"StartRecording")
+time.sleep(5)
+send_request(sock,"StopRecording")
