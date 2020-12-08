@@ -1,0 +1,176 @@
+[    1.679197] i2c /dev entries driver
+[    1.681050] i2c i2c-6: Added multiplexed i2c bus 7
+[    1.681398] i2c i2c-6: Added multiplexed i2c bus 8
+[    1.681407] i2c-mux-gpio cam_i2cmux: 2 port mux on Tegra I2C adapter adapter
+[    1.694970] avt_csi2 7-003c: cci layout version: 10000
+[    1.694978] avt_csi2 7-003c: cci device capabilities: 117
+[    1.694982] avt_csi2 7-003c: cci device guid: 00012C003FA4
+[    1.694987] avt_csi2 7-003c: cci gcprm_address: 0x300
+[    1.695391] avt_csi2 7-003c: bcrm version (driver): 0x10000 (maj: 0x1 min: 0x0)
+[    1.695398] avt_csi2 7-003c: bcrm version (camera): 0x10000 (maj: 0x1 min: 0x0)
+[    1.695723] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x2001
+[    1.696204] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.696565] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.696574] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x3001
+[    1.697052] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.697363] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.697370] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x3013
+[    1.697848] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.698158] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.698166] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x3002
+[    1.698645] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.698958] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.698966] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x3014
+[    1.699442] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.699753] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.699760] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x200a
+[    1.700237] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.700546] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.700553] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x3007
+[    1.701031] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.701340] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.701347] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x300e
+[    1.701824] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.702134] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.702141] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x300a
+[    1.702617] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.702932] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.702939] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x300f
+[    1.703417] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.703726] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.703733] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x2013
+[    1.704209] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.704519] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.704526] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x3012
+[    1.705002] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.705312] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.705319] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x3011
+[    1.705796] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.706106] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.706113] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x3010
+[    1.706589] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.706996] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.707003] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x3008
+[    1.707483] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.707793] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.707801] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x1017
+[    1.708278] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.708587] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.708594] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x100a
+[    1.709070] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.709379] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.709386] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x1013
+[    1.709862] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.710172] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.710179] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x2007
+[    1.710655] avt_csi2 7-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.710966] avt_csi2 7-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.710974] avt_csi2 7-003c: avt_check_fmt_available: media_bus_fmt: 0x5002
+[    1.712312] avt_csi2 7-003c: wrong GENCP CRC value! calculated = 0xdf6b807f, received = 0xee4b04d6
+[    1.712317] avt_csi2 7-003c: gcprm layout version: 10000
+[    1.712321] avt_csi2 7-003c: gcprm out buf addr: c00
+[    1.712326] avt_csi2 7-003c: gcprm out buf size: 400
+[    1.712330] avt_csi2 7-003c: gcprm in buf addr: 800
+[    1.712334] avt_csi2 7-003c: gcprm in buf size: 400
+[    1.712342] avt_csi2 7-003c: gcprm version (driver): 0x10000 (maj: 0x1 min: 0x0)
+[    1.712347] avt_csi2 7-003c: gcprm version (camera): 0x10000 (maj: 0x1 min: 0x0)
+[    1.714881] ALVIUM 1800 C-240c 7-3c: ioctl_queryctrl:2803: control 'Contrast' not supported by firmware
+[    1.735202] ALVIUM 1800 C-240c 7-3c: ioctl_queryctrl:3265: control 'Sharpness' not supported by firmware
+[    1.872658] avt_csi2 7-003c: sensor_common_parse_control_props:default_gain:property missing
+[    1.881196] avt_csi2 7-003c: sensor_common_parse_control_props:default_framerate:property missing
+[    1.890079] avt_csi2 7-003c: sensor_common_parse_control_props:default_exp_time:property missing
+[    1.891315] tegra-pcie 1003000.pcie: link 0 down, retrying
+[    1.898916] usb 1-2: new high-speed USB device number 2 using tegra-xusb
+[    1.915681] avt_read_fmt_from_device: Camera bayer_pattern=0x2
+[    1.916069] avt_read_fmt_from_device avt_img_fmt=0x24
+[    1.916075] avt_csi2 7-003c: avt_read_fmt_from_device 0x24
+[    1.935699] usb 1-2: New USB device found, idVendor=0bda, idProduct=5411
+[    1.935706] usb 1-2: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+[    1.935711] usb 1-2: Product: 4-Port USB 2.1 Hub
+[    1.935716] usb 1-2: Manufacturer: Generic
+[    1.937205] hub 1-2:1.0: USB hub found
+[    1.938280] hub 1-2:1.0: 4 ports detected
+[    1.973912] avt_csi2 7-003c: sensor ALVIUM 1800 C-240c 7-3c registered
+[    1.987229] avt_csi2 8-003c: cci layout version: 10000
+[    1.987234] avt_csi2 8-003c: cci device capabilities: 117
+[    1.987238] avt_csi2 8-003c: cci device guid: 00012C003FA4
+[    1.987242] avt_csi2 8-003c: cci gcprm_address: 0x300
+[    1.987640] avt_csi2 8-003c: bcrm version (driver): 0x10000 (maj: 0x1 min: 0x0)
+[    1.987646] avt_csi2 8-003c: bcrm version (camera): 0x10000 (maj: 0x1 min: 0x0)
+[    1.987972] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x2001
+[    1.988457] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.988774] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.988781] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x3001
+[    1.989266] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.989582] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.989590] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x3013
+[    1.990072] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.990388] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.990395] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x3002
+[    1.990879] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.991213] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.991220] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x3014
+[    1.991703] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.992020] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.992026] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x200a
+[    1.992509] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.992825] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.992832] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x3007
+[    1.993316] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.993631] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.993638] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x300e
+[    1.994122] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.994437] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.994444] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x300a
+[    1.994929] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.995246] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.995253] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x300f
+[    1.995735] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.996051] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.996058] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x2013
+[    1.996542] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.996858] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.996865] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x3012
+[    1.997347] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.997664] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.997671] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x3011
+[    1.998153] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.998468] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.998475] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x3010
+[    1.998957] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    1.999273] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    1.999280] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x3008
+[    1.999763] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    2.000078] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    2.000085] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x1017
+[    2.000568] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    2.000885] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    2.000892] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x100a
+[    2.001374] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    2.001690] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    2.001696] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x1013
+[    2.002179] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    2.002495] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    2.002502] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x2007
+[    2.002982] avt_csi2 8-003c: avt_check_fmt_available: Camera available MIPI data formats: 0x1c0e0
+[    2.003298] avt_csi2 8-003c: avt_check_fmt_available: Camera bayer pattern inq: 0x4
+[    2.003306] avt_csi2 8-003c: avt_check_fmt_available: media_bus_fmt: 0x5002
+[    2.004651] avt_csi2 8-003c: wrong GENCP CRC value! calculated = 0xdf6b807f, received = 0xee4b04d6
+[    2.004656] avt_csi2 8-003c: gcprm layout version: 10000
+[    2.004661] avt_csi2 8-003c: gcprm out buf addr: c00
+[    2.004665] avt_csi2 8-003c: gcprm out buf size: 400
+[    2.004669] avt_csi2 8-003c: gcprm in buf addr: 800
+[    2.004673] avt_csi2 8-003c: gcprm in buf size: 400
+[    2.004680] avt_csi2 8-003c: gcprm version (driver): 0x10000 (maj: 0x1 min: 0x0)
+[    2.004685] avt_csi2 8-003c: gcprm version (camera): 0x10000 (maj: 0x1 min: 0x0)
+[    2.006930] tegra_cec 70015000.tegra_cec: Can't find physical addresse.
+[    2.006937] tegra_cec 70015000.tegra_cec: tegra_cec_init Done.
+[    2.007236] ALVIUM 1800 C-240c 8-3c: ioctl_queryctrl:2803: control 'Contrast' not supported by firmware
+[    2.027695] ALVIUM 1800 C-240c 8-3c: ioctl_queryctrl:3265: control 'Sharpness' not supported by firmware
+[    2.216366] avt_csi2 8-003c: sensor_common_parse_control_props:default_gain:property missing
+[    2.224833] avt_csi2 8-003c: sensor_common_parse_control_props:default_framerate:property missing
+[    2.226914] usb 1-2.1: new high-speed USB device number 3 using tegra-xusb
+[    2.233742] avt_csi2 8-003c: sensor_common_parse_control_props:default_exp_time:property missing
+[    2.259322] avt_read_fmt_from_device: Camera bayer_pattern=0x2
+[    2.259711] avt_read_fmt_from_device avt_img_fmt=0x24
+[    2.259717] avt_csi2 8-003c: avt_read_fmt_from_device 0x

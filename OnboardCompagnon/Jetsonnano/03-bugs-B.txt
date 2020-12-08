@@ -1,0 +1,10 @@
+    1.656957] tegra-vii2c 546c0000.i2c: no acknowledge from address 0x3c
+[    1.657064] avt_csi2 7-003c: i2c read failed (-121)
+[    1.661991] avt_csi2 7-003c: avt_csi2_probe: read_cci_registers failed: -121
+[    1.669065] avt_csi2: probe of 7-003c failed with error -121
+[    1.669315] tegra-vii2c 546c0000.i2c: no acknowledge from address 0x3c
+[    1.669412] avt_csi2 8-003c: i2c read failed (-121)
+[    1.674470] tegra-xusb-padctl 7009f000.xusb_padctl: power on UTMI pads 1
+[    1.674549] avt_csi2 8-003c: avt_csi2_probe: read_cci_registers failed: -121
+[    1.681635] avt_csi2: probe of 8-003c failed with error -121
+
