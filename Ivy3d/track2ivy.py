@@ -2,6 +2,8 @@
 
 #https://courses.ideate.cmu.edu/16-455/s2020/ref/text/_modules/optitrack/csv_reader.html#CSVReader
 
+from threading import Thread
+import tkinter
 import logging
 import time
 import csv
@@ -13,20 +15,71 @@ from ivy.std_api import *
 IVYAPPNAME = 'track2ivy'
 IVYBUS = '127:2010'
 
-class Track2ivy:
-  def __init__(self):
-    self.stop_flag=1
+class Track2ivy(tkinter.Tk):
+
+  def on_button(self,event):
+    tmp=self.scale.get()
+    if(self.scale_stored == tmp):
+      if self._thread is None:
+        if self._stop==True:
+          self._stop = False
+          self._thread = Thread(target=self.run)
+          self._thread.start()
+      else :
+        self._thread, self._stop = None, True
+    else :
+      self._thread, self._stop = None, True
+    self.scale_stored=tmp
+
+  def on_cnx(self, dum1, dum2):
+    print(dum1,dum2)
+
+  def on_close(self):
+    if(self._thread==None) and (self._stop):
+      self.destroy()
+      IvyStop()
+    self._thread, self._stop = None, True
+
+  def __init__(self,parent,take):
+    tkinter.Tk.__init__(self,parent)
+    self.parent = parent
+    self._thread, self._stop = None, True
+    self.take=take
+    self.grid()
+    self.scale=tkinter.Scale(self, from_=0, to=take._maxitems, orient=tkinter.HORIZONTAL)
+    self.scale.bind("<ButtonRelease-1>", self.on_button)
+    self.scale.grid(column=0,row=0,sticky='NSEW')
+    self.scale_stored=0
+    self.grid_columnconfigure(0,weight=1)
+    self.grid_rowconfigure(0,weight=1)
+    self.minsize(width=180,height=50)
+    self.resizable(True,False)
+    self.title(IVYAPPNAME)
     logging.getLogger('Ivy').setLevel(logging.NOTSET)
     readymsg = '%s READY' % IVYAPPNAME
     IvyInit(IVYAPPNAME,readymsg,0,self.on_cnx,0)
     IvyStart(IVYBUS)
+    self.protocol("WM_DELETE_WINDOW", self.on_close)
+    self.mainloop()
 
-  def on_cnx(self, dum1, dum2):
-    if(dum2==2):self.stop_flag=0
-    return
+  def run(self):
+    i=self.scale.get()
+    while((i<self.take._maxitems)and(not self._stop)):
+      for body in self.take.rigid_bodies.values():
+        if body.positions[i]==None or body.rotations[i]==None:break
+        # Y, X, Z 
+        msg="ground GROUND_REF "+str(body.label.partition("_")[2])+\
+           " LTP_ENU %f,%f,%f"%(body.positions[i][0],-body.positions[i][2],body.positions[i][1])+\
+           " 0.,0.,0. %f,%f,%f,%f"\
+           %(body.rotations[i][3],body.rotations[i][0],-body.rotations[i][2],-body.rotations[i][1])+\
+           " 0.,0.,0. 0."
+        IvySendMsg(msg)
+      i=i+4
+      time.sleep(1/30.)    
+      self.scale.set(i)
+      #time.sleep(1/self.take.frame_rate)    
+#    IvyStop()
 
-  def sendMsg(self,msg):
-    IvySendMsg(msg)
 
 class RigidBody(object):
   def __init__(self, label, ID):
@@ -56,7 +109,7 @@ class RigidBody(object):
 
 
 class Take_V1_23(object):
-  def __init__(self):
+  def __init__(self,path):
     self.frame_rate    = 120.0
     self.rigid_bodies = dict()
     self._raw_info    = dict()
@@ -66,18 +119,13 @@ class Take_V1_23(object):
     self._raw_axes    = list()
     self._ignored_labels  = set()
     self._column_map = list() 
-    return
-
-  def readCSV(self,path):
-    self.rigid_bodies = dict()
-    self._raw_info = dict()
-    self._ignored_labels  = set()
-    self._column_map = list()
     with open(path, 'r') as file_handle:
       csv_stream = csv.reader(file_handle)
       self._read_header(csv_stream)
       self._read_data(csv_stream)        
-    return self
+      self._maxitems=0
+      for body in self.rigid_bodies.values():
+        if len(body.times)>self._maxitems:self._maxitems=len(body.times)
 
   def _read_header(self,stream):
     line1 = next(stream)
@@ -127,26 +175,4 @@ class Take_V1_23(object):
         mapping.setter( row_num, mapping.axis, values[mapping.column] )
 
 if __name__ == '__main__':
-  frm=Track2ivy()
-  path=sys.argv[1]
-  take=Take_V1_23()
-  take.readCSV(path)
-  cpt=0
-  for body in take.rigid_bodies.values():
-    if len(body.times)>cpt:cpt=len(body.times)
-  i=0
-  while((i<cpt)and(frm.stop_flag)):
-    for body in take.rigid_bodies.values():
-      if body.positions[i]==None or body.rotations[i]==None:break
-      # Y, X, Z 
-      msg="ground GROUND_REF "+str(body.label.partition("_")[2])+\
-         " LTP_ENU %f,%f,%f"%(body.positions[i][0],-body.positions[i][2],body.positions[i][1])+\
-         " 0.,0.,0. %f,%f,%f,%f"\
-         %(body.rotations[i][3],body.rotations[i][0],-body.rotations[i][2],-body.rotations[i][1])+\
-          " 0.,0.,0. 0."
-      frm.sendMsg(msg)
-    i=i+4
-    time.sleep(1/30.)    
-    #time.sleep(1/take.frame_rate)    
-            
-  IvyStop()
+  Track2ivy(None,Take_V1_23(sys.argv[1]))

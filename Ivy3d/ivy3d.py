@@ -125,7 +125,7 @@ if __name__ == '__main__':
   
       if notregistered:
         #print("register")
-        mesh_model=o3d.io.read_triangle_mesh(str(acid)+".stl")
+        mesh_model=o3d.io.read_triangle_mesh("models/"+str(acid)+".stl")
         mesh_model.compute_vertex_normals()
         mesh_model.paint_uniform_color(STL_COLOR[stlcolor])
         stlcolor=stlcolor+1
