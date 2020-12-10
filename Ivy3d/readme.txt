@@ -29,9 +29,18 @@ paparazzi/sw/ground_segment/python/natnet3.x/natnet2ivy.py + NatNetClient.py
   => ground GROUND_REF acid LTP_ENU pos vel quat
 
 
+paparazzi/sw/ground_segment/tmtc/link 
+------------------------------------
+  This is the realtime pprz track player.
+  Paparazzi is needed
+
+  ex: link  -udp
+  ex: link  -d /dev/ttyUSB0 -transport xbee -s 57600
+
+
 paparazzi/sw/logalizer/play
 ---------------------------
-  This is the pprz log player. 
+  This is the batch pprz log player. 
   It takes inputs from onground or postprocessed onboard files, and broadcast them on Ivy bus
   Paparazzi is not needed
 
