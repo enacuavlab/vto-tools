@@ -50,7 +50,7 @@ class Ivy3d:
     readymsg = '%s READY' % IVYAPPNAME
     IvyInit(IVYAPPNAME,readymsg,0,self.on_cnx,0)
     IvyStart(IVYBUS)
-#    IvyBindMsg(self.on_msg_rotorcraft_fp, '(.*ROTORCRAFT_FP.*)')
+    IvyBindMsg(self.on_msg_rotorcraft_fp, '(.*ROTORCRAFT_FP.*)')
     IvyBindMsg(self.on_msg_ground_ref_ltp_enu, '(.*LTP_ENU.*)')
 
   def on_cnx(self, dum1, dum2):

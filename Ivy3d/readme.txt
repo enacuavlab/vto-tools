@@ -5,6 +5,10 @@ ivy3d.py
   Inputs can be provided by following applications
 
   ex: ivy3d.py
+  ex: ivy3d.py 115 ROTORCRAFT_FP model_115 0.9,0.1,0.1
+  ex: ivy3d.py 115 LTP_ENU model_115 0.1,0.5,0.5 
+  ex: ivy3d.py 115 ROTORCRAFT_FP model_115 0.9,0.1,0.1 115 LTP_ENU model_115 0.1,0.5,0.5 
+  ex: ivy3d.py 115 ROTORCRAFT_FP model_115 0.9,0.1,0.1 116 ROTORCRAFT_FP model_116 0.1,0.5,0.5 
 
 
 track2ivy.py
@@ -24,7 +28,7 @@ paparazzi/sw/ground_segment/python/natnet3.x/natnet2ivy.py + NatNetClient.py
   It takes position and attitude inputs from Optitrack/Motive rigidbody tracker, and broadcast them on Ivy bus.
   Paparazzi is needed
 
-  ex: natnet2ivy.py -ac 115 115 116 116  -s 192.168.1.230 -f 5
+  ex: natnet2ivy.py -ac 115 115 -ac 116 116  -s 192.168.1.230 -f 5 -gr
   => datalink REMOTE_GPS_LOCAL acid pos vel course
   => ground GROUND_REF acid LTP_ENU pos vel quat
 
@@ -36,6 +40,7 @@ paparazzi/sw/ground_segment/tmtc/link
 
   ex: link  -udp
   ex: link  -d /dev/ttyUSB0 -transport xbee -s 57600
+  => 116 ROTORCRAFT_FP -371 -478 10 0 0 0 251 -57 52 0 0 10 52 0 0
 
 
 paparazzi/sw/logalizer/play
