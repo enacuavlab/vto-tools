@@ -2,7 +2,7 @@ ivy3d.py
 --------
   This is the visualization application.
   It takes position and attitude inputs from Ivy bus, and display 3D motion from models
-  Inputs can be provided by following applications
+  Inputs can be provided by five following applications
 
   ex: ivy3d.py
   ex: ivy3d.py 115 ROTORCRAFT_FP model_115 0.9,0.1,0.1
@@ -35,11 +35,19 @@ paparazzi/sw/ground_segment/python/natnet3.x/natnet2ivy.py + NatNetClient.py
 
 paparazzi/sw/ground_segment/tmtc/link 
 ------------------------------------
-  This is the realtime pprz track player.
+  This is the realtime pprz track interface
+  It can be used with real or simulated (nps) flights
   Paparazzi is needed
 
   ex: link  -udp
   ex: link  -d /dev/ttyUSB0 -transport xbee -s 57600
+
+  ex:
+    paparazzi/sw/ground_segment/tmtc/server -n
+    paparazzi/sw/ground_segment/tmtc/link -udp
+    paparazzi/sw/ground_segment/cockpit/gcs
+    paparazzi/sw/simulator/pprzsim-launch -a ULYSSE_218 -t nps
+
   => 116 ROTORCRAFT_FP -371 -478 10 0 0 0 251 -57 52 0 0 10 52 0 0
 
 
