@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 '''
 pip3 install pyquaternion
 pip3 install open3d
@@ -11,89 +12,104 @@ Manual installation of Ivy:
 
 import open3d as o3d
 import numpy as np
-import copy as copy
 import logging
-import string
+import queue
 
-from array import array
 from enum import Enum
 from pyquaternion import Quaternion
 from ivy.std_api import *
-
-IVYAPPNAME = 'ivy3d'
-#IVYBUS = '127:2010'
-#IVYBUS = '192.168.1.255:2010'
-IVYBUS = '127:2010'
 
 # from paparazzi messages.xml
 UNIT_COEF_ATT = 0.0139882
 UNIT_COEF_POS = 0.0039063
 
 STL_COLOR = [[0.1,0.5,0.5],[0.9,0.1,0.1]]
+IVYAPPNAME = 'ivy3d'
+MOTION_QUEUE=queue.Queue()
 
-class msgType(Enum):
+class Motion:
+  def __init__(self,acid,msgtype,transf):
+    self.acid=acid
+    self.msgtype=msgtype
+    self.transf=transf
+
+class Mesh:
+  def __init__(self,acid,msgtype,transf,mesh):
+    self.model=Motion(acid,msgtype,transf)
+    self.mesh=mesh
+
+class MsgType(Enum):
   ROTORCRAFT_FP=0
   LTP_ENU=1
 
 class Expected:
   def __init__(self,param):
-   self.acid      = int(param[0])
-   self.modeltype = msgType.ROTORCRAFT_FP if(param[1]=='ROTORCRAFT_FP') else msgType.LTP_ENU
-   self.stlfile   = param[2]
-   self.stlcolor  = ([float(x) for x in param[3].split(",")])
+   self.acid     = int(param[0])
+   self.msgtype  = MsgType.ROTORCRAFT_FP if(param[1]=='ROTORCRAFT_FP') else MsgType.LTP_ENU
+   self.stlfile  = param[2]
+   self.stlcolor = ([float(x) for x in param[3].split(",")])
 
-class Model:
-  def __init__(self,acid,modeltype,transf):
-    self.acid=acid
-    self.modeltype=modeltype
-    self.transf=transf
 
-class Mesh:
-  def __init__(self,acid,modeltype,transf,mesh):
-    self.model=Model(acid,modeltype,transf)
-    self.mesh=mesh
-
-class Ivy3d:
-  def __init__(self):
-    self.updateModel=Model(0,0,([0,0,0],[0,0,0,0]))
-    self.updated=False
-    self.stop_flag=1
+class IvyThread:
+  def __init__(self,expected,expectedtab,bus):
     logging.getLogger('Ivy').setLevel(logging.ERROR)
     readymsg = '%s READY' % IVYAPPNAME
     IvyInit(IVYAPPNAME,readymsg,0,self.on_cnx,0)
-    IvyStart(IVYBUS)
-    IvyBindMsg(self.on_msg_rotorcraft_fp, '(.*ROTORCRAFT_FP.*)')
-    IvyBindMsg(self.on_msg_ground_ref_ltp_enu, '(.*LTP_ENU.*)')
+    IvyStart(bus)
+    if(expected):
+      flag1,flag2=False,False
+      for elt in expectedtab:
+        if(elt.msgtype==MsgType.ROTORCRAFT_FP):flag1=True
+        if(elt.msgtype==MsgType.LTP_ENU):flag2=True
+    else:flag1,flag2=True,True
+    if(flag1):IvyBindMsg(self.on_msg_rotorcraft_fp, '(.*ROTORCRAFT_FP.*)')
+    if(flag2):IvyBindMsg(self.on_msg_ground_ref_ltp_enu, '(.*LTP_ENU.*)')
 
   def on_cnx(self, dum1, dum2):
 #    if(dum2==2):self.stop_flag=0
     return
 
   def on_msg_rotorcraft_fp(self, *larg):
-    if(self.updated==False):
-      self.updated=True
-      mystr=larg[1].split()
-      acid=int(mystr[0][6:]) if(mystr[0].startswith("replay")) else int(mystr[0])
-      pos=[elt * UNIT_COEF_POS for elt in list(map(float,mystr[2:5]))]
-      att=[elt * UNIT_COEF_ATT for elt in list(map(float,mystr[8:11]))]
-      self.updateModel=Model(acid,msgType.ROTORCRAFT_FP,
-          ((np.array([100*pos[0],100*pos[2]+14,-100*pos[1]],dtype=float)),
-           (((Quaternion(axis=[1, 0, 0], degrees=att[1]))*
-                   (Quaternion(axis=[0, 1, 0],degrees=-att[2]))*
-                   (Quaternion(axis=[0, 0, 1], degrees=-att[0]))).elements)))
+    mystr=larg[1].split()
+    acid=int(mystr[0][6:]) if(mystr[0].startswith("replay")) else int(mystr[0])
+    pos=[elt * UNIT_COEF_POS for elt in list(map(float,mystr[2:5]))]
+    att=[elt * UNIT_COEF_ATT for elt in list(map(float,mystr[8:11]))]
+    MOTION_QUEUE.put(Motion(acid,MsgType.ROTORCRAFT_FP,
+      ((np.array([100*pos[0],100*pos[2]+14,-100*pos[1]],dtype=float)),
+       (((Quaternion(axis=[1, 0, 0], degrees=att[1]))*
+        (Quaternion(axis=[0, 1, 0],degrees=-att[2]))*
+        (Quaternion(axis=[0, 0, 1], degrees=-att[0]))).elements))))
 
   def on_msg_ground_ref_ltp_enu(self, *larg):
-    if(self.updated==False):
-      self.updated=True
-      mystr=larg[1].split()
-      acid=int(mystr[2])
-      pos=[elt for elt in list(map(float,mystr[4].split(",")))]
-      quat=[elt for elt in list(map(float,mystr[6].split(",")))]
-      self.updateModel=Model(acid,msgType.LTP_ENU,
-          ((np.array([100*pos[0]+70,100*pos[2]+5,-100*pos[1]-300],dtype=float)), # y,z,-x
-          (np.array([quat[0],quat[1],-quat[3],-quat[2]],dtype=float))))
+    mystr=larg[1].split()
+    acid=int(mystr[2])
+    pos=[elt for elt in list(map(float,mystr[4].split(",")))]
+    quat=[elt for elt in list(map(float,mystr[6].split(",")))]
+    MOTION_QUEUE.put(Motion(acid,MsgType.LTP_ENU,
+      ((np.array([100*pos[0]+70,100*pos[2]+5,-100*pos[1]-300],dtype=float)), # y,z,-x
+      (np.array([quat[0],quat[1],-quat[3],-quat[2]],dtype=float)))))
 
-if __name__ == '__main__':
+def usage(argv):
+  expectedtab=[]
+  expected,ret=False,True
+  bus='127:2010'
+  if(len(argv)>1):
+    fract=((len(argv)-1)%4)
+    for i in range(int((len(argv)-1)/4)):
+      expectedtab.append(Expected(argv[1+i*4:5+i*4]))
+      expected=True
+    if(fract==1):bus=argv[-1]
+    if(fract>1):
+      print("usage: ivy3d.py acid ROTORCRAFT_FP/LTP_ENU models/stl_sketch r,g,b ivybus:127-255:2010")
+      print("ivy3d.py")
+      print("ivy3d.py 255:2010")
+      print("         116 ROTORCRAFT_FP 212 0.1,0.1,0.9")
+      print("         116 ROTORCRAFT_FP 212 0.1,0.1,0.9 255:2010")
+      print("         116 ROTORCRAFT_FP 212 0.1,0.1,0.9 115 LTP_ENU 115 0.1,0.9,0.1")
+      ret=False
+  return(ret,expected,expectedtab,bus)
+
+def o3d_init():
   vis=o3d.visualization.Visualizer()
   vis.create_window(window_name=IVYAPPNAME,width=640,height=480)
   trmesh_frame=o3d.geometry.TriangleMesh.create_coordinate_frame(size=100)
@@ -104,33 +120,19 @@ if __name__ == '__main__':
   trmesh_box.compute_vertex_normals()
   vis.add_geometry(trmesh_frame)
   vis.add_geometry(trmesh_box)
+  return(vis)
 
-  frm=Ivy3d()
+def o3d_loop(expected,expectedtab):
   meshtab=[]
   stlcolor=0
 
-  expectedtab=[]
-  expected=False
-  if(len(sys.argv)>1):
-    if(((len(sys.argv)-1)%4)==0):
-      for i in range(int((len(sys.argv)-1)/4)):
-        expectedtab.append(Expected(sys.argv[1+i*4:5+i*4]))
-        expected=True
-    else:
-      print("usage: ivy3d.py acid ROTORCRAFT_FP/LTP_ENU models/stl_sketch r,g,b")
-      print("ivy3d.py 116 ROTORCRAFT_FP 212 0.1,0.1,0.9")
-      print("ivy3d.py 116 ROTORCRAFT_FP 212 0.1,0.1,0.9 115 LTP_ENU 115 0.1,0.9,0.1")
-      frm.stop_flag=False
-        
-  while (frm.stop_flag):
-    if (frm.updated):
-      acid=frm.updateModel.acid
-      curr=frm.updateModel.transf
-      modeltype=frm.updateModel.modeltype
-      notregistered=True
-
+  while (True):
+    notregistered=True
+    if(not MOTION_QUEUE.empty()):
+      motion=MOTION_QUEUE.get()
+      curr=motion.transf
       for i,elt in enumerate(meshtab):
-        if((acid==elt.model.acid)and(modeltype==elt.model.modeltype)):
+        if((motion.acid==elt.model.acid)and(motion.msgtype==elt.model.msgtype)):
           notregistered=False
           updateFlag=False
           if any(abs(abs(curr[0][i])-abs(elt.model.transf[0][i]))>.5 for i in range(3)):
@@ -148,21 +150,19 @@ if __name__ == '__main__':
           break
 
       if (notregistered):
-        displayflag=False  
+        displayflag=False
         if(expected):
           for i,elt in enumerate(expectedtab):
-            if((acid==elt.acid)and(modeltype==elt.modeltype)):
+            if((motion.acid==elt.acid)and(motion.msgtype==elt.msgtype)):
               modelfile="models/"+elt.stlfile+".stl"
               modelcolor=elt.stlcolor
-              modeltype=elt.modeltype
               displayflag=True
               break
         else:
-          modelfile="models/"+str(acid)+".stl"
+          modelfile="models/"+str(motion.acid)+".stl"
           modelcolor=STL_COLOR[stlcolor]
           stlcolor=stlcolor+1
           displayflag=True
-
         if(displayflag):
           mesh_model=o3d.io.read_triangle_mesh(modelfile)
           mesh_model.compute_vertex_normals()
@@ -170,13 +170,17 @@ if __name__ == '__main__':
           mesh_model.translate(curr[0],relative=False)
           mesh_model.rotate(
             R=mesh_model.get_rotation_matrix_from_quaternion(curr[1]),center=mesh_model.get_center())
-          meshtab.append(Mesh(acid,modeltype,(curr[0],curr[1],curr[1]),mesh_model))
+          meshtab.append(Mesh(motion.acid,motion.msgtype,(curr[0],curr[1],curr[1]),mesh_model))
           vis.add_geometry(mesh_model)
-
-      frm.updated=False
 
     if not vis.poll_events():break
     vis.update_renderer()
 
-  vis.destroy_window()
-  IvyStop()
+if __name__ == '__main__':
+  ret,expected,expectedtab,bus=usage(sys.argv)
+  if(ret):
+    thr=IvyThread(expected,expectedtab,bus)
+    vis=o3d_init()
+    o3d_loop(expected,expectedtab)
+    vis.destroy_window()
+    IvyStop()
