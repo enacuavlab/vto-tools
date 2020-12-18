@@ -86,8 +86,8 @@ class IvyThread:
     pos=[elt for elt in list(map(float,mystr[4].split(",")))]
     quat=[elt for elt in list(map(float,mystr[6].split(",")))]
     MOTION_QUEUE.put(Motion(acid,MsgType.LTP_ENU,
-      ((np.array([100*pos[0]+70,100*pos[2]+5,-100*pos[1]-300],dtype=float)), # y,z,-x
-      (np.array([quat[0],quat[1],-quat[3],-quat[2]],dtype=float)))))
+      ((np.array([100*pos[0],100*pos[2]+14,-100*pos[1]],dtype=float)), # y,z,-x
+      (np.array([quat[0],quat[1],quat[3],-quat[2]],dtype=float)))))
 
 def usage(argv):
   expectedtab=[]
