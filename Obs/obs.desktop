@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Exec=/usr/bin/obs
+Icon=obs
+Name=OBS
+StartupNotify=true
+Terminal=false
+Type=Application
+Version=1.0
+X-MultipleArgs=false

@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Exec=net rpc service stop castscreen_srv -I optitrack2 -U pprz%pprz
+Icon=
+Name=stream_OFF_optitrack
+StartupNotify=true
+Terminal=false
+Type=Application
+Version=1.0
+X-MultipleArgs=false

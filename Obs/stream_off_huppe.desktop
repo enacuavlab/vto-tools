@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Exec=ssh pprz@huppe "kill `cat /tmp/huppe_ffmpeg`"
+Icon=
+Name=stream_OFF_huppe
+StartupNotify=true
+Terminal=false
+Type=Application
+Version=1.0
+X-MultipleArgs=false
