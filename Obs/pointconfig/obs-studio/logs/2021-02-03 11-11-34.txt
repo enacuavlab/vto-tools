@@ -1,0 +1,125 @@
+11:11:35.014: CPU Name: Intel(R) Xeon(R) CPU E3-1575M v5 @ 3.00GHz
+11:11:35.014: CPU Speed: 1446.325MHz
+11:11:35.014: Physical Cores: 4, Logical Cores: 8
+11:11:35.014: Physical Memory: 32083MB Total, 29528MB Free
+11:11:35.014: Kernel Version: Linux 4.15.0-135-generic
+11:11:35.014: Distribution: "Ubuntu" "18.04"
+11:11:35.015: Portable mode: false
+11:11:35.058: OBS 0.0.1 (linux)
+11:11:35.058: ---------------------------------
+11:11:35.058: ---------------------------------
+11:11:35.058: audio settings reset:
+11:11:35.058: 	samples per sec: 44100
+11:11:35.058: 	speakers:        2
+11:11:35.064: ---------------------------------
+11:11:35.064: Initializing OpenGL...
+11:11:35.183: OpenGL version: 3.2.0 NVIDIA 450.102.04
+11:11:35.191: ---------------------------------
+11:11:35.191: video settings reset:
+11:11:35.191: 	base resolution:   1920x1080
+11:11:35.191: 	output resolution: 1920x1080
+11:11:35.191: 	downscale filter:  Bicubic
+11:11:35.191: 	fps:               30/1
+11:11:35.191: 	format:            NV12
+11:11:35.191: Audio monitoring device:
+11:11:35.191: 	name: Par défaut
+11:11:35.191: 	id: default
+11:11:35.191: ---------------------------------
+11:11:35.212: No blackmagic support
+11:11:35.230: NVENC supported
+11:11:35.236: VLC found, VLC video source enabled
+11:11:35.236: ---------------------------------
+11:11:35.236:   Loaded Modules:
+11:11:35.236:     vlc-video.so
+11:11:35.236:     text-freetype2.so
+11:11:35.236:     rtmp-services.so
+11:11:35.236:     obs-x264.so
+11:11:35.236:     obs-transitions.so
+11:11:35.236:     obs-outputs.so
+11:11:35.236:     obs-filters.so
+11:11:35.236:     obs-ffmpeg.so
+11:11:35.236:     linux-v4l2.so
+11:11:35.236:     linux-pulseaudio.so
+11:11:35.236:     linux-jack.so
+11:11:35.236:     linux-decklink.so
+11:11:35.236:     linux-capture.so
+11:11:35.236:     linux-alsa.so
+11:11:35.236:     image-source.so
+11:11:35.236:     frontend-tools.so
+11:11:35.236: ---------------------------------
+11:11:35.236: ==== Startup complete ===============================================
+11:11:35.238: [rtmp-services plugin] Remote update of URL "https://obsproject.com/obs2_update/rtmp-services/package.json" failed: Failed to connect to obsproject.com port 443: Connexion refusée
+11:11:35.255: All scene data cleared
+11:11:35.255: ------------------------------------------------
+11:11:35.257: pulse-input: Server name: 'pulseaudio 11.1'
+11:11:35.257: pulse-input: Audio format: s24le, 48000 Hz, 2 channels
+11:11:35.257: pulse-input: Sample format s24le not supported by OBS,using float32le instead for recording
+11:11:35.257: pulse-input: Started recording from 'alsa_output.usb-Generic_USB_Audio_200901010001-00.HiFi__hw_Dock_0__sink.monitor'
+11:11:35.258: pulse-input: Server name: 'pulseaudio 11.1'
+11:11:35.258: pulse-input: Audio format: s16le, 44100 Hz, 1 channels
+11:11:35.258: pulse-input: Started recording from 'alsa_input.usb-AKM_AK5370-00.analog-mono'
+11:11:35.316: Switched to scene 'Demo'
+11:11:35.317: ------------------------------------------------
+11:11:35.317: Loaded scenes:
+11:11:35.317: - scene 'Demo':
+11:11:35.318:     - source: 'fond' (color_source)
+11:11:35.318:     - source: 'axis_sans_public' (vlc_source)
+11:11:35.318:     - source: 'optitrack' (vlc_source)
+11:11:35.318:     - source: 'huppe' (vlc_source)
+11:11:35.318:     - source: 'logo ENAC' (image_source)
+11:11:35.318:     - source: 'Mic/Aux' (pulse_input_capture)
+11:11:35.318:     - source: 'texte_VTO_vidéos' (text_ft2_source)
+11:11:35.318:     - source: 'Mic/Aux' (pulse_input_capture)
+11:11:35.318: - scene 'TOUT':
+11:11:35.318:     - source: 'fond' (color_source)
+11:11:35.318:     - source: 'axis_sans_public' (vlc_source)
+11:11:35.318:     - source: 'optitrack' (vlc_source)
+11:11:35.318:     - source: 'huppe' (vlc_source)
+11:11:35.318:     - source: 'logo ENAC' (image_source)
+11:11:35.318:     - source: 'Mic/Aux' (pulse_input_capture)
+11:11:35.318:     - source: 'texte_VTO_vidéos' (text_ft2_source)
+11:11:35.318:     - source: 'FPV_Explorer_115' (vlc_source)
+11:11:35.318: - scene 'arena_full':
+11:11:35.318:     - source: 'axis_full' (vlc_source)
+11:11:35.318:     - source: 'logo ENAC' (image_source)
+11:11:35.318: - scene 'arena_sans_public':
+11:11:35.318:     - source: 'axis_sans_public' (vlc_source)
+11:11:35.318:     - source: 'logo ENAC' (image_source)
+11:11:35.318: - scene 'GCS':
+11:11:35.318:     - source: 'huppe' (vlc_source)
+11:11:35.318: - scene 'vidéos':
+11:11:35.318:     - source: 'Source de couleur' (color_source)
+11:11:35.318:     - source: 'films' (vlc_source)
+11:11:35.318:     - source: 'logo ENAC' (image_source)
+11:11:35.318:     - source: 'texte_VTO_vidéos' (text_ft2_source)
+11:11:35.318: - scene 'Optitrack':
+11:11:35.318:     - source: 'optitrack' (vlc_source)
+11:11:35.318: - scene 'FPV':
+11:11:35.318:     - source: 'FPV_Explorer_115' (vlc_source)
+11:11:35.318: - scene 'GCS+Optitrack':
+11:11:35.318:     - source: 'fond' (color_source)
+11:11:35.318:     - source: 'huppe' (vlc_source)
+11:11:35.318:     - source: 'optitrack' (vlc_source)
+11:11:35.318:     - source: 'logo ENAC' (image_source)
+11:11:35.318: - scene 'Optitrack+Webcam':
+11:11:35.318:     - source: 'fond' (color_source)
+11:11:35.318:     - source: 'optitrack' (vlc_source)
+11:11:35.318:     - source: 'logo ENAC' (image_source)
+11:11:35.318:     - source: 'Mic/Aux' (pulse_input_capture)
+11:11:35.318:     - source: 'FPV_Explorer_115' (vlc_source)
+11:11:35.318: - scene 'Swarm':
+11:11:35.318:     - source: 'fond' (color_source)
+11:11:35.318:     - source: 'axis_full' (vlc_source)
+11:11:35.318:     - source: 'optitrack' (vlc_source)
+11:11:35.318:     - source: 'huppe' (vlc_source)
+11:11:35.318:     - source: 'logo ENAC' (image_source)
+11:11:35.318:     - source: 'Mic/Aux' (pulse_input_capture)
+11:11:35.318:     - source: 'texte_VTO_vidéos' (text_ft2_source)
+11:11:35.318: ------------------------------------------------
+11:11:35.772: adding 23 milliseconds of audio buffering, total audio buffering is now 23 milliseconds
+11:11:36.777: adding 23 milliseconds of audio buffering, total audio buffering is now 46 milliseconds
+11:13:51.616: adding 23 milliseconds of audio buffering, total audio buffering is now 69 milliseconds
+11:20:31.466: adding 23 milliseconds of audio buffering, total audio buffering is now 92 milliseconds
+11:23:04.831: adding 23 milliseconds of audio buffering, total audio buffering is now 116 milliseconds
+11:26:22.545: User switched to scene 'Optitrack+Webcam'
+11:29:04.883: User switched to scene 'TOUT'
