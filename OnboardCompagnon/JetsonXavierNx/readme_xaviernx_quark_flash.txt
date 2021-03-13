@@ -14,6 +14,12 @@ sudo apt-get update
 sudo apt-get install qemu-user-static binutils python
 
 ---------------------------------------------------------------------------------------
+sudo lvm 
+lvm> lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+lvm> exit
+resize2fs /dev/ubuntu-vg/ubuntu-lv
+
+---------------------------------------------------------------------------------------
 https://connecttech.com/resource-center/l4t-board-support-packages/
 https://connecttech.com/ftp/Drivers/CTI-L4T-XAVIER-NX-32.5-V001.tgz
 
@@ -69,9 +75,8 @@ sudo ./flash.sh cti/xavier-nx/quark-imx219 mmcblk0p1
 -------------------------------------------------------------------------
 (*)
 Plug USB-C 
+Press recovery mode button
 PowerON Xavier
-(or viceversa)
-Press recovery mode button a least 10 sec
 (0.29mmA)
 Virtual Machine / Removal devices / NVIDIA APX (connect / disconnect from host)
 
@@ -86,4 +91,14 @@ Tab,Escape ..
 Connect ETH
 ssh pprz@192.168.3.2
 
+-------------------------------------------------------------------------
+Share wireless internet with ethernet
+
+Ubuntu
+sudo sysctl net.ipv4.ip_forward=1
+sudo iptables -t nat -A POSTROUTING -o wlp59s0 -j MASQUERADE
+
+Jetpack 
+/etc/NetworkManager/system-connections
+dns=8.8.8.8,8.8.4.4
 
