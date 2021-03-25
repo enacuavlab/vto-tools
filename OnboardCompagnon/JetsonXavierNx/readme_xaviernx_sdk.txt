@@ -87,6 +87,20 @@ Tab,Escape ..
 Connect ETH
 ssh pprz@192.168.3.2
 
+-------------------------------------------------------------------------
+Option to switch camera type
+
+Unchange kernel-dtb partition previously flashed with tegra194-xavier-nx-cti-NGX004-AVT-2CAM.dtb
+and add alternate DTB in boot file:
+
+/boot/extlinux/extlinux.conf
+
+      FDT /boot/tegra194-xavier-nx-cti-NGX004-IMX219-2CAM.dtb
+      APPEND ...
+
+(nano dev kit with IMX219 or from allied vision same file name 
+FDT /boot/tegra210-p3448-0000-p3449-0000-a02.dtb
+)
 
 -------------------------------------------------------------------------
 sudo fdisk -l |grep GiB
