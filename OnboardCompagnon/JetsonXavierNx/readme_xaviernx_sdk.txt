@@ -31,7 +31,8 @@ sdkmanager --cli downloadonly --logintype devzone --product Jetson  --host --tar
 => All green Downloaded
 => Downloads/nvidia/sdkm_downloads (6.9Gb)
 
-sdkmanager --cli install --logintype devzone --product Jetson  --host --target P3668-0000 --targetos Linux --version 4.5  --flash skip  --license accept  --offline  --downloadfolder /mnt/hgfs/vmshare/Downloads/nvidia/sdkm_downloads
+sdkmanager --cli install --logintype devzone --targetos Linux --product Jetson --version 4.5 --target=P3448-0000 --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --offline --downloadfolder /mnt/hgfs/vmshare/nvidia/Downloads/nvidia/sdkm_downloads
+
 
 => HOST COMPONENTS: Installed
 => TARGET COMPONENTS:

@@ -9,22 +9,17 @@ Plug not modified SD
 Do not plug Ethernet nor Wifi adapter
 First setup needs : Monitor, keyboard, mouse
 Boot and set minimal configuration with desktop
-Power off
-
-----------------------------------------
-CONFIGURE 
-----------------------------------------
-Get SDcard from Nano, and insert on adapter to PC
-Update configuration network
-
-sudo vi /media/.../etc/network/interfaces
-auto eth0
+Configure ethernet
         iface eth0 inet static
         address 192.168.3.2
         netmask 255.255.255.0
         gateway 192.168.3.1
         dns-nameservers 8.8.8.8
+Power off
 
+----------------------------------------
+CONFIGURE 
+----------------------------------------
 Ubuntu
 sudo sysctl net.ipv4.ip_forward=1
 sudo iptables -t nat -A POSTROUTING -o wlp59s0 -j MASQUERADE
@@ -34,7 +29,7 @@ ssh pprz@192.168.3.2
 sudo rm /var/lib/apt/lists/lock
 sudo apt-get update
 sudo apt-get upgrade
-(30 min)
+(10 min)
 
 ----------------------------------------
 proceed installation for rtl8812au and wifibroadcast 
@@ -43,15 +38,26 @@ cd ~/Projects
 git clone --recurse-submodules https://github.com/enacuavlab/compagnon-software.git
 
 ----------------------------------------
-sudo cp /boot/tegra210-p3448-0000-p3449-0000-b00.dtb /boot/devkit_tegra210-p3448-0000-p3449-0000-b00.dtb
+NVIDIA P3448/3449-A02 (Single CSI port)
 
 wget https://cdn.alliedvision.com/fileadmin/content/software/software/embedded/AlliedVision_NVidia_nano_L4T_32.4.4_4.9.140-gf9e822728.tar.gz
 
 tar -xzf AlliedVision_NVidia_nano_L4T_32.4.4_4.9.140-gf9e822728.tar.gz 
-sudo cp tegra210-p3448-0000-p3449-0000-b00.dtb /boot/avt_tegra210-p3448-0000-p3449-0000-b00.dtb
+
+sudo cp -r Image /boot/avt_Image
+sudo cp tegra210-p3448-0000-p3449-0000-a02.dtb /boot/avt_tegra210-p3448-0000-p3449-0000-a02.dtb
+sudo tar zxf modules.tar.gz -C /
 
 sudo vi /boot/extlinux/extlinux.conf
-      FDT /boot/avt_tegra210-p3448-0000-p3449-0000-b00.dtb
+      LINUX /boot/avt_Image
+      FDT /boot/avt_tegra210-p3448-0000-p3449-0000-a02.dtb
+      #LINUX /boot/Image
+      #FDT /boot/tegra210-p3448-0000-p3449-0000-b00.dtb
+
+(dtc -I fs -O dts -o extracted.dts /proc/device-tree)
+
+=> 4.9.140-gf9e822728
+=> 4.9.201-tegra
 
 ----------------------------------------
 GSTREAMER already installed test
