@@ -32,10 +32,10 @@ Internet connection needed without proxy or you'll get
 Jetson Nano (Developer Kit version) (P3448-0000)   
 Jetson Xavier NX (Developer Kit version) (P3668-0000) 
 
-sdkmanager --cli downloadonly --logintype devzone --targetos Linux --product Jetson --version 4.5 --target=P3448-0000 --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --downloadfolder /mnt/hgfs/vmshare/nvidia/Downloads/nvidia/sdkm_downloads
-=> Downloads/nvidia/sdkm_downloads (1.7Gb)
+sdkmanager --cli downloadonly --logintype devzone --targetos Linux --product Jetson --version 4.5 --target=P3448-0000 --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --downloadfolder /mnt/hgfs/vmshare/nvidia/Downloads/nvidia/os_sdkm_downloads
+=> Downloads/nvidia/os_sdkm_downloads (1.7Gb)
 
-sdkmanager --cli install --logintype devzone --targetos Linux --product Jetson --version 4.5 --target P3448-0000 --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --offline --downloadfolder /mnt/hgfs/vmshare/nvidia/Downloads/nvidia/sdkm_downloads
+sdkmanager --cli install --logintype devzone --targetos Linux --product Jetson --version 4.5 --target P3448-0000 --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --offline --downloadfolder /mnt/hgfs/vmshare/nvidia/Downloads/nvidia/os_sdkm_downloads
 
 => TARGET COMPONENTS:
   - Jetson OS
@@ -66,26 +66,37 @@ ssh pprz@192.168.3.2
 -------------------------------------------------------------------------
 ssh pprz@192.168.x.y
 
-wget https://developer.nvidia.com/embedded/L4T/r32_Release_v4.2/Sources/T210/public_sources.tbz2
-wget https://developer.nvidia.com/embedded/L4T/r32_Release_v4.2/t210ref_release_aarch64/Tegra210_Linux_R32.4.2_aarch64.tbz2
-wget https://developer.nvidia.com/embedded/L4T/r32_Release_v4.2/t210ref_release_aarch64/Tegra_Linux_Sample-Root-Filesystem_32.4.2_aarch64.tbz2
-wget http://releases.linaro.org/components/toolchain/binaries/7.3-2018.05/aarch64-linux-gnu/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz
+https://developer.nvidia.com/embedded/linux-tegra
+
+wget https://developer.nvidia.com/embedded/l4t/r32_release_v5.1/r32_release_v5.1/t210/jetson-210_linux_r32.5.1_aarch64.tbz2
+wget https://developer.nvidia.com/embedded/l4t/r32_release_v5.1/r32_release_v5.1/sources/t210/public_sources.tbz2
+wget https://developer.nvidia.com/embedded/l4t/r32_release_v5.1/r32_release_v5.1/t210/tegra_linux_sample-root-filesystem_r32.5.1_aarch64.tbz2
+(1.4Gb)
 
 git clone https://github.com/alliedvision/linux_nvidia_jetson.git
+(without proxy)
 
 mkdir /home/pprz/linux_nvidia_jetson/avt_build/resources/driverPackage
 mkdir /home/pprz/linux_nvidia_jetson/avt_build/resources/gcc
 
-/home/pprz/linux_nvidia_jetson/avt_build/resources/
-  rootfs/Tegra_Linux_Sample-Root-Filesystem_R32.4.2_aarch64.tbz2
-  driverPackage/Tegra210_Linux_32.4.2_aarch64.tbz2
-  public_sources/T210/public_sources.tbz2
-  gcc/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz
+cp jetson-210_linux_r32.5.1_aarch64.tbz2 ~/linux_nvidia_jetson/avt_build/ressources/driverPackage
+cp public_sources.tbz2 ~/linux_nvidia_jetson/avt_build/ressources/public_sources
+cp tegra_linux_sample-root-filesystem_r32.5.1_aarch64.tbz2 ~/linux_nvidia_jetson/avt_build/resources/rootf
+cp gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz ~/linux_nvidia_jetson/avt_build/resources/gcc
+
+setup.sh
+FILE_DRIVER_PACKAGE_NANO="jetson-210_linux_r32.5.1_aarch64.tbz2"
+FILE_ROOTFS_NANO="tegra_linux_sample-root-filesystem_r32.5.1_aarch64.tbz2"
+FILE_PUBLICSOURCES_NANO="public_sources.tbz2"
+FILE_GCC_64="gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz"
+
+deploy.sh
+DEDICATED_VERSION="32.5.1"
 
 ./setup.sh workdir nano
 ./build.sh workdir nano all all
 ./deploy.sh workdir nano tarball
-=> AlliedVision_NVidia_nano_L4T_32.4.4_4.9.140-g84fcaed28.tar.gz (30Mb)
+=> AlliedVision_NVidia_nano_L4T_32.5.1_4.9.140-g84fcaed28.tar.gz (30Mb)
 
 Copy the tarball to the target board. Extract the tarball.
 
@@ -99,6 +110,17 @@ sudo tar zxf modules.tar.gz -C /
 
 Reboot the board.
 (dtc -s -I fs /proc/device-tree -O dts > log)
+
+
+-------------------------------------------------------------------------
+
+sdkmanager --cli downloadonly --logintype devzone --targetos Linux --product Jetson --version 4.5 --target=P3448-0000 --deselect 'Jetson OS' --select 'Jetson SDK Components' --license accept --downloadfolder /mnt/hgfs/vmshare/nvidia/Downloads/nvidia/cmp_sdkm_downloads
+
+wireless internet & ethernet
+ping www.google.com
+
+sdkmanager --cli install --logintype devzone --targetos Linux --product Jetson --version 4.5 --target P3448-0000 --deselect 'Jetson OS' --select 'Jetson SDK Components' --license accept --offline --downloadfolder /mnt/hgfs/vmshare/nvidia/Downloads/nvidia/cmp_sdkm_downloads
+
 
 -------------------------------------------------------------------------
 -------------------------------------------------------------------------
