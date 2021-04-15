@@ -1,0 +1,46 @@
+
+    sum_x = (sum_x/mbxy);
+    sum_y = (sum_y/mbxy);
+    arrowedLine(grayBGR, Point(320,240),Point(320+sum_x,240+sum_y),Scalar(0,255,0),5);
+
+    /**********************************************************************/
+    adaptiveThreshold(gray, im1chan_threshold, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY, 11, 2);
+    Scalar mu, sigma;
+    meanStdDev(im1chan_threshold, mu, sigma);
+    Canny(im1chan_threshold,im1chan_canny,mu.val[0]-sigma.val[0],mu.val[0]+sigma.val[0]);
+    findContours(im1chan_canny,contours,hierarchy,RETR_TREE,CHAIN_APPROX_SIMPLE,Point());
+    Mat Contours=Mat::zeros(im1chan_canny.size(),CV_8UC1);
+    for(int i=0;i<contours.size();i++)
+      for(int j=0;j<contours[i].size();j++){
+        Point P=Point(contours[i][j].x,contours[i][j].y);
+        Contours.at<uchar>(P)=255;
+      }
+    vector<vector<vector<Point>>> qrPointList;
+    vector<vector<Point>> qrPoint;
+    Mat mat6=Contours.clone();
+    cvtColor(mat6, mat6, COLOR_GRAY2BGR);
+    int Parindex[3]={-1,-1,-1};
+    for (int i = 0; i < contours.size(); i++){
+      if (hierarchy[i][3] != -1 && hierarchy[i][2] == -1){
+        Parindex[0]=hierarchy[i][3];
+        if (hierarchy[(Parindex[0])][3] != -1){
+          Parindex[1]=hierarchy[(Parindex[0])][3];
+          if (hierarchy[(Parindex[1])][3] != -1){
+            Parindex[2]=hierarchy[(Parindex[1])][3];
+            if (hierarchy[(Parindex[2])][3] != -1){
+              if(!(i-1==Parindex[0]&&Parindex[0]-1==Parindex[1]&&Parindex[1]-1==Parindex[2])) continue;
+              qrPoint.push_back(contours[i]);
+              qrPoint.push_back(contours[i-2]);
+              qrPoint.push_back(contours[i-4]);
+              for(int i=0;i<qrPoint.size();i++)
+                for(int j=0;j<qrPoint[i].size();j++) circle(mat6,qrPoint[i][j],2,Scalar(0,255,0),-1);
+              qrPointList.push_back(qrPoint);
+              qrPoint.clear();
+            }
+          }
+        }
+      }
+    }
+
+    strOut.write(mat6);
+

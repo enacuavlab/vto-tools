@@ -1,0 +1,3 @@
+raspistill -w 640 -h 480 -o cam0.jpg
+....
+
