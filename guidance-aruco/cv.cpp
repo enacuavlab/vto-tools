@@ -62,6 +62,7 @@ static void *process_thread(void *ptr)
 //  vector<vector<Point2f>> rejectedCandidates;
   vector<int> markerIds;
   vector<vector<Point2f>> corners;
+  float markerlength=0.07;
   char msgbuff[40];
 
 
@@ -113,14 +114,14 @@ static void *process_thread(void *ptr)
     detectMarkers(gray, dictionary, markerCorners, markerIds);
     int n=markerIds.size(); 
     if(n>0) {
-      Point2f center=(0.25*(markerCorners[0][0]+markerCorners[0][1]+markerCorners[0][2]+markerCorners[0][3]));
-      sprintf(msgbuff,"%d %d\n",(int)center.x,(int)center.y);
-      sendto(fdgcs,msgbuff,strlen(msgbuff),0,(struct sockaddr*)&addr,sizeof(addr));
       drawDetectedMarkers(grayBGR, markerCorners, markerIds);
-//      vector<Vec3d> rvecs, tvecs;
-//      estimatePoseSingleMarkers(markerCorners, 0.05, cameraMatrix, distCoeffs, rvecs, tvecs);
-//      for(int i=0; i<markerIds.size(); i++)
+      vector<Vec3d> rvecs, tvecs;
+      estimatePoseSingleMarkers(markerCorners, markerlength, cameraMatrix, distCoeffs, rvecs, tvecs);
+      for(int i=0; i<markerIds.size(); i++) {
 //        drawAxis(grayBGR, cameraMatrix, distCoeffs, rvecs[i], tvecs[i], 0.1);
+        sprintf(msgbuff,"%d %d %d\n",(int)(1000*tvecs[0][0]),(int)(1000*tvecs[0][1]),(int)(1000*tvecs[0][2]));
+        sendto(fdgcs,msgbuff,strlen(msgbuff),0,(struct sockaddr*)&addr,sizeof(addr));
+      }
     }
     strOut.write(grayBGR);
 

@@ -36,15 +36,20 @@ if __name__ == "__main__":
 
   msg = PprzMessage("datalink", "GUIDED_SETPOINT_NED")
   msg['ac_id'] = args.ac_id
-  msg['flags'] = 0x0E
+  msg['flags'] = 0x0D
 
   try:
     while True:
       buf, addr = sock.recvfrom(1024)
-      a,b=(int(x) for x in buf.split())
-      msg['x']:=clamp(a,83,563)  # [0,480]
-      msg['y']=clamp(b,171,363) # [0,192]
-      msg['z'] = 0
+      a,b,c=(int(i) for i in buf.split())
+      msg['x']=-(b/1000)
+      msg['y']=-(a/1000)
+
+      if c>=1000:d=c*0.4+300
+      if 500<=c<=1000:d=c*0.6+100
+      if c<=500:d=c*0.8
+
+      msg['z']=round(d/1000,2)
       msg['yaw'] = 0
       ivy.send(msg)
   except (KeyboardInterrupt, SystemExit):
