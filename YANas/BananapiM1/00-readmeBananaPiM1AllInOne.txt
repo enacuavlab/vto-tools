@@ -1,74 +1,36 @@
-----------------------------------------
-FLASH 
-----------------------------------------
-https://www.armbian.com/bananapi/
-Armbian_20.02.5_Bananapi_buster_current_5.4.26.7z
+https://redirect.armbian.com/region/EU/bananapi/Buster_current_minimal
+Armbian_21.02.3_Bananapi_buster_current_5.10.21_minimal.img.xz
+162Mo
 
-flash SD
-and configure network
-plug the SD and boot
+Flash SD: balenaEtcher
 
-Then use ssh
-shutdown -h now
-(shutdown -r now)
+nmap -sn 192.168.1.xxx/24
 
-!!!!
-DO NOT USE COMMAND
-"HALT"
-USE 
-"SHUTDOWN -H NOW"
-!!!
+ssh root@192.168.1.yyy
+1234
 
-----------------------------------------
-CONFIGURE SD
-----------------------------------------
-sudo vi /etc/wpa_supplicant/wpa_supplicant.conf
-network={
-  ssid="Androidxp"
-  psk="pprzpprz"
-}
-network={
-  ssid="pprz_router"
-  key_mgmt=NONE
-}
-network={
-  ssid="Livebox-7EA4"
-  psk="6vNVEJNeLCYLubnbuk"
-}
-network={
-  ssid="Livebox-1aa4"
-  psk="E89831065C74F706AFC0E95F63"
-}
+adduser xp
+sudo usermod -aG sudo xp
 
----------
-or for two wifi adapers
-sudo vi /etc/network/interfaces
+sudo apt-get update
+sudo apt-get upgrade
+sudo reboot
 
-auto eth0
-iface eth0 inet dhcp
+sudo apt install armbian-config
+sudo armbian-config
+Software / Softy / OMV
+50min
+sudo reboot 
+wait 3min
 
-#auto eth0
-#iface eth0 inet static
-#address 192.168.3.2
-#netmask 255.255.255.0
+http://192.168.1.yyy
+(http://xp31.hopto.org)
+Username: admin
+Password: openmediavault
 
-#auto wlan0
-#iface wlan0 inet dhcp
-#    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
-
-
----------
-sudo vi /etc/udev/rules.d/10-network-device.rules 
-SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="00:0f:13:38:21:90", NAME="wlan0"
-
-sudo udevadm control --reload-rules && udevadm trigger
-
-----------------------------------------
-CONFIGURE throught ssh
-----------------------------------------
-Login: root
-passwd: 1234
-create linux user: xp
+omv-firstaid
+Change Control Panel administrator password
+reboot
 
 ----------------------------------------
 Router configuration for Openmediavault access from outside
@@ -79,7 +41,7 @@ Router configuration for Openmediavault access from outside
 ----------------------------------------
 INSTALL Openmediavault 
 (50 min)
-----------------------------------------
+---------------------------------------
 apt-get update
 apt-get upgrade
 
