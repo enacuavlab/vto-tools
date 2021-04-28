@@ -50,6 +50,9 @@ static void *process_thread(void *ptr)
   Mat colormap;
   int32_t sum_x,sum_y;
 
+  int width2 = width/2;
+  int height2 = height/2;
+
   int mbx = width/16;
   int mby = height/16;
   int mbxy = (8 * mbx * mby);
@@ -106,7 +109,7 @@ static void *process_thread(void *ptr)
 
     sum_x = (sum_x/mbxy);
     sum_y = (sum_y/mbxy);
-    arrowedLine(grayBGR, Point(320,240),Point(320+sum_x,240+sum_y),Scalar(0,255,0),5);
+    arrowedLine(grayBGR, Point(width2,height2),Point(width2+sum_x,height2+sum_y),Scalar(0,255,0),5);
 
     /**********************************************************************/
 

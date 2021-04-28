@@ -21,7 +21,7 @@ from time import sleep
 
 resolution0=(1280,720)
 framerate0=25
-ip0="192.168.3.1"
+ip0="127.0.0.1"
 ip1="127.0.0.1"
 port1=5600
 port2=5700
@@ -76,17 +76,18 @@ class MyAnalysis(picamera.array.PiRGBAnalysis):
     markerCorners,markersIds,rejectedImgPoints = aruco.detectMarkers(gray3, self.aruco_dict, parameters=self.parameters)
     if markersIds == None:
       gray1 = cv2.cvtColor(gray3, cv2.COLOR_GRAY2BGR)
-      if(self.notfound<10):self.notfound=self.notfound+1
-      else:
-        self.notfound=0
-        if camera.exposure_mode == 'sports': camera.exposure_mode = 'spotlight' # or camera.shutter_speed=198 => camera.exposure_speed
-        else:camera.exposure_mode = 'sports'
+#      if(self.notfound<10):self.notfound=self.notfound+1
+#      else:
+#        self.notfound=0
+#        if camera.exposure_mode == 'sports': camera.exposure_mode = 'spotlight' # or camera.shutter_speed=198 => camera.exposure_speed
+#        else:camera.exposure_mode = 'sports'
     else:
       self.notfound=0
       gray3b = aruco.drawDetectedMarkers(gray3,markerCorners,markersIds)
       rvecs, tvecs, markerPoints = aruco.estimatePoseSingleMarkers(markerCorners,self.markerlength,self.cameraMatrix,self.distCoeffs)
       #aruco.drawAxis(gray3, self.cameraMatrix,self.distCoeffs, rvec, tvec, 0.01) 
-      msgbuff='%d %d %d\n' % ((int)(1000*tvecs[0][0][0]),(int)(1000*tvecs[0][0][1]),(int)(1000*tvecs[0][0][2]))
+      #inverted signed with cpp version
+      msgbuff='%d %d %d\n' % ((int)(-1000*tvecs[0][0][0]),(int)(-1000*tvecs[0][0][1]),(int)(1000*tvecs[0][0][2]))
       self.sock.sendto(msgbuff.encode(), (ip1, port3))
       gray1 = cv2.cvtColor(gray3b, cv2.COLOR_GRAY2BGR)
     self.strOut.write(gray1)
