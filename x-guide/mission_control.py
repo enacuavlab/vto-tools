@@ -440,8 +440,8 @@ def main():
     target_id = args.target_id
 
     mission_plan_dict={ 'takeoff' :{'start':None, 'duration':20, 'finalized':False},
-                        'circle'  :{'start':None, 'duration':15, 'finalized':False},
-                        'parametric_circle'  :{'start':None, 'duration':55, 'finalized':False},
+                        'circle'  :{'start':None, 'duration':40, 'finalized':False},
+                        'parametric_circle'  :{'start':None, 'duration':90, 'finalized':False},
                         'nav2land':{'start':None, 'duration':5,  'finalized':False},
                         'land'    :{'start':None, 'duration':10, 'finalized':False} } #,
                         # 'kill'    :{'start':None, 'duration':10, 'finalized':False} }
