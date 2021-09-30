@@ -37,6 +37,8 @@ if [ $# -eq 2 ]; then
 
   $HOME_PRJ/scripts/proxy-air.py > /dev/null 2>&1 &
   echo $! >> $PIDFILE
+  $HOME_PRJ/scripts/x-guide.py > /dev/null 2>&1 &
+  echo $! >> $PIDFILE
 
 
   socat TUN:10.0.$((1+nb)).2/24,tun-name=airtuntx,iff-no-pi,tun-type=tun,iff-up udp-sendto:127.0.0.1:14900 > /dev/null 2>&1 &

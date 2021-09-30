@@ -1,0 +1,200 @@
+<!DOCTYPE airframe SYSTEM "../../airframe.dtd">
+
+<airframe name="Explorer, Karpet, Anton, Ulysse ...">
+
+  <description>
+    Specific configuration:
+     Explorer Tawaki, GPS(RTK)+External Mag, DualTelemetry
+     Radio: FrSky_X_-Lite
+     Telemetry: Main + FlightRecorder + Extra
+     Session: 
+       link  -d /dev/paparazzi/xbee -transport xbee -s 57600 -id 1 -redlink 
+       link  -udp  -id 2 -redlink 
+       link_combiner.py 
+
+    Baseconfiguration
+      Autopilot:   Tawaki / Apogee
+      Actuators:   4 in 4 Holybro BLHELI ESC
+      Telemetry:   XBee or datalink
+      GPS:         Ublox or datalink
+      RC:          sbus or datalink
+
+    IMU Apogee :
+      - MPU6050 (acc+gyro),
+      - MPU9150 (acc+gyro+mag) = MPU6050 + AK8975
+    MAG Apogee (AK8975 on I2C1) or on external GPS board (HMC58/LIS3MDL on I2C1) or Datalink
+    BARO Apogee (MPL3115A2 on I2C1)
+
+    IMU Tawaki : 
+      - ICM-20600 (acc+gyro) + BMP388 (baro) + LIS3MDL (I2C1 internal mag)
+      - ICM-20600 (acc+gyro) + BMP388 (baro) + LIS3MDL (I2C2 on external GPS board)
+
+    FAILSAFE :
+      - GPS lost, Critical Battery level: pith=0,roll=0,FAILSAFE_DESCENT_SPEED
+      - All Datalink/Telemetry lost: ?
+      - RC lost: detect from sbus not sending signal, no recovery actions
+
+    </description>
+  <firmware name="rotorcraft">
+
+    <configure name="PERIODIC_FREQUENCY" value="1000"/>
+    <define name="FAILSAFE_ON_BAT_CRITICAL" value="TRUE"/>
+
+    <target name="nps" board="pc">
+      <module name="fdm"            type="jsbsim"/>
+      <module name="radio_control"  type="datalink"/>
+      <module name="gps"            type="datalink"/>
+      <module name="ins"            type="extended"/>
+      <module name="ahrs"           type="int_cmpl_quat"/>
+      <define name="AHRS_USE_GPS_HEADING" value="TRUE"/>
+      <configure name="USE_MAGNETOMETER"  value="FALSE"/>
+    </target>
+
+    <!--target name="ap" board="apogee_1.0_chibios" -->
+    <target name="ap" board="tawaki_1.0">
+      <configure name="AHRS_PROPAGATE_FREQUENCY" value="$(PERIODIC_FREQUENCY)"/>
+
+      <!--module name="radio_control" type="datalink"/-->
+      <module name="radio_control" type="sbus"/>
+      <define name="RADIO_KILL_SWITCH" value="RADIO_GAIN1"/>
+
+      <!-- OUTDOOR -->
+      <!--module name="gps"                 type="ublox">
+        <configure name="GPS_PORT"       value="UART3"/>
+        <configure name="GPS_BAUD"       value="B115200"/>
+        <define name="USE_GPS_UBX_RTCM"  value="TRUE"/>
+      </module>
+      <module name="ins"                 type="extended"/>
+      <module name="ahrs"                type="int_cmpl_quat"/>
+      <define name="AHRS_H_X" value="0.513081"/>
+      <define name="AHRS_H_Y" value="-0.00242783"/>
+      <define name="AHRS_H_Z" value="0.858336"/>
+      <configure name="USE_MAGNETOMETER" value="TRUE"/-->
+
+      <!-- INDOOR -->
+      <module name="gps"                    type="datalink"/>
+      <module name="ins"                    type="gps_passthrough"/>
+      <module name="ahrs"                   type="int_cmpl_quat"/>
+      <define name="AHRS_USE_GPS_HEADING"   value="TRUE"/>
+      <define name="AHRS_HEADING_UPDATE_GPS_MIN_SPEED" value="0"/>
+      <configure name="USE_MAGNETOMETER"    value="FALSE"/>    
+
+    </target>
+
+    <module name="board" type="tawaki">
+      <define name="IMU_MPU_LOWPASS_FILTER" value="MPU60X0_DLPF_256HZ"/>
+      <define name="IMU_MPU_ACCEL_LOWPASS_FILTER" value="MPU60X0_DLPF_ACC_218HZ"/>
+      <define name="IMU_MPU_SMPLRT_DIV" value="0"/>
+      <!--configure name="MAG_LIS3MDL_I2C_DEV" value="i2c2"/-->
+    </module>
+
+    <!--module name="imu" type="apogee_mpu9150">
+      <define name="APOGEE_LOWPASS_FILTER" value="MPU60X0_DLPF_256HZ"/>
+      <define name="APOGEE_SMPLRT_DIV"     value="1"/>
+    </module-->
+    <!--module name="imu" type="apogee"/-->
+
+    <!-- DROTEK-GPS board NeoM8T + HMC58 / USB plug rightside >
+    <    Apogee: i2c1, Tawaki: i2c2 -->
+    <!--module name="mag_hmc58xx.xml">
+      <define name="MODULE_HMC58XX_UPDATE_AHRS"/>
+      <configure name="MAG_HMC58XX_I2C_DEV" value="i2c1"/>   
+      <define name="HMC58XX_CHAN_X" value="0"/>
+      <define name="HMC58XX_CHAN_Y" value="1"/>
+    </module-->
+
+    <!-- DROTEK-GPS board NeoM8P + LIS3ML / USB plug backside >
+    <    Apogee: i2c1, Tawaki: i2c2(5V) -->
+    <!--module name="mag_lis3mdl"> 
+      <define name="MODULE_LIS3MDL_UPDATE_AHRS"/>
+      <configure name="MAG_LIS3MDL_I2C_DEV" value="i2c2"/>
+    </module-->
+
+    <!--module name="stabilization" type="int_quat"/-->
+    <!--module name="stabilization" type="indi_simple"/-->
+    <!--Pb. Indi cannot be simulated in nps -->
+    <module name="stabilization" type="indi"/>
+    <module name="guidance" type="indi">
+      <define name="GUIDANCE_INDI_SPECIFIC_FORCE_GAIN" value="-500.0"/>
+      <define name="GUIDANCE_INDI_THRUST_DYNAMICS" value="0.03"/>
+      <define name="GUIDANCE_INDI_RC_DEBUG" value="FALSE"/>
+    </module>
+
+    <!--Apogee: 300, Tawaki: SRVb1-b4, default -->
+    <module name="actuators" type="dshot">
+      <!--define name="DSHOT_SPEED" value="300"/-->
+    </module>
+    <!--Tawaki: SRVb1-b4, Tim4 -->
+    <!--module name="actuators" type="pwm">
+      <define name="TIM4_SERVO_HZ" value="400"/>
+      <define name="USE_PWM5"      value="TRUE"/>
+      <define name="USE_PWM6"      value="TRUE"/>
+      <define name="USE_PWM7"      value="TRUE"/>
+      <define name="USE_PWM8"      value="TRUE"/>
+    </module-->
+
+    <!--Tawaki: Servo-switch S4 -->
+    <module name="actuators" type="pwm"/>
+    <module name="switch" type="servo"/>
+
+    <module name="telemetry" type="xbee_api"/>
+    <!--module name="telemetry" type="transparent">
+      <configure name="MODEM_BAUD" value="B115200"/>
+    </module-->
+
+    <!--Tawaki -->
+    <module name="extra_dl">
+      <configure name="EXTRA_DL_PORT" value="UART7"/>
+      <configure name="EXTRA_DL_BAUD" value="B115200"/>
+    </module>
+
+    <!--Tawaki: RC2 TX -->
+    <module name="e_identification_fr">
+     <configure name="E_ID_PORT" value="UART6"/>
+      <configure name="E_ID_BAUD" value="B115200"/>
+    </module>
+
+    <!--Info: Tawaki(Auxa1):STM32_PWM_USE_TIM5, Apogee: PPMin -->
+    <module name="light_scheduler">
+      <define name="STM32_PWM_USE_TIM5"/>
+      <define name="WS2812_NB_LEDS" value="12"/>
+      <define name="WS2812_SEQUENCE" value="2"/>
+    </module>
+
+    <!-- Used by int_quat and needed for indi nps -->
+    <module name="motor_mixing"/>
+
+    <module name="tlsf"/>
+    <module name="pprzlog"/>
+    <module name="logger" type="sd_chibios"/>
+    <module name="flight_recorder"/>
+
+    <module name="fc_rotor">
+      <define name="FCROTOR_STARTED" value="FALSE"/>
+    </module>
+
+  </firmware>
+
+  <!--include href="conf/airframes/ENAC/quadrotor/xp/xp_imu_apogee_$AC_ID.xml"/-->
+  <include href="conf/airframes/ENAC/quadrotor/xp/xp_imu_tawaki_$AC_ID.xml"/>
+
+  <!--include href="conf/airframes/ENAC/quadrotor/xp/xp_imu_extmag_$AC_ID.xml"/-->
+
+  <!--include href="conf/airframes/ENAC/quadrotor/xp/xp_actuators_pwm_tawaki_$AC_ID.xml"/-->
+  <include href="conf/airframes/ENAC/quadrotor/xp/xp_actuators_dshot_tawaki_$AC_ID.xml"/>
+  <!--include href="conf/airframes/ENAC/quadrotor/xp/xp_actuators_pwm_apogee_$AC_ID.xml"/-->
+  <!--include href="conf/airframes/ENAC/quadrotor/xp/xp_actuators_dshot_apogee_$AC_ID.xml"/-->
+
+  <include href="conf/airframes/ENAC/quadrotor/xp/xp_actuators_pwm_servoswitch_tawaki_$AC_ID.xml"/>
+
+  <!--include href="conf/airframes/ENAC/quadrotor/xp/xp_cmd_stab_intquat_$AC_ID.xml"/-->
+  <!--include href="conf/airframes/ENAC/quadrotor/xp/xp_cmd_stab_indi_simple.xml"/-->
+  <include href="conf/airframes/ENAC/quadrotor/xp/xp_cmd_stab_indi.xml"/>
+
+  <include href="conf/airframes/ENAC/quadrotor/xp/xp_guidance_$AC_ID.xml"/>
+
+  <include href="conf/airframes/ENAC/quadrotor/xp/xp_mix_sim_$AC_ID.xml"/>
+
+  <include href="conf/airframes/ENAC/quadrotor/xp/xp_common.xml"/>
+
+</airframe>

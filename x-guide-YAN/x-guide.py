@@ -20,6 +20,7 @@ NAV_HEADING_INDEX=41
 DL_VALUE=31
 GET_SETTING=16
 ROTORCRAFT_FP=147
+ROTORCRAFT_NAV_STATUS=159
 INS=198
 
 I2P = 1. / 2**8    # integer to position
@@ -54,9 +55,11 @@ class aircraft(object):
 
 
 class inputs(threading.Thread):
-  def __init__(self,ac):
+  def __init__(self,ac,outs):
     threading.Thread.__init__(self)
     self.ac = ac
+    self.outs = outs
+    self.cur_block = -1
     self.shutdown_flag = threading.Event()
     self.running = True
     self.streams = {}
@@ -86,20 +89,22 @@ class inputs(threading.Thread):
                 # STX + length + sender_id + receiver + comp/class + msg_id + data + ck_a + ck_b
                 (start,length,sender,receiver,comp,msgid) = struct.unpack('BBBBBB',transport.buf[0:6])
                 if ((msgid == ROTORCRAFT_FP) and (comp == 0x01)): self.rotorcraft_fp_cb(transport.buf)
+                if ((msgid == ROTORCRAFT_NAV_STATUS) and (comp == 0x01)): self.rotorcraft_nav_status_cb(transport.buf)
                 #if ((msgid == REMOTE_GPS_LOCAL) and (comp == 0x02)): self.remote_gps_local_cb(transport.buf)
-                if ((msgid == DL_VALUE) and (comp == 0x01)): self.fcrotor_setting_cb(transport.buf)
+                if ((msgid == DL_VALUE) and (comp == 0x01)): self.fcrotor_set_cb(transport.buf)
         except socket.timeout:
           pass
     except StopIteration:
       pass
 
-  def fcrotor_setting_cb(self,buf):
+  def fcrotor_set_cb(self,buf):
     offset=6
     index = struct.unpack('B',buf[offset:offset+1]);offset+=1; 
     if (index[0] == FCROTOR_INDEX):
       value = struct.unpack('f',buf[offset:offset+4])
       if value[0] == 0.0: self.ac.fcrotor_started = False
       else: self.ac.fcrotor_started = True
+      #print(self.ac.fcrotor_started)
 
   def remote_gps_local_cb(self,buf):
     offset=6
@@ -109,6 +114,15 @@ class inputs(threading.Thread):
     self.ac.set(position,velocity)
     #print('REMOTE %f %f %f %f %f %f' % (position[0],position[1],position[2],velocity[0],velocity[1],velocity[2]))
     #print('%f' % (velocity[0]))
+
+  def rotorcraft_nav_status_cb(self,buf):
+    offset=6
+    (block_time,stage_time) = struct.unpack('HH',buf[offset:offset+4]);offset+=4
+    (dist_home,dist_wp) = struct.unpack('ff',buf[offset:offset+8]);offset+=8
+    (cur_block,cur_stage,horiz_mode) = struct.unpack('BBB',buf[offset:offset+3])
+    if (self.cur_block != cur_block): 
+      self.cur_block = cur_block
+      self.outs.request_setting = True
 
   def rotorcraft_fp_cb(self,buf):
     offset=6
@@ -151,19 +165,21 @@ class outputs(threading.Thread):
     self.ac = ac
     self.shutdown_flag = threading.Event()
     self.running = True
+    self.request_setting = True
     self.addr_out = ('localhost', BOARDSERV)
     self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     self.parametric = self.init_parametric_circle()
     self.gvf_parameter = 0
-    self.request_setting(self.sock,self.addr_out)
 
-  def request_setting(self,sock,addr_out):
+  def request_setting_cmd(self,sock,addr_out):
     acid = 114
     payload  = struct.pack('BB',FCROTOR_INDEX,acid)
     msg = struct.pack("BBBBBB", STX, 10, 0, 0, 2, GET_SETTING) + payload
     (ck_a, ck_b) = calculate_checksum(msg)
     msg += struct.pack('BB', ck_a, ck_b)
     sock.sendto(msg, addr_out)
+    self.request_setting = False
+    #print("request_setting")
 
   def run(self):
     try:
@@ -177,6 +193,9 @@ class outputs(threading.Thread):
           nav_heading = self.compute_heading(V_des)
           self.accelerate(velocity,V_des,nav_heading)
           print(V_des)
+        if (self.request_setting == True): 
+          self.request_setting_cmd(self.sock,self.addr_out)
+          self.request_setting = False
         time.sleep(0.125)
     except StopIteration:
       pass
@@ -231,9 +250,10 @@ class outputs(threading.Thread):
 if __name__ == '__main__':
 
   ac = aircraft()
+  outs=outputs(ac)
   streams = []
-  streams.append(inputs(ac))
-  streams.append(outputs(ac))
+  streams.append(outs)
+  streams.append(inputs(ac,outs))
 
   for thread in streams: thread.start()
   try:
