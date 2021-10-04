@@ -44,21 +44,21 @@ def ground_ref_cb(ground_id, msg):
 
   acid = int(msg['ac_id'])
 #  if ac_id in self._vehicle_id_list:
-  if acid == 114:
+  if acid == 51:
     position=np.zeros(3);velocity=np.zeros(3)
-    position[0] = float(msg['pos'][1])
-    position[1] = float(msg['pos'][0])
+    position[0] = float(msg['pos'][0])
+    position[1] = float(msg['pos'][1])
     position[2] = float(msg['pos'][2])
-    velocity[0] = float(msg['speed'][1])
-    velocity[1] = float(msg['speed'][0])
+    velocity[0] = float(msg['speed'][0])
+    velocity[1] = float(msg['speed'][1])
     velocity[2] = float(msg['speed'][2])
     payload  = struct.pack('B',acid)
-    msg = struct.pack("BBBBBB", STX, 21, 0, 0, 0, GROUND2MAVS) + payload
+    payload += struct.pack('ffffff',position[0],position[1],position[2],velocity[0],velocity[1],velocity[2])
+    msg = struct.pack("BBBBBB", STX, 33, 0, 0, 0, GROUND2MAVS) + payload
     (ck_a, ck_b) = calculate_checksum(msg)
     msg += struct.pack('BB', ck_a, ck_b)
     global sock,addr_out
     sock.sendto(msg, addr_out)
-    print(msg)
 
 
 if __name__ == '__main__':
@@ -72,8 +72,5 @@ if __name__ == '__main__':
     print("Error: unable to open socket on ports")
     exit(0)
 
-  interface  = IvyMessagesInterface("PprzConnect")
-  connect = pprz_connect.PprzConnect(notify=new_ac, ivy=interface, verbose=False)
-  interface = connect.ivy
-  time.sleep(0.5)
-  interface.subscribe(ground_ref_cb, PprzMessage("ground", "GROUND_REF"))
+  ivy = IvyMessagesInterface("ground2mavs")
+  ivy.subscribe(ground_ref_cb, PprzMessage("ground", "GROUND_REF"))

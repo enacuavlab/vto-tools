@@ -47,8 +47,8 @@ class ethernet2serial(threading.Thread):
                 self.fd.write(transport.buf)
                 # STX + length + sender_id + receiver + comp/class + msg_id + data + ck_a + ck_b
                 (start,length,sender,receiver,comp,msgid) = struct.unpack('BBBBBB',transport.buf[0:6])
-                #if  ((msgid == REMOTE_GPS_LOCAL) and (comp == 0x02)): s.sendto(transport.buf,self.addr_out)
                 if ((msgid == SETTING) and (comp == 0x02)): s.sendto(transport.buf,self.addr_out)
+                #if  ((msgid == REMOTE_GPS_LOCAL) and (comp == 0x02)): s.sendto(transport.buf,self.addr_out)
         except socket.timeout:
           pass
     except StopIteration:

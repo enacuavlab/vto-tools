@@ -11,7 +11,7 @@ import numpy as np
 from proxy_common import *
 from vector_fields import spheric_geo_fence, ParametricTrajectory, Controller
 
-
+GROUND2MAVS=4300
 TELEMETRY=4246
 
 FCROTOR_INDEX=15
@@ -33,8 +33,10 @@ class aircraft(object):
     self.validity=False
     self.position=np.zeros(3)
     self.velocity=np.zeros(3)
+    self.deltapos=np.zeros(2)
     self.W=np.zeros(3)
-    self.validity=False
+    self.validity1=False
+    self.validity2=False
     self.lock = threading.Lock()
     self.fcrotor_started = False
 
@@ -42,16 +44,23 @@ class aircraft(object):
     self.lock.acquire()
     self.position=position
     self.velocity=velocity
-    self.validity=True
+    self.validity1=True
+    self.lock.release()
+
+  def setdeltapos(self,deltapos):
+    self.lock.acquire()
+    self.deltapos=deltapos
+    self.validity2=True
     self.lock.release()
 
   def get(self):
     self.lock.acquire()
-    validity=self.validity
+    validity=(self.validity1 and self.validity2) 
     position=self.position
     velocity=self.velocity
+    deltapos=self.deltapos
     self.lock.release()
-    return(validity,position,velocity)
+    return(validity,position,velocity,deltapos)
 
 
 class inputs(threading.Thread):
@@ -63,7 +72,7 @@ class inputs(threading.Thread):
     self.shutdown_flag = threading.Event()
     self.running = True
     self.streams = {}
-    for port in [TELEMETRY,BOARDCLI]:
+    for port in [TELEMETRY,BOARDCLI,GROUND2MAVS]:
        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
        sock.bind(('localhost', port))
        self.streams[sock] = (port,PprzTransport())
@@ -92,10 +101,20 @@ class inputs(threading.Thread):
                 if ((msgid == ROTORCRAFT_NAV_STATUS) and (comp == 0x01)): self.rotorcraft_nav_status_cb(transport.buf)
                 #if ((msgid == REMOTE_GPS_LOCAL) and (comp == 0x02)): self.remote_gps_local_cb(transport.buf)
                 if ((msgid == DL_VALUE) and (comp == 0x01)): self.fcrotor_set_cb(transport.buf)
+                if ((msgid == 0x01) and (comp == 0x00)): self.ground2imavs_cb(transport.buf)
         except socket.timeout:
           pass
     except StopIteration:
       pass
+
+  def ground2imavs_cb(self,buf):
+    offset=6
+    position=np.zeros(3);velocity=np.zeros(3)
+    acid = struct.unpack('B',buf[offset:offset+1]);offset+=1; 
+    (position[1],position[0],position[2],velocity[1],velocity[0],velocity[2]) = struct.unpack('ffffff',buf[offset:offset+24])
+    print(acid[0])
+    self.ac.setdeltapos((position[0],position[1]))
+    #print('GROUND2IMAV %f %f %f' % (position[0],position[1],position[2]))
 
   def fcrotor_set_cb(self,buf):
     offset=6
@@ -112,7 +131,7 @@ class inputs(threading.Thread):
     (acid,pad) = struct.unpack('BB',buf[offset:offset+2]);offset+=2; 
     (position[1],position[0],position[2],velocity[1],velocity[0],velocity[2]) = struct.unpack('ffffff',buf[offset:offset+24])
     self.ac.set(position,velocity)
-    #print('REMOTE %f %f %f %f %f %f' % (position[0],position[1],position[2],velocity[0],velocity[1],velocity[2]))
+    print('REMOTE %f %f %f %f %f %f' % (position[0],position[1],position[2],velocity[0],velocity[1],velocity[2]))
     #print('%f' % (velocity[0]))
 
   def rotorcraft_nav_status_cb(self,buf):
@@ -137,7 +156,7 @@ class inputs(threading.Thread):
     theta       = I2W*float(int.from_bytes(buf[offset:offset+4], byteorder='little', signed=True));offset+=4 # theta
     W[2]        = I2W*float(int.from_bytes(buf[offset:offset+4], byteorder='little', signed=True));offset+=4 # psi
     self.ac.set(position,velocity)
-    #print('ROT %f %f %f %f %f %f' % (position[0],position[1],position[2],velocity[0],velocity[1],velocity[2]))
+    print('ROT %f %f %f %f %f %f' % (position[0],position[1],position[2],velocity[0],velocity[1],velocity[2]))
     #print('%f' % (position[0]))
 
   def ins_cb(self,buf):
@@ -185,9 +204,9 @@ class outputs(threading.Thread):
     try:
       V_des = np.zeros(3)
       while self.running  and not self.shutdown_flag.is_set():
-        (validity,position,velocity)=self.ac.get()
+        (validity,position,velocity,deltapos)=self.ac.get()
         if validity and self.ac.fcrotor_started:
-          V_des = spheric_geo_fence(position[0], position[1], position[2], x_source=0., y_source=0., z_source=0., strength=-0.07)
+          V_des = spheric_geo_fence(position[0]-deltapos[0], position[1]-deltapos[1], position[2], x_source=0., y_source=0., z_source=0., strength=-0.07)
           (V_des_increment,self.gvf_parameter) = self.run_parametric_circle(position,self.gvf_parameter)
           V_des += V_des_increment
           nav_heading = self.compute_heading(V_des)

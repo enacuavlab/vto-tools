@@ -1,5 +1,6 @@
 #!/bin/bash
 
+HOME_PRJ2=/home/pi/Projects/vto-tools/x-guide-YAN
 HOME_PRJ=/home/pi/Projects/compagnon-software/
 HOME_WFB=$HOME_PRJ/wifibroadcast
 PIDFILE=/tmp/wfb.pid
@@ -9,6 +10,8 @@ if [ $# -eq 2 ]; then
   wl=$1
   nb=$2
 
+  $HOME_WFB/wfb_rx -K $HOME_WFB/drone.key -p 7 -u 4300 -c 127.0.0.1 -k 1 -n 2 $wl > /dev/null 2>&1 &
+  echo $! >> $PIDFILE
   $HOME_WFB/wfb_tx -K $HOME_WFB/drone.key -p 6 -u 5600 $wl > /dev/null 2>&1 &
   echo $! > $PIDFILE
   $HOME_WFB/wfb_tx -K $HOME_WFB/drone.key -p 1 -u 5700 $wl > /dev/null 2>&1 &
@@ -35,9 +38,9 @@ if [ $# -eq 2 ]; then
 #  socat -u udp-listen:4245,reuseaddr,fork $DEVICE,raw,echo=0,b115200 > /dev/null 2>&1 &
 #  echo $! >> $PIDFILE
 
-  $HOME_PRJ/scripts/proxy-air.py > /dev/null 2>&1 &
+  $HOME_PRJ2/proxy-air.py > /dev/null 2>&1 &
   echo $! >> $PIDFILE
-  $HOME_PRJ/scripts/x-guide.py > /dev/null 2>&1 &
+  $HOME_PRJ2/x-guide.py > /dev/null 2>&1 &
   echo $! >> $PIDFILE
 
 
