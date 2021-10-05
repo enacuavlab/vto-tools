@@ -123,7 +123,6 @@ def store_track(ac_id, pos, t,id_dict,track):
     track[ac_id].append((pos, t))
     if len(track[ac_id]) > NB_SAMPLES:
       track[ac_id].popleft()
-  print(len(track[ac_id]))
 
 
 def compute_velocity(ac_id,track):
@@ -156,15 +155,15 @@ def send2mav(pos,mavSocket,mavAddr,track, rigidBodyList, id_dict):
     i = str(ac_id)
     if i not in id_dict.keys():
       continue
-    store_track(i, pos, datetime.datetime.now(),id_dict,track)
-    vel=compute_velocity(pos,track)
-    #payload  = struct.pack('B',acid)
-    #payload += struct.pack('ffffff',pos[0],pos[1],pos[2],vel[0],vel[1],vel[2])
-    #msg = struct.pack("BBBBBB", STX, 33, 0, 0, 0, GROUND2MAVS) + payload
-    #(ck_a, ck_b) = calculate_checksum(msg)
-    #msg += struct.pack('BB', ck_a, ck_b)
-    #mavSocket.sendto(msg, mavAddr)
-    print(i)
+    store_track(i, pos, datetime.datetime.now().timestamp(),id_dict,track)
+    vel=compute_velocity(i,track)
+    payload  = struct.pack('B',ac_id)
+    payload += struct.pack('ffffff',pos[0],pos[1],pos[2],vel[0],vel[1],vel[2])
+    msg = struct.pack("BBBBBB", STX, 33, 0, 0, 0, GROUND2MAVS) + payload
+    (ck_a, ck_b) = calculate_checksum(msg)
+    msg += struct.pack('BB', ck_a, ck_b)
+    mavSocket.sendto(msg, mavAddr)
+    print(pos[0],pos[1],pos[2])
 
 
 if __name__ == '__main__':
