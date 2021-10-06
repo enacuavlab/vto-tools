@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+'''
+Forward rigid body position from NatNet (Optitrack positioning system)
+to pprz like message in UDP port
+
+Code have been tested with natnet 3.0
+'''
 
 import socket
 import struct
@@ -72,6 +78,7 @@ class MocapInterface(threading.Thread):
   def unpackMocapData(self,data):
     data = memoryview( data )
     offset = 0
+    self.rigidBodyList = []
     frameNumber = int.from_bytes( data[offset:offset+4], byteorder='little' )
     offset += 4
     #print( "Frame #:", frameNumber )
@@ -119,31 +126,24 @@ class MocapInterface(threading.Thread):
     param, = struct.unpack( 'h', data[offset:offset+2] )
     trackingValid = ( param & 0x01 ) != 0
     offset += 2
-    #print( "\tTracking Valid:", 'True' if trackingValid else 'False' )
-    self.rigidBodyList.append((id, pos, trackingValid))
+    if trackingValid: self.rigidBodyList.append((id, pos))
     return offset
 
   def send2mav(self):
-    for (ac_id,pos,valid) in self.rigidBodyList:
-      if not valid:
-        continue
+    for (ac_id,pos) in self.rigidBodyList:
       i = str(ac_id)
       if i not in self.id_dict.keys():
         continue
-      stamp = datetime.datetime.now().timestamp()
-      self.store_track(i, pos, stamp)
+      self.store_track(i, pos, datetime.datetime.now().timestamp())
       vel=self.compute_velocity(i)
-      tmp = stamp - self.curr
-      self.curr = stamp
-      print(ac_id,tmp)
-
-#    payload  = struct.pack('B',ac_id)
-#    payload += struct.pack('ffffff',pos[0],pos[1],pos[2],vel[0],vel[1],vel[2])
-#    msg = struct.pack("BBBBBB", STX, 33, 0, 0, 0, GROUND2MAVS) + payload
-#    (ck_a, ck_b) = calculate_checksum(msg)
-#    msg += struct.pack('BB', ck_a, ck_b)
-#    mavSocket.sendto(msg, mavAddr)
-#    print(pos[0],pos[1],pos[2])
+      payload  = struct.pack('B',ac_id)
+      payload += struct.pack('ffffff',pos[0],pos[1],pos[2],vel[0],vel[1],vel[2])
+      msg = struct.pack("BBBBBB", STX, 33, 0, 0, 0, GROUND2MAVS) + payload
+      (ck_a, ck_b) = self.calculate_checksum(msg)
+      msg += struct.pack('BB', ck_a, ck_b)
+      self.mavSocket.sendto(msg, self.mavAddr)
+      print(pos[0],pos[1],pos[2])
+      print(vel[0],vel[1],vel[2])
 
   def store_track(self,ac_id, pos, t):
     if ac_id in self.id_dict.keys():
@@ -175,7 +175,7 @@ class MocapInterface(threading.Thread):
         vel[2] /= nb
     return vel
   
-  def calculate_checksum(msg):
+  def calculate_checksum(self,msg):
     ck_a = 0
     ck_b = 0
     for c in msg[1:]:
