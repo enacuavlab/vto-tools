@@ -6,6 +6,7 @@ import struct
 import threading
 import signal
 import time
+import datetime
 import math
 import numpy as np
 from proxy_common import *
@@ -33,8 +34,9 @@ class aircraft(object):
     self.validity=False
     self.position=np.zeros(3)
     self.velocity=np.zeros(3)
-    self.deltapos=np.zeros(2)
     self.W=np.zeros(3)
+    self.rate=0.
+    self.store=0.
     self.validity=False
     self.lock = threading.Lock()
     self.fcrotor_started = False
@@ -43,6 +45,9 @@ class aircraft(object):
     self.lock.acquire()
     self.position=position
     self.velocity=velocity
+    curr=datetime.datetime.now().timestamp()
+    if self.validity: self.rate=curr-self.store
+    self.store=curr
     self.validity=True
     self.lock.release()
 
@@ -50,8 +55,10 @@ class aircraft(object):
     self.lock.acquire()
     position=self.position
     velocity=self.velocity
+    validity=self.validity
+    rate=self.rate
     self.lock.release()
-    return(self.validity,position,velocity)
+    return(validity,position,velocity,rate)
 
 
 class inputs(threading.Thread):
@@ -104,7 +111,7 @@ class inputs(threading.Thread):
     acid = struct.unpack('B',buf[offset:offset+1]);offset+=1; 
     (position[1],position[0],position[2],velocity[1],velocity[0],velocity[2]) = struct.unpack('ffffff',buf[offset:offset+24])
     self.ac.set(position,velocity)
-    print('GROUND2IMAV %f %f %f %f %f %f' % (position[0],position[1],position[2],velocity[0],velocity[1],velocity[2]))
+    #print('GROUND2IMAV %f %f %f %f %f %f' % (position[1],position[0],position[2],velocity[1],velocity[0],velocity[2]))
 
   def fcrotor_set_cb(self,buf):
     offset=6
@@ -121,8 +128,7 @@ class inputs(threading.Thread):
     (acid,pad) = struct.unpack('BB',buf[offset:offset+2]);offset+=2; 
     (position[1],position[0],position[2],velocity[1],velocity[0],velocity[2]) = struct.unpack('ffffff',buf[offset:offset+24])
     self.ac.set(position,velocity)
-    print('REMOTE %f %f %f %f %f %f' % (position[0],position[1],position[2],velocity[0],velocity[1],velocity[2]))
-    #print('%f' % (velocity[0]))
+    #print('REMOTE %d %f %f %f %f %f %f' % (pad,position[1],position[0],position[2],velocity[1],velocity[0],velocity[2]))
 
   def rotorcraft_nav_status_cb(self,buf):
     offset=6
@@ -193,7 +199,8 @@ class outputs(threading.Thread):
     try:
       V_des = np.zeros(3)
       while self.running  and not self.shutdown_flag.is_set():
-        (validity,position,velocity)=self.ac.get()
+        (validity,position,velocity,rate)=self.ac.get()
+        if validity: self.send_highrate_pos(position,velocity)
         if validity and self.ac.fcrotor_started:
           V_des = spheric_geo_fence(position[0], position[1], position[2], x_source=0., y_source=0., z_source=0., strength=-0.07)
           (V_des_increment,self.gvf_parameter) = self.run_parametric_circle(position,self.gvf_parameter)
@@ -204,7 +211,7 @@ class outputs(threading.Thread):
         if (self.request_setting == True): 
           self.request_setting_cmd(self.sock,self.addr_out)
           self.request_setting = False
-        time.sleep(0.125)
+        time.sleep(rate) # 0.125
     except StopIteration:
       pass
 
@@ -232,6 +239,16 @@ class outputs(threading.Thread):
     (ck_a, ck_b) = calculate_checksum(msg)
     msg += struct.pack('BB', ck_a, ck_b)
     self.sock.sendto(msg, self.addr_out)
+
+  def send_highrate_pos(self,pos,vel):
+    acid = 114
+    payload  = struct.pack('BB',acid,0)
+    payload += struct.pack('ffffffff',pos[1],pos[0],pos[2],vel[1],vel[0],vel[2],0.,0.)
+    msg = struct.pack("BBBBBB", STX, 42, 0, 0, 2, REMOTE_GPS_LOCAL) + payload
+    (ck_a, ck_b) = calculate_checksum(msg)
+    msg += struct.pack('BB', ck_a, ck_b)
+    self.sock.sendto(msg, self.addr_out)
+    #print("HR %d %f %f %f %f %f %f" % (0,pos[1],pos[0],pos[2],vel[1],vel[0],vel[2]))
 
   def stop(self):
     self.running = False
