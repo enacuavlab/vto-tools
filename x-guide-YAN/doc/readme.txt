@@ -24,3 +24,5 @@ Autpilot
   - if activated, it propagates acceleration setting from the compagnon board
   - can be activated/de-activated on ground station, from setting pannel or flight plan
 
+
+
