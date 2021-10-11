@@ -267,7 +267,7 @@ class outputs(threading.Thread):
 
   def run_parametric_circle(self,position,gvf_parameter):
     V_des_increment,uw = self.parametric.get_vector_field(position[0],position[1],position[2],gvf_parameter)
-    gvf_parameter += -uw[0]*0.1 #dt
+    gvf_parameter += -uw[0]*rate #dt
     return(V_des_increment,gvf_parameter)
 
 
