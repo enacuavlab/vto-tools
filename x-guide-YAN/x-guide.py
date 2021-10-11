@@ -203,7 +203,7 @@ class outputs(threading.Thread):
         if validity: self.send_highrate_pos(position,velocity)
         if validity and self.ac.fcrotor_started:
           V_des = spheric_geo_fence(position[0], position[1], position[2], x_source=0., y_source=0., z_source=0., strength=-0.07)
-          (V_des_increment,self.gvf_parameter) = self.run_parametric_circle(position,self.gvf_parameter)
+          (V_des_increment,self.gvf_parameter) = self.run_parametric_circle(position,self.gvf_parameter,rate)
           V_des += V_des_increment
           nav_heading = self.compute_heading(V_des)
           self.accelerate(velocity,V_des,nav_heading)
@@ -265,9 +265,9 @@ class outputs(threading.Thread):
     return(traj_parametric)
 
 
-  def run_parametric_circle(self,position,gvf_parameter):
+  def run_parametric_circle(self,position,gvf_parameter,rate):
     V_des_increment,uw = self.parametric.get_vector_field(position[0],position[1],position[2],gvf_parameter)
-    gvf_parameter += -uw[0]*0.1 #dt
+    gvf_parameter += -uw[0]*rate #dt
     return(V_des_increment,gvf_parameter)
 
 
