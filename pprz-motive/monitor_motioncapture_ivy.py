@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-#/home/pprz/Projects/paparazzi/sw/ground_segment/python/natnet3.x/natnet2ivy.py -ac 116 116 -s 192.168.1.230 -f 10 -g
+#/home/pprz/Projects/paparazzi/sw/ground_segment/python/natnet3.x/natnet2ivy.py -ac 116 116 -s 192.168.1.230 -f 120 -g
 
 import logging,time,argparse
 import tkinter as tk
@@ -21,8 +21,8 @@ class Gui(tk.Tk):
     self.lab2 = tk.Label(self, text="XXXXXXXXXXXXX")
     self.lab1.pack()
     self.lab2.pack()
-    self.minsize(width=180,height=50)
-    self.resizable(True,False)
+    #self.minsize(width=50,height=50)
+    #self.resizable(True,False)
     self.title(IVYAPPNAME)
     self.protocol("WM_DELETE_WINDOW", self.on_close)
 
@@ -47,7 +47,7 @@ class RepeatTimer(Timer):
     while not self.finished.wait(self.interval):
       self.function(*self.args, **self.kwargs)
 
-mytimer = None
+
 class IvyThread:
   def __init__(self,bus,freq,tole):
     self.freq=freq
@@ -58,6 +58,7 @@ class IvyThread:
     self.outcpt=0
     self.available_string = Event()
     self.available_outcpt = Event()
+    self.timer=RepeatTimer(1./freq,self.checkdelay)
     logging.getLogger('Ivy').setLevel(logging.ERROR)
     readymsg = '%s READY' % IVYAPPNAME
     IvyInit(IVYAPPNAME,readymsg,0,self.on_cnx,0)
@@ -68,20 +69,15 @@ class IvyThread:
     print(dum1,dum2)
 
   def on_msg_ground_ref_ltp_enu(self, *larg):
-    if(self.cpt==0):
-      self.cpt=1
-      global mytimer
-      mytimer.start()
+    if(self.cpt==0):self.cpt=1;self.timer.start()
     if int(self.stamp)!=0:self.checkdelay()
     self.stamp=time.time()
-    self.string=larg[1]
     self.string=(larg[1].split())[4:7]
     self.available_string.set()
 
   def checkdelay(self):
     if ((time.time()-self.stamp)>=self.tole):
       self.outcpt=self.outcpt+1
-      print(self.outcpt)
       self.available_outcpt.set()
 
 
@@ -126,7 +122,6 @@ if __name__ == '__main__':
 
   g=Gui(None)
   i=IvyThread('127:2010',args.freq,args.tole)
-  mytimer=RepeatTimer(int(1.0/args.freq),i.checkdelay)
   c1=ComputeString(g,i)
   c2=ComputeDelay(g,i)
   c1.start()
