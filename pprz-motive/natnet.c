@@ -1,0 +1,93 @@
+/*
+g++ -g -c PacketClient.cpp
+g++ -g natnet.c PacketClient.o -lpthread -o natnet
+
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <string.h>
+#include <pthread.h>
+#include <unistd.h>
+
+#define DATAPORT 1511
+#define MULTICASTIP "239.255.42.99"
+
+#define MAX_PACKETSIZE 32768
+#define OPTVAL_REQUEST_SIZE 32768
+
+// NATNET version 
+#define MAJOR 128
+#define MINOR 150
+
+
+void MyUnpack(char* pData,int major,int minor,char *data);
+
+int createsocketdata() {
+  int sockfd = -1;
+  int one=1;
+  int bufsize = OPTVAL_REQUEST_SIZE;
+  int optval = 0;
+  int optvalsize = sizeof(int);
+
+  if ((sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0) exit(-1);
+  if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, (char*)&one, sizeof(one))  < 0) exit(-1);
+
+  struct sockaddr_in my_addr;
+  memset(&my_addr, 0, sizeof(my_addr));
+  my_addr.sin_family = AF_INET;
+  my_addr.sin_port = htons(DATAPORT);
+  my_addr.sin_addr.s_addr = INADDR_ANY;
+  if (bind(sockfd, (struct sockaddr*)&my_addr, sizeof(struct sockaddr)) < 0) exit(-1); 
+
+  struct ip_mreq group;
+  group.imr_multiaddr.s_addr = inet_addr(MULTICASTIP);
+  group.imr_interface.s_addr = INADDR_ANY;
+  if (setsockopt(sockfd, IPPROTO_IP, IP_ADD_MEMBERSHIP, (char*)&group, sizeof(group)) <0)  exit(-1);
+
+  return(sockfd);
+}
+
+
+
+void* recvloop(void *arg) {
+  int rcv;
+  struct sockaddr_in their;
+  int addr_len;
+  char buf[MAX_PACKETSIZE];
+  int fd = *((int*)arg);
+  int messageID = 0;
+  int nBytes = 0;
+  int nBytesTotal = 0;
+
+  char data[1+(6*8*4)];
+
+  while(1) {
+    printf("In\n");
+    rcv = recvfrom(fd,(char *)buf,MAX_PACKETSIZE,0,(struct sockaddr *)&their,(socklen_t*)&addr_len);
+    if(rcv>0) {
+      MyUnpack(buf,MAJOR,MINOR,data);
+      if(data[0]>0) {
+        for (int j = 0; j < data[0]; j++) {
+          int off=j*8*4;
+          printf("%d %3.2f %3.2f %3.2f %3.2f %3.2f %3.2f %3.2f",data[1+off],data[2+off],data[3+off],data[4+off],data[5+off],data[6+off],data[7+off],data[8+off]);
+        }
+      }
+    }
+  }
+  return NULL;
+}
+
+
+int main( int argc, char**argw) {
+  int gDatSock=-1;
+  pthread_t gDatThr;
+
+  gDatSock = createsocketdata();
+  if (pthread_create(&gDatThr, NULL, &recvloop, &gDatSock) <0)  exit(-1);
+  sleep(5);
+  pthread_join(gDatThr,NULL);
+  return(0);
+}
