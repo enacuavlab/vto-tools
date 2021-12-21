@@ -1,6 +1,6 @@
 /*
-g++ -g -c natnet_4.cpp
-g++ -g natnet.c natnet_4.o -lpthread -o natnet
+gcc -c natnet_4.c
+gcc natnet.c natnet_4.o -lpthread -o natnet
 
 */
 #include <stdio.h>
@@ -11,6 +11,7 @@ g++ -g natnet.c natnet_4.o -lpthread -o natnet
 #include <string.h>
 #include <pthread.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 #define DATAPORT 1511
 #define MULTICASTIP "239.255.42.99"
@@ -25,6 +26,7 @@ g++ -g natnet.c natnet_4.o -lpthread -o natnet
 
 #define MAX_BODIES  6
 struct rigidbody_t {
+  bool val;
   uint32_t id;
   float pos[3];
   float ori[4];
@@ -87,7 +89,8 @@ void* recvloop(void *arg) {
         printf("%d\n",mybodies.fr);
         for (int j = 0; j < mybodies.nb; j++) {
           tmp = &(mybodies.bodies[j]); 
-          printf("%d\n",tmp->id);
+          printf("Valid: %s\n", (tmp->val) ? "True" : "False");
+          printf("Id: %d\n",tmp->id);
           printf("%f %f %f\n",tmp->pos[0],tmp->pos[1],tmp->pos[2]);
           printf("%f %f %f %f\n",tmp->ori[0],tmp->ori[1],tmp->ori[2],tmp->ori[3]);
         }
