@@ -1,6 +1,6 @@
 /*
-g++ -g -c PacketClient.cpp
-g++ -g natnet.c PacketClient.o -lpthread -o natnet
+g++ -g -c natnet_4.cpp
+g++ -g natnet.c natnet_4.o -lpthread -o natnet
 
 */
 #include <stdio.h>
@@ -23,7 +23,21 @@ g++ -g natnet.c PacketClient.o -lpthread -o natnet
 #define MINOR 150
 
 
-void MyUnpack(char* pData,int major,int minor,char *data);
+#define MAX_BODIES  6
+struct rigidbody_t {
+  uint32_t id;
+  float pos[3];
+  float ori[4];
+};
+struct rigidbodies_t {
+  uint32_t fr;
+  uint32_t nb;
+  struct rigidbody_t bodies[MAX_BODIES];
+};
+struct rigidbodies_t mybodies;
+
+
+void MyUnpack(char* pData,int major,int minor,void *data);
 
 int createsocketdata() {
   int sockfd = -1;
@@ -61,19 +75,23 @@ void* recvloop(void *arg) {
   int messageID = 0;
   int nBytes = 0;
   int nBytesTotal = 0;
-
-  char data[1+(6*8*4)];
+  struct rigidbody_t *tmp;
 
   while(1) {
     printf("In\n");
     rcv = recvfrom(fd,(char *)buf,MAX_PACKETSIZE,0,(struct sockaddr *)&their,(socklen_t*)&addr_len);
     if(rcv>0) {
-      MyUnpack(buf,MAJOR,MINOR,data);
-      if(data[0]>0) {
-        for (int j = 0; j < data[0]; j++) {
-          int off=j*8*4;
-          printf("%d %3.2f %3.2f %3.2f %3.2f %3.2f %3.2f %3.2f",data[1+off],data[2+off],data[3+off],data[4+off],data[5+off],data[6+off],data[7+off],data[8+off]);
+      MyUnpack(buf,MAJOR,MINOR,(void *)&mybodies);
+      if(mybodies.nb>0) {
+        printf("----------------------------------------\n");
+        printf("%d\n",mybodies.fr);
+        for (int j = 0; j < mybodies.nb; j++) {
+          tmp = &(mybodies.bodies[j]); 
+          printf("%d\n",tmp->id);
+          printf("%f %f %f\n",tmp->pos[0],tmp->pos[1],tmp->pos[2]);
+          printf("%f %f %f %f\n",tmp->ori[0],tmp->ori[1],tmp->ori[2],tmp->ori[3]);
         }
+        printf("----------------------------------------\n");
       }
     }
   }
