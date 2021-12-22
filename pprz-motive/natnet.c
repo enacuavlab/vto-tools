@@ -41,7 +41,7 @@ struct rigidbodies_t mybodies;
 
 void MyUnpack(char* pData,int major,int minor,void *data);
 
-int createsocketdata() {
+int createsocketdata(bool multicast) {
   int sockfd = -1;
   int one=1;
   int bufsize = OPTVAL_REQUEST_SIZE;
@@ -58,11 +58,12 @@ int createsocketdata() {
   my_addr.sin_addr.s_addr = INADDR_ANY;
   if (bind(sockfd, (struct sockaddr*)&my_addr, sizeof(struct sockaddr)) < 0) exit(-1); 
 
-  struct ip_mreq group;
-  group.imr_multiaddr.s_addr = inet_addr(MULTICASTIP);
-  group.imr_interface.s_addr = INADDR_ANY;
-  if (setsockopt(sockfd, IPPROTO_IP, IP_ADD_MEMBERSHIP, (char*)&group, sizeof(group)) <0)  exit(-1);
-
+  if(multicast) {
+    struct ip_mreq group;
+    group.imr_multiaddr.s_addr = inet_addr(MULTICASTIP);
+    group.imr_interface.s_addr = INADDR_ANY;
+    if (setsockopt(sockfd, IPPROTO_IP, IP_ADD_MEMBERSHIP, (char*)&group, sizeof(group)) <0)  exit(-1);
+  }
   return(sockfd);
 }
 
@@ -102,11 +103,13 @@ void* recvloop(void *arg) {
 }
 
 
-int main( int argc, char**argw) {
+int main( int argc, char*argv[]) {
+  bool multicast = 1;
   int gDatSock=-1;
   pthread_t gDatThr;
 
-  gDatSock = createsocketdata();
+  if ((argc>1)&&(!strcmp("-u", argv[1]))) multicast=0;
+  gDatSock = createsocketdata(multicast);
   if (pthread_create(&gDatThr, NULL, &recvloop, &gDatSock) <0)  exit(-1);
   sleep(5);
   pthread_join(gDatThr,NULL);
