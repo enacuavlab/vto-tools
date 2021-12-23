@@ -3,15 +3,6 @@ gcc natnet2pprz.c -lpthread -o natnet2pprz
 */
 
 /*
-
-Timestamp : 17036.533
-3066576
-Valid: True
-Id: 116
--3.432912 -2.937729 0.040714
--0.007760 -0.004241 -0.003297 0.999956
-
-
  STX , LENGTH, SENDER, DESTINATION, CLASS, ID, PAYLOAD, CHCKA, CHCKB
         msg = PprzMessage("datalink", "REMOTE_GPS_LOCAL")
         msg['ac_id'] = id_dict[i]
@@ -57,6 +48,7 @@ Id: 116
 #include <unistd.h>
 #include <stdbool.h>
 #include <stdint.h>
+#include <sys/time.h>
 
 #define GROUNDPORT 5000
 #define BOARDPORT  5010
@@ -66,8 +58,13 @@ Id: 116
 #define ID  56
 
 
-pthread_cond_t cnd = PTHREAD_COND_INITIALIZER;
-pthread_mutex_t mtx = PTHREAD_MUTEX_INITIALIZER;
+struct g_struct_t {
+  struct timeval tv;
+  int len;
+  char buf[MAXMSGSIZE];
+} g_var;
+pthread_cond_t g_cnd = PTHREAD_COND_INITIALIZER;
+pthread_mutex_t g_mtx = PTHREAD_MUTEX_INITIALIZER;
 
 
 void compute_check(char *ptr, int lg, uint8_t *ck_a,uint8_t *ck_b) {
@@ -79,14 +76,13 @@ void compute_check(char *ptr, int lg, uint8_t *ck_a,uint8_t *ck_b) {
 }
 
 
-void build_pprz() {
-  char msg[MAXMSGSIZE];
+int build_pprz(void *buf) {
   float course,pos[3],vel[3];
   uint32_t tow;
   uint8_t acid=114,chcka,chckb;
 
   int cpt=0;
-  char *ptr=(void*)msg;
+  char *ptr=(void*)buf;
   ptr[cpt++]=STX;   // STX
   ptr[cpt++]=10;    // LENGTH
   ptr[cpt++]=0;     // SENDER
@@ -101,13 +97,32 @@ void build_pprz() {
   memcpy(&ptr[cpt+=4],&tow,4);      // tow
   memcpy(&ptr[cpt+=4],&course,4);   // course
 
-  compute_check((void *)msg,40,&chcka,&chckb);
+  compute_check((void *)buf,40,&chcka,&chckb);
   ptr[cpt++]=chcka;
   ptr[cpt++]=chckb;
+
+  return(42);
+}
+
+
+int processinput(void *buf) {
+/*
+Timestamp : 17036.533
+3066576
+Valid: True
+Id: 116
+-3.432912 -2.937729 0.040714
+-0.007760 -0.004241 -0.003297 0.999956
+*/
+
+  int lg=build_pprz(buf);
+  usleep(1000000);
+  return(lg);
 }
 
 
 void* recvloop(void *arg) {
+  struct timeval tv;
   int one=1;
   int rcv;
   struct sockaddr_in from;
@@ -120,11 +135,20 @@ void* recvloop(void *arg) {
   if(setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, (char*)&one, sizeof(one))>=0){
     memset(&from, 0, sizeof(from));
     from.sin_family = AF_INET;
+    from.sin_addr.s_addr = htonl(INADDR_ANY);
     from.sin_port = htons(GROUNDPORT);
     if (bind(sockfd, (struct sockaddr*)&from, sizeof(struct sockaddr)) >= 0) {
       while(1) {
-        rcv = recvfrom(sockfd,(char *)buf,MAXMSGSIZE,0,(struct sockaddr *)&from,(socklen_t*)&from_len);
-        pthread_cond_signal(& cnd);
+	usleep(100000);
+        //rcv = recvfrom(sockfd,(char *)buf,MAXMSGSIZE,0,(struct sockaddr *)&from,(socklen_t*)&from_len);
+        pthread_mutex_lock(& g_mtx);
+	gettimeofday(&tv,NULL);
+	memcpy(&g_var.tv,&tv,sizeof(tv));
+	g_var.len = rcv;
+	memcpy(g_var.buf,buf,rcv);
+        pthread_mutex_unlock(& g_mtx);
+        pthread_cond_signal(& g_cnd);
+        printf("rcv %ld.%06ld\n",tv.tv_sec,tv.tv_usec);
       }
     }
   }
@@ -133,25 +157,49 @@ void* recvloop(void *arg) {
 
 
 void* sndloop(void *arg) {
+  struct timeval tv,tv_snd,tv_res,tv_ref={4,0};
   int one=1;
   int snd;
   struct sockaddr_in to;
   char buf[MAXMSGSIZE];
   int lg=0;
   int sockfd = -1;
+  bool reqsnd=false;
 
   printf("sndloop\n");
+
+  timerclear(&tv_snd);
   sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
   if(setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, (char*)&one, sizeof(one))>=0){
     memset(&to, 0, sizeof(to));
     to.sin_family = AF_INET;
     to.sin_port = htons(BOARDPORT);
-    pthread_mutex_lock(& mtx);
     while(1) {
-      pthread_cond_wait(& cnd, & mtx);
-      snd = sendto(sockfd,(char *)buf,lg,0,(struct sockaddr *)&to,sizeof(to));
+      pthread_mutex_lock(& g_mtx);
+      pthread_cond_wait(& g_cnd, & g_mtx);
+      memcpy(&tv,&g_var.tv,sizeof(tv));
+      snd = g_var.len;
+      memcpy(buf,g_var.buf,snd);
+      pthread_mutex_unlock(& g_mtx);
+
+      printf("before proc %ld.%06ld\n",tv.tv_sec,tv.tv_usec);
+      lg = processinput(buf);
+      gettimeofday(&tv,NULL);
+      printf("after proc %ld.%06ld\n",tv.tv_sec,tv.tv_usec);
+
+      if (timerisset(&tv_snd)) {
+	timersub(&tv,&tv_snd,&tv_res);
+        printf("sub %ld.%06ld\n",tv_res.tv_sec,tv_res.tv_usec);
+	if(!timercmp(&tv_res,&tv_ref,<))reqsnd=true;
+      } else reqsnd=true;
+
+      if(reqsnd) {
+	reqsnd=false;
+	memcpy(&tv_snd,&tv,sizeof(tv));
+        printf("snd %ld.%06ld\n",tv.tv_sec,tv.tv_usec);
+        //snd = sendto(sockfd,(char *)buf,lg,0,(struct sockaddr *)&to,sizeof(to));
+      }
     }
-    pthread_mutex_unlock(& mtx);
   }
   return NULL;
 }
