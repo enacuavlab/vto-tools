@@ -1,5 +1,5 @@
 /*
-gcc natnet2pprz.c -lpthread -o natnet2pprz
+gcc natnet2pprz.c -lpthread -lrt -o natnet2pprz
 */
 
 /*
@@ -49,6 +49,8 @@ gcc natnet2pprz.c -lpthread -o natnet2pprz
 #include <stdbool.h>
 #include <stdint.h>
 #include <sys/time.h>
+#include <signal.h>
+#include <time.h>
 
 #define GROUNDPORT 5000
 #define BOARDPORT  5010
@@ -121,14 +123,54 @@ Id: 116
 }
 
 
+void sighler () {
+  struct timeval tv;
+  gettimeofday(&tv,NULL);
+  printf("Tick %ld.%06ld\n",tv.tv_sec,tv.tv_usec);
+}
+
+
+int  init_timer(timer_t *timerid,struct itimerspec *in) {
+  int Ret;
+
+  pthread_attr_t attr;
+  pthread_attr_init( &attr );
+
+  struct sched_param parm;
+  parm.sched_priority = 255;
+  pthread_attr_setschedparam(&attr, &parm);
+
+  struct sigevent sig;
+  sig.sigev_notify = SIGEV_THREAD;
+  sig.sigev_notify_function = sighler;
+  sig.sigev_value.sival_int =20;
+  sig.sigev_notify_attributes = &attr;
+
+  Ret = timer_create(CLOCK_REALTIME, &sig, timerid);
+  if (Ret == 0) {
+    in->it_interval.tv_sec = 2;
+    in->it_interval.tv_nsec = 0;
+    in->it_value.tv_sec = in->it_interval.tv_sec;
+    in->it_value.tv_nsec = in->it_interval.tv_nsec;
+  }
+
+  return(Ret);
+}
+
+
 void* recvloop(void *arg) {
   struct timeval tv;
   int one=1;
+  bool once=true;
   int rcv;
   struct sockaddr_in from;
   int from_len;
   char buf[MAXMSGSIZE];
   int sockfd = -1;
+
+  struct itimerspec in, out;
+  timer_t timerid;
+  int ret=init_timer(&timerid,&in);
 
   printf("recvloop\n");
   sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
@@ -149,6 +191,11 @@ void* recvloop(void *arg) {
         pthread_mutex_unlock(& g_mtx);
         pthread_cond_signal(& g_cnd);
         printf("rcv %ld.%06ld\n",tv.tv_sec,tv.tv_usec);
+	if(once) {
+	  once=false;
+	  timer_settime(timerid,0,&in,&out);
+	  printf("START TIMER\n");
+	}
       }
     }
   }
