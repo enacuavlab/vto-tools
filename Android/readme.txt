@@ -9,26 +9,5 @@ socat - udp-recv:5555
 
 
 
+stdbuf -oL -eL socat - udp-recv:5555 | tee 5ms_sample.log
 
-
-
-
-
-
-
-
-
-
-
-
-----------------------------------------------------
-Google play android application:
-Sensorstream IMU+GPS
-Axel Lorenz
-
-- set target IP address
-- set UDP stream 
-- switch stream 
-- set sensors
-
-socat - udp-recvfrom:5555,fork

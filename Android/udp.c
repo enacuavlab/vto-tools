@@ -44,7 +44,7 @@ void* recvloop(void *arg) {
   char buf[MAX_PACKETSIZE];
   int fd = *((int*)arg);
   struct timeval tv,tv_st,tv_res;
-  float ugyr[3],uacc[3],gyr[3],acc[3];
+  float ugyr[3],uacc[3],umag[3],gyr[3],acc[3],mag[3];
 
   timerclear(&tv_st);
   while(1) {
@@ -57,8 +57,8 @@ void* recvloop(void *arg) {
       }
       memcpy(&tv_st,&tv,sizeof(tv));
       printf("%s\n",buf);
-      sscanf(buf,"%f,%f,%f,%f,%f,%f",&ugyr[0],&ugyr[1],&ugyr[2],&uacc[0],&uacc[1],&uacc[2]);
-      printf("%f %f %f %f %f %f\n",ugyr[0],ugyr[1],ugyr[2],uacc[0],uacc[1],uacc[2]);
+      sscanf(buf,"%f,%f,%f,%f,%f,%f,%f,%f,%F",&ugyr[0],&ugyr[1],&ugyr[2],&uacc[0],&uacc[1],&uacc[2],&umag[0],&umag[1],&umag[2]);
+      printf("%f %f %f %f %f %f %f %f %f\n",ugyr[0],ugyr[1],ugyr[2],uacc[0],uacc[1],uacc[2],umag[0],umag[1],umag[2]);
     }
   }
   return NULL;
