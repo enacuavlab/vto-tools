@@ -11,3 +11,6 @@ socat - udp-recv:5555
 
 stdbuf -oL -eL socat - udp-recv:5555 | tee 5ms_sample.log
 
+sudo apt-get install feedgnuplot
+
+stdbuf -oL -eL socat - udp-recv:5555 | awk -F "[ ,]" -W interactive -f ./awkscript

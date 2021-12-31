@@ -1,5 +1,5 @@
 /*
-gcc test.c -lpthread -o test
+gcc udp.c -lpthread -o udp
 
 */
 #include <stdio.h>

@@ -1,5 +1,5 @@
 /*
-gcc file.c -o file
+gcc calib.c -o calib
 
 */
 #include <stdio.h>
