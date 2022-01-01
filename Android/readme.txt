@@ -13,8 +13,8 @@ stdbuf -oL -eL socat - udp-recv:5555 | tee 5ms_sample.log
 
 sudo apt-get install feedgnuplot
 
-stdbuf -oL -eL socat - udp-recv:5555 | awk -F "[ ,]" -W interactive '{print systime()" "$1}'  | feedgnuplot --stream --exit --domain --timefmt %s --lines
+stdbuf -oL -eL socat - udp-recv:5555 | awk -F "[ ,]" -W interactive -v start="$(date +%s%3N)" '{cmd="(date +'%s%3N')";cmd | getline d;print d-start,$1;close(cmd)}' | feedgnuplot --stream 0.01 --exit --domain --lines --xlen 10000
 
-stdbuf -oL -eL socat - udp-recv:5555 | awk -F "[ ,]" -W interactive '{cmd="(date +'%s%3N')";cmd | getline d;print d,$1;close(cmd)}'| feedgnuplot --stream --exit --domain --timefmt %s --lines
+stdbuf -oL -eL socat - udp-recv:5555 | awk -F "[ ,]" -W interactive -v start="$(date +%s%3N)" '{cmd="(date +'%s%3N')";cmd | getline d;print d-start,$1;close(cmd)}' | tee 5ms_accelcalibpurpose.log | feedgnuplot --stream 0.01 --exit --domain --lines --xlen 10000
 
-stdbuf -oL -eL socat - udp-recv:5555 | awk -F "[ ,]" -W interactive '{cmd="(date +'%s%3N')";cmd | getline d;print d,$1;close(cmd)}'| feedgnuplot --stream --exit --domain --lines
+feedgnuplot --domain --lines 5ms_accelcalibpurpose.log
