@@ -86,43 +86,36 @@ int main( int argc, char*argv[]){
 
     // Filter noisy within a sliding window
     float noise_threshold=median*ACCNOISEPERCENT;
-    float noise=0.;
-    bool loop=true;
-    elt_t* eltin;
+    float noise;
     elt=first;
-    while(loop){
+    elt_t *eltin,*eltout;
+    while(elt!=NULL){
+      eltin=elt;
       cpt=0;
       noise=0.;
-      eltin=elt;
-      while((cpt<ACCNOISEWINDOW)&&loop){
-        noise+=((eltin->val)*(eltin->val));
+      while((eltin!=NULL)&&(ACCNOISEWINDOW>cpt++)){
+        eltin->valmed=sqrt(((eltin->val)*(eltin->val)));
+	noise+=eltin->valmed;
         eltin=eltin->nxt;
-	if(eltin==NULL)loop=false;
-	cpt++;
       }
-      noise=sqrt(noise)/cpt;
-      if(noise<noise_threshold){
-	cpt=0;
-	loop=true;
-        eltin=elt;
-        while((cpt<ACCNOISEWINDOW)&&loop){
-          eltin->filtered=true;
-          eltin=eltin->nxt;
-	  if(eltin==NULL)loop=false;
-	  cpt++;
-	}
+      noise/=ACCNOISEWINDOW;
+      eltout=elt;
+      elt=eltin;
+      cpt=0;
+      noise/=ACCNOISEPERCENT*10;
+      while((eltout!=NULL)&&(ACCNOISEWINDOW>cpt++)){
+        if(eltout->valmed > noise) eltout->filtered=true;
+	printf("%f %f %d\n",noise,eltout->valmed,eltout->filtered);
+	eltout=eltout->nxt;
       }
-      elt=elt->nxt;
     }
 
-    // Display
-/* 
+    // Output non filtered
     elt=first;
-    while(elt->nxt!=NULL){
-      printf("%d %d %d %f\n",true,(elt->stamp),(elt->filtered),(elt->val));
+    while(elt!=NULL){
+      if((elt->filtered==false)&&(elt->val!=0.))printf("%d %f\n",elt->stamp,elt->val);
       elt=elt->nxt;
     }
-*/
   }
   return(0);
 }

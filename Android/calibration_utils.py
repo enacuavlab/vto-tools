@@ -101,6 +101,7 @@ def filter_meas(meas, window_size, noise_threshold):
     for i in range(window_size, len(meas)-window_size):
         noise = meas[i-window_size:i+window_size, :].std(axis=0)
         if linalg.norm(noise) < noise_threshold:
+            #print(linalg.norm(noise))
             filtered_meas.append(meas[i, :])
             filtered_idx.append(i)
     return np.array(filtered_meas), filtered_idx
