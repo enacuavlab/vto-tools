@@ -18,6 +18,7 @@ typedef struct elt_t elt_t;
 struct elt_t {
   unsigned int stamp;
   float val;
+  float valmed;
   bool filtered;
   struct elt_t *nxt;
 };
@@ -45,25 +46,43 @@ int main( int argc, char*argv[]){
     elt=first;
     float neutral=0.;
     cpt=0;
-    while(elt->nxt!=NULL){
+    while(elt!=NULL){
       neutral+=(elt->val);
       elt=elt->nxt;
       cpt++;
     }
+    cpt--;
     neutral/=cpt;
-    //printf("neutral:%f\n",neutral);
+    printf("neutral:%f\n",neutral);
 
     // Compute median L2 norm
     elt=first;
-    float median=0.;
+    while(elt!=NULL){
+      elt->valmed=sqrt(((elt->val)-neutral)*((elt->val)-neutral));
+      elt=elt->nxt;
+    }
+    elt=first;
+    float tmp;
     cpt=0;
-    while(elt->nxt!=NULL){
-      median+=sqrt(((elt->val)-neutral)*((elt->val)-neutral));
+    while(elt!=NULL){
+      elt_t *eltin=elt;
+      while(eltin!=NULL){
+        if((eltin->valmed)<(elt->valmed)) {
+	  tmp=elt->valmed;
+          elt->valmed=eltin->valmed;
+	  eltin->valmed=tmp;
+	}
+        eltin=eltin->nxt;
+      }
       elt=elt->nxt;
       cpt++;
     }
+    elt=first;
+    float median=0.;
+    cpt=(cpt-1)/2;
+    while((elt!=NULL)&&(0<cpt--)) elt=elt->nxt;
+    median=elt->valmed;
     printf("median:%f\n",median);
-
 
     // Filter noisy within a sliding window
     float noise_threshold=median*ACCNOISEPERCENT;

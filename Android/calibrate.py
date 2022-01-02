@@ -94,18 +94,20 @@ def main():
     if noise_threshold <= 0:
         # mean over all measurements (flattended array) as approx neutral value
         neutral = scipy.mean(measurements)
+        print("neutral:%f" % neutral)
         # find the median of measurement vector length after subtracting approximate neutral
         som=0.
         cpt=0
         for v in measurements:
-          som=som+scipy.linalg.norm(v - neutral)
+          #print(scipy.linalg.norm(v - neutral))
           cpt=cpt+1
-        print(som)
+        #print(som)
         #print(cpt)
         #print([scipy.linalg.norm(v - neutral) for v in measurements])
 
         meas_median = scipy.median(scipy.array([scipy.linalg.norm(v - neutral) for v in measurements]))
-        print(meas_median)
+        print("median:%f" % meas_median)
+
         if options.sensor == "ACCEL":
             # set noise threshold to be below 10% of that for accelerometers
             noise_threshold = meas_median * 0.1
