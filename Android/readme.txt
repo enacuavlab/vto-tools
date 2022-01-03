@@ -19,4 +19,15 @@ stdbuf -oL -eL socat - udp-recv:5555 | awk -F "[ ,]" -W interactive -v start="$(
 
 feedgnuplot --domain --lines 5ms_accelcalibpurpose.log
 
-./calib ./5ms_accelcalibpurpose.log | feedgnuplot --exit --domain --lines
+./filter 20 10 ./5ms_accelcalibpurpose.log | feedgnuplot --exit --domain --lines
+...
+Tunne to remove highest pics
+...
+./filter 25 10 ./5ms_accelcalibpurpose.log | feedgnuplot --exit --domain --lines
+
+./filter 25 10 ./5ms_accelcalibpurpose.log > 5ms_accelcalibpurpose.filtered
+
+./scale 9.81 10 ./5ms_accelcalibpurpose.filtered | feedgnuplot --exit --domain --lines
+
+./scale 9.81 10 ./5ms_accelcalibpurpose.filtered > 5ms_accelcalibpurpose.scaled
+

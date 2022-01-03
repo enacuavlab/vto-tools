@@ -118,6 +118,8 @@ def main():
         print("Using noise threshold of", noise_threshold, "for filtering.")
 
     # filter out noisy measurements
+    print("noise_threshold:%f" % noise_threshold)
+    print("noise_window:%f" % noise_window)
     flt_meas, flt_idx = calibration_utils.filter_meas(measurements, noise_window, noise_threshold)
     if options.verbose:
         print("remaining "+str(len(flt_meas))+" after filtering")

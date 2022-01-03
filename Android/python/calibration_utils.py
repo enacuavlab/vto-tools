@@ -21,6 +21,7 @@
 
 from __future__ import print_function, division
 
+import math
 import re
 import numpy as np
 from numpy import sin, cos
@@ -99,7 +100,19 @@ def filter_meas(meas, window_size, noise_threshold):
     filtered_meas = []
     filtered_idx = []
     for i in range(window_size, len(meas)-window_size):
+        print(i)
+        #print(i-window_size)
+        #print(i+window_size)
         noise = meas[i-window_size:i+window_size, :].std(axis=0)
+        print(meas[i-window_size:i+window_size])
+        print(noise)
+        #print(meas[i-window_size:i+window_size, :])
+        #print(meas[i-window_size:i+window_size, :].std(axis=0))
+        #print(noise)
+        #print(linalg.norm(noise))
+        #print(math.sqrt(noise*noise))
+        print(noise_threshold)
+        #print("\n");
         if linalg.norm(noise) < noise_threshold:
             #print(linalg.norm(noise))
             filtered_meas.append(meas[i, :])

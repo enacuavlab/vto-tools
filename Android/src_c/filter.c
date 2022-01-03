@@ -1,5 +1,5 @@
 /*
-gcc -g calib.c -lm -o calib
+gcc filter.c -lm -o filter
 */
 #include <stdio.h>
 #include <string.h>
@@ -7,9 +7,7 @@ gcc -g calib.c -lm -o calib
 #include <stdbool.h>
 #include <math.h>
 
-#define ACCNOISEPERCENT 0.1 // Below 10%
 #define MAGNOISEPERCENT 0.6 // Below 60%
-#define ACCNOISEWINDOW	20
 #define MAGNOISEWINDOW	10
 
 #define STRSIZE 500
@@ -27,9 +25,12 @@ struct elt_t {
 int main( int argc, char*argv[]){
   char buf[STRSIZE];
   int cpt=0;
+  int total=0;
 
-  if(argc<=1) exit(-1);
-  FILE *in=fopen(argv[1],"r");
+  if(argc<=3) exit(-1);
+  int noisewindows=atoi(argv[1]);
+  int  noisepercent=atoi(argv[2]);
+  FILE *in=fopen(argv[3],"r");
   if(in!=NULL){
     elt_t* elt=malloc(sizeof(elt_t));
     elt->nxt=(struct elt_t*)0;
@@ -40,6 +41,7 @@ int main( int argc, char*argv[]){
       (elt->nxt)=malloc(sizeof(elt_t));
       (elt->nxt->nxt)=(struct elt_t*)0;
       elt=elt->nxt;
+      total++;
     }
 
     // Compute mean
@@ -53,7 +55,6 @@ int main( int argc, char*argv[]){
     }
     cpt--;
     neutral/=cpt;
-    printf("neutral:%f\n",neutral);
 
     // Compute median L2 norm
     elt=first;
@@ -82,32 +83,38 @@ int main( int argc, char*argv[]){
     cpt=(cpt-1)/2;
     while((elt!=NULL)&&(0<cpt--)) elt=elt->nxt;
     median=elt->valmed;
-    printf("median:%f\n",median);
 
     // Filter noisy within a sliding window
-    float noise_threshold=median*ACCNOISEPERCENT;
+    float noise_threshold=median*noisepercent/100.;
     float noise;
+    float sd;
+    int nb=0;
     elt=first;
-    elt_t *eltin,*eltout;
-    while(elt!=NULL){
+    elt_t *eltin;
+    while((total-2*noisewindows)>nb++){
       eltin=elt;
       cpt=0;
       noise=0.;
-      while((eltin!=NULL)&&(ACCNOISEWINDOW>cpt++)){
-        eltin->valmed=sqrt(((eltin->val)*(eltin->val)));
-	noise+=eltin->valmed;
+      while((eltin!=NULL)&&((2*noisewindows)>cpt++)){
+	noise+=eltin->val;
         eltin=eltin->nxt;
       }
-      noise/=ACCNOISEWINDOW;
-      eltout=elt;
-      elt=eltin;
+      noise/=2*noisewindows;
+      eltin=elt;
       cpt=0;
-      noise/=ACCNOISEPERCENT*10;
-      while((eltout!=NULL)&&(ACCNOISEWINDOW>cpt++)){
-        if(eltout->valmed > noise) eltout->filtered=true;
-	printf("%f %f %d\n",noise,eltout->valmed,eltout->filtered);
-	eltout=eltout->nxt;
+      sd=0.;
+      while((eltin!=NULL)&&(2*noisewindows>cpt++)){
+	sd+=(((eltin->val)-noise)*((eltin->val)-noise));
+	eltin=eltin->nxt;
       }
+      sd=sqrt(sd/(2*noisewindows));
+      eltin=elt;
+      cpt=0;
+      while((eltin!=NULL)&&(2*noisewindows>cpt++)){
+	if(sd>noise_threshold)elt->filtered=true;
+	eltin=eltin->nxt;
+      }
+      elt=elt->nxt;
     }
 
     // Output non filtered
