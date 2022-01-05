@@ -14,7 +14,7 @@ gcc udp.c -lpthread -o udp
 #include <sys/time.h>
 
 
-#define DATAPORT 5555
+#define DATAPORT 5554
 
 #define MAX_PACKETSIZE 1024
 
@@ -38,6 +38,7 @@ int createsocketdata() {
 
 
 void* recvloop(void *arg) {
+  int stamp;
   int rcv;
   struct sockaddr_in their;
   int addr_len;
@@ -56,9 +57,10 @@ void* recvloop(void *arg) {
         printf("sub %ld.%06ld\n",tv_res.tv_sec,tv_res.tv_usec);
       }
       memcpy(&tv_st,&tv,sizeof(tv));
-      printf("%s\n",buf);
-      sscanf(buf,"%f,%f,%f,%f,%f,%f,%f,%f,%F",&ugyr[0],&ugyr[1],&ugyr[2],&uacc[0],&uacc[1],&uacc[2],&umag[0],&umag[1],&umag[2]);
-      printf("%f %f %f %f %f %f %f %f %f\n",ugyr[0],ugyr[1],ugyr[2],uacc[0],uacc[1],uacc[2],umag[0],umag[1],umag[2]);
+      sscanf(buf,"%d %f %f %f %f %f %f",&stamp,&umag[0],&umag[1],&umag[2],&uacc[0],&uacc[1],&uacc[2]);
+      printf("%d %f %f %f %f %f %f\n",stamp,umag[0],umag[1],umag[2],uacc[0],uacc[1],uacc[2]);
+      //sscanf(buf,"%f,%f,%f,%f,%f,%f,%f,%f,%F",&ugyr[0],&ugyr[1],&ugyr[2],&uacc[0],&uacc[1],&uacc[2],&umag[0],&umag[1],&umag[2]);
+      //printf("%f %f %f %f %f %f %f %f %f\n",ugyr[0],ugyr[1],ugyr[2],uacc[0],uacc[1],uacc[2],umag[0],umag[1],umag[2]);
     }
   }
   return NULL;
