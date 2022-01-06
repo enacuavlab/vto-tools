@@ -1,5 +1,5 @@
 /*
-gcc udp.c -lpthread -o udp
+gcc udp.c -lpthread -lm -o udp
 
 */
 #include <stdio.h>
@@ -12,11 +12,54 @@ gcc udp.c -lpthread -o udp
 #include <unistd.h>
 #include <stdbool.h>
 #include <sys/time.h>
+#include <math.h>
 
 
-#define DATAPORT 5554
+#define DATAPORT 5555
 
 #define MAX_PACKETSIZE 1024
+
+#define FORMAT	"%f,%f,%f,%f,%f,%f,%f,%f,%f"
+#define ARGUMENTS &u[0][0],&u[0][1],&u[0][2],&u[1][0],&u[1][1],&u[1][2],&u[2][0],&u[2][1],&u[2][2]
+#define MAGPOS 0
+#define GYRPOS 1
+#define ACCPOS 2
+
+// Z UP
+
+float ACC_NEUTRAL[3]={0.580,0.020,0.050};
+float GYR_NEUTRAL[3]={0.006,-0.002,0.004};
+float MAG_NEUTRAL[3]={78.178131,0.600000,43.228127};
+
+
+void apply_calibration(float u[3][3],float c[][3]){  
+  for(int i=0;i<3;i++){
+    c[MAGPOS][i]=u[MAGPOS][i]-MAG_NEUTRAL[i];
+    c[GYRPOS][i]=u[GYRPOS][i]-GYR_NEUTRAL[i];
+    c[ACCPOS][i]=u[ACCPOS][i]-ACC_NEUTRAL[i];
+  }
+}
+
+
+void update_imu(float c[3][3],float dt,float *q){  // W X Y Z
+  float E[3];
+  for(int i=0;i<3;i++)E[i]=c[GYRPOS][i]*dt;
+  q[0] = cos(E[0]/2) * cos(E[1]/2) * cos(E[2]/2) + sin(E[0]/2) * sin(E[1]/2) * sin(E[2]/2);
+  q[1] = sin(E[0]/2) * cos(E[1]/2) * cos(E[2]/2) - cos(E[0]/2) * sin(E[1]/2) * sin(E[2]/2);
+  q[2] = cos(E[0]/2) * sin(E[1]/2) * cos(E[2]/2) + sin(E[0]/2) * cos(E[1]/2) * sin(E[2]/2);
+  q[3] = cos(E[0]/2) * cos(E[1]/2) * sin(E[2]/2) - sin(E[0]/2) * sin(E[1]/2) * cos(E[2]/2);
+}
+
+
+void to_euler(float q[4],float *a){  // roll,picth,yaw
+  a[0]=atan2(2*(q[0]*q[1]+q[2]*q[3]),1-2*(q[1]*q[1]+q[2]*q[2])); // roll (x-axis rotation)
+  float sinp = 2*(q[0]*q[2]-q[3]*q[1]);  
+  if (abs(sinp)>=1) {                                            // pitch (y-axis rotation)                       
+    if(sinp<0.)a[1]=-M_PI/2;
+    else a[1]=-M_PI/2;
+  } else a[1]=asin(sinp);
+  a[2]=atan2(2*(q[0]*q[3]+q[1]*q[2]),1-2*(q[2]*q[2]+q[3]*q[3]));  // yaw (z-axis rotation)
+}
 
 
 int createsocketdata() {
@@ -36,7 +79,6 @@ int createsocketdata() {
   return(sockfd);
 }
 
-
 void* recvloop(void *arg) {
   int stamp;
   int rcv;
@@ -45,7 +87,6 @@ void* recvloop(void *arg) {
   char buf[MAX_PACKETSIZE];
   int fd = *((int*)arg);
   struct timeval tv,tv_st,tv_res;
-  float ugyr[3],uacc[3],umag[3],gyr[3],acc[3],mag[3];
 
   timerclear(&tv_st);
   while(1) {
@@ -54,13 +95,18 @@ void* recvloop(void *arg) {
       gettimeofday(&tv,NULL);
       if (timerisset(&tv_st)){
         timersub(&tv,&tv_st,&tv_res);
-        printf("sub %ld.%06ld\n",tv_res.tv_sec,tv_res.tv_usec);
+        //printf("sub %ld.%06ld\n",tv_res.tv_sec,tv_res.tv_usec);
       }
       memcpy(&tv_st,&tv,sizeof(tv));
-      sscanf(buf,"%d %f %f %f %f %f %f",&stamp,&umag[0],&umag[1],&umag[2],&uacc[0],&uacc[1],&uacc[2]);
-      printf("%d %f %f %f %f %f %f\n",stamp,umag[0],umag[1],umag[2],uacc[0],uacc[1],uacc[2]);
-      //sscanf(buf,"%f,%f,%f,%f,%f,%f,%f,%f,%F",&ugyr[0],&ugyr[1],&ugyr[2],&uacc[0],&uacc[1],&uacc[2],&umag[0],&umag[1],&umag[2]);
-      //printf("%f %f %f %f %f %f %f %f %f\n",ugyr[0],ugyr[1],ugyr[2],uacc[0],uacc[1],uacc[2],umag[0],umag[1],umag[2]);
+      float u[3][3]; 
+      sscanf(buf,FORMAT,ARGUMENTS);
+      float c[3][3];
+      apply_calibration(u,c);
+      float q[4]; // W X Y Z
+      update_imu(c,.5,(float *)&q);
+      float a[3];
+      to_euler(q,(float *)a);  // roll,picth,yaw
+      printf("%f\n",a[0]);
     }
   }
   return NULL;
