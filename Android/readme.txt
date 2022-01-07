@@ -91,4 +91,6 @@ stdbuf -oL -eL socat - udp-recvfrom:5555,fork | LC_NUMERIC="C" awk -F "[ ,]" -W 
 
 socat - udp4-listen:5554,reuseaddr,fork
 
+
+stdbuf -oL -eL ./udp | awk -F "[ ,]" -W interactive -v start="$(date +%s%3N)" '{cmd="(date +'%s%3N')";cmd | getline d;print d-start,$1,$2,$3;close(cmd)}' | feedgnuplot --stream 0.01 --exit --domain --lines --xlen 10000
  
