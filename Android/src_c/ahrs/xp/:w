@@ -8,9 +8,9 @@ https://blog.endaq.com/quaternions-for-orientation
 #include "ahrs_common.h"
 
 void ahrs_filters_1(float c[3][3],float *q_a) {
-  q_a[0]=c[ACCPOS][0]*.10f;  // 
-  q_a[1]=-c[ACCPOS][2]*.10f; // ROLL
-  q_a[2]=c[ACCPOS][1]*.10f;  // PITCH
+  q_a[0]=-c[ACCPOS][0]*.10f; 
+  q_a[1]=-c[ACCPOS][2]*.10f; 
+  q_a[2]=c[ACCPOS][1]*.10f; 
   q_a[3]=0;//c[ACCPOS][3]; 
 /*
   q_a[0]=-c[ACCPOS][0]; // projection du vecteur ay, vers la droite

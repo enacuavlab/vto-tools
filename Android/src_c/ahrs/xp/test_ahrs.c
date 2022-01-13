@@ -6,8 +6,9 @@ socat - UDP-RECV:5555,bind=0.0.0.0,reuseaddr,ip-add-membership=237.252.249.227:0
 
 gcc test_ahrs.c -g -lpthread -lm -o test_ahrs
 
-stdbuf -oL -eL ./test_ahrs 1 | awk -F "[ ,]" -W interactive -v start="$(date +%s%3N)" '{cmd="(date +'%s%3N')";cmd | getline d;print d-start,$1,$2,$3;close(cmd)}' | feedgnuplot --stream 0.01 --exit --domain --lines --xlen 10000
+stdbuf -oL -eL ./test_ahrs 1 | tee >(socat - udp-sendto:127.0.0.1:5554) | awk -F "[ ,]" -W interactive -v start="$(date +%s%3N)" '{cmd="(date +'%s%3N')";cmd | getline d;print d-start,$1,$2,$3,$4;close(cmd)}' | feedgnuplot --stream 0.01 --exit --domain --lines --xlen 10000
 
+socat - UDP-RECV:5554,bind=0.0.0.0,reuseaddr
 
 */
 #include <stdio.h>
@@ -22,7 +23,7 @@ stdbuf -oL -eL ./test_ahrs 1 | awk -F "[ ,]" -W interactive -v start="$(date +%s
 #include <sys/time.h>
 
 #define DATAPORT 5555
-#define MCASTIP "237.252.249.227"
+//#define MCASTIP "237.252.249.227"
 #define MAX_PACKETSIZE 1024
 
 #define FORMAT	"%f,%f,%f,%f,%f,%f,%f,%f,%f"
@@ -95,7 +96,7 @@ void* recvloop(void *arg) {
         apply_calibration(u,c);
         float q[4];
         ahrs_filters[opt-1](c,q);
-        printf("%f %f %F\n",q[1],q[2],q[3]); // w x y z
+        printf("%f %f %f %f\n",q[0],q[1],q[2],q[3]); // w x y z
       }
     }
   }
