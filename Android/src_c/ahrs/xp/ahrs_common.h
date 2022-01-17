@@ -3,29 +3,19 @@
 
 #include "math.h"
 
-float quat_norm(float q[4]){
-  return sqrt(q[0]*q[0]+q[1]*q[1]+q[2]*q[2]+q[3]*q[3]);
-}
-
-void quat_normalization(float q[4]){
-  float norm=quat_norm(q);
+void quat_norm(float q[4]){
+  float norm=sqrt(q[0]*q[0]+q[1]*q[1]+q[2]*q[2]+q[3]*q[3]);
   q[0]/=norm;
   q[1]/=norm;
   q[2]/=norm;
   q[3]/=norm;
 }
 
-void quat_toeulerdeg(float q[4], float *v){ // W X Y Z -> roll pitch yaw
-/*
-  v[0]=atan2f((2*q[2]*q[3]-2*q[0]*q[1]),(2*q[0]*q[0]+2*q[3]*q[3]-1))*(180.0f/M_PI); // roll
-  v[1]=-asinf(2*q[1]*q[3]+2*q[0]*q[2])*(180.0f/M_PI);                               // pitch
-  v[2]=atan2f((2*q[1]*q[2]-2*q[0]*q[3]),(2*q[0]*q[0]+2*q[1]*q[1]-1))*(180.0f/M_PI); // yaw
-*/
-/*
-  v[0]=atan2f(2*(q[0]*q[1]-q[2]*q[3]),1-2*(q[1]*q[1]+q[2]*q[2]))*(180.0f/M_PI); // roll
-  v[1]=asin(2*(q[0]*q[2]-q[1]*q[3]))*(180.0f/M_PI);                              // pitch
-  v[2]=atan2f(2*(q[0]*q[3]-q[1]*q[2]),1-2*(q[2]*q[2]+q[3]*q[3]))*(180.0f/M_PI); // yaw
-*/
+void quat_mult(float q[4], float p[4], float *m){
+  m[0]=q[0]*p[0]-q[1]*p[1]-q[2]*p[2]-q[3]*p[3];
+  m[1]=q[1]*p[0]+q[0]*p[1]-q[3]*p[2]+q[2]*p[3];
+  m[2]=q[2]*p[0]+q[3]*p[1]+q[0]*p[2]-q[1]*p[3];
+  m[3]=q[3]*p[0]-q[2]*p[1]+q[1]*p[2]+q[0]*p[3];
 }
 
 #endif // ahrs_common_h
