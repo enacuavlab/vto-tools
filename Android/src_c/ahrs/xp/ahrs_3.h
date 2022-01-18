@@ -10,10 +10,6 @@ stdbuf -oL -eL ./test_ahrs 3 | tee >(socat - udp-sendto:127.0.0.1:5554) | awk -F
 
 #include "ahrs_common.h"
 
-float r_pitch=0.0f;
-float r_yaw=0.0f;
-float r_roll=0.0f;
-
 void ahrs_filters_3(float c[3][3],float *r) {
   float a[4];
   a[0]=-c[ACCPOS][0]; // AccY

@@ -36,7 +36,8 @@ socat - UDP-RECV:5554,bind=0.0.0.0,reuseaddr
 #include "ahrs_2.h"
 #include "ahrs_3.h"
 #include "ahrs_4.h"
-void (*ahrs_filters[4])(float[3][3],float *) = {ahrs_filters_1,ahrs_filters_2,ahrs_filters_3,ahrs_filters_4};
+#include "ahrs_5.h"
+void (*ahrs_filters[5])(float[3][3],float *) = {ahrs_filters_1,ahrs_filters_2,ahrs_filters_3,ahrs_filters_4,ahrs_filters_5};
 
 // Z UP
 
@@ -100,7 +101,7 @@ void* recvloop(void *arg) {
         ahrs_filters[opt-1](c,q);
         //printf("%f %f %f %f\n",q[0],q[1],q[2],q[3]); // w x y z
 	float n=1.0;//1/sqrt(c[0][0]*c[0][0]+c[0][1]*c[0][1]+c[0][2]*c[0][2]);
-        printf("%f %f %f %f %f %f %f\n",q[0],q[1],q[2],q[3],n*c[MAGPOS][0],n*c[MAGPOS][1],n*c[MAGPOS][2]); // w x y z
+        printf("%f %f %f %f %f %f %f\n",q[0],q[1],q[2],q[3],n*c[ACCPOS][0],n*c[ACCPOS][1],n*c[ACCPOS][2]); // w x y z
       }
     }
   }
