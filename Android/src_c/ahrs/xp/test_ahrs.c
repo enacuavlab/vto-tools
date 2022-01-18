@@ -99,8 +99,8 @@ void* recvloop(void *arg) {
         float q[4];
         ahrs_filters[opt-1](c,q);
         //printf("%f %f %f %f\n",q[0],q[1],q[2],q[3]); // w x y z
-	float n=1/sqrt(c[0][0]*c[0][0]+c[0][1]*c[0][1]+c[0][2]*c[0][2]);
-        printf("%f %f %f %f %f %f %f\n",q[0],q[1],q[2],q[3],n*c[0][0],n*c[0][1],n*c[0][2]); // w x y z
+	float n=1.0;//1/sqrt(c[0][0]*c[0][0]+c[0][1]*c[0][1]+c[0][2]*c[0][2]);
+        printf("%f %f %f %f %f %f %f\n",q[0],q[1],q[2],q[3],n*c[MAGPOS][0],n*c[MAGPOS][1],n*c[MAGPOS][2]); // w x y z
       }
     }
   }
