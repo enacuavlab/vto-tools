@@ -170,7 +170,7 @@ char* UnpackFrameSuffixData(char* ptr)
   ptr += 8;
   double timestamp = 0.0f;
   memcpy(&timestamp, ptr, 8); ptr += 8;
-  printf("Timestamp : %3.3f\n", timestamp);
+  //printf("Timestamp : %3.3f\n", timestamp);
   ptr += 30;
   return ptr;
 }

@@ -81,21 +81,21 @@ void* recvloop(void *arg) {
   struct rigidbody_t *tmp;
 
   while(1) {
-    printf("In\n");
+    //printf("In\n");
     rcv = recvfrom(fd,(char *)buf,MAX_PACKETSIZE,0,(struct sockaddr *)&their,(socklen_t*)&addr_len);
     if(rcv>0) {
       MyUnpack(buf,MAJOR,MINOR,(void *)&mybodies);
       if(mybodies.nb>0) {
-        printf("----------------------------------------\n");
-        printf("%d\n",mybodies.fr);
+        //printf("----------------------------------------\n");
+        //printf("%d\n",mybodies.fr);
         for (int j = 0; j < mybodies.nb; j++) {
           tmp = &(mybodies.bodies[j]); 
-          printf("Valid: %s\n", (tmp->val) ? "True" : "False");
-          printf("Id: %d\n",tmp->id);
-          printf("%f %f %f\n",tmp->pos[0],tmp->pos[1],tmp->pos[2]);
-          printf("%f %f %f %f\n",tmp->ori[0],tmp->ori[1],tmp->ori[2],tmp->ori[3]);
+          //printf("Valid: %s\n", (tmp->val) ? "True" : "False");
+          //printf("Id: %d\n",tmp->id);
+          //printf("%f %f %f\n",tmp->pos[0],tmp->pos[1],tmp->pos[2]);
+          printf("%f %f %f %f\n",tmp->ori[0],tmp->ori[2],-tmp->ori[1],tmp->ori[3]);
         }
-        printf("----------------------------------------\n");
+        //printf("----------------------------------------\n");
       }
     }
   }
