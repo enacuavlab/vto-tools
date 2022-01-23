@@ -6,11 +6,8 @@ using System.Text;
 using System.Threading;
 using UnityEngine;
 
-public class CubeScript : MonoBehaviour
+public class Cube : MonoBehaviour
 {
-
-  public Vector3 newRotation;
-  
   private int receivePort = 5554;
   private UdpClient udpClient;
   private Thread receiveThread;
@@ -18,12 +15,10 @@ public class CubeScript : MonoBehaviour
   private string message = "";
     
   void Start() {
-  
-    transform.localScale=new Vector3(5.0f,1.0f,10.0f);
-//    transform.position=new Vector3(0.0f,0.0f,10.0f);
       
-//    mainCamera.GetComponent<Camera>().transform.position=new Vector3(-10.0f,0.0f,0.0f);
-   
+    transform.localScale=new Vector3(5.0f,1.0f,10.0f);
+    transform.position=new Vector3(0.0f,0.0f,10.0f);
+    
     Debug.Log("Start");
     try { 
       udpClient = new UdpClient(receivePort); 
@@ -36,7 +31,7 @@ public class CubeScript : MonoBehaviour
     threadRunning = true;
     receiveThread.Start();
   }
-     
+
   void Update() {
     string tmp="";
     if (message!="") {
@@ -45,28 +40,13 @@ public class CubeScript : MonoBehaviour
         message="";
       }
       float[] floatData = Array.ConvertAll(tmp.Split(' '), float.Parse); 
-        Quaternion objOrientation=new Quaternion(floatData[3],floatData[1],floatData[0],floatData[2]);     
-//      print("["+objOrientation.x+" "+objOrientation.y+" "+objOrientation.z+" "+objOrientation.w+"]");
-//      transform.rotation=objOrientation;
-//        transform.localRotation=objOrientation;
-
-/*
-      Quaternion pitch = new Quaternion();
-      pitch=Quaternion.identity*Quaternion.AngleAxis(45, Vector3.up);  // YAW ?
-      Quaternion roll = new Quaternion();
-      roll=Quaternion.identity*Quaternion.AngleAxis(0, Vector3.forward);
-      Quaternion yaw = new Quaternion();
-      yaw=Quaternion.identity*Quaternion.AngleAxis(20*floatData[2], Vector3.right);  // PITCH ?
-      //transform.localRotation = pitch * roll * yaw * transform.localRotation;
-      transform.rotation=pitch * roll * yaw;
-*/      
- 
-      newRotation = Quaternion.LookRotation(Camera.main.transform.position - transform.position).eulerAngles;
-      transform.rotation = Quaternion.Euler(newRotation);
+      Quaternion objOrientation=new Quaternion(-floatData[0],-floatData[1],floatData[2],floatData[3]);
+      print("["+objOrientation.x+" "+objOrientation.y+" "+objOrientation.z+" "+objOrientation.w+"]");       
+      transform.rotation=objOrientation;
     }
   }
-  
-  private void ListenForMessages(UdpClient client) {   
+    
+   private void ListenForMessages(UdpClient client) {   
     IPEndPoint remoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
     while (threadRunning) {
       try {
@@ -88,5 +68,4 @@ public class CubeScript : MonoBehaviour
       Thread.Sleep(1);        
     }
   }
-  
 }
