@@ -15,6 +15,9 @@ public class Cube : MonoBehaviour
   private string message = "";
     
   void Start() {
+ 
+    string[] args = Environment.GetCommandLineArgs();  
+    if(args.Length > 1) receivePort=Convert.ToInt32(args[1].ToString(), 10);
       
     transform.localScale=new Vector3(5.0f,1.0f,10.0f);
     transform.position=new Vector3(0.0f,0.0f,10.0f);
