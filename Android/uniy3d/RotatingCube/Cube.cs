@@ -1,15 +1,26 @@
+// The default started configuration containes 'Main Camera' and 'Directional Light'
+// Create a GameObject / 3D Object / Cube
+// Associate this file to the Cube
+
+/*
+./Imu.x86_64 5554 237.252.249.227
+*/
+
+using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using UnityEngine;
+
 
 public class Cube : MonoBehaviour
 {
   private int receivePort = 5554;
   private UdpClient udpClient;
+  private IPEndPoint remoteIpEndPoint;
+  private IPAddress mcastAddr;
   private Thread receiveThread;
   private bool threadRunning = false;
   private string message = "";
@@ -17,19 +28,24 @@ public class Cube : MonoBehaviour
   void Start() {
  
     string[] args = Environment.GetCommandLineArgs();  
-    if(args.Length > 1) receivePort=Convert.ToInt32(args[1].ToString(), 10);
+    if(args.Length > 1) {
+      receivePort=Convert.ToInt32(args[1].ToString(), 10);
+      if(args.Length > 2) mcastAddr = IPAddress.Parse(args[2]);
+    }
       
     transform.localScale=new Vector3(5.0f,1.0f,10.0f);
     transform.position=new Vector3(0.0f,0.0f,10.0f);
     
     Debug.Log("Start");
     try { 
-      udpClient = new UdpClient(receivePort); 
+       remoteIpEndPoint = new IPEndPoint(IPAddress.Any, receivePort);
+       udpClient = new UdpClient(remoteIpEndPoint);
+        if(args.Length > 2) udpClient.JoinMulticastGroup(mcastAddr);     
     } catch (Exception e) {
       Debug.Log("Failed to listen for UDP at port " + receivePort + ": " + e.Message);
       return;
     }
-    receiveThread = new Thread(() => ListenForMessages(udpClient));
+    receiveThread = new Thread(() => ListenForMessages());
     receiveThread.IsBackground = true;
     threadRunning = true;
     receiveThread.Start();
@@ -49,11 +65,10 @@ public class Cube : MonoBehaviour
     }
   }
     
-   private void ListenForMessages(UdpClient client) {   
-    IPEndPoint remoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
+   private void ListenForMessages() {   
     while (threadRunning) {
       try {
-        Byte[] receiveBytes = client.Receive(ref remoteIpEndPoint); // Blocking
+        Byte[] receiveBytes = udpClient.Receive(ref remoteIpEndPoint); // Blocking
         string returnData = Encoding.UTF8.GetString(receiveBytes);
         lock (message) {
           string [] lines = returnData.Split('\n');
