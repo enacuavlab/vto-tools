@@ -63,7 +63,7 @@ public class Node : Godot.Node
 				message="";
 			}
 			float[] floatData = Array.ConvertAll(tmp.Split(' '), float.Parse); 
-			Quat objOrientation=new Quat(+floatData[0],-floatData[1],floatData[2],floatData[3]);
+			Quat objOrientation=new Quat(+floatData[0],floatData[1],floatData[2],floatData[3]);
 			//GD.Print("["+objOrientation.x+" "+objOrientation.y+" "+objOrientation.z+" "+objOrientation.w+"]");  
 			Transform t = meshinstance.Transform;
 			t.basis = new Basis(objOrientation);
