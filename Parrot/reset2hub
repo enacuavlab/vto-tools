@@ -1,0 +1,21 @@
+#!/bin/sh
+
+ifconfig eth0 down
+
+bcmwl down
+bcmwl band auto
+bcmwl autocountry 1
+bcmwl up
+bcmwl ap 0
+bcmwl join "pprz_router"
+sleep 5
+
+ifconfig eth0 192.168.1.212 netmask 255.255.255.0 up
+
+sleep 1
+route del default gw 0.0.0.0 dev eth0
+route add default gw 192.168.1.1 eth0
+
+echo nameserver 192.168.1.1 >> /etc/resolv.conf
+
+BLDC_Test_Bench -n -M 2
