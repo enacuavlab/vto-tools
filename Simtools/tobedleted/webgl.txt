@@ -7,29 +7,43 @@ sudo apt-get install nodejs
 const express = require('express')
 const http = require('http')
 const WebSocket = require('ws')
+const udp = require('dgram')
 
-const port = process.env.PORT || 8080
 const app = express()
 app.use(express.static(__dirname+'/webimu2/'));
 const httpServer = http.createServer(app)
 const wss = new WebSocket.Server({
     'server': httpServer
-})
-httpServer.listen(port)
+});
+
+const udpserver = udp.createSocket('udp4');
 
 wss.on('connection', ws => {
   ws.on('message', message => {
     console.log(`Received message => ${message}`)
   })
   ws.send('Hello! Message From Server!!')
-})
+});
+
+udpserver.on('message',function(msg,info){
+  console.log('Data received from client : ' + msg.toString());
+  console.log('Received %d bytes from %s:%d\n',msg.length, info.address, info.port);
+  wss.clients.forEach((client) => {
+    client.send(msg.toString());
+  });
+});
+
+udpserver.bind(8081);
+httpServer.listen(8080);
+
+---------------------------------------------------------------
+echo 'Salut' | socat - udp-sendto:127.0.0.01:8081
 
 
 ---------------------------------------------------------------
 // client.js
 
 const WebSocket = require('ws')
-//const url = 'ws://localhost:8080'
 const url = 'ws://192.168.1.39:8080'
 const connection = new WebSocket(url)
  
@@ -47,6 +61,7 @@ connection.onmessage = (e) => {
 
 
 ---------------------------------------------------------------
+Webgl
 
 Enter URL: https://github.com/endel/NativeWebSocket.git#upm
 
@@ -54,6 +69,7 @@ Enter URL: https://github.com/endel/NativeWebSocket.git#upm
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Windows;
 using UnityEngine;
 
 using NativeWebSocket;
@@ -62,7 +78,7 @@ public class Cube : MonoBehaviour
 {
 
   private WebSocket websocket = null;  
-  private string url = "ws://192.168.1.39:8080";
+  private string url = "ws://10.42.0.64:8080";
 
   private float angle=0;
   
@@ -73,15 +89,21 @@ public class Cube : MonoBehaviour
   void Start() {
     Debug.Log(url);
 
-    websocket = new WebSocket("ws://localhost:2567");
-
-    websocket.OnOpen += () => {
-      Debug.Log("Connection open!");
-    };
+    websocket = new WebSocket(url);
+    websocket.OnMessage += (bytes) => {
+      var message = System.Text.Encoding.UTF8.GetString(bytes);
+      Debug.Log("OnMessage! " + message);
+    };    
     
     transform.position=new Vector3(0.0f,0.0f,10.0f);        
+    
+    MyConnect();
   }
 
+  async void MyConnect() {
+      await websocket.Connect();
+  }
+      
   void Update() {
     transform.rotation = Quaternion.Euler(new Vector3(angle,angle,0));
     angle=angle+1;       
