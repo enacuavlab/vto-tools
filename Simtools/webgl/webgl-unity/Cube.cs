@@ -1,9 +1,12 @@
-// The default started configuration containes 'Main Camera' and 'Directional Light'
-// Create a GameObject / 3D Object / Cube
-// Associate this file to the Cube
-
 /*
-Build and store webgl next to http-websocket server
+ The default started configuration containes 'Main Camera' and 'Directional Light'
+ Create a GameObject / 3D Object / Cube
+ Associate this file to the Cube
+ 
+ Get zipfile from https://github.com/endel/NativeWebSocket
+ copy Websocket to Assets
+
+ Build and store webgl next to http-websocket server
 */
 
 using System;
@@ -17,9 +20,7 @@ using NativeWebSocket;
 
 public class Cube : MonoBehaviour
 {
-
   private WebSocket websocket = null;  
-  private string url = "ws://10.42.0.64:8080";
 
   private string message = "";
   
@@ -30,7 +31,7 @@ public class Cube : MonoBehaviour
   void Start() { 
     transform.localScale=new Vector3(5.0f,1.0f,10.0f);
     transform.position=new Vector3(0.0f,0.0f,10.0f);
-    websocket = new WebSocket(url);
+    websocket = new WebSocket(Application.absoluteURL.Replace("http","ws"));
     websocket.OnMessage += (receiveBytes) => {
       string returnData = Encoding.UTF8.GetString(receiveBytes);
       lock (message) {
