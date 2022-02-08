@@ -1,0 +1,8 @@
+/home/pprz/Projects/godot/IMU-Godot/.mono/temp/bin/ExportDebug/IMU-Godot.dll
+/home/pprz/Projects/godot/IMU-Godot/.mono/temp/bin/ExportDebug/IMU-Godot.pdb
+/home/pprz/Projects/godot/IMU-Godot/.mono/temp/obj/ExportDebug/IMU-Godot.csprojAssemblyReference.cache
+/home/pprz/Projects/godot/IMU-Godot/.mono/temp/obj/ExportDebug/IMU-Godot.AssemblyInfoInputs.cache
+/home/pprz/Projects/godot/IMU-Godot/.mono/temp/obj/ExportDebug/IMU-Godot.AssemblyInfo.cs
+/home/pprz/Projects/godot/IMU-Godot/.mono/temp/obj/ExportDebug/IMU-Godot.csproj.CoreCompileInputs.cache
+/home/pprz/Projects/godot/IMU-Godot/.mono/temp/obj/ExportDebug/IMU-Godot.dll
+/home/pprz/Projects/godot/IMU-Godot/.mono/temp/obj/ExportDebug/IMU-Godot.pdb

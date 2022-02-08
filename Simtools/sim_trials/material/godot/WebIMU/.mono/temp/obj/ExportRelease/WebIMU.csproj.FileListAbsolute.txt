@@ -1,0 +1,8 @@
+/home/pprz/Projects/godot/WebIMU/.mono/temp/bin/ExportRelease/WebIMU.dll
+/home/pprz/Projects/godot/WebIMU/.mono/temp/bin/ExportRelease/WebIMU.pdb
+/home/pprz/Projects/godot/WebIMU/.mono/temp/obj/ExportRelease/WebIMU.csprojAssemblyReference.cache
+/home/pprz/Projects/godot/WebIMU/.mono/temp/obj/ExportRelease/WebIMU.AssemblyInfoInputs.cache
+/home/pprz/Projects/godot/WebIMU/.mono/temp/obj/ExportRelease/WebIMU.AssemblyInfo.cs
+/home/pprz/Projects/godot/WebIMU/.mono/temp/obj/ExportRelease/WebIMU.csproj.CoreCompileInputs.cache
+/home/pprz/Projects/godot/WebIMU/.mono/temp/obj/ExportRelease/WebIMU.dll
+/home/pprz/Projects/godot/WebIMU/.mono/temp/obj/ExportRelease/WebIMU.pdb

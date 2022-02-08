@@ -1,0 +1,43 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/pprz/Projects/godot/IMU-Godot/IMU-Godot.csproj": {}
+  },
+  "projects": {
+    "/home/pprz/Projects/godot/IMU-Godot/IMU-Godot.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/pprz/Projects/godot/IMU-Godot/IMU-Godot.csproj",
+        "projectName": "IMU-Godot",
+        "projectPath": "/home/pprz/Projects/godot/IMU-Godot/IMU-Godot.csproj",
+        "packagesPath": "/home/pprz/.nuget/packages/",
+        "outputPath": "/home/pprz/Projects/godot/IMU-Godot/.mono/temp/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/pprz/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "runtimeIdentifierGraphPath": "/usr/lib/mono/msbuild/Current/bin/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
