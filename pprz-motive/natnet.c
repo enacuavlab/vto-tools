@@ -93,7 +93,9 @@ void* recvloop(void *arg) {
           //printf("Valid: %s\n", (tmp->val) ? "True" : "False");
           //printf("Id: %d\n",tmp->id);
           //printf("%f %f %f\n",tmp->pos[0],tmp->pos[1],tmp->pos[2]);
-          printf("%f %f %f %f\n",tmp->ori[0],tmp->ori[2],-tmp->ori[1],tmp->ori[3]);
+          //printf("%f %f %f %f\n",tmp->ori[0],tmp->ori[2],-tmp->ori[1],tmp->ori[3]);
+          printf("%d %f %f %f %f %f %f %f\n",
+            tmp->id,tmp->pos[0],tmp->pos[1],tmp->pos[2],tmp->ori[0],tmp->ori[2],-tmp->ori[1],tmp->ori[3]);
         }
         //printf("----------------------------------------\n");
       }
