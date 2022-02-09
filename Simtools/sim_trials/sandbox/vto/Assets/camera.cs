@@ -58,7 +58,10 @@ public class camera : MonoBehaviour
         message="";
       }
       float[] floatData = Array.ConvertAll(tmp.Split(' '), float.Parse); 
-      Quaternion objOrientation=new Quaternion(-floatData[0],-floatData[1],floatData[2],floatData[3]);
+      //transform.position=new Vector3(floatData[1],floatData[2],floatData[3]);
+      transform.position=new Vector3(-floatData[1],floatData[3]+1.0f,-floatData[2]);
+      Quaternion objOrientation=new Quaternion(floatData[4],-floatData[5],-floatData[6],floatData[7]);
+      objOrientation *= Quaternion.Euler(0,180f,0);
       print("["+objOrientation.x+" "+objOrientation.y+" "+objOrientation.z+" "+objOrientation.w+"]");       
       transform.rotation=objOrientation;
     }
