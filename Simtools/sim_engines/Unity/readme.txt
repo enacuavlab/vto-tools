@@ -1,24 +1,26 @@
-https://public-cdn.cloud.unity3d.com/hub/prod/UnityHubBeta.tar.gz
+Do not install on GIT folders !
 
-https://unity3d.com/fr/get-unity/download
-https://public-cdn.cloud.unity3d.com/hub/prod/UnityHub.AppImage
 
-chmod ugo+xwr UnityHub.AppImage
+sudo rm /opt/unityhub/
 
-export HTTP_PROXY=http://proxy:3128
-export HTTPS_PROXY=http://proxy:3128
+https://docs.unity3d.com/hub/manual/InstallHub.html?_ga=2.201535192.892109804.1643533377-1670894999.1642596560#
+Unity Hub 3.0
 
-./UnityHub.AppImage
-(Unity Hub 2.4.6)
+"
+sudo sh -c 'echo "deb https://hub.unity3d.com/linux/repos/deb stable main" > /etc/apt/sources.list.d/unityhub.list'
+wget -qO - https://hub.unity3d.com/linux/keys/public | sudo apt-key add -
+sudo apt update
+sudo apt-get install unityhub
+"
 
-Login
-Activate licence
+export HTTPS_PROXY=http://squid:3128
+export HTTP_PROXY=http://squid:3128
+/opt/unityhub/unityhub-bin
 
-Installs
-Add Unity Version
-Unity 2020.3.27f1
-- Linux Build Support (IL2CPP)
-- WebGL Build Support
+(login ?)
 
-/home/pprz/Unity/Hub/Editor/2020.3.27f1
-(7 Gb)
+Unity Editor :
+LTS Release 2020.3.27f1
+Released: 1 Feb. 2022
+
+~/Project/sim_engines/Unity
