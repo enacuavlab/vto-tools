@@ -17,12 +17,7 @@ namespace XP
     public  Vector2 Cyclic {get => cyclic;}
     public  float Pedals {get => pedals;}
     public  float Throttle {get => throttle;}
-    
-    void Update()
-    {
-        
-    }
-    
+     
     #region Input Methods
     private void OnCyclic(InputValue value) {
       cyclic = value.Get<Vector2>();

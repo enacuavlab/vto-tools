@@ -35,8 +35,9 @@ namespace XP
     #region Custom Methods
     protected override void HandlePhysics()
     {
-      HandleEngines();
-      HandleControls();
+      //HandleEngines();
+      //HandleControls();
+      HandleXP();
     }
     
     protected virtual void HandleEngines()
@@ -52,13 +53,36 @@ namespace XP
        float pitch = input.Cyclic.y * minMaxPitch;
        float roll = input.Cyclic.x * minMaxRoll;
        yaw += input.Pedals * yawPower;
-       
+
        finalPitch = Mathf.Lerp(finalPitch, pitch, Time.deltaTime * lerpSpeed);
        finalRoll = Mathf.Lerp(finalRoll, roll, Time.deltaTime * lerpSpeed);
        finalYaw = Mathf.Lerp(finalYaw, yaw, Time.deltaTime * lerpSpeed);
                      
        Quaternion rot = Quaternion.Euler(finalPitch,finalYaw,finalRoll);
-       rb.MoveRotation(rot);
+       rb.MoveRotation(rot);    
+    }
+    
+    protected virtual void HandleXP()
+    {
+       float pitch = input.Cyclic.y * minMaxPitch;
+       float roll = input.Cyclic.x * minMaxRoll;
+       yaw += input.Pedals * yawPower;
+
+       finalPitch = Mathf.Lerp(finalPitch, pitch, Time.deltaTime * lerpSpeed);
+       finalRoll = Mathf.Lerp(finalRoll, roll, Time.deltaTime * lerpSpeed);
+       
+       //Vector3 engineForce = new Vector3(0,((rb.mass * Physics.gravity.magnitude) + (input.Throttle * 4f)),0);
+       Vector3 engineForce = Vector3.zero;
+       engineForce = rb.transform.up * ((rb.mass * Physics.gravity.magnitude) + (input.Throttle * 4f));
+       Debug.Log(engineForce);
+       rb.AddForce(engineForce,ForceMode.Force);
+       
+       Quaternion rot = Quaternion.Euler(finalPitch,0f,finalRoll);
+       rb.MoveRotation(rot);    
+                     
+       //Quaternion rot = Quaternion.AngleAxis(yaw,Vector3.up);
+       //rb.transform.rotation = Quaternion.Slerp(transform.rotation, rot, 5f * Time.deltaTime);
+
     }
     #endregion    
   }

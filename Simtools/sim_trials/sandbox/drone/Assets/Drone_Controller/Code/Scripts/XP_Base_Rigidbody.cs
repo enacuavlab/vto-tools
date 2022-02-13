@@ -29,15 +29,17 @@ namespace XP
         rb.mass = weightInLbs * lbsToKg;
         startDrag = rb.drag;
         startAngularDrag = rb.angularDrag;
+        rb.centerOfMass = Vector3.zero;
       }
     }
 
-    // Update is called once per frame
+
     void FixedUpdate()
     {
       if(!rb){
         return;
       }
+
       HandlePhysics();
     }
     #endregion

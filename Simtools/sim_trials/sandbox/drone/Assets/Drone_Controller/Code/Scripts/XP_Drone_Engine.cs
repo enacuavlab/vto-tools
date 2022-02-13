@@ -29,10 +29,18 @@ namespace XP
       float finalDiff = Physics.gravity.magnitude * diff;
             
       Vector3 engineForce = Vector3.zero;
+      
+      //engineForce = transform.up * ((rb.mass * Physics.gravity.magnitude) + (input.Throttle * maxPower))/4f;
+      
+      // auto hover : additional force to compensate inclination
       engineForce = transform.up * ((rb.mass * Physics.gravity.magnitude + finalDiff) + (input.Throttle * maxPower))/4f;
 
       rb.AddForce(engineForce,ForceMode.Force);   
-      
+      //rb.AddRelativeForce(engineForce);
+            
+      Debug.DrawLine(rb.position, transform.up, Color.white, 0f);
+      Debug.Log(rb.centerOfMass);
+            
       HandlePropellers();
     }
     
