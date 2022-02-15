@@ -24,7 +24,11 @@ public class camera : MonoBehaviour
   private Thread receiveThread;
   private bool threadRunning = false;
   private string message = "";
-    
+
+  string myLog="";
+  List<string> items = new List<string>();
+  private int nLogs=10;
+      
   void Start() {
  
     string[] args = Environment.GetCommandLineArgs();  
@@ -58,12 +62,12 @@ public class camera : MonoBehaviour
         message="";
       }
       float[] floatData = Array.ConvertAll(tmp.Split(' '), float.Parse); 
-      //transform.position=new Vector3(floatData[1],floatData[2],floatData[3]);
-      transform.position=new Vector3(-floatData[1],floatData[3]+1.0f,-floatData[2]);
-      Quaternion objOrientation=new Quaternion(floatData[4],-floatData[5],-floatData[6],floatData[7]);
-      objOrientation *= Quaternion.Euler(0,180f,0);
-      print("["+objOrientation.x+" "+objOrientation.y+" "+objOrientation.z+" "+objOrientation.w+"]");       
-      transform.rotation=objOrientation;
+//      transform.position=new Vector3(-floatData[1],floatData[3]+1.0f,-floatData[2]);
+//      Quaternion objOrientation=new Quaternion(floatData[4],-floatData[5],-floatData[6],floatData[7]);
+        Quaternion objOrientation=new Quaternion(floatData[0],-floatData[1],-floatData[2],floatData[3]);
+        objOrientation *= Quaternion.Euler(0,180f,0);
+//      print("["+objOrientation.x+" "+objOrientation.y+" "+objOrientation.z+" "+objOrientation.w+"]");       
+//      transform.rotation=objOrientation;
     }
   }
     
@@ -76,7 +80,7 @@ public class camera : MonoBehaviour
           string [] lines = returnData.Split('\n');
           if (lines.Length > 1) returnData=lines[lines.Length-2]; // Keep last line
           message=returnData;
-          //Debug.Log(returnData);
+          Debug.Log(returnData);
         }
       } 
       catch (SocketException e) {
@@ -87,5 +91,27 @@ public class camera : MonoBehaviour
       }
       Thread.Sleep(1);        
     }
+  }
+  
+  void OnEnable () {
+    Application.logMessageReceived += HandleLog;
+  }
+     
+  void OnDisable () {
+    Application.logMessageReceived -= HandleLog;
+  }
+ 
+  void HandleLog(string logString, string stackTrace, LogType type) {
+    items.Add(logString);
+    if(items.Count > nLogs) items.RemoveAt(0);
+    myLog="";
+    foreach (string k in items) {
+      myLog += "[" + k + "]\n";
+    }
+  }
+  
+  void OnGUI () {
+    //GUI.Label(new Rect(Screen.width / 2f, Screen.height / 2f, Screen.width, Screen.height),myLog);
+    GUILayout.Label(myLog);
   }
 }

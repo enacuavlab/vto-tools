@@ -474,4 +474,4 @@ ScriptsOnlyBuild:
   platform: 24
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: /home/pprz/Projects/vto-tools/Simtools/sim_trials/sandbox/vto_standalone/test_Data/test.x86_64
+  playerPath: /home/pprz/Projects/vto-tools/Simtools/sim_trials/sandbox/vto_standalone/test.x86_64
