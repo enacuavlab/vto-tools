@@ -37,7 +37,7 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 4198}
+      Script: {instanceID: 4200}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -474,4 +474,4 @@ ScriptsOnlyBuild:
   platform: 24
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: /home/pprz/Projects/vto-tools/Simtools/sim_trials/sandbox/vto_standalone/test.x86_64
+  playerPath: /home/pprz/Projects/sim_builds/standalone/vto/test.x86_64

@@ -4,8 +4,8 @@
 
 /*
 test.x86_64
-test.x86_64 5553 
-test.x86_64 5553 237.252.249.227
+test.x86_64 5559 
+test.x86_64 5559 237.252.249.227
 */
 
 using UnityEngine;
@@ -19,7 +19,7 @@ using System.Linq;
 
 public class Mycube : MonoBehaviour
 {
-  private int receivePort = 5554;
+  private int receivePort = 5558;
   private UdpClient udpClient;
   private IPEndPoint remoteIpEndPoint;
   private IPAddress mcastAddr;

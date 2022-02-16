@@ -3,7 +3,7 @@
 // Associate this file to the Cube
 
 /*
-./Imu.x86_64 5554 237.252.249.227
+./Imu.x86_64 5558 237.252.249.227
 */
 
 using UnityEngine;
@@ -17,7 +17,7 @@ using System.Threading;
 
 public class camera : MonoBehaviour
 {
-  private int receivePort = 5554;
+  private int receivePort = 5558;
   private UdpClient udpClient;
   private IPEndPoint remoteIpEndPoint;
   private IPAddress mcastAddr;
