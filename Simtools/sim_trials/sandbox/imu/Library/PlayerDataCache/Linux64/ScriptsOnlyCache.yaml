@@ -39,7 +39,7 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 3630}
+      Script: {instanceID: 3628}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -476,4 +476,4 @@ ScriptsOnlyBuild:
   platform: 24
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: /home/pprz/Projects/vto-tools/Simtools/sim_trials/sandbox/imu-standalone/test.x86_64
+  playerPath: /home/pprz/Projects/vto-tools/Simtools/sim_trials/sandbox/imu_standalone/test.x86_64
