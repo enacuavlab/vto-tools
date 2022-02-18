@@ -3,7 +3,9 @@
 // Associate this file to the Cube
 
 /*
-./Imu.x86_64 5558 237.252.249.227
+test.x86_64
+test.x86_64 5559 
+test.x86_64 5559 237.252.249.227
 */
 
 using UnityEngine;
@@ -13,6 +15,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Linq;
 
 
 public class camera : MonoBehaviour
@@ -24,30 +27,40 @@ public class camera : MonoBehaviour
   private Thread receiveThread;
   private bool threadRunning = false;
   private string message = "";
+  private bool mcastBool = false;
 
   string myLog="";
   List<string> items = new List<string>();
   private int nLogs=10;
+
       
+  private static string[] GetArg() {
+    return(System.Environment.GetCommandLineArgs());
+  }  
+  
+        
   void Start() {
- 
-    string[] args = Environment.GetCommandLineArgs();  
-    if(args.Length > 1) {
-      receivePort=Convert.ToInt32(args[1].ToString(), 10);
-      if(args.Length > 2) mcastAddr = IPAddress.Parse(args[2]);
-    }
-      
-    transform.position=new Vector3(0.0f,1.0f,0.0f);
-    
     Debug.Log("Start");
+    string[] args = GetArg();
+    if(args.Length>1) {
+      if(args[1].All(char.IsDigit)) { 
+        receivePort=Convert.ToInt32(args[1].ToString(), 10);
+        if((args.Length>2)&&(IPAddress.TryParse(args[2], out mcastAddr))) mcastBool = true;
+      }
+    }
     try { 
-       remoteIpEndPoint = new IPEndPoint(IPAddress.Any, receivePort);
-       udpClient = new UdpClient(remoteIpEndPoint);
-        if(args.Length > 2) udpClient.JoinMulticastGroup(mcastAddr);     
+      remoteIpEndPoint = new IPEndPoint(IPAddress.Any, receivePort);
+      udpClient = new UdpClient(remoteIpEndPoint);
+      Debug.Log(receivePort);
+      if(mcastBool) {
+        udpClient.JoinMulticastGroup(mcastAddr);     
+        Debug.Log(mcastAddr);
+      }
     } catch (Exception e) {
       Debug.Log("Failed to listen for UDP at port " + receivePort + ": " + e.Message);
       return;
-    }
+    }     
+    transform.position=new Vector3(0.0f,1.0f,0.0f);
     receiveThread = new Thread(() => ListenForMessages());
     receiveThread.IsBackground = true;
     threadRunning = true;
@@ -62,12 +75,10 @@ public class camera : MonoBehaviour
         message="";
       }
       float[] floatData = Array.ConvertAll(tmp.Split(' '), float.Parse); 
-//      transform.position=new Vector3(-floatData[1],floatData[3]+1.0f,-floatData[2]);
-//      Quaternion objOrientation=new Quaternion(floatData[4],-floatData[5],-floatData[6],floatData[7]);
-        Quaternion objOrientation=new Quaternion(floatData[0],-floatData[1],-floatData[2],floatData[3]);
-        objOrientation *= Quaternion.Euler(0,180f,0);
-//      print("["+objOrientation.x+" "+objOrientation.y+" "+objOrientation.z+" "+objOrientation.w+"]");       
-//      transform.rotation=objOrientation;
+      transform.position=new Vector3(-floatData[1],floatData[3]+1.0f,-floatData[2]);
+      Quaternion objOrientation=new Quaternion(floatData[4],-floatData[5],-floatData[6],floatData[7]);
+      objOrientation *= Quaternion.Euler(0,180f,0);    
+      transform.rotation=objOrientation;
     }
   }
     

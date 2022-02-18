@@ -15,7 +15,7 @@ using System.Text;
 using System.Linq;
 
 
-public class drone : MonoBehaviour
+public class Drones : MonoBehaviour
 {
   private int receivePort = 5558;
   private UdpClient udpClient;
@@ -29,13 +29,25 @@ public class drone : MonoBehaviour
   string myLog="";
   List<string> items = new List<string>();
   private int nLogs=30;
-  
-      
+
+  private Dictionary <int, GameObject> drones = new Dictionary <int, GameObject> ();
+
+  private Color[] colors = {Color.green,Color.red, Color.white, Color.blue};
+
   private static string[] GetArg() {
     return(System.Environment.GetCommandLineArgs());
   }  
   
-  
+
+  private GameObject obj;
+  void Awake() {
+    obj = new GameObject();
+    obj.AddComponent<MeshRenderer>();
+    MeshFilter mf = obj.AddComponent<MeshFilter>();
+    mf.mesh = Resources.Load<Mesh>("robobee"); 
+    obj.transform.rotation = Quaternion.Euler(90, 0, 0);
+  }
+
   void Start() {
     Debug.Log("Start");
     string[] args = GetArg();
@@ -73,10 +85,16 @@ public class drone : MonoBehaviour
         message="";
       }
       float[] floatData = Array.ConvertAll(tmp.Split(' '), float.Parse); 
-      transform.position=new Vector3(-floatData[1],floatData[3]+1.0f,-floatData[2]);
+      obj.transform.position=new Vector3(-floatData[1],floatData[3]+1.0f,-floatData[2]);
       Quaternion objOrientation=new Quaternion(floatData[4],-floatData[5],-floatData[6],floatData[7]);
-      transform.rotation=objOrientation;
-      print(tmp);
+      obj.transform.rotation=objOrientation;
+      if(drones.ContainsKey((int)floatData[0])) {
+        print("OK");
+        drones[(int)floatData[0]]=obj;
+      } else {
+        obj.GetComponent<MeshRenderer>().material.color = colors[drones.Count];
+        drones.Add((int)floatData[0],obj);
+      }
     }
   }
 
