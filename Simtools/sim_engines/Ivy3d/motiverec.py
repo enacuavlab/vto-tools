@@ -19,7 +19,7 @@ def send_request(sock,commandStr):
   data = command.to_bytes( 2, byteorder='little' )
   data += packetSize.to_bytes( 2, byteorder='little' )
   data += commandStr.encode( 'utf-8' )
-  data += b'\0'
+  data += b'\n'
   sock.sendto( data, (SERVER,CMD_PORT))
 
 sock=init_request()

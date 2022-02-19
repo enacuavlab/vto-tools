@@ -32,21 +32,23 @@ public class Drones : MonoBehaviour
 
   private Dictionary <int, GameObject> drones = new Dictionary <int, GameObject> ();
 
-  private Color[] colors = {Color.green,Color.red, Color.white, Color.blue};
+  private Color[] colors = {Color.green,Color.red, Color.blue, Color.white};
 
   private static string[] GetArg() {
     return(System.Environment.GetCommandLineArgs());
   }  
   
+  private GameObject prefab;
 
-  private GameObject obj;
   void Awake() {
-    obj = new GameObject();
-    obj.AddComponent<MeshRenderer>();
-    MeshFilter mf = obj.AddComponent<MeshFilter>();
+    prefab = new GameObject();
+    MeshRenderer mr = prefab.AddComponent<MeshRenderer>();
+    mr.enabled = false;
+    MeshFilter mf = prefab.AddComponent<MeshFilter>();
     mf.mesh = Resources.Load<Mesh>("robobee"); 
-    obj.transform.rotation = Quaternion.Euler(90, 0, 0);
+    prefab.transform.localScale=new Vector3(2.0f,2.0f,2.0f);
   }
+
 
   void Start() {
     Debug.Log("Start");
@@ -69,7 +71,6 @@ public class Drones : MonoBehaviour
       Debug.Log("Failed to listen for UDP at port " + receivePort + ": " + e.Message);
       return;
     }        
-    transform.position=new Vector3(0.0f,0.1f,0.0f);   
     receiveThread = new Thread(() => ListenForMessages());
     receiveThread.IsBackground = true;
     threadRunning = true;
@@ -85,15 +86,17 @@ public class Drones : MonoBehaviour
         message="";
       }
       float[] floatData = Array.ConvertAll(tmp.Split(' '), float.Parse); 
-      obj.transform.position=new Vector3(-floatData[1],floatData[3]+1.0f,-floatData[2]);
-      Quaternion objOrientation=new Quaternion(floatData[4],-floatData[5],-floatData[6],floatData[7]);
-      obj.transform.rotation=objOrientation;
+      Vector3 pos=new Vector3(-floatData[1],floatData[3]+0.1f,-floatData[2]);
+      Quaternion att=new Quaternion(floatData[4],-floatData[5],-floatData[6],floatData[7]);
       if(drones.ContainsKey((int)floatData[0])) {
-        print("OK");
-        drones[(int)floatData[0]]=obj;
+        drones[(int)floatData[0]].transform.position=pos;
+        drones[(int)floatData[0]].transform.rotation=att;
       } else {
-        obj.GetComponent<MeshRenderer>().material.color = colors[drones.Count];
-        drones.Add((int)floatData[0],obj);
+	GameObject instance = Instantiate(prefab,pos,att);
+	MeshRenderer mr = instance.GetComponent<MeshRenderer>();
+	mr.material.color = colors[drones.Count];
+        mr.enabled = true;
+        drones.Add((int)floatData[0],instance);
       }
     }
   }
