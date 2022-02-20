@@ -42,11 +42,15 @@ public class Drones : MonoBehaviour
 
   void Awake() {
     prefab = new GameObject();
-    MeshRenderer mr = prefab.AddComponent<MeshRenderer>();
+    GameObject obj = new GameObject();
+    obj.transform.parent = prefab.transform;
+    MeshRenderer mr = obj.AddComponent<MeshRenderer>();
     mr.enabled = false;
-    MeshFilter mf = prefab.AddComponent<MeshFilter>();
+    MeshFilter mf = obj.AddComponent<MeshFilter>();
     mf.mesh = Resources.Load<Mesh>("robobee"); 
-    prefab.transform.localScale=new Vector3(2.0f,2.0f,2.0f);
+    obj.transform.transform.position=new Vector3(0.0f,0.1f,0.0f);
+    obj.transform.rotation=Quaternion.Euler(0, 90, 0);
+    obj.transform.localScale=new Vector3(2.0f,2.0f,2.0f);
   }
 
 
@@ -86,14 +90,14 @@ public class Drones : MonoBehaviour
         message="";
       }
       float[] floatData = Array.ConvertAll(tmp.Split(' '), float.Parse); 
-      Vector3 pos=new Vector3(-floatData[1],floatData[3]+0.1f,-floatData[2]);
+      Vector3 pos=new Vector3(-floatData[1],floatData[3],-floatData[2]);
       Quaternion att=new Quaternion(floatData[4],-floatData[5],-floatData[6],floatData[7]);
       if(drones.ContainsKey((int)floatData[0])) {
         drones[(int)floatData[0]].transform.position=pos;
         drones[(int)floatData[0]].transform.rotation=att;
       } else {
 	GameObject instance = Instantiate(prefab,pos,att);
-	MeshRenderer mr = instance.GetComponent<MeshRenderer>();
+	MeshRenderer mr = instance.GetComponentsInChildren<MeshRenderer>()[0];
 	mr.material.color = colors[drones.Count];
         mr.enabled = true;
         drones.Add((int)floatData[0],instance);
