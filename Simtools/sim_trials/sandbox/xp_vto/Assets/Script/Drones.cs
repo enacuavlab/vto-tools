@@ -23,7 +23,7 @@ public class Drones : MonoBehaviour
   private IPAddress mcastAddr;
   private Thread receiveThread;
   private bool threadRunning = false;
-  private string message = ""; 
+  private string message = "";
   private bool mcastBool = false;
   
   string myLog="";
@@ -83,13 +83,17 @@ public class Drones : MonoBehaviour
 
 
   void Update() {
-    string tmp="";
+    string tmp="",head="";
+    string[] words;
     if (message!="") {
       lock (message) {
         tmp=message;
         message="";
       }
-      float[] floatData = Array.ConvertAll(tmp.Split(' '), float.Parse); 
+      words=tmp.Split(' ');head=words[0];
+      words = words.Skip(1).ToArray();     
+      float[] floatData = Array.ConvertAll(words, float.Parse);
+//      float[] floatData = Array.ConvertAll(tmp.Split(' '), float.Parse); 
       Vector3 pos=new Vector3(-floatData[1],floatData[3],-floatData[2]);
       Quaternion att=new Quaternion(floatData[4],-floatData[5],-floatData[6],floatData[7]);
       if(drones.ContainsKey((int)floatData[0])) {
