@@ -4,7 +4,7 @@
 
 
 import socket
-
+import logging
 import argparse
 import numpy as np
 import socket,sys
@@ -22,6 +22,7 @@ class IvyThread:
     self.sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM )
     self.dict_pos = {}
     self.dict_att = {}
+    logging.getLogger('Ivy').setLevel(logging.ERROR)
     readymsg = '%s READY' % IVYAPPNAME
     IvyInit(IVYAPPNAME,readymsg,0,self.on_cnx,0)
     IvyStart(bus)
@@ -52,7 +53,7 @@ class IvyThread:
       theta=-float(self.dict_att[key][2])
       rot = Rotation.from_euler('xyz',[phi,theta,psi], degrees=True)
       quatf=rot.as_quat()
-      msg=str(key)+" "
+      msg="ivy "+str(key)+" "
       msg+=(" ".join(["%.3f" % nb for nb in posf]))
       msg+=" "+(" ".join(["%.6f" % nb for nb in quatf]))
       self.dict_pos.pop(key)
@@ -60,7 +61,7 @@ class IvyThread:
       data=msg.encode( 'utf-8' )
       data+=b'\n'
       self.sock.sendto(data,(UDP_IP,UDP_PORT))
-      print(msg)
+      #print(msg)
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
