@@ -14,6 +14,8 @@ stdbuf -oL -eL ./natnet | tee >(socat - udp-sendto:127.0.0.1:4260)
 #include <pthread.h>
 #include <unistd.h>
 #include <stdbool.h>
+#include <sys/time.h>
+
 
 #define DATAPORT 1511
 #define MULTICASTIP "239.255.42.99"
@@ -40,8 +42,11 @@ struct rigidbodies_t {
 };
 struct rigidbodies_t mybodies;
 
+struct rigidbody_t store_bds[MAX_BODIES];
+int store_bds_nb=0;
 
 void MyUnpack(char* pData,int major,int minor,void *data);
+
 
 int createsocketdata(bool multicast) {
   int sockfd = -1;
@@ -70,7 +75,6 @@ int createsocketdata(bool multicast) {
 }
 
 
-
 void* recvloop(void *arg) {
   int rcv;
   struct sockaddr_in their;
@@ -87,19 +91,31 @@ void* recvloop(void *arg) {
     rcv = recvfrom(fd,(char *)buf,MAX_PACKETSIZE,0,(struct sockaddr *)&their,(socklen_t*)&addr_len);
     if(rcv>0) {
       MyUnpack(buf,MAJOR,MINOR,(void *)&mybodies);
+      printf("Start %d\n",mybodies.nb);
       if(mybodies.nb>0) {
-        //printf("----------------------------------------\n");
         //printf("%d\n",mybodies.fr);
         for (int j = 0; j < mybodies.nb; j++) {
           tmp = &(mybodies.bodies[j]); 
           //printf("Valid: %s\n", (tmp->val) ? "True" : "False");
-          //printf("Id: %d\n",tmp->id);
-          //printf("%f %f %f\n",tmp->pos[0],tmp->pos[1],tmp->pos[2]);
-          //printf("%f %f %f %f\n",tmp->ori[0],tmp->ori[2],-tmp->ori[1],tmp->ori[3]);
-          printf("nat %d %f %f %f %f %f %f %f\n",
-            tmp->id,tmp->pos[0],tmp->pos[1],tmp->pos[2],tmp->ori[0],tmp->ori[2],-tmp->ori[1],tmp->ori[3]);
+          if(store_bds_nb==0) {
+            memcpy(&store_bds[store_bds_nb],tmp,sizeof(struct rigidbody_t));
+            store_bds_nb++;
+            printf("1\n");
+          } else {
+            int i;
+            for  (int i=0;i<store_bds_nb;i++) {
+              if((tmp->id)==(store_bds[i].id)) {
+                memcpy(&store_bds[i],tmp,sizeof(struct rigidbody_t));
+                printf("2\n");
+              }
+            }
+            if(i==(store_bds_nb+1)) {
+              memcpy(&store_bds[store_bds_nb],tmp,sizeof(struct rigidbody_t));
+              store_bds_nb++;
+              printf("3\n");
+            }
+          }
         }
-        //printf("----------------------------------------\n");
       }
     }
   }
@@ -107,15 +123,46 @@ void* recvloop(void *arg) {
 }
 
 
+void* sndloop(void *arg) {
+  bool reqsnd=false;
+  struct timeval tv,tv_snd,tv_res,tv_ref={0,10000};
+  timerclear(&tv_snd);
+  while(1) {
+    gettimeofday(&tv,NULL);
+    if (timerisset(&tv_snd)) {
+      timersub(&tv,&tv_snd,&tv_res);
+      //printf("sub %ld.%06ld\n",tv_res.tv_sec,tv_res.tv_usec);
+      if(!timercmp(&tv_res,&tv_ref,<))reqsnd=true;
+    } else reqsnd=true;
+    if(reqsnd) {
+      reqsnd=false;
+      memcpy(&tv_snd,&tv,sizeof(tv));
+      //printf("snd %ld.%06ld\n",tv.tv_sec,tv.tv_usec);
+/* 
+            smatruct rigidbody_t store_bds[MAX_BODIES];
+int store_bds_nb=0;
+
+          tmp = &(mybodies.bodies[j]); 
+          printf("Valid: %s\n", (tmp->val) ? "True" : "False");
+          printf("nat %d %f %f %f %f %f %f %f\n",
+            tmp->id,tmp->pos[0],tmp->pos[1],tmp->pos[2],tmp->ori[0],tmp->ori[2],-tmp->ori[1],tmp->ori[3]);
+*/
+    }
+  }
+}
+
+
 int main( int argc, char*argv[]) {
   bool multicast = 1;
   int gDatSock=-1;
-  pthread_t gDatThr;
+  pthread_t gDatThr,gTimThr;
 
   if ((argc>1)&&(!strcmp("-u", argv[1]))) multicast=0;
   gDatSock = createsocketdata(multicast);
   if (pthread_create(&gDatThr, NULL, &recvloop, &gDatSock) <0)  exit(-1);
+  if (pthread_create(&gTimThr, NULL, &sndloop, NULL) <0)  exit(-1);
   sleep(5);
   pthread_join(gDatThr,NULL);
+  pthread_join(gTimThr,NULL);
   return(0);
 }
