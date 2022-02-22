@@ -85,35 +85,27 @@ void* recvloop(void *arg) {
   int nBytes = 0;
   int nBytesTotal = 0;
   struct rigidbody_t *tmp;
+  bool updated=false;
 
   while(1) {
-    //printf("In\n");
+  //  usleep(100000);
     rcv = recvfrom(fd,(char *)buf,MAX_PACKETSIZE,0,(struct sockaddr *)&their,(socklen_t*)&addr_len);
     if(rcv>0) {
       MyUnpack(buf,MAJOR,MINOR,(void *)&mybodies);
-      printf("Start %d\n",mybodies.nb);
       if(mybodies.nb>0) {
         //printf("%d\n",mybodies.fr);
-        for (int j = 0; j < mybodies.nb; j++) {
+        for(int j=0;j<mybodies.nb;j++) {
           tmp = &(mybodies.bodies[j]); 
-          //printf("Valid: %s\n", (tmp->val) ? "True" : "False");
-          if(store_bds_nb==0) {
+          updated=false;
+          for(int i=0;i<store_bds_nb;i++) {
+            if((tmp->id)==(store_bds[i].id)) {
+              memcpy(&store_bds[i],tmp,sizeof(struct rigidbody_t));
+              updated=true;
+            }
+          }
+          if(!updated) {
             memcpy(&store_bds[store_bds_nb],tmp,sizeof(struct rigidbody_t));
             store_bds_nb++;
-            printf("1\n");
-          } else {
-            int i;
-            for  (int i=0;i<store_bds_nb;i++) {
-              if((tmp->id)==(store_bds[i].id)) {
-                memcpy(&store_bds[i],tmp,sizeof(struct rigidbody_t));
-                printf("2\n");
-              }
-            }
-            if(i==(store_bds_nb+1)) {
-              memcpy(&store_bds[store_bds_nb],tmp,sizeof(struct rigidbody_t));
-              store_bds_nb++;
-              printf("3\n");
-            }
           }
         }
       }
@@ -125,7 +117,8 @@ void* recvloop(void *arg) {
 
 void* sndloop(void *arg) {
   bool reqsnd=false;
-  struct timeval tv,tv_snd,tv_res,tv_ref={0,10000};
+  struct rigidbody_t *tmp;
+  struct timeval tv,tv_snd,tv_res,tv_ref={0,100000};
   timerclear(&tv_snd);
   while(1) {
     gettimeofday(&tv,NULL);
@@ -138,15 +131,12 @@ void* sndloop(void *arg) {
       reqsnd=false;
       memcpy(&tv_snd,&tv,sizeof(tv));
       //printf("snd %ld.%06ld\n",tv.tv_sec,tv.tv_usec);
-/* 
-            smatruct rigidbody_t store_bds[MAX_BODIES];
-int store_bds_nb=0;
-
-          tmp = &(mybodies.bodies[j]); 
-          printf("Valid: %s\n", (tmp->val) ? "True" : "False");
-          printf("nat %d %f %f %f %f %f %f %f\n",
-            tmp->id,tmp->pos[0],tmp->pos[1],tmp->pos[2],tmp->ori[0],tmp->ori[2],-tmp->ori[1],tmp->ori[3]);
-*/
+      for(int j=0;j<mybodies.nb;j++) {
+        tmp = &(mybodies.bodies[j]); 
+        //printf("Valid: %s\n", (tmp->val) ? "True" : "False");
+        printf("nat %d %f %f %f %f %f %f %f\n",
+          tmp->id,tmp->pos[0],tmp->pos[1],tmp->pos[2],tmp->ori[0],tmp->ori[2],-tmp->ori[1],tmp->ori[3]);
+      }
     }
   }
 }
