@@ -17,14 +17,21 @@ using System.Linq;
 
 public class Drones : MonoBehaviour
 {
+  private struct move_t {
+    public int id;
+    public Vector3 pos;
+    public Quaternion att;
+  }
+  private List<move_t> buffer = new List<move_t>();
+      
   private int receivePort = 5558;
   private UdpClient udpClient;
   private IPEndPoint remoteIpEndPoint;
   private IPAddress mcastAddr;
+  private bool mcastBool = false;
   private Thread receiveThread;
   private bool threadRunning = false;
-  private string message = "";
-  private bool mcastBool = false;
+
   
   string myLog="";
   List<string> items = new List<string>();
@@ -32,7 +39,7 @@ public class Drones : MonoBehaviour
 
   private Dictionary <int, GameObject> drones = new Dictionary <int, GameObject> ();
 
-  private Color[] colors = {Color.green,Color.red, Color.blue, Color.white};
+  private Color[] colors = {Color.green,Color.red, Color.blue, Color.cyan, Color.magenta, Color.yellow};
 
   private static string[] GetArg() {
     return(System.Environment.GetCommandLineArgs());
@@ -83,29 +90,19 @@ public class Drones : MonoBehaviour
 
 
   void Update() {
-    string tmp="",head="";
-    string[] words;
-    if (message!="") {
-      lock (message) {
-        tmp=message;
-        message="";
-      }
-      words=tmp.Split(' ');head=words[0];
-      words = words.Skip(1).ToArray();     
-      float[] floatData = Array.ConvertAll(words, float.Parse);
-//      float[] floatData = Array.ConvertAll(tmp.Split(' '), float.Parse); 
-      Vector3 pos=new Vector3(-floatData[1],floatData[3],-floatData[2]);
-      Quaternion att=new Quaternion(floatData[4],-floatData[5],-floatData[6],floatData[7]);
-      if(drones.ContainsKey((int)floatData[0])) {
-        drones[(int)floatData[0]].transform.position=pos;
-        drones[(int)floatData[0]].transform.rotation=att;
+    while(buffer.Count>0){
+      move_t elt=buffer.ElementAt(0);
+      if(drones.ContainsKey(elt.id)) {
+        drones[elt.id].transform.position=elt.pos;
+        drones[elt.id].transform.rotation=elt.att;
       } else {
-	GameObject instance = Instantiate(prefab,pos,att);
-	MeshRenderer mr = instance.GetComponentsInChildren<MeshRenderer>()[0];
+	GameObject instance = Instantiate(prefab,elt.pos,elt.att);
+        MeshRenderer mr = instance.GetComponentsInChildren<MeshRenderer>()[0];
 	mr.material.color = colors[drones.Count];
         mr.enabled = true;
-        drones.Add((int)floatData[0],instance);
+        drones.Add(elt.id,instance);
       }
+      buffer.RemoveAt(0);
     }
   }
 
@@ -114,24 +111,30 @@ public class Drones : MonoBehaviour
     while (threadRunning) {
       try {
         Byte[] receiveBytes = udpClient.Receive(ref remoteIpEndPoint); // Blocking
-        string returnData = Encoding.UTF8.GetString(receiveBytes);
-        lock (message) {
-          string [] lines = returnData.Split('\n');
-          if (lines.Length > 1) returnData=lines[lines.Length-2]; // Keep last line
-          message=returnData;          
+        string tmp = Encoding.UTF8.GetString(receiveBytes);
+        string [] lines = tmp.Split('\n');
+        for(int i=0;i<lines.Length;i++) {  
+          if(lines[i].Length!=0) {      
+            string[] words=lines[i].Split(' ');
+            words = words.Skip(1).ToArray();       
+            float[] floatData = Array.ConvertAll(words, float.Parse);
+            buffer.Add(new move_t(){id=(int)floatData[0],
+              pos=new Vector3(-floatData[1],floatData[3],-floatData[2]),
+              att=new Quaternion(floatData[4],-floatData[5],-floatData[6],floatData[7])});            
+          }
         }
-      } 
+      }
       catch (SocketException e) {
         if (e.ErrorCode != 10004) Debug.Log("Socket exception while receiving data from udp client: " + e.Message);
       }
       catch (Exception e) {
         Debug.Log("Error receiving data from udp client: " + e.Message);
       }
-      Thread.Sleep(1);        
+      Thread.Sleep(1);  
     }
   }
-   
-      
+     
+     
   void OnEnable () {
     Application.logMessageReceived += HandleLog;
   }
