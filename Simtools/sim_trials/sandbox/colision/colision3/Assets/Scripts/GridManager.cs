@@ -43,7 +43,7 @@ public class GridManager : MonoBehaviour
     cube3.transform.localScale = new Vector3(0.5f,1.5f,0.5f);
     cube3.transform.localRotation = Quaternion.Euler(0,45,0);
     cube3.transform.position = new Vector3(5.12f, 0.0f, 8.25f);
-    
+   
     source1 = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
     source1.transform.localScale = new Vector3(0.5f,0.01f,0.5f);
     source1.transform.position = new Vector3(5.5f,0.0f,2.0f);
@@ -68,20 +68,34 @@ public class GridManager : MonoBehaviour
   }
  
   void Update() {
-    Vector3 dir = (sink1.transform.position - source1.transform.position).normalized;   
-    Ray ray = new Ray(source1.transform.position,dir);
+    Vector3 dir = (sink1.transform.position - source1.transform.position);   
+    Ray ray = new Ray(source1.transform.position,dir.normalized);
     RaycastHit hit;
-    if(Physics.Raycast(ray,out hit,10.0f)) {
-      Debug.DrawRay(source1.transform.position, dir*hit.distance, Color.yellow);
-      Vector3 refdir = Vector3.Reflect(dir, hit.normal);
-      Debug.DrawRay(hit.point,refdir,Color.blue);
-      //Vector3 tangent = Vector3.ProjectOnPlane(this.velocity, hit.normal).normalized;
-               
-      Debug.Log("Did Hit");
-    } else {
-      Debug.DrawRay(source1.transform.position, dir*10.0f, Color.green);
-      Debug.Log("Not Hit");
+    if(Physics.Raycast(ray,out hit,dir.magnitude)) {
+      if((dir.magnitude - hit.distance)<0.26) {
+        Debug.DrawRay(source1.transform.position, dir.normalized*hit.distance, Color.blue);
+      } else {
+        Debug.DrawRay(source1.transform.position, dir.normalized*(hit.distance-0.1f), Color.yellow);
+        Vector3 myrefdir = Vector3.ProjectOnPlane(dir.normalized, hit.normal);
+        Vector3 pos = hit.point - dir.normalized * 0.1f;
+	Vector3 storepos = pos;
+        bool collision=true;
+	while(collision) { 
+          pos += myrefdir.normalized * 0.05f;
+          dir = (sink1.transform.position - pos);   
+          ray = new Ray(pos,dir.normalized);
+          if(Physics.Raycast(ray,out hit,dir.magnitude)) {
+            if((dir.magnitude - hit.distance)<0.25) {
+              Vector3 dirtmp = (pos - storepos);
+              Debug.DrawRay(storepos, dirtmp, Color.yellow);
+              Debug.DrawRay(pos, dir.normalized*hit.distance, Color.yellow);
+	      collision=false;
+	    } 
+  	  } 
+	}
+      }
     }
+    Debug.Log("Update");
   }
 
 }
