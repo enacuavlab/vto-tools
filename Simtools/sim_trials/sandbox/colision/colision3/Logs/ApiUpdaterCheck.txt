@@ -1,250 +1,30 @@
-[api-updater (non-obsolete-error-filter)] 3/18/2022 9:45:23 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 3/22/2022 12:59:02 PM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
 [api-updater (non-obsolete-error-filter)] 
 ----------------------------------
-jit/startup time      : 70.763ms
+jit/startup time      : 106.567ms
 moved types parse time: 41ms
 candidates parse time : 0ms
-C# parse time         : 170ms
-candidates check time : 23ms
+C# parse time         : 199ms
+candidates check time : 35ms
 console write time    : 0ms
 
-[api-updater (non-obsolete-error-filter)] 3/18/2022 10:10:58 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 3/22/2022 12:59:28 PM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
 [api-updater (non-obsolete-error-filter)] 
 ----------------------------------
-jit/startup time      : 37.188ms
+jit/startup time      : 36.339ms
 moved types parse time: 41ms
 candidates parse time : 0ms
-C# parse time         : 152ms
-candidates check time : 29ms
+C# parse time         : 176ms
+candidates check time : 32ms
 console write time    : 0ms
 
-[api-updater (non-obsolete-error-filter)] 3/18/2022 10:12:29 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 3/22/2022 1:44:14 PM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
 [api-updater (non-obsolete-error-filter)] 
 ----------------------------------
-jit/startup time      : 75.18ms
-moved types parse time: 47ms
-candidates parse time : 0ms
-C# parse time         : 148ms
-candidates check time : 31ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/18/2022 10:13:01 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 78.261ms
+jit/startup time      : 39.515ms
 moved types parse time: 41ms
 candidates parse time : 0ms
-C# parse time         : 152ms
-candidates check time : 27ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/18/2022 10:55:18 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 35.063ms
-moved types parse time: 38ms
-candidates parse time : 0ms
-C# parse time         : 167ms
-candidates check time : 31ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/18/2022 10:57:32 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 58.08ms
-moved types parse time: 38ms
-candidates parse time : 0ms
-C# parse time         : 172ms
-candidates check time : 33ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/18/2022 10:57:55 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 38.825ms
-moved types parse time: 41ms
-candidates parse time : 0ms
-C# parse time         : 156ms
-candidates check time : 29ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/18/2022 10:59:11 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 68.484ms
-moved types parse time: 40ms
-candidates parse time : 0ms
-C# parse time         : 154ms
-candidates check time : 28ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/18/2022 11:01:58 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 66.894ms
-moved types parse time: 47ms
-candidates parse time : 1ms
-C# parse time         : 202ms
-candidates check time : 39ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/18/2022 11:17:15 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 36.745ms
-moved types parse time: 39ms
-candidates parse time : 0ms
-C# parse time         : 167ms
-candidates check time : 30ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/18/2022 11:17:40 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 74.358ms
-moved types parse time: 39ms
-candidates parse time : 0ms
-C# parse time         : 163ms
-candidates check time : 28ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/18/2022 11:19:25 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 77.345ms
-moved types parse time: 41ms
-candidates parse time : 0ms
-C# parse time         : 168ms
-candidates check time : 28ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/18/2022 11:19:44 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 68.209ms
-moved types parse time: 41ms
-candidates parse time : 0ms
-C# parse time         : 166ms
-candidates check time : 26ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/18/2022 11:24:05 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 38.743ms
-moved types parse time: 41ms
-candidates parse time : 0ms
-C# parse time         : 171ms
-candidates check time : 28ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/19/2022 10:07:15 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 133.669ms
-moved types parse time: 40ms
-candidates parse time : 1ms
-C# parse time         : 187ms
-candidates check time : 27ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/19/2022 10:08:15 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 54.072ms
-moved types parse time: 40ms
-candidates parse time : 0ms
-C# parse time         : 168ms
-candidates check time : 28ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/19/2022 10:21:47 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 37.1ms
-moved types parse time: 41ms
-candidates parse time : 1ms
-C# parse time         : 156ms
-candidates check time : 30ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/19/2022 10:33:50 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 39.976ms
-moved types parse time: 41ms
-candidates parse time : 0ms
-C# parse time         : 161ms
-candidates check time : 28ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/19/2022 10:34:49 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 62.771ms
-moved types parse time: 41ms
-candidates parse time : 0ms
-C# parse time         : 163ms
-candidates check time : 27ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/19/2022 10:53:24 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 37.307ms
-moved types parse time: 42ms
-candidates parse time : 0ms
-C# parse time         : 162ms
-candidates check time : 30ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/19/2022 10:53:53 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 38.332ms
-moved types parse time: 40ms
-candidates parse time : 0ms
-C# parse time         : 162ms
-candidates check time : 28ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/20/2022 10:45:42 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 101.076ms
-moved types parse time: 42ms
-candidates parse time : 0ms
-C# parse time         : 196ms
-candidates check time : 27ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/20/2022 11:08:55 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 45.866ms
-moved types parse time: 41ms
-candidates parse time : 0ms
-C# parse time         : 178ms
+C# parse time         : 181ms
 candidates check time : 34ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/20/2022 11:10:38 AM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 44.471ms
-moved types parse time: 40ms
-candidates parse time : 0ms
-C# parse time         : 172ms
-candidates check time : 27ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/20/2022 3:49:52 PM : Starting /home/pprz/Projects/sim_engines/Unity/2020.3.28f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 114.636ms
-moved types parse time: 45ms
-candidates parse time : 0ms
-C# parse time         : 191ms
-candidates check time : 30ms
 console write time    : 0ms
 
