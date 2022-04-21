@@ -18,7 +18,11 @@ public class GridManager : MonoBehaviour
 
   public Sprite sprite;
   private GameObject source1,sink1;
- 
+
+  struct elt_t {
+    public Vector3 pos;
+  };
+  List<elt_t>elts = new List<elt_t>();
 
   void Start() {
 
@@ -37,7 +41,7 @@ public class GridManager : MonoBehaviour
 
     GameObject cube1 = GameObject.CreatePrimitive(PrimitiveType.Cube);
     cube1.transform.localScale = new Vector3(0.5f,1.5f,0.5f);
-    cube1.transform.position = new Vector3(4.359f, 0.0f, 6.0f);
+    cube1.transform.position = new Vector3(4.0f, 0.0f, 6.0f);
 /*
     GameObject cube2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
     cube2.transform.localScale = new Vector3(0.5f,1.5f,0.5f);
@@ -47,11 +51,11 @@ public class GridManager : MonoBehaviour
     cube3.transform.localRotation = Quaternion.Euler(0,45,0);
     cube3.transform.position = new Vector3(5.12f, 0.0f, 8.25f);
 */   
-    source1 = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-    source1.transform.localScale = new Vector3(0.5f,0.01f,0.5f);
+    source1 = GameObject.CreatePrimitive(PrimitiveType.Cube);
+    source1.transform.localScale = new Vector3(0.15f,0.01f,0.05f);
     source1.transform.position = new Vector3(4.5f,0.0f,2.0f);
-    sink1 = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-    sink1.transform.localScale = new Vector3(0.5f,0.01f,0.5f);
+    sink1 = GameObject.CreatePrimitive(PrimitiveType.Cube);
+    sink1.transform.localScale = new Vector3(0.15f,0.01f,0.05f);
     sink1.transform.position = new Vector3(4.5f,0.0f,9.5f);
   }
    
@@ -67,67 +71,109 @@ public class GridManager : MonoBehaviour
   }
 
 
+ 
+  const float dronemetersize = 0.5f;  
+  const float slidestep = 10.0f;  
+
   void FixedUpdate() {
     Camera.main.transform.LookAt(new Vector3(4.5f, 0.0f, 6.0f));
-    //Camera.main.transform.rotation = Quaternion.Euler(90,0,90);
-  }
 
+    if(elts.Count==0) elts.Add(new elt_t() {pos=source1.transform.position});
+    Vector3 dir = (sink1.transform.position-elts[elts.Count-1].pos);   
+    float scale=(dir.magnitude/dronemetersize);
+    RaycastHit Lhit,Rhit;
+    Physics.Raycast(new Ray(elts[elts.Count-1].pos+new Vector3(dir.z,0,dir.x)/(dir.magnitude*scale),
+			    dir.normalized),out Rhit,dir.magnitude);
+    Physics.Raycast(new Ray(elts[elts.Count-1].pos+new Vector3(-dir.z,0,-dir.x)/(dir.magnitude*scale),
+			    dir.normalized),out Lhit,dir.magnitude);
+    bool Rhitflag = ((Rhit.distance/dir.magnitude)<0.96f);
+    bool Lhitflag = ((Lhit.distance/dir.magnitude)<0.96f);
 
-  struct elt_t {
-    public Vector3 pos;
-    public Vector3 trans;
-  };
-  List<elt_t>elts0 = new List<elt_t>();
-  List<elt_t>elts1 = new List<elt_t>();
-  List<elt_t>elts2 = new List<elt_t>();
-  
-  void Update() {
-    RaycastHit hit;
-    elts0.Clear();
-    elts0.Add(new elt_t() {pos=source1.transform.position});
-    Vector3 dir = (sink1.transform.position - source1.transform.position);   
-    Ray ray = new Ray(source1.transform.position,dir.normalized);
-    if(Physics.Raycast(ray,out hit,dir.magnitude)) {
-      if ((dir.magnitude - hit.distance)<0.26) {
-      } else {
-        Vector3 pos = hit.point - dir.normalized * 0.1f;
-        if (Vector3.Dot(dir.normalized,hit.normal.normalized)==-1) {
-	  elts1.Clear();
-	  elts2.Clear();
-          elts1.Add(new elt_t() {pos=pos, trans=new Vector3(dir.z,0,dir.x)});
-          elts2.Add(new elt_t() {pos=pos, trans=new Vector3(-dir.z,0,-dir.x)});
-          bool ret1=true,ret2=true;
-          while (ret1 && ret2) {
-            if(ret2) ret1=ComputePath(elts1);
-            if(ret1) ret2=ComputePath(elts2);
-	  }
-          if(ret1) elts0.AddRange(elts2);
-          if(ret2) elts0.AddRange(elts1);
-	}
-      }
+    string str="";for(int i=0;i<elts.Count;i++) str+=elts[i].pos;
+    Debug.Log(elts.Count+" "+elts[elts.Count-1].pos+" "+Lhitflag+" "+Lhit.point+" "+Rhitflag+Rhit.point+" Update"+str);
+
+    if (!Rhitflag && Lhitflag) {
+      Debug.Log("1");
+      elts.Add(new elt_t() {pos=(Lhit.point+new Vector3(dir.z,0,dir.x)/(dir.magnitude*slidestep))}); // Slide Right
     }
-    elts0.Add(new elt_t() {pos=sink1.transform.position});
-    for (int i=0;i<(elts0.Count-1);i++) Debug.DrawRay(elts0[i].pos,elts0[i+1].pos-elts0[i].pos,Color.blue);
-    Debug.Log("Update");
+    
+    if (!Lhitflag && Rhitflag) {
+      Debug.Log("2");
+      //elts.Add(new elt_t() {pos=(Rhit.point+new Vector3(dir.z,0,dir.x)/(dir.magnitude*slidestep))}); // Slide Right
+    }
+  
+    if (Lhitflag && Rhitflag) {
+      Debug.Log("3");
+    }
+    
+
+    if (!Rhitflag && !Lhitflag) {
+      Debug.Log("0");
+
+      elts.Add(new elt_t() {pos=sink1.transform.position});
+
+      for (int i=0;i<(elts.Count-1);i++) {
+        dir = elts[i+1].pos - elts[i].pos;
+        Debug.DrawRay(elts[i].pos+new Vector3(dir.z,0,dir.x)/(dir.magnitude*scale),dir,Color.yellow); // Right
+        Debug.DrawRay(elts[i].pos+new Vector3(-dir.z,0,-dir.x)/(dir.magnitude*scale),dir,Color.yellow); // Left
+      }
+
+      elts.Clear();
+    }
   }
+}
 
 
-  private bool ComputePath(List<elt_t> lst) {
-    RaycastHit hit;
+/*
+      Lpos = Lhit.point - dir.normalized * 0.1f;
+      Rpos = Rhit.point - dir.normalized * 0.1f;
+
+      if((Vector3.Dot(dir.normalized,Lhit.normal.normalized)==-1) &&
+        (Vector3.Dot(dir.normalized,Lhit.normal.normalized)==-1)) {
+
+        elts1.Clear();
+        elts2.Clear();
+        elts1.Add(new elt_t() {Lpos=Lpos, Rpos=Rpos, trans=new Vector3(dir.z,0,dir.x)});
+        elts2.Add(new elt_t() {Lpos=Lpos, Rpos=Rpos, trans=new Vector3(-dir.z,0,-dir.x)});
+
+        bool ret1=true,ret2=true;
+        while (ret1 && ret2) {
+          if(ret2) ret1=GoAroundObstacle(elts1);
+          if(ret1) ret2=GoAroundObstacle(elts2);
+        }
+        if(ret1) elts0.AddRange(elts2);
+        if(ret2) elts0.AddRange(elts1);
+      }
+*/
+
+
+  /*
+  private bool GoAroundObstacle(List<elt_t> lst) {
     bool ret=true;
     int idx=lst.Count-1;
-    Vector3 pos = lst[idx].pos + lst[idx].trans.normalized * 0.05f;
-    Vector3 dir = (sink1.transform.position - pos);   
-    //Debug.DrawRay(lst[idx].pos,pos-lst[idx].pos,Color.yellow);
-    lst.Add(new elt_t() {pos=pos, trans=(pos-lst[idx].pos)});
-    Ray ray = new Ray(pos,dir.normalized);
-    if(Physics.Raycast(ray,out hit,dir.magnitude)) {
-      if((dir.magnitude - hit.distance)<0.26) {
+/*
+    Vector3 Lpos = lst[idx].Lpos + lst[idx].trans.normalized * 0.05f;
+    Vector3 Rpos = lst[idx].Rpos + lst[idx].trans.normalized * 0.05f;
+
+    Vector3 Lsink = sink1.transform.position-new Vector3(dir.z,0,dir.x);
+    Vector3 dir = (Lsink - Lpos);   
+
+    lst.Add(new elt_t() {Lpos=Lpos,Rpos=Rpos, trans=(Lpos-lst[idx].Lpos)});
+
+    Ray Lray = new Ray(Lpos,dir.normalized);
+    Ray Rray = new Ray(Rpos,dir.normalized);
+
+    RaycastHit Lhit,Rhit;
+    Physics.Raycast(Lray,out Lhit,dir.magnitude);
+    Physics.Raycast(Rray,out Rhit,dir.magnitude);
+
+    if (((dir.magnitude - Lhit.distance)<0.26) && ((dir.magnitude - Rhit.distance)<0.26)) {
         ret=false;
       } 
     }
+    ret=false;
     return(ret);
   }
+*/
         
 //        Vector3 myrefdir = Vector3.ProjectOnPlane(dir.normalized, hit.normal);
-}
