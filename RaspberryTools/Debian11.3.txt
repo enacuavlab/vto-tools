@@ -1,0 +1,97 @@
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Debian 11.3 (bulleyes) on Raspberry : Board and Ground
+
+---------------------------------------------------------------------------------
+1) SETTING RASPBERRY PI WITH PI OS Debian 11.3 (bullseye)
+------------------------------------------------------
+
+Get image file
+
+https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2022-04-07/2022-04-04-raspios-bullseye-arm64-lite.img.xz
+(283.5 MB)
+
+Flash the SD
+
+cd /media/pprz/../boot
+
+echo 'pprz' | openssl passwd -6 -stdin >> userconf.txt  
+vi userconf.txt   
+'  
+pprz:...  
+'  
+
+touch ssh  
+
+vi wpa_supplicant.conf  
+"  
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev  
+update_config=1  
+network={  
+ssid="feiying"  
+psk="pprzpprz"  
+"  
+(  
+key_mgmt=WPA-PSK  
+needed ?  
+)  
+
+
+First boot wait 75 sec, before trying to connect  
+
+nmap -sn "HotSpotIP"/24  
+=> rasp_IP  
+
+ssh pprz@"rasp_IP"  
+
+
+sudo bash -c 'echo "dtoverlay=disable-bt" >> /boot/config.txt'  
+sudo systemctl disable hciuart.service  
+sudo systemctl disable bluetooth.service  
+
+
+Raspi-Config
+
+3 Interface Options
+
+I6 Serial Port 
+- The serial login shell is disabled
+- The serial interface is enabled
+
+Reboot
+
+date -s "..."  
+sudo apt-get  update  
+sudo apt-get upgrade 
+
+export http_proxy=http://proxy.recherche.enac.fr:3128  
+export https_proxy=http://proxy.recherche.enac.fr:3128  
+
+---------------------------------------------------------------------------------
+2) INSTALL COMPAGNON_SOFTWARE 
+--------------------------
+See above  
+
+---------------------------------------------------------------------------------
+3) COMPLETE INSTALLATION AND TEST CAMERA 
+-------------------------------------
+
+sudo apt-get install gstreamer1.0-plugins-base -y;\
+sudo apt-get install gstreamer1.0-plugins-good -y;\
+sudo apt-get install gstreamer1.0-plugins-bad -y;\
+sudo apt-get install gstreamer1.0-plugins-ugly -y;\
+sudo apt-get install gstreamer1.0-libav -y;\
+sudo apt-get install gstreamer1.0-omx -y;\
+sudo apt-get install gstreamer1.0-tools -y
+
+gst-launch-1.0 -vvvv libcamerasrc ! video/x-raw,width=1280,height=720,format=NV12,colorimetry=bt601,framerate=30/1,interlace-mode=progressive ! v4l2h264enc extra-controls=controls,repeat_sequence_header=1,video_bitrate=3800000 ! 'video/x-h264,level=(string)4' ! rtph264pay name=pay0 pt=96 config-interval=1 ! udpsink host=10.42.0.1 port=5000
+
+gst-launch-1.0 udpsrc port=5000 ! application/x-rtp,encoding-name=H264,payload=96 ! rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! autovideosink sync=false
+
+
+sudo raspi-config  
+4 Performance Options  
+P3 Overlay File System  
+(overlay + read only boot)  
+
+---------------------------------------------------------------------------------
