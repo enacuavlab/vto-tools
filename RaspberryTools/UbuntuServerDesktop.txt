@@ -1,0 +1,54 @@
+Speed up start sequence
+-----------------------------------------------------
+
+systemd-analyze time
+in 4.960s (kernel) + 51.959s (userspace) = 56.919s 
+graphical.target reached after 49.093s in userspace
+
+-----------------------------------------------------
+sudo systemctl disable NetworkManager-wait-online.service
+
+-----------------------------------------------------
+sudo systemctl stop snapd && sudo systemctl disable snapd
+sudo apt purge snapd
+rm -rf ~/snap
+sudo rm -rf /snap /var/snap /var/lib/snapd /var/cache/snapd /usr/lib/snapd /root/snap
+
+sudo vi /etc/apt/preferences.d/no-snap.pref
+"
+Package: snapd
+Pin: release a=*
+Pin-Priority: -10
+"
+-----------------------------------------------------
+sudo dpkg-reconfigure cloud-init
+(uncheck everything unless "None")
+sudo apt-get purge cloud-init
+sudo rm -rf /etc/cloud/ && sudo rm -rf /var/lib/cloud/
+
+-----------------------------------------------------
+
+sudo apt-get remove  networkd-dispatcher
+sudo apt-get purge networkd-dispatcher
+
+sudo systemctl stop avahi-daemon
+sudo systemctl disable avahi-daemon
+sudo apt-get purge avahi-daemon
+
+sudo systemctl stop ModemManager.service
+sudo systemctl disable ModemManager.service
+
+sudo systemctl stop udisks2
+sudo systemctl disable udisks2
+sudo apt-get -y autoremove --purge udisks2
+
+sudo systemctl stop e2scrub_reap.service
+sudo systemctl disable e2scrub_reap.service
+
+sudo systemctl stop switcheroo-control.service
+sudo systemctl disable switcheroo-control.service
+
+-----------------------------------------------------
+systemd-analyze time
+Startup finished in 4.990s (kernel) + 34.138s (userspace) = 39.128s 
+graphical.target reached after 34.060s in userspace

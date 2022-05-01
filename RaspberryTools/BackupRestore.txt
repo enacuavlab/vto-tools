@@ -1,3 +1,43 @@
+
+-------------------------------------------------------------------------------
+UBUNTU 20.04
+------------
+
+sudo dd if=/dev/sdb of=./SDCardBackup.img status=progress
+=> 16 Gb
+
+fdisk -lu SDCardBackup.img
+=> 
+Device            Boot  Start      End  Sectors  Size Id Type
+SDCardBackup.img1 *      2048   526335   524288  256M  c W95 FAT32 (LBA)
+SDCardBackup.img2      526336 31116254 30589919 14,6G 83 Linux
+
+losetup -f 
+=> /dev/loop18
+
+526336 * 512 = 269484032
+sudo losetup -o 269484032 /dev/loop18 SDCardBackup.img
+
+mkdir dummy
+sudo mount /dev/loop18 dummy
+
+sudo gparted /dev/loop18
+Resize partition 
+(unused 2.76 GB)
+
+losetup -d /dev/loop18
+
+truncate --size=$[(1+31116254)*512] SDCardBackup.img
+=> 15.6 Gb ?!
+truncate -s 14G SDCardBackup.img
+
+sudo dd bs=4M if=./SDCardBackup.img of=/dev/sdb status=progress
+
+
+-------------------------------------------------------------------------------
+RASPBIAN
+--------
+
 Backup
 ------
 dd bs=512 count=1 if=/dev/sde of=mbr.img
