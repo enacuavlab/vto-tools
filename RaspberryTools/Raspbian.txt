@@ -1,0 +1,20 @@
+Speed up start sequence
+-----------------------------------------------------
+
+systemd-analyze time
+Startup finished in 5.885s (kernel) + 39.075s (userspace) = 44.960s 
+multi-user.target reached after 38.991s in userspace
+
+-----------------------------------------------------
+
+/etc/dhcpcd.conf
+"
+timeout 5
+"
+
+-----------------------------------------------------
+
+systemd-analyze time
+Startup finished in 6.398s (kernel) + 16.509s (userspace) = 22.907s 
+multi-user.target reached after 16.448s in userspace
+
