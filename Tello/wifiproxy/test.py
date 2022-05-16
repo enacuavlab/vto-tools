@@ -62,8 +62,14 @@ if __name__ == '__main__':
             try:
               sock.sendto('command'.encode(encoding="utf-8"),tello_add)
               sock.sendto('streamon'.encode(encoding="utf-8"),tello_add)
+              sock.sendto('downvision 1'.encode(encoding="utf-8"),tello_add)
               sock.sendto('battery?'.encode(encoding="utf-8"),tello_add)
               sock.sendto('sdk?'.encode(encoding="utf-8"),tello_add)
+              sock.sendto('motoron'.encode(encoding="utf-8"),tello_add)
+              #sock.sendto('takeoff'.encode(encoding="utf-8"),tello_add)
+              time.sleep(10)
+              #sock.sendto('land'.encode(encoding="utf-8"),tello_add)
+              sock.sendto('motoroff'.encode(encoding="utf-8"),tello_add)
 
               while True:
                 time.sleep(0.5)
