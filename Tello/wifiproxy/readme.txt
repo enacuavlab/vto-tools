@@ -1,3 +1,6 @@
+sudo mkdir -p /var/run/netns
+
+-----------------------------------------
 # Check docker image
 docker image ls
 => wifiproxy
@@ -40,3 +43,5 @@ gst-launch-1.0 -v udpsrc port=11112 caps="video/x-h264, stream-format=(string)by
 ---------------------------------------
 # Kill docker container for each drone
 docker kill $(docker ps -q)
+sudo rm /var/run/netns/*
+(docker system prune)

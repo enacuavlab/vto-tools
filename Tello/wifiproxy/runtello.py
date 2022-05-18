@@ -55,6 +55,7 @@ if __name__ == '__main__':
             print(i.name+" created & connected")
 
             tello_add = (docker.DockerClient().containers.get(i.name).attrs['NetworkSettings']['IPAddress'], 8889)
+            print(tello_add)
             sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             recvThread = threading.Thread(target=recv)
             recvThread.start()
@@ -62,9 +63,23 @@ if __name__ == '__main__':
             try:
               sock.sendto('command'.encode(encoding="utf-8"),tello_add)
               sock.sendto('streamon'.encode(encoding="utf-8"),tello_add)
-              sock.sendto('downvision 1'.encode(encoding="utf-8"),tello_add)
+              sock.sendto('downvision 0'.encode(encoding="utf-8"),tello_add)
               sock.sendto('battery?'.encode(encoding="utf-8"),tello_add)
               sock.sendto('sdk?'.encode(encoding="utf-8"),tello_add)
+              time.sleep(5)
+#              #sock.sendto('motoron'.encode(encoding="utf-8"),tello_add)
+              sock.sendto('takeoff'.encode(encoding="utf-8"),tello_add)
+              time.sleep(8)
+              sock.sendto('up 100'.encode(encoding="utf-8"),tello_add)
+              time.sleep(6)
+              sock.sendto('cw 180'.encode(encoding="utf-8"),tello_add)
+              time.sleep(6)
+              sock.sendto('ccw 180'.encode(encoding="utf-8"),tello_add)
+              time.sleep(5)
+              sock.sendto('flip f'.encode(encoding="utf-8"),tello_add)
+              time.sleep(5)
+              sock.sendto('land'.encode(encoding="utf-8"),tello_add)
+#              #sock.sendto('motoroff'.encode(encoding="utf-8"),tello_add)
 
               while True:
                 time.sleep(0.5)
