@@ -6,6 +6,9 @@ https://optitrack.com/software/natnet-sdk/
     DataDescriptions.py, MoCapData.py, NatNetClient.py,  PythonSample.py
 
 
+https://v30.wiki.optitrack.com/index.php?title=Developer_Tools
+https://v30.wiki.optitrack.com/index.php?title=NatNet_SDK_4.0
+
 ----------------------------------------------------------------------------------------------------
 Previous version:
 NatNet_SDK_3.1.zip (windows)

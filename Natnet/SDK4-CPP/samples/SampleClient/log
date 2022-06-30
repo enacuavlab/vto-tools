@@ -1,0 +1,3372 @@
+NatNet Sample Client (NatNet ver. 4.0.0.0)
+Looking for servers on the local network.
+Press the number key that corresponds to any discovered server to connect to that server.
+Press Q at any time to quit.
+
+
+[NatNetLib] [ERROR]: Socket error 0: Success
+
+[NatNetLib] [ERROR]: Socket error 0: Success
+
+[NatNetLib] [ERROR]: Socket error 0: Success
+[1] Motive 3.0 at 192.168.1.231 (unicast)
+
+[NatNetLib]  [INFO]: NatNetClient::Connect: Switching client to unicast based on sNatNetClientConnectParams::connectionType.
+
+[NatNetLib]  [INFO]: [Client] Initializing using my address: 192.168.1.237
+
+[NatNetLib]  [INFO]: [Client] Initializing command listener.
+
+[NatNetLib] [ERROR]: Socket error 0: Success
+
+[NatNetLib] [ERROR]: [Client] Receive Buffer Size: 425984
+
+[NatNetLib]  [INFO]: [Client] Host information received. (HostApp: Motive  HostVer: 3.0.0.1  HostIP: 192.168.1.231 ()
+
+[NatNetLib]  [INFO]: [Client] Connected.
+
+[SampleClient] Server application info:
+Application: Motive (ver. 3.0.0.1)
+NatNet Version: 4.0.0.0
+Client IP:192.168.1.237
+Server IP:192.168.1.231
+Server Name:
+Client initialized and ready.
+
+Client is connected to server and listening for data...
+FrameID : 2417915
+Timestamp : 20149.29
+Software latency : 1.41 milliseconds
+System latency : 4.87 milliseconds
+Total client latency : 5.13 milliseconds (transit time +0.25 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417916
+Timestamp : 20149.30
+Software latency : 0.93 milliseconds
+System latency : 4.46 milliseconds
+Total client latency : 4.73 milliseconds (transit time +0.25 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417917
+Timestamp : 20149.31
+Software latency : 1.45 milliseconds
+System latency : 5.00 milliseconds
+Total client latency : 5.24 milliseconds (transit time +0.23 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417918
+Timestamp : 20149.32
+Software latency : 1.47 milliseconds
+System latency : 4.99 milliseconds
+Total client latency : 5.24 milliseconds (transit time +0.24 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417919
+Timestamp : 20149.33
+Software latency : 1.51 milliseconds
+System latency : 4.99 milliseconds
+Total client latency : 5.24 milliseconds (transit time +0.24 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417920
+Timestamp : 20149.33
+Software latency : 0.92 milliseconds
+System latency : 4.43 milliseconds
+Total client latency : 4.68 milliseconds (transit time +0.24 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417921
+Timestamp : 20149.34
+Software latency : 1.06 milliseconds
+System latency : 4.58 milliseconds
+Total client latency : 4.85 milliseconds (transit time +0.25 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417922
+Timestamp : 20149.35
+Software latency : 1.51 milliseconds
+System latency : 5.00 milliseconds
+Total client latency : 5.28 milliseconds (transit time +0.25 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417923
+Timestamp : 20149.36
+Software latency : 1.00 milliseconds
+System latency : 4.46 milliseconds
+Total client latency : 4.72 milliseconds (transit time +0.24 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417924
+Timestamp : 20149.37
+Software latency : 0.96 milliseconds
+System latency : 4.44 milliseconds
+Total client latency : 4.80 milliseconds (transit time +0.33 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417925
+Timestamp : 20149.38
+Software latency : 1.06 milliseconds
+System latency : 4.53 milliseconds
+Total client latency : 4.89 milliseconds (transit time +0.34 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417926
+Timestamp : 20149.38
+Software latency : 1.01 milliseconds
+System latency : 4.46 milliseconds
+Total client latency : 4.77 milliseconds (transit time +0.30 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417927
+Timestamp : 20149.39
+Software latency : 1.27 milliseconds
+System latency : 4.76 milliseconds
+Total client latency : 5.00 milliseconds (transit time +0.22 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417928
+Timestamp : 20149.40
+Software latency : 1.22 milliseconds
+System latency : 4.77 milliseconds
+Total client latency : 5.01 milliseconds (transit time +0.22 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417929
+Timestamp : 20149.41
+Software latency : 1.47 milliseconds
+System latency : 4.99 milliseconds
+Total client latency : 5.31 milliseconds (transit time +0.30 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417930
+Timestamp : 20149.42
+Software latency : 1.15 milliseconds
+System latency : 4.68 milliseconds
+Total client latency : 4.97 milliseconds (transit time +0.27 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417931
+Timestamp : 20149.42
+Software latency : 1.44 milliseconds
+System latency : 4.95 milliseconds
+Total client latency : 5.27 milliseconds (transit time +0.31 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417932
+Timestamp : 20149.43
+Software latency : 1.13 milliseconds
+System latency : 4.62 milliseconds
+Total client latency : 4.84 milliseconds (transit time +0.21 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417933
+Timestamp : 20149.44
+Software latency : 1.43 milliseconds
+System latency : 4.99 milliseconds
+Total client latency : 5.25 milliseconds (transit time +0.23 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417934
+Timestamp : 20149.45
+Software latency : 1.41 milliseconds
+System latency : 4.90 milliseconds
+Total client latency : 5.15 milliseconds (transit time +0.23 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417935
+Timestamp : 20149.46
+Software latency : 1.14 milliseconds
+System latency : 4.67 milliseconds
+Total client latency : 4.95 milliseconds (transit time +0.27 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417936
+Timestamp : 20149.47
+Software latency : 1.02 milliseconds
+System latency : 4.49 milliseconds
+Total client latency : 4.81 milliseconds (transit time +0.30 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417937
+Timestamp : 20149.47
+Software latency : 1.27 milliseconds
+System latency : 4.84 milliseconds
+Total client latency : 5.08 milliseconds (transit time +0.23 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417938
+Timestamp : 20149.48
+Software latency : 1.15 milliseconds
+System latency : 4.65 milliseconds
+Total client latency : 4.93 milliseconds (transit time +0.26 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417939
+Timestamp : 20149.49
+Software latency : 1.44 milliseconds
+System latency : 5.03 milliseconds
+Total client latency : 5.32 milliseconds (transit time +0.29 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417940
+Timestamp : 20149.50
+Software latency : 1.61 milliseconds
+System latency : 5.15 milliseconds
+Total client latency : 5.51 milliseconds (transit time +0.34 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417941
+Timestamp : 20149.51
+Software latency : 1.58 milliseconds
+System latency : 5.09 milliseconds
+Total client latency : 5.38 milliseconds (transit time +0.28 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417942
+Timestamp : 20149.52
+Software latency : 1.43 milliseconds
+System latency : 4.93 milliseconds
+Total client latency : 5.13 milliseconds (transit time +0.19 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417943
+Timestamp : 20149.53
+Software latency : 0.99 milliseconds
+System latency : 4.47 milliseconds
+Total client latency : 4.73 milliseconds (transit time +0.24 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417944
+Timestamp : 20149.53
+Software latency : 1.14 milliseconds
+System latency : 4.65 milliseconds
+Total client latency : 5.11 milliseconds (transit time +0.44 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417945
+Timestamp : 20149.54
+Software latency : 1.49 milliseconds
+System latency : 5.01 milliseconds
+Total client latency : 5.25 milliseconds (transit time +0.23 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417946
+Timestamp : 20149.55
+Software latency : 0.91 milliseconds
+System latency : 4.37 milliseconds
+Total client latency : 4.64 milliseconds (transit time +0.25 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417947
+Timestamp : 20149.56
+Software latency : 1.28 milliseconds
+System latency : 4.85 milliseconds
+Total client latency : 5.14 milliseconds (transit time +0.26 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417948
+Timestamp : 20149.57
+Software latency : 0.97 milliseconds
+System latency : 4.46 milliseconds
+Total client latency : 4.74 milliseconds (transit time +0.27 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417949
+Timestamp : 20149.58
+Software latency : 1.05 milliseconds
+System latency : 4.55 milliseconds
+Total client latency : 4.86 milliseconds (transit time +0.29 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417950
+Timestamp : 20149.58
+Software latency : 1.11 milliseconds
+System latency : 4.58 milliseconds
+Total client latency : 4.82 milliseconds (transit time +0.23 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417951
+Timestamp : 20149.59
+Software latency : 0.99 milliseconds
+System latency : 4.47 milliseconds
+Total client latency : 4.73 milliseconds (transit time +0.25 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417952
+Timestamp : 20149.60
+Software latency : 0.99 milliseconds
+System latency : 4.46 milliseconds
+Total client latency : 4.66 milliseconds (transit time +0.19 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417953
+Timestamp : 20149.61
+Software latency : 0.98 milliseconds
+System latency : 4.47 milliseconds
+Total client latency : 4.72 milliseconds (transit time +0.24 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417954
+Timestamp : 20149.62
+Software latency : 0.91 milliseconds
+System latency : 4.39 milliseconds
+Total client latency : 4.67 milliseconds (transit time +0.25 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417955
+Timestamp : 20149.62
+Software latency : 1.02 milliseconds
+System latency : 4.55 milliseconds
+Total client latency : 4.81 milliseconds (transit time +0.25 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417956
+Timestamp : 20149.63
+Software latency : 1.14 milliseconds
+System latency : 4.61 milliseconds
+Total client latency : 4.86 milliseconds (transit time +0.24 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417957
+Timestamp : 20149.64
+Software latency : 0.92 milliseconds
+System latency : 4.38 milliseconds
+Total client latency : 4.60 milliseconds (transit time +0.21 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417958
+Timestamp : 20149.65
+Software latency : 0.92 milliseconds
+System latency : 4.39 milliseconds
+Total client latency : 4.78 milliseconds (transit time +0.38 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417959
+Timestamp : 20149.66
+Software latency : 1.01 milliseconds
+System latency : 4.49 milliseconds
+Total client latency : 4.76 milliseconds (transit time +0.26 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417960
+Timestamp : 20149.67
+Software latency : 1.11 milliseconds
+System latency : 4.59 milliseconds
+Total client latency : 4.91 milliseconds (transit time +0.31 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417961
+Timestamp : 20149.67
+Software latency : 1.09 milliseconds
+System latency : 4.59 milliseconds
+Total client latency : 4.86 milliseconds (transit time +0.26 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417962
+Timestamp : 20149.68
+Software latency : 1.09 milliseconds
+System latency : 4.60 milliseconds
+Total client latency : 4.87 milliseconds (transit time +0.25 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417963
+Timestamp : 20149.69
+Software latency : 1.22 milliseconds
+System latency : 4.68 milliseconds
+Total client latency : 4.99 milliseconds (transit time +0.29 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417964
+Timestamp : 20149.70
+Software latency : 0.90 milliseconds
+System latency : 4.39 milliseconds
+Total client latency : 4.73 milliseconds (transit time +0.32 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417965
+Timestamp : 20149.71
+Software latency : 1.50 milliseconds
+System latency : 5.05 milliseconds
+Total client latency : 5.37 milliseconds (transit time +0.30 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417966
+Timestamp : 20149.72
+Software latency : 1.42 milliseconds
+System latency : 4.97 milliseconds
+Total client latency : 5.23 milliseconds (transit time +0.24 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417967
+Timestamp : 20149.72
+Software latency : 1.46 milliseconds
+System latency : 5.02 milliseconds
+Total client latency : 5.32 milliseconds (transit time +0.28 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417968
+Timestamp : 20149.73
+Software latency : 1.43 milliseconds
+System latency : 4.96 milliseconds
+Total client latency : 5.27 milliseconds (transit time +0.30 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417969
+Timestamp : 20149.74
+Software latency : 1.26 milliseconds
+System latency : 4.76 milliseconds
+Total client latency : 5.08 milliseconds (transit time +0.30 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417970
+Timestamp : 20149.75
+Software latency : 0.96 milliseconds
+System latency : 4.46 milliseconds
+Total client latency : 4.69 milliseconds (transit time +0.21 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417971
+Timestamp : 20149.76
+Software latency : 1.55 milliseconds
+System latency : 5.08 milliseconds
+Total client latency : 5.32 milliseconds (transit time +0.22 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417972
+Timestamp : 20149.77
+Software latency : 1.11 milliseconds
+System latency : 4.70 milliseconds
+Total client latency : 4.99 milliseconds (transit time +0.28 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417973
+Timestamp : 20149.78
+Software latency : 1.63 milliseconds
+System latency : 5.11 milliseconds
+Total client latency : 5.42 milliseconds (transit time +0.29 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417974
+Timestamp : 20149.78
+Software latency : 1.15 milliseconds
+System latency : 4.64 milliseconds
+Total client latency : 4.93 milliseconds (transit time +0.28 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417975
+Timestamp : 20149.79
+Software latency : 1.22 milliseconds
+System latency : 4.78 milliseconds
+Total client latency : 5.04 milliseconds (transit time +0.25 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417976
+Timestamp : 20149.80
+Software latency : 1.43 milliseconds
+System latency : 4.92 milliseconds
+Total client latency : 5.18 milliseconds (transit time +0.24 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417977
+Timestamp : 20149.81
+Software latency : 1.56 milliseconds
+System latency : 5.23 milliseconds
+Total client latency : 5.53 milliseconds (transit time +0.27 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417978
+Timestamp : 20149.82
+Software latency : 1.19 milliseconds
+System latency : 4.66 milliseconds
+Total client latency : 5.00 milliseconds (transit time +0.32 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417979
+Timestamp : 20149.83
+Software latency : 1.01 milliseconds
+System latency : 4.54 milliseconds
+Total client latency : 4.84 milliseconds (transit time +0.28 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417980
+Timestamp : 20149.83
+Software latency : 1.50 milliseconds
+System latency : 5.01 milliseconds
+Total client latency : 5.25 milliseconds (transit time +0.22 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417981
+Timestamp : 20149.84
+Software latency : 0.90 milliseconds
+System latency : 4.45 milliseconds
+Total client latency : 4.73 milliseconds (transit time +0.27 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417982
+Timestamp : 20149.85
+Software latency : 1.49 milliseconds
+System latency : 5.01 milliseconds
+Total client latency : 5.31 milliseconds (transit time +0.28 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417983
+Timestamp : 20149.86
+Software latency : 1.05 milliseconds
+System latency : 4.58 milliseconds
+Total client latency : 4.83 milliseconds (transit time +0.24 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417984
+Timestamp : 20149.87
+Software latency : 1.61 milliseconds
+System latency : 5.09 milliseconds
+Total client latency : 5.40 milliseconds (transit time +0.30 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417985
+Timestamp : 20149.88
+Software latency : 1.60 milliseconds
+System latency : 5.17 milliseconds
+Total client latency : 5.41 milliseconds (transit time +0.23 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417986
+Timestamp : 20149.88
+Software latency : 0.88 milliseconds
+System latency : 4.37 milliseconds
+Total client latency : 4.56 milliseconds (transit time +0.18 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417987
+Timestamp : 20149.89
+Software latency : 1.49 milliseconds
+System latency : 4.95 milliseconds
+Total client latency : 5.24 milliseconds (transit time +0.26 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417988
+Timestamp : 20149.90
+Software latency : 1.15 milliseconds
+System latency : 4.67 milliseconds
+Total client latency : 4.99 milliseconds (transit time +0.30 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417989
+Timestamp : 20149.91
+Software latency : 1.07 milliseconds
+System latency : 4.59 milliseconds
+Total client latency : 4.91 milliseconds (transit time +0.31 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417990
+Timestamp : 20149.92
+Software latency : 1.47 milliseconds
+System latency : 4.96 milliseconds
+Total client latency : 5.22 milliseconds (transit time +0.24 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417991
+Timestamp : 20149.92
+Software latency : 1.55 milliseconds
+System latency : 5.11 milliseconds
+Total client latency : 5.42 milliseconds (transit time +0.29 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417992
+Timestamp : 20149.93
+Software latency : 1.21 milliseconds
+System latency : 4.72 milliseconds
+Total client latency : 5.04 milliseconds (transit time +0.30 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417993
+Timestamp : 20149.94
+Software latency : 1.78 milliseconds
+System latency : 5.32 milliseconds
+Total client latency : 5.65 milliseconds (transit time +0.32 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417994
+Timestamp : 20149.95
+Software latency : 1.50 milliseconds
+System latency : 4.97 milliseconds
+Total client latency : 5.26 milliseconds (transit time +0.28 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417995
+Timestamp : 20149.96
+Software latency : 1.32 milliseconds
+System latency : 4.87 milliseconds
+Total client latency : 5.11 milliseconds (transit time +0.21 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417996
+Timestamp : 20149.97
+Software latency : 1.48 milliseconds
+System latency : 5.01 milliseconds
+Total client latency : 5.32 milliseconds (transit time +0.29 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417997
+Timestamp : 20149.97
+Software latency : 1.22 milliseconds
+System latency : 4.78 milliseconds
+Total client latency : 5.12 milliseconds (transit time +0.33 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417998
+Timestamp : 20149.98
+Software latency : 1.21 milliseconds
+System latency : 4.70 milliseconds
+Total client latency : 4.99 milliseconds (transit time +0.26 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2417999
+Timestamp : 20149.99
+Software latency : 1.06 milliseconds
+System latency : 4.64 milliseconds
+Total client latency : 4.91 milliseconds (transit time +0.26 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418000
+Timestamp : 20150.00
+Software latency : 1.55 milliseconds
+System latency : 5.04 milliseconds
+Total client latency : 5.32 milliseconds (transit time +0.27 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418001
+Timestamp : 20150.01
+Software latency : 1.28 milliseconds
+System latency : 4.77 milliseconds
+Total client latency : 5.03 milliseconds (transit time +0.25 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418002
+Timestamp : 20150.02
+Software latency : 1.04 milliseconds
+System latency : 4.48 milliseconds
+Total client latency : 4.86 milliseconds (transit time +0.36 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418003
+Timestamp : 20150.03
+Software latency : 1.42 milliseconds
+System latency : 4.96 milliseconds
+Total client latency : 5.26 milliseconds (transit time +0.29 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418004
+Timestamp : 20150.03
+Software latency : 1.27 milliseconds
+System latency : 4.78 milliseconds
+Total client latency : 5.07 milliseconds (transit time +0.22 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418005
+Timestamp : 20150.04
+Software latency : 0.88 milliseconds
+System latency : 4.32 milliseconds
+Total client latency : 4.55 milliseconds (transit time +0.22 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418006
+Timestamp : 20150.05
+Software latency : 1.52 milliseconds
+System latency : 4.98 milliseconds
+Total client latency : 5.31 milliseconds (transit time +0.30 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418007
+Timestamp : 20150.06
+Software latency : 1.08 milliseconds
+System latency : 4.58 milliseconds
+Total client latency : 4.86 milliseconds (transit time +0.26 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418008
+Timestamp : 20150.07
+Software latency : 1.33 milliseconds
+System latency : 4.81 milliseconds
+Total client latency : 5.09 milliseconds (transit time +0.26 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418009
+Timestamp : 20150.08
+Software latency : 0.99 milliseconds
+System latency : 4.44 milliseconds
+Total client latency : 4.70 milliseconds (transit time +0.25 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418010
+Timestamp : 20150.08
+Software latency : 1.05 milliseconds
+System latency : 4.47 milliseconds
+Total client latency : 4.77 milliseconds (transit time +0.28 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418011
+Timestamp : 20150.09
+Software latency : 0.94 milliseconds
+System latency : 4.45 milliseconds
+Total client latency : 4.72 milliseconds (transit time +0.26 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418012
+Timestamp : 20150.10
+Software latency : 1.03 milliseconds
+System latency : 4.54 milliseconds
+Total client latency : 4.82 milliseconds (transit time +0.26 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418013
+Timestamp : 20150.11
+Software latency : 0.91 milliseconds
+System latency : 4.41 milliseconds
+Total client latency : 4.68 milliseconds (transit time +0.26 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418014
+Timestamp : 20150.12
+Software latency : 0.92 milliseconds
+System latency : 4.42 milliseconds
+Total client latency : 4.67 milliseconds (transit time +0.24 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418015
+Timestamp : 20150.12
+Software latency : 1.07 milliseconds
+System latency : 4.55 milliseconds
+Total client latency : 4.79 milliseconds (transit time +0.22 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418016
+Timestamp : 20150.13
+Software latency : 1.22 milliseconds
+System latency : 4.81 milliseconds
+Total client latency : 5.08 milliseconds (transit time +0.25 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418017
+Timestamp : 20150.14
+Software latency : 1.03 milliseconds
+System latency : 4.53 milliseconds
+Total client latency : 4.73 milliseconds (transit time +0.19 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418018
+Timestamp : 20150.15
+Software latency : 0.87 milliseconds
+System latency : 4.42 milliseconds
+Total client latency : 4.67 milliseconds (transit time +0.23 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418019
+Timestamp : 20150.16
+Software latency : 1.33 milliseconds
+System latency : 4.92 milliseconds
+Total client latency : 5.17 milliseconds (transit time +0.24 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418020
+Timestamp : 20150.17
+Software latency : 0.97 milliseconds
+System latency : 4.54 milliseconds
+Total client latency : 4.79 milliseconds (transit time +0.24 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418021
+Timestamp : 20150.17
+Software latency : 1.81 milliseconds
+System latency : 5.45 milliseconds
+Total client latency : 5.74 milliseconds (transit time +0.28 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Marker [ModelID=884, MarkerID=4] [size=0.04] [pos=3.42,4.31,1.58]
+Labeled Marker [ModelID=884, MarkerID=5] [size=0.03] [pos=3.91,4.40,1.63]
+Labeled Marker [ModelID=884, MarkerID=6] [size=0.04] [pos=4.04,3.59,1.58]
+Labeled Marker [ModelID=884, MarkerID=7] [size=0.04] [pos=3.57,3.49,1.58]
+Labeled Marker [ModelID=884, MarkerID=8] [size=0.03] [pos=3.49,3.58,1.58]
+Labeled Marker [ModelID=883, MarkerID=1] [size=0.03] [pos=-4.64,-1.59,1.53]
+Labeled Marker [ModelID=883, MarkerID=2] [size=0.03] [pos=-4.67,-1.02,1.53]
+Labeled Marker [ModelID=883, MarkerID=5] [size=0.03] [pos=-4.87,-1.60,1.53]
+Labeled Marker [ModelID=883, MarkerID=6] [size=0.03] [pos=-4.93,-1.60,1.53]
+Unlabeled Marker [ModelID=0, MarkerID=47184] [size=0.04] [pos=-4.81,-0.01,1.54]
+Unlabeled Marker [ModelID=0, MarkerID=47185] [size=0.04] [pos=-4.71,-0.57,1.54]
+Force Plate [Count=0]
+Device [Count=0]
+FrameID : 2418022
+Timestamp : 20150.18
+Software latency : 1.48 milliseconds
+System latency : 5.06 milliseconds
+Total client latency : 5.29 milliseconds (transit time +0.21 ms)
+Timecode : 00:00:03:152.0
+Rigid Bodies [Count=2]
+Rigid Body [ID=884  Error=0.01  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	3.74	3.94	1.58	0.00	-0.00	-0.39	0.92
+Rigid Body [ID=883  Error=0.00  Valid=1]
+	x	y	z	qx	qy	qz	qw
+	-4.93	-1.41	1.53	-0.00	-0.01	0.73	0.68
+Skeletons [Count=0]
+Markers [Count=14]
+Labeled Marker [ModelID=884, MarkerID=1] [size=0.04] [pos=4.22,4.04,1.58]
+Labeled Marker [ModelID=884, MarkerID=2] [size=0.04] [pos=3.41,3.67,1.58]
+Labeled Marker [ModelID=884, MarkerID=3] [size=0.03] [pos=3.25,3.85,1.58]
+Labeled Mar
