@@ -71,67 +71,8 @@ char g_discoveredMulticastGroupAddr[kNatNetIpv4AddrStrLenMax] = NATNET_DEFAULT_M
 int g_analogSamplesPerMocapFrame = 0;
 sServerDescription g_serverDescription;
 
+
 int main( int argc, char* argv[] )
-{
-  g_pClient = new NatNetClient();
-  g_pClient->SetFrameReceivedCallback( DataHandler, g_pClient );
-
-  g_connectParams.serverCommandPort = 1510;
-  g_connectParams.serverDataPort = 1511;
-  g_connectParams.serverAddress = "192.168.1.231";
-  g_connectParams.localAddress = "192.168.1.237";
-  g_connectParams.connectionType = ConnectionType_Unicast;
-
-  void* response;
-  int nBytes;
-  int iResult;
-  iResult = ConnectClient();
-  if (iResult != ErrorCode_OK)
-  {
-        printf("Error initializing client. See log for details. Exiting.\n");
-        return 1;
-  }
-
-  sleep(1);
-  iResult = g_pClient->SendMessageAndWait("FrameRate", &response, &nBytes);
-  if (iResult == ErrorCode_OK) {
-    float fRate = *((float*)response);
-     printf("Mocap Framerate : %3.2f\n", fRate);
-  }
-  
-  sleep(1);
-  iResult = g_pClient->SendMessageAndWait("Disconnect", &response, &nBytes);
-  if (iResult == ErrorCode_OK) {
-    printf("[%s]\n", (char*)response);
-  }
-
-  sleep(1);
-  iResult = g_pClient->SendMessageAndWait("Connect", &response, &nBytes);
-  if (iResult == ErrorCode_OK) {
-    printf("[%s]\n", (char*)response);
-  }
-
-  sleep(1);
-  iResult = g_pClient->SendMessageAndWait("FrameRate", &response, &nBytes);
-  if (iResult == ErrorCode_OK) {
-    float fRate = *((float*)response);
-     printf("Mocap Framerate : %3.2f\n", fRate);
-  }
-
-  sleep(1);
-  iResult = g_pClient->SendMessageAndWait("SubscribeByID,RigidBody,883", &response, &nBytes);
-  iResult = g_pClient->SendMessageAndWait("SubscribeByID,RigidBody,884", &response, &nBytes);
-  if (iResult == ErrorCode_OK) {
-    printf("[%s]\n", (char*)response);
-  }
-
-  while ( const int c = getch() ) {
-    if ( c == 'q' ) return 0;
-  }
-}
-
-
-int old_main( int argc, char* argv[] )
 {
     // print version info
     unsigned char ver[4];
@@ -257,11 +198,10 @@ int old_main( int argc, char* argv[] )
         printf("Client initialized and ready.\n");
     }
 
+
 	// Send/receive test request
     void* response;
     int nBytes;
-
-/*
 	printf("[SampleClient] Sending Test Request\n");
 	iResult = g_pClient->SendMessageAndWait("TestRequest", &response, &nBytes);
 	if (iResult == ErrorCode_OK)
@@ -397,7 +337,7 @@ int old_main( int argc, char* argv[] )
         NatNet_FreeDescriptions( pDataDefs );
         pDataDefs = NULL;
     }
-*/
+
 	// Ready to receive marker stream!
 	printf("\nClient is connected to server and listening for data...\n");
 	bool bExit = false;
@@ -553,7 +493,6 @@ int ConnectClient()
         printf("Server Name:%s\n", g_serverDescription.szHostComputerName);
 
         // get mocap frame rate
-/*
         ret = g_pClient->SendMessageAndWait("FrameRate", &pResult, &nBytes);
         if (ret == ErrorCode_OK)
         {
@@ -572,7 +511,6 @@ int ConnectClient()
         }
         else
             printf("Error getting Analog frame rate.\n");
-*/
     }
 
     return ErrorCode_OK;
