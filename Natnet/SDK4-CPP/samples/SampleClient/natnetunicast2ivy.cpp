@@ -8,6 +8,9 @@
 #include <NatNetCAPI.h>
 #include <NatNetClient.h>
 
+#include <mutex>
+#include <Ivy/ivy.h>
+
 void NATNET_CALLCONV DataHandler(sFrameOfMocapData* data, void* pUserData);
 NatNetClient* g_pClient = NULL;
 sNatNetClientConnectParams g_connectParams;
@@ -22,12 +25,60 @@ sServerDescription g_serverDescription;
 /*
 
 LD_LIBRARY_PATH="/home/pprz/Projects/vto-tools/Natnet/SDK4-CPP/lib" \
-/home/pprz/Projects/vto-tools/Natnet/SDK4-CPP/samples/SampleClient/build/natnetunicast 884
+/home/pprz/Projects/vto-tools/Natnet/SDK4-CPP/samples/SampleClient/build/natnetunicast2ivy 884
 
 */
 
+static pthread_mutex_t data_mutex; // mutex for ivy send
+struct data_t {
+  int ac;
+  double x;
+  double y;
+  double z;
+  double qx;
+  double qy;
+  double qz;
+  double qw;
+} data_ivy,data_mocap;
+
+void ivysnd() {
+
+  pthread_mutex_lock(&data_mutex);
+  memcpy(&data_ivy, &data_mocap, sizeof(data_t));
+  pthread_mutex_unlock(&data_mutex);
+  IvySendMsg("%d REMOTE_GPS_LOCAL %f %f %f %f %f %f %f", 
+    data_ivy.ac,data_ivy.x,data_ivy.y,data_ivy.z,data_ivy.qx,data_ivy.qy,data_ivy.qz,data_ivy.qw);
+
+/*
+  IvySendMsg("%d NPS_SENSORS_SCALED %f %f %f %f %f %f",
+
+             msg = PprzMessage("datalink", "REMOTE_GPS_LOCAL")
+            msg['ac_id'] = id_dict[i]
+            msg['pad'] = 0
+            msg['enu_x'] = pos[0]
+            msg['enu_y'] = pos[1]
+            msg['enu_z'] = pos[2]
+            msg['enu_xd'] = vel[0]
+            msg['enu_yd'] = vel[1]
+            msg['enu_zd'] = vel[2]
+            msg['tow'] = int(1000. * stamp) # TODO convert to GPS itow ?
+            # convert quaternion to psi euler angle
+            dcm_0_0 = 1.0 - 2.0 * (quat[1] * quat[1] + quat[2] * quat[2])
+            dcm_1_0 = 2.0 * (quat[0] * quat[1] - quat[3] * quat[2])
+            msg['course'] = 180. * np.arctan2(dcm_1_0, dcm_0_0) / 3.14
+            ivy.send(msg)
+*/
+}
+
+
 int main( int argc, char* argv[] )
 {
+
+  std::string y="127.255.255.255";
+  const char *ivy_bus=y.c_str();
+  IvyInit ("natnetunicast2ivy", "natnetunicast2ivy READY", NULL, NULL, NULL, NULL);
+  IvyStart(ivy_bus);
+
   int ac_id=atoi(argv[1]);
 
   g_pClient = new NatNetClient();
@@ -165,6 +216,17 @@ void NATNET_CALLCONV DataHandler(sFrameOfMocapData* data, void* pUserData)
 			data->RigidBodies[i].qy,
 			data->RigidBodies[i].qz,
 			data->RigidBodies[i].qw);
+
+                pthread_mutex_lock(&data_mutex);
+		data_mocap.ac=data->RigidBodies[i].ID;
+		data_mocap.x=data->RigidBodies[i].x;
+		data_mocap.y=data->RigidBodies[i].y;
+		data_mocap.z=data->RigidBodies[i].z;
+		data_mocap.qx=data->RigidBodies[i].qx;
+		data_mocap.qy=data->RigidBodies[i].qy;
+		data_mocap.qz=data->RigidBodies[i].qz;
+		data_mocap.qw=data->RigidBodies[i].qw;
+                pthread_mutex_unlock(&data_mutex);
 	}
 
 	// Skeletons
