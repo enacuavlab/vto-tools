@@ -1,66 +1,21 @@
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
-A) Install the right DOCKER and settup working directory
---------------------------------------------------------
+This will build the docker image with nvidia sdkmanager inside
+--------------------------------------------------------------
+1) Create  Dockerfile (below)
+2) Get sdkmanager_1.8.0-10363_amd64.deb from
+   https://developer.nvidia.com/nvidia-sdk-manager
+3) ...
 
-sudo snap remove docker
-sudo snap list
-=> 
-sudo snap remove docker
+docker system prune
 
-----------------------------------------------------
-dpkg -l | grep -i docker
-=>
-sudo apt-get purge -y docker docker-ce docker-ce-cli docker-ce-rootless-extras docker-scan-plugin wmdocker 
-sudo apt-get autoremove -y docker docker-ce docker-ce-cli docker-ce-rootless-extras docker-scan-plugin wmdocker 
+docker build --build-arg GID=$(id -g) --build-arg UID=$(id -u) -t jetpackimage .
 
-sudo rm -rf /var/lib/docker
-sudo rm -rf /var/lib/containerd
-
-----------------------------------------------------
-https://docs.docker.com/engine/install/ubuntu/
-
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-
-sudo vi /etc/systemd/system/docker.service.d/http-proxy.conf 
-comment "#" each line
-
-sudo systemctl stop docker.service
-systemctl daemon-reload
-sudo systemctl start docker.service 
-
-sudo docker run hello-world
-docker info
-
-----------------------------------------------------
-https://stackoverflow.com/questions/62976159/persisting-docker-data-root-across-reboots
-
-mkdir /home/pprz/Docker
-
-sudo vi /lib/systemd/system/docker.service
-ExecStart=/usr/bin/dockerd --data-root /home/pprz/Docker -H fd:// --containerd=/run/containerd/containerd.sock
-
-systemctl daemon-reload
-sudo systemctl stop docker.service
-sudo systemctl stop docker.socket
-
-docker info
-=> 
- Docker Root Dir: /home/pprz/Docker
-
-sudo usermod -aG docker 
-
-
--------------------------------------------------------------------------------
-
-https://developer.nvidia.com/nvidia-sdk-manager
-sdkmanager_1.8.0-10363_amd64.deb
+docker image ls
+jetpackimage   latest    6b3f68fb6f84   10 seconds ago   944MB
+ubuntu         18.04     ad080923604a   4 weeks ago      63.1MB
 
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 Dockerfile
-
 -------------------------------------------------------------------------------
 FROM ubuntu:18.04
 

@@ -1,49 +1,47 @@
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
-B) Build and run DOCKER with NVIDIA sdkmanager inside
+This will use the docker image to run nvidia sdkmanager
 (Nvidia developper account and web connection needed)
------------------------------------------------------
-1) 
+------------------------------------------------------
+
 docker system prune
 
-docker build --build-arg GID=$(id -g) --build-arg UID=$(id -u) -t jetpackimage .
-
-docker image ls
-REPOSITORY     TAG       IMAGE ID       CREATED          SIZE
-jetpackimage   latest    de1f14d30c6e   33 seconds ago   735MB
-ubuntu         18.04     ad080923604a   5 days ago       63.1MB
-
+1a) 
 docker run --name jetpackcontainer --privileged -v /dev/bus/usb:/dev/bus/usb/ -v /dev:/dev jetpackimage
 (keep running for executions below)
 
-(docker system prune)
+1b)
+docker exec -it jetpackcontainer /bin/bash
+(run sdkmanager commands below within this bash)
 
 ------------------------------------------------------------------------
-2)
-export DOCKERCMD="docker exec -it jetpackcontainer"
+2) For Jetson nano
 
-export SDKCMD=(sdkmanager --cli downloadonly --logintype devzone --product Jetson --target JETSON_NANO_TARGETS --targetos Linux --version 4.6 --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --staylogin true --datacollection enable)
+sdkmanager --cli downloadonly --logintype devzone --product Jetson --target JETSON_NANO_TARGETS --targetos Linux --version 4.6 --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --staylogin true --datacollection enable
 
-$DOCKERCMD "${SDKCMD[@]}"
+=> Download error, retrying 
 
 open url link to NVIDIA account
 login & confirm
 
-docker commit jetpackcontainer jetpackimage
+docker image ls
+jetpackimage   latest    6b3f68fb6f84   9 minutes ago   944MB
+ubuntu         18.04     ad080923604a   4 weeks ago     63.1MB
+
+docker commit jetpackcontainer jetpackimage 
 
 docker image ls
-REPOSITORY     TAG       IMAGE ID       CREATED         SIZE
-jetpackimage   latest    976905aeeb6c   6 seconds ago   2.51GB
-ubuntu         18.04     ad080923604a   5 days ago      63.1MB
+jetpackimage   latest    112311178535   40 seconds ago   2.72GB
+ubuntu         18.04     ad080923604a   4 weeks ago      63.1MB
 
-------------------------------------------------------------------------
-3)
-export SDKCMD=(sdkmanager --cli install --logintype devzone --product Jetson --target JETSON_NANO_TARGETS --targetos Linux --version 4.6 --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --staylogin true --datacollection enable  --flash skip)
+(Stop and relaunch 1a & 1b)
+sdkmanager --cli install --logintype devzone --product Jetson --target JETSON_NANO_TARGETS --targetos Linux --version 4.6 --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --staylogin true --datacollection enable  --flash skip
 
-$DOCKERCMD "${SDKCMD[@]}"
+!!!!!!
+error: mknod: /home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_NANO_TARGETS/Linux_for_Tegra/rootfs/dev/random: File exists                 
+xi!!!!
 
 docker commit jetpackcontainer jetpackimage
 
+-----------------------------------------------------------------------
 sudo du -h ./Docker
 21	./Docker
 
