@@ -29,7 +29,7 @@ sdkmanager --cli install --logintype devzone --product Jetson --version 4.6 --ta
 docker commit jetpackcontainer jetpackimage
 
 -----------------------------------------------------------------------
-sudo du -h ./Docker
+sudo du -h /home/pprz/Docker
 21	./Docker
 
 docker image ls
@@ -103,25 +103,22 @@ sudo du -h /home/pprz/Docker
 
 docker commit jetpackcontainer jetpackimage
 
-sdkmanager --cli install --logintype devzone --product Jetson --target JETSON_NANO_TARGETS --targetos Linux --version 4.6 --deselect 'Jetson OS' --select 'Jetson SDK Components' --license accept --staylogin true
+Run rules outoff docker, to brige ethernet and wifi (internet)
 
-!!!!
-Not internet connection 
-ping nvidia.com
-!!!!
+sudo iptables -I FORWARD -i enxe4b97ab11842 -o wlp59s0 -j ACCEPT
+sudo iptables -I FORWARD -i wlp59s0 -o enxe4b97ab11842 -j ACCEPT
+sudo iptables -t nat -I POSTROUTING -o wlp59s0 -j MASQUERADE
+sudo sysctl net.ipv4.ip_forward=1
+
+ssh pprz@192.168.3.2
+ping www.google.com
+=> PING www.google.com (216.58.214.164) 56(84) bytes of data.
+
+sdkmanager --cli install --logintype devzone --product Jetson --target JETSON_NANO_TARGETS --targetos Linux --version 4.6 --deselect 'Jetson OS' --select 'Jetson SDK Components' --license accept --staylogin true
 
 docker image ls
 REPOSITORY     TAG       IMAGE ID       CREATED         SIZE
 jetpackimage   latest    6d125dfab4a0   4 minutes ago   62.2GB
 ubuntu         18.04     ad080923604a   4 weeks ago     63.1MB
 
-
-------------------------------------------------------------------------
-------------------------------------------------------------------------
-5)
-export DOCKERCMD="docker exec -it jetpackcontainer"
-
-export SDKCMD=(sdkmanager --cli install --logintype devzone --product Jetson --target JETSON_NANO_TARGETS --targetos Linux --version 4.6 --deselect 'Jetson OS' --select 'Jetson SDK Components' --license accept --staylogin true --datacollection enable)
-
-$DOCKERCMD "${SDKCMD[@]}"
 
