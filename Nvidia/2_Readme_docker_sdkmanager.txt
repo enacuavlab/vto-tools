@@ -13,11 +13,9 @@ docker exec -it jetpackcontainer /bin/bash
 (run sdkmanager commands below within this bash)
 
 ------------------------------------------------------------------------
-2) For Jetson nano
+2) For Jetson nano 
 
-sdkmanager --cli downloadonly --logintype devzone --product Jetson --target JETSON_NANO_TARGETS --targetos Linux --version 4.6 --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --staylogin true --datacollection enable
-
-=> Download error, retrying 
+sdkmanager --cli downloadonly --logintype devzone --product Jetson --version 4.6 --targetos Linux --target JETSON_NANO_TARGETS --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --staylogin true
 
 open url link to NVIDIA account
 login & confirm
@@ -26,18 +24,7 @@ docker image ls
 jetpackimage   latest    6b3f68fb6f84   9 minutes ago   944MB
 ubuntu         18.04     ad080923604a   4 weeks ago     63.1MB
 
-docker commit jetpackcontainer jetpackimage 
-
-docker image ls
-jetpackimage   latest    112311178535   40 seconds ago   2.72GB
-ubuntu         18.04     ad080923604a   4 weeks ago      63.1MB
-
-(Stop and relaunch 1a & 1b)
-sdkmanager --cli install --logintype devzone --product Jetson --target JETSON_NANO_TARGETS --targetos Linux --version 4.6 --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --staylogin true --datacollection enable  --flash skip
-
-!!!!!!
-error: mknod: /home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_NANO_TARGETS/Linux_for_Tegra/rootfs/dev/random: File exists                 
-xi!!!!
+sdkmanager --cli install --logintype devzone --product Jetson --version 4.6 --targetos Linux --target JETSON_NANO_TARGETS --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --staylogin true --flash skip
 
 docker commit jetpackcontainer jetpackimage
 
@@ -51,36 +38,26 @@ jetpackimage   latest    be67b51ee0c9   18 seconds ago   7.62GB
 
 ------------------------------------------------------------------------
 4)
-docker exec -it jetpackcontainer /bin/bash
-
 Jetson Nano Developer Kit = Jetson module (P3448-0000) + carrier board (P3449-0000)
 Jetson Nano Developer Kit (part number 945-13450-0000-000), which includes carrier board revision A02)
 
  1.Jumper the Force Recovery pins FRC (3 and 4) on J40 button header
- 2.Connect microUSB alone
+ 2.Connect only microUSB  (power + data)
    (dmesg => APX)
    (lsusb => NVIDIA Corp. APX)
    
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 5)
-docker exec -it jetpackcontainer /bin/bash
-
-cd /home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_NANO_TARGETS/Linux_for_Tegra;sudo ./flash.sh jetson-nano-qspi-sd mmcblk0p1
+cd /home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_NANO_TARGETS/Linux_for_Tegra
+sudo ./flash.sh jetson-nano-qspi-sd mmcblk0p1
 => 10 minutes to write 19 partitions !!
 
-
-#export SDKCMD=(sdkmanager --cli install --logintype devzone --product Jetson --target JETSON_NANO_TARGETS --targetos Linux --version 4.6 --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --staylogin true --datacollection enable --flash all)
-#$DOCKERCMD "${SDKCMD[@]}"
-#Could not detect correct NVIDIA jetson device connected
-
-sudo du -h ./Docker
-35G	./Docker
 
 docker commit jetpackcontainer jetpackimage
 
 sudo du -h ./Docker
-53G	./Docker
+112G	./Docker
 
 docker image ls
 REPOSITORY     TAG       IMAGE ID       CREATED         SIZE
@@ -95,6 +72,7 @@ After flash completed, the board reboot by itself and
 -Ethernet USB0, NVIDIA Off
 
 sudo screen /dev/ttyACM0 115200
+(escape key)
 => System Configuration
 user:pprz
 password:pprz
@@ -104,38 +82,39 @@ leave default network conf
 
 Install system
 
-Ethernet USB0 auto-connected with 192.168.55.1 on boot
-(host 192.168.55.100)
+Ethernet eth0 static IP 192.168.3.2,...
 
-NVIDIA can be connected with screen or ssh (ssh pprs@192.168.55.1)
+NVIDIA can be connected with screen or ssh 
+ssh pprz@192.168.3.2
 
 
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 5)
-ssh pprz@192.168.55.1
+ssh pprz@192.168.3.2
 exit
 
-
-expor DOCKERCMD="docker exec -it jetpackcontainer"
-
-export SDKCMD=(sdkmanager --cli downloadonly --logintype devzone --product Jetson --target JETSON_NANO_TARGETS --targetos Linux --version 4.6 --deselect 'Jetson OS' --select 'Jetson SDK Components' --license accept --staylogin true --datacollection enable)
-
-$DOCKERCMD "${SDKCMD[@]}"
+sdkmanager --cli downloadonly --logintype devzone --product Jetson --target JETSON_NANO_TARGETS --targetos Linux --version 4.6 --deselect 'Jetson OS' --select 'Jetson SDK Components' --license accept --staylogin true
 
 CUDA, CUDA-X AI, Computer Vision, NVIDIA Container Runtime, Multimedia, Developer Tools
 
-sudo du -h ./Docker
-58G	./Docker
+sudo du -h /home/pprz/Docker
+120G	./Docker
 
 docker commit jetpackcontainer jetpackimage
 
-sudo du -h ./Docker
-60G	./Docker
+sdkmanager --cli install --logintype devzone --product Jetson --target JETSON_NANO_TARGETS --targetos Linux --version 4.6 --deselect 'Jetson OS' --select 'Jetson SDK Components' --license accept --staylogin true
+
+!!!!
+Not internet connection 
+ping nvidia.com
+!!!!
 
 docker image ls
 REPOSITORY     TAG       IMAGE ID       CREATED         SIZE
-jetpackimage   latest    5fe81f911f5c   6 minutes ago   30.4GB
+jetpackimage   latest    6d125dfab4a0   4 minutes ago   62.2GB
+ubuntu         18.04     ad080923604a   4 weeks ago     63.1MB
+
 
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------

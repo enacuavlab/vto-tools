@@ -10,25 +10,26 @@ docker run --name jetpackcontainer --privileged -v /dev/bus/usb:/dev/bus/usb/ -v
 docker exec -it jetpackcontainer /bin/bash
 
 2.1)
-sdkmanager --cli downloadonly --logintype devzone --product Jetson --target JETSON_XAVIER_NX_TARGETS --targetos Linux --version 4.6 --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --staylogin true --datacollection enable
+sdkmanager --cli downloadonly --logintype devzone --product Jetson --version 4.6 --targetos Linux --target JETSON_XAVIER_NX_TARGETS --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --staylogin true
 
 2.2)
-sdkmanager --cli install --logintype devzone --product Jetson --target JETSON_XAVIER_NX_TARGETS --targetos Linux --version 4.6 --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --staylogin true --datacollection enable --flash skip
-
+sdkmanager --cli install --logintype devzone --product Jetson --version 4.6 --targetos Linux --target JETSON_XAVIER_NX_TARGETS --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --staylogin true --flash skip
 
 https://connecttech.com/product/quark-carrier-nvidia-jetson-xavier-nx/
-JetPack 4.6.2 – L4T r32.7.2 22-June-22
+https://connecttech.com/ftp/Drivers/CTI-L4T-XAVIER-NX-32.7.2-V003.tgz
+22-June-22
 CTI-L4T-XAVIER-NX-32.7.2-V003.tgz (500 Mb)
 
 docker ps
 => 8249511561ad   jetpackimage 
 docker cp CTI-L4T-XAVIER-NX-32.7.2-V003.tgz 8249511561ad:/home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
 
+cd /home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
 tar -xzf CTI-L4T-XAVIER-NX-32.7.2-V003.tgz
 rm CTI-L4T-XAVIER-NX-32.7.2-V003.tgz 
 cd ./CTI-L4T
 sudo ./install.sh
-
+=> CTI-L4T-XAVIER-NX-32.7.2-V003 Installed!
 
 docker image ls
 jetpackimage  30.4GB
@@ -44,9 +45,9 @@ cd /home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Li
 
 sudo ./flash.sh --no-flash cti/xavier-nx/quark/rpi-imx219 mmcblk0p1
 
-
-Jetson Xavier NX + Quark (Connecttech carrier board)
-flash eMMC(16 GB)
+2.4)
+Flash Jetson Xavier NX eMMC(16 GB) + Quark (Connecttech carrier board)
+without SD card on carrier board
 
  1.Connect USB-C
  2.PowerOn

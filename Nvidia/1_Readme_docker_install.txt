@@ -13,6 +13,17 @@ docker image ls
 jetpackimage   latest    6b3f68fb6f84   10 seconds ago   944MB
 ubuntu         18.04     ad080923604a   4 weeks ago      63.1MB
 
+1a)
+docker run --name jetpackcontainer --privileged -v /dev/bus/usb:/dev/bus/usb/ -v /dev:/dev jetpackimage
+(keep running for executions below)
+
+1b)
+docker exec -it jetpackcontainer /bin/bash
+
+sudo apt purge binfmt-support qemu-user-static
+sudo apt-get update
+sudo apt-get install qemu-user-static
+
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 Dockerfile
