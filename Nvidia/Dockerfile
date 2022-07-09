@@ -19,7 +19,7 @@ RUN useradd -m $USERNAME && \
 
 
 RUN apt-get update -y --fix-missing \
-    && apt-get install -y vim sudo libgconf-2-4 libcanberra-gtk-module locales usbutils python3 qemu-user-static libxml2-utils net-tools iputils-ping screen  ssh cpio binutils libmoosex-getopt-perl netcat uuid-runtime gdisk \
+    && apt-get install -y vim sudo libgconf-2-4 libcanberra-gtk-module locales usbutils python3 qemu-user-static libxml2-utils net-tools iputils-ping screen  ssh cpio binutils libmoosex-getopt-perl netcat uuid-runtime gdisk whiptail \
     && apt-get autoremove -y \
     && apt-get autoclean -y \
     && rm -rf /var/lib/apt/lists/*

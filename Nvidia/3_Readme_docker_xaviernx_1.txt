@@ -40,6 +40,15 @@ docker image ls
 jetpackimage  38.1GB
 
 
+2.2b)
+sudo apt purge binfmt-support qemu-user-static
+sudo apt-get update
+sudo apt-get install qemu-user-static
+cd /home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
+./tools/l4t_create_default_user.sh -u pprz -p pprz -n xaviernx1 -a
+
+
+
 2.3)
 cd /home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
 
@@ -50,35 +59,23 @@ Flash Jetson Xavier NX eMMC(16 GB) + Quark (Connecttech carrier board)
 without SD card on carrier board
 
  1.Connect USB-C
- 2.PowerOn
-=> Green leds fixed
-
- 3.Press Recovery Button (>10sec) 
+ 2.Plug UART/USB(FTDI) adapter
+ 3.PowerOn
+ 4.Press Recovery Button (>10sec) 
 dmesg -w 
 => Product: APX
    (no /dev/ttyUSB0, no ttyACMx)
 
- 4.Flash 
+ 5.Flash 
   First xavierNx flash eMMC(16 GB) (without SD-CARD)
   (10 minutes to flash all partitions)
 
 sudo ./flash.sh cti/xavier-nx/quark/rpi-imx219 mmcblk0p1
 => Reset the board to boot from internal eMMC.
 
- 5.PowerOff
- 6.Plug UART/USB(FTDI) adapter
-
+ 6.Login
 screen /dev/ttyUSB0 115200
 
- 7.PowerOn
- 8.Wait 30sec firstboot
-
-=> system configuration setup on the serial port provided by Jetson's USB device mode connection. 
-e.g. /dev/ttyUSBx where x can 0, 1, 2 etc.
-
- 9.escape
-
-  10.Initial oem-config 
   eth0: Ethernet, static IP configuration 192.168.3.2/255.255.255.0/192.168.3.1/8.8.8.8,8.8.4,4
 
   11.Login console
