@@ -40,13 +40,27 @@ docker image ls
 jetpackimage  38.1GB
 
 
-2.2b)
+2.2b) Create user and ethernet primary network
+
+Disable initial configuration menu (oem-config)
 sudo apt purge binfmt-support qemu-user-static
 sudo apt-get update
 sudo apt-get install qemu-user-static
 cd /home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
 ./tools/l4t_create_default_user.sh -u pprz -p pprz -n xaviernx1 -a
 
+./rootfs/etc/default/networking
+CONFIGURE_INTERFACES=no
+
+./rootfs/etc/network/interfaces
+auto eth0
+iface eth0 inet static
+  address 192.168.3.2
+  netmask 255.255.255.0
+  gateway 192.168.3.1
+  dns-nameservers 8.8.8.8
+  dns-nameservers 8.8.4.4
+  dns-search foo
 
 
 2.3)
@@ -73,23 +87,27 @@ dmesg -w
 sudo ./flash.sh cti/xavier-nx/quark/rpi-imx219 mmcblk0p1
 => Reset the board to boot from internal eMMC.
 
- 6.Login
+ 6.Console (auto login)
 screen /dev/ttyUSB0 115200
 
-  eth0: Ethernet, static IP configuration 192.168.3.2/255.255.255.0/192.168.3.1/8.8.8.8,8.8.4,4
-
-  11.Login console
-  ifconfig eth0
-
-  12.Plug ethernet
-  Configure static on host 192.168.3.1/255.255.255.0/192.168.3.1
-  ping 192.168.3.2
-  ssh pprz@192.168.3.2
+ 7.Plug ethernet
+ Configure static on host 192.168.3.1/255.255.255.0/192.168.3.1
+ ssh pprz@192.168.3.2
 
 
 docker commit jetpackcontainer jetpackimage
 docker image ls
-jetpackimage  62.9GB
+jetpackimage   latest    9ca07a1a1dd1   8 seconds ago   87.3GB
+ubuntu         18.04     ad080923604a   4 weeks ago     63.1MB
+
+sudo du -h ./Docker
+=>
+142G	./Docker
+
+Stop "docker run ..."
+sudo du -h ./Docker
+=>
+83G	./Docker
 
 ------------------------------------------------------------------------
 5)
