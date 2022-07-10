@@ -109,11 +109,4 @@ sudo du -h ./Docker
 =>
 83G	./Docker
 
-------------------------------------------------------------------------
-5)
 
-sdkmanager --cli downloadonly --logintype devzone --product Jetson --target JETSON_XAVIER_NX_TARGETS --targetos Linux --version 4.6 --deselect 'Jetson OS' --select 'Jetson SDK Components' --license accept --staylogin true --datacollection enable
-
-sdkmanager --cli install --logintype devzone --product Jetson --target JETSON_XAVIER_NX_TARGETS --targetos Linux --version 4.6 --deselect 'Jetson OS' --select 'Jetson SDK Components' --license accept --staylogin true --datacollection enable
-
-Install / Connect via Ethernet / IPV4 / 192.168.3.2 / pprz / pprz
