@@ -12,31 +12,32 @@ docker exec -it jetpackcontainer /bin/bash
 2.1)
 sdkmanager --cli downloadonly --logintype devzone --product Jetson --version 4.6 --targetos Linux --target JETSON_XAVIER_NX_TARGETS --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --staylogin true
 
-2.2)
+2.2) To prevent chroot exec error:
+sudo apt purge binfmt-support qemu-user-static
+sudo apt-get update
+sudo apt-get install qemu-user-static
+
 sdkmanager --cli install --logintype devzone --product Jetson --version 4.6 --targetos Linux --target JETSON_XAVIER_NX_TARGETS --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --staylogin true --flash skip
 
 https://connecttech.com/product/quark-carrier-nvidia-jetson-xavier-nx/
-#https://connecttech.com/ftp/Drivers/CTI-L4T-XAVIER-NX-32.7.2-V003.tgz
-#22-June-22
-#CTI-L4T-XAVIER-NX-32.7.2-V003.tgz (500 Mb)
 JetPack 4.6 – L4T r32.6.1 	NX L4T r32.6.1 BSP	NX L4T r32.6.1 Release Notes	04-Mar-22
 https://connecttech.com/ftp/Drivers/CTI-L4T-XAVIER-NX-32.6.1-V010.tgz
-(or you wont be able to load compiled drivers "disagrees about version of symbol module_layout")
+(keep this version or you wont be able to load compiled drivers: "disagrees about version of symbol module_layout")
 
 docker ps
-=> 8249511561ad   jetpackimage 
-#docker cp CTI-L4T-XAVIER-NX-32.7.2-V003.tgz 8249511561ad:/home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
-docker cp CTI-L4T-XAVIER-NX-32.6.1-V010.tgz 8249511561ad:/home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
+=> f2b8ea3f8330   jetpackimage 
+docker cp CTI-L4T-XAVIER-NX-32.6.1-V010.tgz f2b8ea3f8330:/home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
 
 cd /home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
 #tar -xzf CTI-L4T-XAVIER-NX-32.7.2-V003.tgz
 #rm CTI-L4T-XAVIER-NX-32.7.2-V003.tgz 
-tar -xzf CTI-L4T-XAVIER-NX-32.7.2-V003.tgz
-rm CTI-L4T-XAVIER-NX-32.7.2-V003.tgz
+tar -xzf CTI-L4T-XAVIER-NX-32.6.1-V010.tgz
+rm CTI-L4T-XAVIER-NX-32.6.1-V010.tgz
 cd ./CTI-L4T
 sudo ./install.sh
 #=> CTI-L4T-XAVIER-NX-32.7.2-V003 Installed!
-=> CTI-L4T-XAVIER-NX-32.7.2-V003 Installed!
+=> CTI-L4T-Xavier-NX-32.6.1-V010 Installed!
+
 
 docker image ls
 jetpackimage  30.4GB
@@ -49,12 +50,12 @@ jetpackimage  38.1GB
 
 2.2b) Create user and ethernet primary network
 
-Disable initial configuration menu (oem-config)
+Disable initial configuration menu (oem-config):
 sudo apt purge binfmt-support qemu-user-static
 sudo apt-get update
 sudo apt-get install qemu-user-static
 cd /home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
-./tools/l4t_create_default_user.sh -u pprz -p pprz -n xaviernx1 -a
+sudo ./tools/l4t_create_default_user.sh -u pprz -p pprz -n xaviernx1 -a --accept-license 
 
 ./rootfs/etc/default/networking
 CONFIGURE_INTERFACES=no
@@ -70,12 +71,13 @@ iface eth0 inet static
   dns-search foo
 
 
-2.3)
+2.3) Optional
 cd /home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
 
 sudo ./flash.sh --no-flash cti/xavier-nx/quark/rpi-imx219 mmcblk0p1
 
 2.4)
+cd /home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
 Flash Jetson Xavier NX eMMC(16 GB) + Quark (Connecttech carrier board)
 without SD card on carrier board
 

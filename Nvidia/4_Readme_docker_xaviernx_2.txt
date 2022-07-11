@@ -10,12 +10,11 @@ https://connecttech.com/resource-center/kdb377-booting-off-external-media-cti-je
 https://connecttech.com/ftp/dropbox/create_sd_image.sh
 
 docker ps
-=> 27fd52bc2a72   jetpackimage
-docker cp  create_sd_image.sh 27fd52bc2a72:/home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
+=> 5a86bbfeb535   jetpackimage
+docker cp  create_sd_image.sh 5a86bbfeb535:/home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
 
 cd /home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
 chmod +x create_sd_image.sh
-(10 minutes)
 
 Disable auto-mount on host (dconf-editor)
 Plug SD on host 
@@ -28,7 +27,7 @@ sudo ./create_sd_image.sh /dev/sdx
 unmount sdx
 
 docker commit jetpackcontainer jetpackimage
-dmes
+dmesg
 plug SD on XavierNX carrier board (quark)
 
 USB-C cable connected
@@ -40,13 +39,14 @@ dmesg -w
 cd /home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
 sudo ./flash.sh cti/xavier-nx/quark/rpi-imx219 external
 
-PowerOff xavier nx
-UART/USB(FTDI) cable connected
+auto boot after flashed
 
+Optionnal
+UART/USB(FTDI) cable connected
 screen /dev/ttyUSB0 115200
 => login console
 
-
+Plug Ethernet static 192.168.3.1 255.255.255.0 
 ssh pprz@192.168.3.2
 => OK
 
