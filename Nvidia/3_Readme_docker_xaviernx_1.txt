@@ -29,13 +29,10 @@ docker ps
 docker cp CTI-L4T-XAVIER-NX-32.6.1-V010.tgz f2b8ea3f8330:/home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
 
 cd /home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
-#tar -xzf CTI-L4T-XAVIER-NX-32.7.2-V003.tgz
-#rm CTI-L4T-XAVIER-NX-32.7.2-V003.tgz 
 tar -xzf CTI-L4T-XAVIER-NX-32.6.1-V010.tgz
 rm CTI-L4T-XAVIER-NX-32.6.1-V010.tgz
 cd ./CTI-L4T
 sudo ./install.sh
-#=> CTI-L4T-XAVIER-NX-32.7.2-V003 Installed!
 => CTI-L4T-Xavier-NX-32.6.1-V010 Installed!
 
 
