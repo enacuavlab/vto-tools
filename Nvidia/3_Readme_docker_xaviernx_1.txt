@@ -16,19 +16,26 @@ sdkmanager --cli downloadonly --logintype devzone --product Jetson --version 4.6
 sdkmanager --cli install --logintype devzone --product Jetson --version 4.6 --targetos Linux --target JETSON_XAVIER_NX_TARGETS --select 'Jetson OS' --deselect 'Jetson SDK Components' --license accept --staylogin true --flash skip
 
 https://connecttech.com/product/quark-carrier-nvidia-jetson-xavier-nx/
-https://connecttech.com/ftp/Drivers/CTI-L4T-XAVIER-NX-32.7.2-V003.tgz
-22-June-22
-CTI-L4T-XAVIER-NX-32.7.2-V003.tgz (500 Mb)
+#https://connecttech.com/ftp/Drivers/CTI-L4T-XAVIER-NX-32.7.2-V003.tgz
+#22-June-22
+#CTI-L4T-XAVIER-NX-32.7.2-V003.tgz (500 Mb)
+JetPack 4.6 – L4T r32.6.1 	NX L4T r32.6.1 BSP	NX L4T r32.6.1 Release Notes	04-Mar-22
+https://connecttech.com/ftp/Drivers/CTI-L4T-XAVIER-NX-32.6.1-V010.tgz
+(or you wont be able to load compiled drivers "disagrees about version of symbol module_layout")
 
 docker ps
 => 8249511561ad   jetpackimage 
-docker cp CTI-L4T-XAVIER-NX-32.7.2-V003.tgz 8249511561ad:/home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
+#docker cp CTI-L4T-XAVIER-NX-32.7.2-V003.tgz 8249511561ad:/home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
+docker cp CTI-L4T-XAVIER-NX-32.6.1-V010.tgz 8249511561ad:/home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
 
 cd /home/jetpack/nvidia/nvidia_sdk/JetPack_4.6_Linux_JETSON_XAVIER_NX_TARGETS/Linux_for_Tegra
+#tar -xzf CTI-L4T-XAVIER-NX-32.7.2-V003.tgz
+#rm CTI-L4T-XAVIER-NX-32.7.2-V003.tgz 
 tar -xzf CTI-L4T-XAVIER-NX-32.7.2-V003.tgz
-rm CTI-L4T-XAVIER-NX-32.7.2-V003.tgz 
+rm CTI-L4T-XAVIER-NX-32.7.2-V003.tgz
 cd ./CTI-L4T
 sudo ./install.sh
+#=> CTI-L4T-XAVIER-NX-32.7.2-V003 Installed!
 => CTI-L4T-XAVIER-NX-32.7.2-V003 Installed!
 
 docker image ls
