@@ -130,6 +130,10 @@ demsg
 [18825.324130] GPT:36263968 != 62521343
 [18825.324132] GPT: Use GNU Parted to correct GPT errors.
 
-sudo gparted /Dev/sdx
+sudo gparted /dev/sdx
 =>
 Not all of the space available to /dev/sdb appears to be used, you can fix the GPT to use all of the space (an extra 26257375 blocks) or continue with the current setting? 
+
+expand 
+(resize2fs -p '/dev/sdb1')
+
