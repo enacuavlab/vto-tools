@@ -134,6 +134,8 @@ sudo gparted /dev/sdx
 =>
 Not all of the space available to /dev/sdb appears to be used, you can fix the GPT to use all of the space (an extra 26257375 blocks) or continue with the current setting? 
 
+fix
+
 expand 
 (resize2fs -p '/dev/sdb1')
 
