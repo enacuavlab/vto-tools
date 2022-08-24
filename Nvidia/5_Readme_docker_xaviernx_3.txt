@@ -121,8 +121,10 @@ dmesg
 
 sudo dd bs=4M if=./xaviernx.img of=/dev/sdx status=progress
 
+sync
+
 Replug SD
-demsg
+dmesg
 =>
 [18825.324118] GPT:Primary header thinks Alt. header is not at the end of the disk.
 [18825.324125] GPT:36263968 != 62521343
