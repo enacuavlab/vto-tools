@@ -59,15 +59,12 @@ int main( int argc, char* argv[] )
 
   void* response;
   int nBytes;
-
   sleep(1);
   g_pClient->SendMessageAndWait("SubscribeToData,AllTypes,None", &response, &nBytes);
   sleep(1);
-
   std::string x="SubscribeByID,RigidBody,"+std::to_string(ac_id);
   const char *cmd=x.c_str();
   g_pClient->SendMessageAndWait(cmd, &response, &nBytes);
-
   sleep(1);
   g_pClient->SendMessageAndWait("Disconnect", &response, &nBytes);
 

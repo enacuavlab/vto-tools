@@ -74,8 +74,8 @@ def stop(mythread):
 #--------------------------------------------------------------------------------
 if __name__ == '__main__':
   loop = True
-#  threadNatnet,ret = init_default_multicast()
-  threadNatnet,ret = init_unicast()
+  threadNatnet,ret = init_default_multicast()
+#  threadNatnet,ret = init_unicast()
   if not ret: stop(threadNatnet)
   try:
     while loop:

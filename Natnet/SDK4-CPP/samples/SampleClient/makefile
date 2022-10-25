@@ -2,7 +2,10 @@ include=-I../../include
 libpath=-L../../lib
 libs=-lNatNet
 
-all:	build/SampleClient build/natnetunicast build/natnetunicast2ivy
+all:	build/SampleClient build/natnetunicast build/natnetunicast2ivy build/test
+
+build/test: 
+	g++ test.cpp $(include) $(libpath) $(libs) -o build/test
 
 build/SampleClient: 
 	g++ SampleClient.cpp $(include) $(libpath) $(libs) -o build/SampleClient
@@ -15,4 +18,4 @@ build/natnetunicast2ivy:
 
 .PHONY: clean
 clean:
-	@rm -f ./build/SampleClient ./build/natnetunicast ./build/natnetunicast2ivy
+	@rm -f ./build/SampleClient ./build/natnetunicast ./build/natnetunicast2ivy ./build/test
