@@ -1,37 +1,71 @@
-
--------------------------------------------------------------------------------
-UBUNTU 20.04
-------------
+SD BACKUP, RESIZE, RESTORE (RASPI OS)
+-------------------------------------
 
 sudo dd if=/dev/sdb of=./SDCardBackup.img status=progress
-=> 16 Gb
+sync
 
-fdisk -lu SDCardBackup.img
-=> 
-Device            Boot  Start      End  Sectors  Size Id Type
-SDCardBackup.img1 *      2048   526335   524288  256M  c W95 FAT32 (LBA)
-SDCardBackup.img2      526336 31116254 30589919 14,6G 83 Linux
+ls -la SDCardBackup.img
+-rw-r--r-- 1 pprz pprz 31914983424 janv. 24 08:11 SDCardBackup.img
+30G !!
 
-losetup -f 
-=> /dev/loop18
+sudo modprobe loop
+sudo losetup -f
+=> /dev/loop14
+sudo losetup /dev/loop14 SDCardBackup.img
+sudo partprobe /dev/loop14
 
-526336 * 512 = 269484032
-sudo losetup -o 269484032 /dev/loop18 SDCardBackup.img
+sudo gparted /dev/loop14
+resize partition
+(minimum - 200Mo)
 
-mkdir dummy
-sudo mount /dev/loop18 dummy
+sudo losetup -d /dev/loop14
 
-sudo gparted /dev/loop18
-Resize partition 
-(unused 2.76 GB)
+fdisk -l SDCardBackup.img
+=>
+Disk SDCardBackup.img: 29,72 GiB, 31914983424 bytes, 62333952 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x2a6ce8e5
 
-losetup -d /dev/loop18
+Device            Boot  Start     End Sectors  Size Id Type
+SDCardBackup.img1        8192  532479  524288  256M  c W95 FAT32 (LBA)
+SDCardBackup.img2      532480 7495679 6963200  3,3G 83 Linux
 
-truncate --size=$[(1+31116254)*512] SDCardBackup.img
-=> 15.6 Gb ?!
-truncate -s 14G SDCardBackup.img
+(7495679 + 1)*512 = 3837788160
+
+truncate --size 3837788160 SDCardBackup.img
+
+ls -la SDCardBackup.img
+-rw-r--r-- 1 pprz pprz 3837788160 janv. 24 09:22 SDCardBackup.img
+3.6G !!
 
 sudo dd bs=4M if=./SDCardBackup.img of=/dev/sdb status=progress
+sync
+
+unplug/plug
+
+sudo gparted
+or
+sudo e2fsck -f -y -v -C 0 '/dev/sdb2'
+sudo resize2fs -p '/dev/sdb2'
+
+boot and ssh
+
+df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root       3.3G  2.0G  1.2G  64% /
+
+sudo raspi-config
+6 Advance Options
+A1 Expand Filesystem
+
+reboot
+
+df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        15G  2.0G   12G  15% /
 
 
 -------------------------------------------------------------------------------
